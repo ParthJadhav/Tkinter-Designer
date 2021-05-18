@@ -4,3 +4,4 @@
 .idea/modules.xml
 .idea/vcs.xml
 __pycache__/window.cpython-39.pyc
+.DS_Store
