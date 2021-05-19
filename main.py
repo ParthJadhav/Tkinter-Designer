@@ -1,12 +1,18 @@
+import PIL.ImageDraw
 import requests
 import pandas as pd
 from colormap import rgb2hex
 import PySimpleGUI as sg
 import tkmacosx
+import tkinter.ttk as ttk
 # from window import Figma_window
+
 from tkinter import *
 
 window = Tk()
+
+def btnClicked():
+    print("hey")
 
 
 def get_color(element):
@@ -30,7 +36,7 @@ def get_dimensions(element):
 ###################### Getting File Data #######################
 token = "189541-e5791cc9-4619-411e-b4b1-6b6f7d285d68"
 fileId = "8K2eByUz9tLasBT5sOFSzJ"
-response = requests.get("https://api.figma.com/v1/files/8K2eByUz9tLasBT5sOFSzJ", headers={"X-FIGMA-TOKEN": "189543-60e9c4f6-7b8c-4fc1-b682-586c2fb8a0e7"})
+response = requests.get("https://api.figma.com/v1/files/8K2eByUz9tLasBT5sOFSzJ", headers={"X-FIGMA-TOKEN": token})
 print(response.text)
 
 with open("js.json",'w') as js:
@@ -85,21 +91,27 @@ for element in window_elements:
             rec_width, rec_height = get_dimensions(element)
             x, y = get_cordinates(element)
             element_color = get_color(element["children"][0])
-            btn_text = element["children"][1]["characters"]
+            btn_text = element["children"][len(element["children"])-1]["characters"]
             print(btn_text)
-            
+
             # TODO: Check for OS
 
-            b = tkmacosx.Button(window, text=btn_text, bg=element_color, borderwidth=0)
+            #res = requests.get("https://s3-us-west-2.amazonaws.com/figma-alpha-api/img/3a59/6340/d221d85d89b97b2cc8329ed3fbbd2e1b")
+            btn_id = element["id"]
+            response = requests.get(f"https://api.figma.com/v1/images/8K2eByUz9tLasBT5sOFSzJ?ids={btn_id}",headers={"X-FIGMA-TOKEN": "189543-60e9c4f6-7b8c-4fc1-b682-586c2fb8a0e7"})
+            res = requests.get(response.json()["images"][btn_id])
+
+            with open("img.png", "wb") as file:
+                file.write(res.content)
+
+            img = PhotoImage(file="img.png")
+            b = Button(image=img,borderwidth=0,highlightthickness=0,command=btnClicked,relief="flat")
+
+
+            # b = Button(image=btnImg)
+            #b = tkmacosx.Button(window, text=btn_text, bg=element_color, borderwidth=0)
             b.place(x=x, y=y, width=rec_width, height=rec_height)
 
-        # a = Button(window,text="This Is a Rectangle")
-        # print(x,y)
-        # a.place(height=height,width=width,x=x,y=y, in_=window)
 
-####################### PYSIMPLE GUI ##########################
-
-# layout = [[sg.Button("And this is Created using PySimpleGUI Automatically")]]
-# created_window = Figma_window.createWindow(Figma_window(),layout,window_width,window_height,hex)
 
 window.mainloop()
