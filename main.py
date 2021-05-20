@@ -7,13 +7,17 @@ import tkmacosx
 import tkinter.ttk as ttk
 # from window import Figma_window
 
-from tkinter import *
+code = open("code.txt", 'a')
+lines = []
 
+from tkinter import *
 window = Tk()
 
 def btnClicked():
     print("hey")
 
+
+lines.extend(['from tkinter import *','window = Tk()\n','def btnClicked():','    print("hey")'])
 
 def get_color(element):
     el_r = element["fills"][0]["color"]['r'] * 255
@@ -32,12 +36,15 @@ def get_dimensions(element):
     width = int(element["absoluteBoundingBox"]["width"])
     return width,height
 
+def get_text_properties(element):
+    font = element["style"]["fontPostScriptName"]
+    fontSize = element["style"]["fontSize"]
+    return font,fontSize
 
 ###################### Getting File Data #######################
 token = "189541-e5791cc9-4619-411e-b4b1-6b6f7d285d68"
 fileId = "8K2eByUz9tLasBT5sOFSzJ"
 response = requests.get("https://api.figma.com/v1/files/8K2eByUz9tLasBT5sOFSzJ", headers={"X-FIGMA-TOKEN": token})
-print(response.text)
 
 with open("js.json",'w') as js:
     js.write(response.text)
@@ -60,58 +67,61 @@ window_color_b = window_color['b'] * 255
 window_bg_hex = rgb2hex(round(window_color_r), round(window_color_g), round(window_color_b))
 
 ####################### Creating Window #######################
+
 window.geometry(f"{window_width}x{window_height}")
 window.configure(bg=window_bg_hex)
-canvas = Canvas(window,bg=window_bg_hex,height=window_height,width=window_width,bd=0, highlightthickness=0,relief='ridge')
+canvas = Canvas(window,bg=window_bg_hex,height=window_height,width=window_width,bd=0, highlightthickness=0,relief="ridge")
 canvas.pack()
+lines.extend([f'\nwindow.geometry("{window_width}x{window_height}")',f'window.configure(bg="{window_bg_hex}")',f'canvas = Canvas(window,bg="{window_bg_hex}",height={window_height},width={window_width},bd=0, highlightthickness=0,relief="ridge")','canvas.pack()'])
 
 ####################### Getting Elements inside Window #######################
 window_elements = fig_window["children"]
 
+btn_count = 0
 for element in window_elements:
-    if element["type"] == 'RECTANGLE':
-        if element["name"] == "Button":
-            rec_width,rec_height = get_dimensions(element)
-            x,y = get_cordinates(element)
-            element_color = get_color(element)
 
-            #TODO: Check for OS
+    if element["name"] == 'Rectangle':
+        rec_width, rec_height = get_dimensions(element)
+        x, y = get_cordinates(element)
+        element_color = get_color(element)
 
-            b = tkmacosx.Button(window,text="hey",bg=element_color,borderwidth=0)
-            b.place(x=x,y=y,width=rec_width,height=rec_height)
+        canvas.create_rectangle(x, y, x + rec_width, y + rec_height, fill=element_color)
 
-        elif element["name"] == "Rectangle":
-            rec_width, rec_height = get_dimensions(element)
-            x, y = get_cordinates(element)
-            element_color = get_color(element)
-            canvas.create_rectangle(x,y,x+rec_width,y+rec_height,fill=element_color)
+        lines.extend([f'\ncanvas.create_rectangle({x}, {y}, {x} + {rec_width}, {y} + {rec_height}, fill="{element_color}")'])
 
-    elif element["type"] == 'GROUP':
-        if element["name"] == "Button":
-            rec_width, rec_height = get_dimensions(element)
-            x, y = get_cordinates(element)
-            element_color = get_color(element["children"][0])
-            btn_text = element["children"][len(element["children"])-1]["characters"]
-            print(btn_text)
+    elif element["name"] == 'Button':
 
-            # TODO: Check for OS
+        rec_width, rec_height = get_dimensions(element)
+        x, y = get_cordinates(element)
+        element_color = get_color(element["children"][0])
+        btn_text = element["children"][len(element["children"]) - 1]["characters"]
+        btn_id = element["id"]
+        response = requests.get(f"https://api.figma.com/v1/images/8K2eByUz9tLasBT5sOFSzJ?ids={btn_id}",
+                                headers={"X-FIGMA-TOKEN": "189543-60e9c4f6-7b8c-4fc1-b682-586c2fb8a0e7"})
+        res = requests.get(response.json()["images"][btn_id])
 
-            #res = requests.get("https://s3-us-west-2.amazonaws.com/figma-alpha-api/img/3a59/6340/d221d85d89b97b2cc8329ed3fbbd2e1b")
-            btn_id = element["id"]
-            response = requests.get(f"https://api.figma.com/v1/images/8K2eByUz9tLasBT5sOFSzJ?ids={btn_id}",headers={"X-FIGMA-TOKEN": "189543-60e9c4f6-7b8c-4fc1-b682-586c2fb8a0e7"})
-            res = requests.get(response.json()["images"][btn_id])
+        with open(f"img{btn_count}.png", "wb") as file:
+            file.write(res.content)
 
-            with open("img.png", "wb") as file:
-                file.write(res.content)
+        img = PhotoImage(file=f"img{btn_count}.png")
 
-            img = PhotoImage(file="img.png")
-            b = Button(image=img,borderwidth=0,highlightthickness=0,command=btnClicked,relief="flat")
+        b = Button(image=img, borderwidth=0, highlightthickness=0, command=btnClicked, relief="flat")
+        b.place(x=x, y=y, width=rec_width, height=rec_height)
 
+        lines.extend([f'\nimg{btn_count} = PhotoImage(file=f"img{btn_count}.png")',f'b{btn_count} = Button(image=img{btn_count}, borderwidth=0, highlightthickness=0, command=btnClicked, relief="flat")',f'b{btn_count}.place(x={x}, y={y}, width={rec_width}, height={rec_height})\n'])
+        btn_count += 1
 
-            # b = Button(image=btnImg)
-            #b = tkmacosx.Button(window, text=btn_text, bg=element_color, borderwidth=0)
-            b.place(x=x, y=y, width=rec_width, height=rec_height)
+    elif element["type"] == 'TEXT':
+        text = element["characters"]
+        x,y = get_cordinates(element)
+        width,height = get_dimensions(element)
+        color = get_color(element)
+        font,fontSize = get_text_properties(element)
+        x,y = x + (width/2), y + (height/2)
+        canvas.create_text(x,y,text=text,fill=color,font=(font,int(fontSize)))
+        lines.extend([f'canvas.create_text({x},{y},text="{text}",fill="{color}",font=("{font}",int({fontSize})))'])
 
-
+# for i in lines:
+#     print(i)
 
 window.mainloop()
