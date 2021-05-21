@@ -1,9 +1,6 @@
 import requests
 from colormap import rgb2hex
-import PySimpleGUI as sg
-import tkmacosx
-import tkinter.ttk as ttk
-# from window import Figma_window
+import os
 
 os.mkdir("./generated_code/")
 
