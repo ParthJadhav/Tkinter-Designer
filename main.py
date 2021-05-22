@@ -39,10 +39,12 @@ def get_text_properties(element):
 
 
 ###################### Getting File Data #######################
-# token = "189541-e5791cc9-4619-411e-b4b1-6b6f7d285d68"
 
 token = input("Enter the token :\n")
 file_url = input("Enter the URL to the file :\n")
+
+# token = "190717-95002649-2e2a-4572-bef4-63f733fb574e"
+# file_url = "https://www.figma.com/file/LWvFtyp97EL0jya6Bucv2p/Untitled?node-id=1%3A3"
 
 
 def find_between(s, first, last):
@@ -59,7 +61,6 @@ fileId = find_between(file_url, "file/", "/")
 response = requests.get(f"https://api.figma.com/v1/files/{fileId}", headers={"X-FIGMA-TOKEN": token})
 
 data = response.json()
-print(data)
 
 ####################### Getting Window Properties #######################
 
@@ -100,7 +101,7 @@ for element in window_elements:
         item_id = element["id"]
 
         response = requests.get(f"https://api.figma.com/v1/images/{fileId}?ids={item_id}",
-                                headers={"X-FIGMA-TOKEN": "189543-60e9c4f6-7b8c-4fc1-b682-586c2fb8a0e7"})
+                                headers={"X-FIGMA-TOKEN": f"{token}"})
         res = requests.get(response.json()["images"][item_id])
         with open(f"./generated_code/img{btn_count}.png", "wb") as file:
             file.write(res.content)
@@ -136,7 +137,7 @@ for element in window_elements:
         item_id = element["id"]
 
         response = requests.get(f"https://api.figma.com/v1/images/{fileId}?ids={item_id}&use_absolute_bounds=true",
-                                headers={"X-FIGMA-TOKEN": "189543-60e9c4f6-7b8c-4fc1-b682-586c2fb8a0e7"})
+                                headers={"X-FIGMA-TOKEN": f"{token}"})
         res = requests.get(response.json()["images"][item_id])
         with open(f"./generated_code/background.png", "wb") as file:
             file.write(res.content)
@@ -147,8 +148,15 @@ for element in window_elements:
                       f'background = canvas.create_image({x},{y},image=background_img)\n'])
 
 ####################### Adding the generated code to window.py #######################
-lines.extend(['window.mainloop()'])
+lines.extend(['window.resizable(False, False)','window.mainloop()'])
 final_code = [line + "\n" for line in lines]
 
 with open("./generated_code/window.py", 'w') as py_file:
-    py_file.writelines(final_code)
+    py_file.writelines(final_code) 
+
+
+# screen_width = window.winfo_screenwidth()
+# screen_height = window.winfo_screenheight()
+# x_cordinate = int((screen_width/2) - (1175/2))
+# y_cordinate = int((screen_height/2) - (737/2))
+# window.geometry(f"1175x737+{x_cordinate}+{y_cordinate}")
