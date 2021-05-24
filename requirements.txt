@@ -1,0 +1,11 @@
+certifi==2020.12.5
+chardet==4.0.0
+colorama==0.4.4
+colorlog==5.0.1
+colormap==1.0.3
+easydev==0.11.1
+idna==2.10
+pexpect==4.8.0
+ptyprocess==0.7.0
+requests==2.25.1
+urllib3==1.26.4

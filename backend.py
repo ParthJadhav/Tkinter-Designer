@@ -5,7 +5,10 @@ from tkinter import messagebox
 
 def generate_code(token,link,path_to_save):
     generated_dir = path_to_save + "/generated_code/"
-    os.mkdir(generated_dir)
+    try:
+        os.mkdir(generated_dir)
+    except:
+        pass
 
     lines = []
     lines.extend(['from tkinter import *', 'window = Tk()', 'def btn_clicked():', '    print("Button Clicked")\n'])

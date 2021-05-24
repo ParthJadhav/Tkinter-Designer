@@ -31,13 +31,13 @@ window.configure(bg="#FFFFFF")
 canvas = Canvas(window,bg="#FFFFFF",height=737,width=749,bd=0, highlightthickness=0,relief="ridge")
 canvas.place(x=0,y=0)
 
-background_img = PhotoImage(file=f"background.png")
+background_img = PhotoImage(file="./images/background.png")
 background = canvas.create_image(374.5,368.5,image=background_img)
 
-img0 = PhotoImage(file=f"img0.png")
-b0 = Button(image=img0, borderwidth=0, highlightthickness=0, command=select_path, relief="flat")
-b0["state"] = "disabled"
-b0.place(x=512, y=481, width=18, height=18)
+folder_btn_img = PhotoImage(file="./images/folder.png")
+folder_btn = Button(image=folder_btn_img, borderwidth=0, highlightthickness=0, command=select_path, relief="flat")
+folder_btn["state"] = "disabled"
+folder_btn.place(x=512, y=481, width=18, height=18)
 
 token_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
 token_entry.place(x=219, y=328, width=284, height=27)
@@ -50,18 +50,14 @@ path_entry.place(x=219, y=490, width=284, height=27)
 path_entry.bind("<1>", select_path)
 
 canvas.create_text(378.0,165.0,text="Tkinter Designer",fill="#373C8A",font=("Arial-BoldMT",int(64.0)))
-
 canvas.create_text(367.0,229.0,text="Enter the following details",fill="#515486",font=("ArialMT",int(24.0)))
-
 canvas.create_text(243.0,316.5,text="Token ID",fill="#515486",font=("Arial-BoldMT",int(13.0)))
-
 canvas.create_text(242.5,397.5,text="File URL",fill="#515486",font=("Arial-BoldMT",int(13.0)))
-
 canvas.create_text(253.5,478.5,text="Output Path",fill="#515486",font=("Arial-BoldMT",int(13.0)))
 
-img1 = PhotoImage(file=f"img1.png")
-b1 = Button(image=img1, borderwidth=0, highlightthickness=0, command=btnClicked, relief="flat")
-b1.place(x=294, y=575, width=180, height=56)
+generate_btn_img = PhotoImage(file="./images/generate.png")
+generate_btn = Button(image=generate_btn_img, borderwidth=0, highlightthickness=0, command=btnClicked, relief="flat")
+generate_btn.place(x=294, y=575, width=180, height=56)
 
 window.resizable(False, False)
 window.mainloop()
