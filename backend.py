@@ -4,12 +4,11 @@ import os
 from tkinter import messagebox
 
 def generate_code(token,link,path_to_save):
-
     generated_dir = path_to_save + "/generated_code/"
     os.mkdir(generated_dir)
 
     lines = []
-    lines.extend(['from tkinter import *', 'window = Tk()', 'def btnClicked():\n', '    print("Button Clicked")\n'])
+    lines.extend(['from tkinter import *', 'window = Tk()', 'def btn_clicked():', '    print("Button Clicked")\n'])
 
     def get_color(element):
         """ Get's the element as input and checks for it's RGB color and converts and returns it's HEX COLOR. (STRING)"""
@@ -125,10 +124,33 @@ def generate_code(token,link,path_to_save):
         elif element["name"] == 'TextBox':
             width, height = get_dimensions(element)
             x, y = get_coordinates(element)
+            x, y = x + (width / 2), y + (height / 2)
             bg = get_color(element)
 
+            item_id = element["id"]
+            response = requests.get(f"https://api.figma.com/v1/images/{fileId}?ids={item_id}",
+                                    headers={"X-FIGMA-TOKEN": f"{token}"})
+
+            image_link = requests.get(response.json()["images"][item_id])
+
+            with open(f"{generated_dir}img_textBox{text_entry_count}.png", "wb") as file:
+                file.write(image_link.content)
+
+            lines.extend([f'entry{text_entry_count}_img = PhotoImage(file=f"img_textBox{text_entry_count}.png")',
+                          f'entry{text_entry_count}_bg = canvas.create_image({x},{y},image=entry{text_entry_count}_img)\n'])
+
+            corner_radius = element["cornerRadius"]
+            if corner_radius > height / 2:
+                corner_radius = height / 2
+
+            reduced_width = width - (corner_radius * 2)
+            reduced_height = height - 2
+            x, y = get_coordinates(element)
+            x = x + corner_radius
+
             lines.extend([f'entry{text_entry_count} = Entry(bd=0,bg="{bg}",highlightthickness=0)',
-                          f'entry{text_entry_count}.place(x={x},y={y},width={width},height={height})\n'])
+                          f'entry{text_entry_count}.place(x={x},y={y},width={reduced_width},height={reduced_height})\n'])
+
             text_entry_count += 1
 
         elif element["name"] == "Background":

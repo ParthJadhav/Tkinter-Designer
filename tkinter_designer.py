@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import filedialog
+from tkinter import filedialog,messagebox
 import backend
 
 window = Tk()
@@ -7,13 +7,23 @@ window.title("Tkinter Designer")
 path_to_save = ""
 
 def btnClicked():
-    backend.generate_code(entry0.get(), entry1.get(), path_to_save)
+    token = token_entry.get()
+    URL = URL_entry.get()
+    print(f"'{type(URL)}','{type(token)}'")
+    if token == "":
+        messagebox.showerror(title="Empty Fields", message="Please enter Token")
+    elif URL == "":
+        messagebox.showerror(title="Empty Fields", message="Please enter URL")
+    elif path_to_save == "":
+        messagebox.showerror(title="invalid path", message="Enter a correct path")
+    else:
+        backend.generate_code(token,URL, path_to_save)
 
 def select_path(event):
     global path_to_save
     window.withdraw()
     path_to_save = filedialog.askdirectory()
-    entry2.insert(0, path_to_save)
+    path_entry.insert(0, path_to_save)
     window.deiconify()
 
 window.geometry("749x737")
@@ -26,17 +36,18 @@ background = canvas.create_image(374.5,368.5,image=background_img)
 
 img0 = PhotoImage(file=f"img0.png")
 b0 = Button(image=img0, borderwidth=0, highlightthickness=0, command=select_path, relief="flat")
+b0["state"] = "disabled"
 b0.place(x=512, y=481, width=18, height=18)
 
-entry0 = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
-entry0.place(x=219,y=328,width=284,height=27)
+token_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+token_entry.place(x=219, y=328, width=284, height=27)
 
-entry1 = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
-entry1.place(x=219,y=409,width=284,height=27)
+URL_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+URL_entry.place(x=219, y=409, width=284, height=27)
 
-entry2 = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
-entry2.place(x=219,y=490,width=284,height=27)
-entry2.bind("<1>", select_path)
+path_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+path_entry.place(x=219, y=490, width=284, height=27)
+path_entry.bind("<1>", select_path)
 
 canvas.create_text(378.0,165.0,text="Tkinter Designer",fill="#373C8A",font=("Arial-BoldMT",int(64.0)))
 

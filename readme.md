@@ -12,12 +12,12 @@ Tkinter Designer uses Figma API to analyse the design file and creates the respe
 <img width="467" alt="Help" src="https://user-images.githubusercontent.com/42001064/119250096-5b4d4080-bbbb-11eb-9736-0d30c636da2c.png">
 
 
-## 🔖  Advantages of Tkinter Designer
+## ☄️  Advantages of Tkinter Designer
 1. Drag and Drop Interfaces
 2. Takes far less time than creating code manually.
 3. Ability to create more beautiful Interfaces.
 
-## 🔖  How it works ?
+## 📐 How it works ?
 
 The only thing the user needs to do is Design a Interface with Figma and then paste the Figma file URL and API token into Tkinter Designer.
 
@@ -25,18 +25,27 @@ It will automatically generate all the code and images required to create the GU
 
 <img width="467" alt="Help" src="https://user-images.githubusercontent.com/42001064/119249953-6fdd0900-bbba-11eb-9891-42e5e733ee81.jpg">
 
-## 🔖  Examples
+## 🛠  How to use ?
+
+In this video I explain how to use Figma & Tkinter to create beautiful GUIs. Unfortunately it is not possible for me to explain it in Readme.
+
+## 🛠  How to run ?
+
+To use GUI Version of Tkinter Designer :-
+
+
+
+To use Command Line Version of Tkinter Designer :-
+
+## 🍀 Examples
 The possibilities are endless with Tkinter Designer. But here are couple of GUIs which can be perfectly replicated in Tkinter Designer. (The following are not my creations)
 
 1.<img width="467" alt="Help" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
 
 2.<img width="467" alt="Help" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
 
-## 🔖  How to use ?
 
-In this video I explain how to use Figma & Tkinter to create beautiful GUIs. Unfortunately it is not possible for me to explain it in Readme.
-
-## 📦  Figma Design Checklist (referenced In the video)
+## ✅ Figma Design Checklist (referenced In the video)
 
 I have mentioned these in the video but i'll mark them down here :-
 
