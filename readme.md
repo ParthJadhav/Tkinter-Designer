@@ -5,7 +5,7 @@
 ![GitHub repo issues](https://img.shields.io/github/issues/ParthJadhav/Tkinter-Designer?label=issues)
 
 Tkinter Designer is created to speed up and beautify Python GUI Experience.
-It uses well know design software called [Figma](https://www.figma.com/). Which makes creating Tkinter GUI in Python a peice of cake.
+It uses well know design software called [Figma](https://www.figma.com/). Which makes creating Tkinter GUI in Python a piece of cake.
 
 Tkinter Designer uses Figma API to analyse the design file and creates the respective code and files needed for the GUI. Even Tkinter Designer's GUI is created using Tkinter Designer.
 
