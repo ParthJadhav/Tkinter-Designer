@@ -27,15 +27,9 @@ It will automatically generate all the code and images required to create the GU
 
 ## 🛠  How to use ?
 
-In this video I explain how to use Figma & Tkinter to create beautiful GUIs. Unfortunately it is not possible for me to explain it in Readme.
+This pdf contains all the information about installing and using Tkinter Designer.
 
-## 🛠  How to run ?
-
-To use GUI Version of Tkinter Designer :-
-
-
-
-To use Command Line Version of Tkinter Designer :-
+[Cick here for the PDF](https://drive.google.com/uc?export=download&id=1uUuQfW11rAd4CwCm1nOGb-Qum2LpQybS)
 
 ## 🍀 Examples
 The possibilities are endless with Tkinter Designer. But here are couple of GUIs which can be perfectly replicated in Tkinter Designer. (The following are not my creations)
@@ -45,7 +39,7 @@ The possibilities are endless with Tkinter Designer. But here are couple of GUIs
 2.<img width="467" alt="Help" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
 
 
-## ✅ Figma Design Checklist (referenced In the video)
+## ✅ Figma Design Checklist (Also mentioned in the PDF)
 
 I have mentioned these in the video but i'll mark them down here :-
 
