@@ -41,7 +41,7 @@ The possibilities are endless with Tkinter Designer. But here are couple of GUIs
 
 ## ✅ Figma Design Checklist (Also mentioned in the PDF)
 
-I have mentioned these in the video but i'll mark them down here :-
+I have mentioned these in the PDF but i'll mark them down here :-
 
 1. Buttons  - Should be named Button (In Figma)
 
