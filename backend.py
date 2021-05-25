@@ -109,7 +109,7 @@ def generate_code(token,link,path_to_save):
                 file.write(image_link.content)
 
             lines.extend([f'img{btn_count} = PhotoImage(file=f"img{btn_count}.png")',
-                          f'b{btn_count} = Button(image=img{btn_count}, borderwidth=0, highlightthickness=0, command=btnClicked, relief="flat")',
+                          f'b{btn_count} = Button(image=img{btn_count}, borderwidth=0, highlightthickness=0, command=btn_clicked, relief="flat")',
                           f'b{btn_count}.place(x={x}, y={y}, width={width}, height={height})\n'])
 
             btn_count += 1
