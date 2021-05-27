@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import filedialog,messagebox
 import backend
+import webbrowser
 
 window = Tk()
 window.title("Tkinter Designer")
@@ -26,38 +27,67 @@ def select_path(event):
     path_entry.insert(0, path_to_save)
     window.deiconify()
 
-window.geometry("749x737")
-window.configure(bg="#FFFFFF")
-canvas = Canvas(window,bg="#FFFFFF",height=737,width=749,bd=0, highlightthickness=0,relief="ridge")
+def know_more_clicked(event):
+    url = "https://drive.google.com/uc?export=download&id=1uUuQfW11rAd4CwCm1nOGb-Qum2LpQybS"
+    webbrowser.open_new(url)
+
+def make_label(master, x, y, h, w, *args, **kwargs):
+    f = Frame(master, height=h, width=w)
+    f.pack_propagate(0) # don't shrink
+    f.place(x=x, y=y)
+    label = Label(f, *args, **kwargs)
+    label.pack(fill=BOTH, expand=1)
+    return label
+
+window.geometry("862x519")
+window.configure(bg="#3A7FF6")
+canvas = Canvas(window,bg="#3A7FF6",height=519,width=862,bd=0, highlightthickness=0,relief="ridge")
 canvas.place(x=0,y=0)
+canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC",outline="")
+canvas.create_rectangle(40, 160, 40 + 60, 160 + 5, fill="#FCFCFC",outline="")
 
-background_img = PhotoImage(file="./images/background.png")
-background = canvas.create_image(374.5,368.5,image=background_img)
+text_box_bg = PhotoImage(file=f"images/TextBox_Bg.png")
+token_entry_img = canvas.create_image(650.5,167.5,image=text_box_bg)
+URL_entry_img = canvas.create_image(650.5,248.5,image=text_box_bg)
+filePath_entry_img = canvas.create_image(650.5,329.5,image=text_box_bg)
 
-folder_btn_img = PhotoImage(file="./images/folder.png")
-folder_btn = Button(image=folder_btn_img, borderwidth=0, highlightthickness=0, command=select_path, relief="flat")
-folder_btn["state"] = "disabled"
-folder_btn.place(x=512, y=481, width=18, height=18)
+token_entry = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
+token_entry.place(x=490.0,y=137+25,width=321.0,height=35)
 
-token_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
-token_entry.place(x=219, y=328, width=284, height=27)
+URL_entry = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
+URL_entry.place(x=490.0,y=218+25,width=321.0,height=35)
 
-URL_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
-URL_entry.place(x=219, y=409, width=284, height=27)
-
-path_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
-path_entry.place(x=219, y=490, width=284, height=27)
+path_entry = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
+path_entry.place(x=490.0,y=299+25,width=321.0,height=35)
 path_entry.bind("<1>", select_path)
 
-canvas.create_text(378.0,165.0,text="Tkinter Designer",fill="#373C8A",font=("Arial-BoldMT",int(64.0)))
-canvas.create_text(367.0,229.0,text="Enter the following details",fill="#515486",font=("ArialMT",int(24.0)))
-canvas.create_text(243.0,316.5,text="Token ID",fill="#515486",font=("Arial-BoldMT",int(13.0)))
-canvas.create_text(242.5,397.5,text="File URL",fill="#515486",font=("Arial-BoldMT",int(13.0)))
-canvas.create_text(253.5,478.5,text="Output Path",fill="#515486",font=("Arial-BoldMT",int(13.0)))
+
+canvas.create_text(519.0,156.0,text="Token ID",fill="#515486",font=("Arial-BoldMT",int(13.0)))
+canvas.create_text(518.5,234.5,text="File URL",fill="#515486",font=("Arial-BoldMT",int(13.0)))
+canvas.create_text(529.5,315.5,text="Output Path",fill="#515486",font=("Arial-BoldMT",int(13.0)))
+canvas.create_text(646.5,428.5,text="Generate",fill="#FFFFFF",font=("Arial-BoldMT",int(13.0)))
+canvas.create_text(573.5,88.0,text="Enter the details.",fill="#515486",font=("Arial-BoldMT",int(22.0)))
+
+title = Label(text="Welcome to Tkinter Designer", bg="#3A7FF6",fg="white",font=("Arial-BoldMT",int(20.0)))
+title.place(x=27.0,y=120.0)
+
+info_text = Label(text="Tkinter Designer uses Figma API to\n"
+                   "analyse the design file and creates the\n"
+                   " respective code and files needed\n"
+                   "for the GUI. Even Tkinter Designer's\n"
+                   "GUI is created using Tkinter Designer.",
+              bg="#3A7FF6",fg="white",justify="left",font=("Georgia",int(16.0)))
+
+info_text.place(x=27.0,y=200.0)
+
+know_more = Label(text="How to use ?", bg="#3A7FF6",fg="white", cursor="hand2")
+know_more.place(x=27,y=340)
+know_more.bind('<Button-1>', know_more_clicked)
 
 generate_btn_img = PhotoImage(file="./images/generate.png")
 generate_btn = Button(image=generate_btn_img, borderwidth=0, highlightthickness=0, command=btnClicked, relief="flat")
-generate_btn.place(x=294, y=575, width=180, height=56)
+generate_btn.place(x=557, y=401, width=180, height=55)
+
 
 window.resizable(False, False)
 window.mainloop()
