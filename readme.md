@@ -23,7 +23,7 @@ The only thing the user needs to do is Design a Interface with Figma and then pa
 
 It will automatically generate all the code and images required to create the GUI in Tkinter.
 
-<img width="467" alt="How it Works" src="https://user-images.githubusercontent.com/42001064/119249953-6fdd0900-bbba-11eb-9891-42e5e733ee81.jpg">
+<img width="467" alt="How it Works" src="https://user-images.githubusercontent.com/42001064/119832620-fb88c980-bf1b-11eb-8e9b-4affe7b92ba2.jpg">
 
 ## 🛠  How to use ?
 
