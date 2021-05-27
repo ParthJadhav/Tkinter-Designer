@@ -34,10 +34,17 @@ This pdf contains all the information about installing and using Tkinter Designe
 ## 🍀 Examples
 The possibilities are endless with Tkinter Designer. But here are couple of GUIs which can be perfectly replicated in Tkinter Designer. (The following are not my creations)
 
-1.<img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
+### 1
+<img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
+<h3> 2 </h3>
+<img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
 
-2.<img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
+## 🔥 Showcase
+If your app has used Tkinter Designer, let me know. It would be helpful for others to see some examples.
 
+### [Frame Recorder]("https://github.com/mehmet-mert/FrameRecorder")
+
+<img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
 ## ✅ Figma Design Checklist (Also mentioned in the PDF)
 
