@@ -8,7 +8,7 @@ Tkinter Designer was created to speed up the GUI-development process in Python. 
 
 Tkinter Designer uses the Figma API to analyse a design file and create the respective code and files needed for the GUI. Even Tkinter Designer's GUI is created using Tkinter Designer.
 
-<img width="500" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/119768873-0b31ef00-bed7-11eb-8047-55b474d5a2fc.png">
+<img width="500" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/119863796-92af4a80-bf37-11eb-9f6c-61b1ab99b039.png">
 
 
 ## ☄️  Advantages of Tkinter Designer
