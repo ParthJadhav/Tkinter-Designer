@@ -42,7 +42,9 @@ The possibilities are endless with Tkinter Designer. But here are couple of GUIs
 ## 🔥 Showcase
 If your app has used Tkinter Designer, let me know. It would be helpful for others to see some examples.
 
-### [Frame Recorder]("https://github.com/mehmet-mert/FrameRecorder")
+### Frame Recorder
+
+[Visit Here](https://github.com/mehmet-mert/FrameRecorder)
 
 <img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
