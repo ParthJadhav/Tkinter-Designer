@@ -141,8 +141,11 @@ def generate_code(token,link,path_to_save):
 
             lines.extend([f'entry{text_entry_count}_img = PhotoImage(file=f"img_textBox{text_entry_count}.png")',
                           f'entry{text_entry_count}_bg = canvas.create_image({x},{y},image=entry{text_entry_count}_img)\n'])
+            try:
+                corner_radius = element["cornerRadius"]
+            except KeyError:
+                corner_radius = 0
 
-            corner_radius = element["cornerRadius"]
             if corner_radius > height / 2:
                 corner_radius = height / 2
 

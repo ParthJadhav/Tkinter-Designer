@@ -10,7 +10,6 @@ path_to_save = ""
 def btnClicked():
     token = token_entry.get()
     URL = URL_entry.get()
-    print(f"'{type(URL)}','{type(token)}'")
     if token == "":
         messagebox.showerror(title="Empty Fields", message="Please enter Token")
     elif URL == "":
