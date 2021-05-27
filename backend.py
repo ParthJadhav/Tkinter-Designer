@@ -14,7 +14,7 @@ def generate_code(token,link,path_to_save):
     lines.extend(['from tkinter import *', 'window = Tk()', 'def btn_clicked():', '    print("Button Clicked")\n'])
 
     def get_color(element):
-        """ Get's the element as input and checks for it's RGB color and converts and returns it's HEX COLOR. (STRING)"""
+        """ Gets the element as input, checks its RGB color, then converts and returns its HEX COLOR. (STRING)"""
 
         el_r = element["fills"][0]["color"]['r'] * 255
         el_g = element["fills"][0]["color"]['g'] * 255
@@ -24,21 +24,21 @@ def generate_code(token,link,path_to_save):
 
 
     def get_coordinates(element):
-        """ Get's the element as input and returns it's coordinates in X, Y. (INT)"""
+        """ Gets the element as input and returns its coordinates in X, Y. (INT)"""
         x = int(element["absoluteBoundingBox"]["x"])
         y = int(element["absoluteBoundingBox"]["y"])
         return x, y
 
 
     def get_dimensions(element):
-        """ Get's the element as input and returns it's dimensions in width, height. (INT)"""
+        """ Gets the element as input and returns its dimensions in width, height. (INT)"""
         height = int(element["absoluteBoundingBox"]["height"])
         width = int(element["absoluteBoundingBox"]["width"])
         return width, height
 
 
     def get_text_properties(element):
-        """ Get's the element as input and returns it's font and fontSize in String."""
+        """ Gets the element as input and returns its font and fontSize in String."""
         font = element["style"]["fontPostScriptName"]
         fontSize = element["style"]["fontSize"]
         return font, fontSize
@@ -179,4 +179,4 @@ def generate_code(token,link,path_to_save):
     with open(f"{generated_dir}window.py", 'w') as py_file:
         py_file.writelines(final_code)
 
-    messagebox.askokcancel("Success","The file were successfully Created")
+    messagebox.showinfo("Success","Files created successfully!")

@@ -71,17 +71,19 @@ canvas.create_text(573.5,88.0,text="Enter the details.",fill="#515486",font=("Ar
 title = Label(text="Welcome to Tkinter Designer", bg="#3A7FF6",fg="white",font=("Arial-BoldMT",int(20.0)))
 title.place(x=27.0,y=120.0)
 
-info_text = Label(text="Tkinter Designer uses Figma API to\n"
-                   "analyse the design file and creates the\n"
-                   " respective code and files needed\n"
-                   "for the GUI. Even Tkinter Designer's\n"
-                   "GUI is created using Tkinter Designer.",
+info_text = Label(text="Tkinter Designer uses the Figma API\n"
+                   "to analyse a design file, then creates\n"
+                   "the respective code and files needed\n"
+                   "for your GUI.\n\n"
+                   
+                   "Even this GUI was created\n"
+                   "using Tkinter Designer.",
               bg="#3A7FF6",fg="white",justify="left",font=("Georgia",int(16.0)))
 
 info_text.place(x=27.0,y=200.0)
 
 know_more = Label(text="How to use ?", bg="#3A7FF6",fg="white", cursor="hand2")
-know_more.place(x=27,y=340)
+know_more.place(x=27,y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
 generate_btn_img = PhotoImage(file="./images/generate.png")
