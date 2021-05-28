@@ -18,6 +18,22 @@ Tkinter Designer uses the Figma API to analyse a design file and create the resp
 
 ___
 
+## 🛠  Installing Tkinter Designer
+
+```
+git clone https://github.com/ParthJadhav/Tkinter-Designer
+
+cd Tkinter-Designer
+
+pip3 install -r requirements.txt
+
+python3 tkinter_designer.py
+```
+## ⚡️ Using Tkinter Designer
+
+[Watch This Video](https://youtu.be/mFjE2-rbpm8)
+___
+
 ## 📐 How it Works
 The only thing the user needs to do is design an interface with Figma, and then paste the Figma file URL and API token into Tkinter Designer.
 
@@ -27,14 +43,7 @@ Tkinter Designer will automatically generate all the code and images required to
 
 ___
 
-## 🛠  Instructions for Tkinter Designer
-This pdf contains all the information about installing and using Tkinter Designer.
-
-* [Click here for the PDF](https://drive.google.com/uc?export=download&id=1uUuQfW11rAd4CwCm1nOGb-Qum2LpQybS)
-
-___
-
-## 🍀 Examples
+## 🎯 Examples
 The possibilities are endless with Tkinter Designer, but here are a couple of GUIs that can be perfectly replicated in Tkinter.
 
 <small>The following are not my creations.</small>
@@ -53,7 +62,7 @@ If your app was made with Tkinter Designer, let me know. It will be helpful for 
 
 ___
 
-## ✅ Figma Design Checklist (Also mentioned in the [PDF](https://drive.google.com/uc?export=download&id=1uUuQfW11rAd4CwCm1nOGb-Qum2LpQybS))
+## ✅ Figma Design Checklist (Also mentioned in the [Video](https://youtu.be/mFjE2-rbpm8))
 
 * Background &mdash; should be named `Background` (in Figma)
 * Buttons &mdash; should be named `Button` (in Figma)
@@ -76,4 +85,4 @@ ___
 ## 📄 License
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
-This project uses the MIT License.
+This project uses the BSD 3-Clause "New" or "Revised" License.
