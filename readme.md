@@ -19,25 +19,41 @@ Tkinter Designer uses the Figma API to analyse a design file and create the resp
 ___
 <br>
 
+## 🛠  Installing Tkinter Designer
+
+```
+git clone https://github.com/ParthJadhav/Tkinter-Designer
+
+cd Tkinter-Designer
+
+pip3 install -r requirements.txt
+
+python3 tkinter_designer.py
+```
+## ⚡️ Using Tkinter Designer
+
+[Watch This Video](https://youtu.be/mFjE2-rbpm8)
+___
+<br>
+
+<<<<<<< HEAD
+## 🛠  Instructions for Tkinter Designer
+The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues.
+
+## [Instructions](https://github.com/piccoloser/Tkinter-Designer/blob/master/instructions.md)
+=======
 ## 📐 How it Works
 The only thing the user needs to do is design an interface with Figma, and then paste the Figma file URL and API token into Tkinter Designer.
 
 Tkinter Designer will automatically generate all the code and images required to create the GUI in Tkinter.
 
 <img width="467" alt="How it Works" src="https://user-images.githubusercontent.com/42001064/119832620-fb88c980-bf1b-11eb-8e9b-4affe7b92ba2.jpg">
+>>>>>>> 0ab0447654ce957be3b59364be7e2b9806f2431c
 
 ___
 <br>
 
-## 🛠  Instructions for Tkinter Designer
-The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues.
-
-## [Instructions](https://github.com/piccoloser/Tkinter-Designer/blob/master/instructions.md)
-
-___
-<br>
-
-## 🍀 Examples
+## 🎯 Examples
 The possibilities are endless with Tkinter Designer, but here are a couple of GUIs that can be perfectly replicated in Tkinter.
 
 <small>The following are not my creations.</small>
@@ -58,7 +74,11 @@ If your app was made with Tkinter Designer, let me know. It will be helpful for 
 ___
 <br>
 
+<<<<<<< HEAD
 ## ✅ Figma Design Checklist (Also mentioned in the [instructions](https://github.com/piccoloser/Tkinter-Designer/blob/master/instructions.md))
+=======
+## ✅ Figma Design Checklist (Also mentioned in the [Video](https://youtu.be/mFjE2-rbpm8))
+>>>>>>> 0ab0447654ce957be3b59364be7e2b9806f2431c
 
 * Background &mdash; should be named `Background` (in Figma)
 * Buttons &mdash; should be named `Button` (in Figma)
@@ -83,6 +103,7 @@ ___
 ## 📄 License
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
+<<<<<<< HEAD
 Tkinter Designer is licensed under the BSD 3-Clause License.
 [View Here.](https://github.com/piccoloser/Tkinter-Designer/blob/master/LICENSE)
 
@@ -92,3 +113,6 @@ Tkinter Designer is licensed under the BSD 3-Clause License.
 &check; Modification   | &times; Warranty
 &check; Distribution  
 &check; Private Use
+=======
+This project uses the BSD 3-Clause "New" or "Revised" License.
+>>>>>>> 0ab0447654ce957be3b59364be7e2b9806f2431c
