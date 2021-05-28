@@ -76,4 +76,4 @@ ___
 ## 📄 License
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
-This project uses the MIT License.
+This project uses the BSD 3-Clause "New" or "Revised" License.
