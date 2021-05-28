@@ -34,7 +34,7 @@ python3 tkinter_designer.py
 
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video format.
 
-[Watch This Video](https://youtu.be/mFjE2-rbpm8)  
+[Watch the Video](https://youtu.be/mFjE2-rbpm8)  
 [Read the Instructions](https://github.com/piccoloser/Tkinter-Designer/blob/master/instructions.md)
 
 ___
