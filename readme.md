@@ -35,7 +35,7 @@ python3 tkinter_designer.py
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video format.
 
 [Watch the Video](https://youtu.be/mFjE2-rbpm8)  
-[Read the Instructions](https://github.com/piccoloser/Tkinter-Designer/blob/master/instructions.md)
+[Read the Instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md)
 
 ___
 <br>
@@ -71,7 +71,7 @@ If your app was made with Tkinter Designer, let me know. It will be helpful for 
 ___
 <br>
  
-## ✅ Figma Design Checklist (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/piccoloser/Tkinter-Designer/blob/master/instructions.md))
+## ✅ Figma Design Checklist (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md))
 
 * Background &mdash; should be named `Background` (in Figma)
 * Buttons &mdash; should be named `Button` (in Figma)
@@ -97,7 +97,7 @@ ___
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
 Tkinter Designer is licensed under the BSD 3-Clause "New" or "Revised" License.  
-[View Here.](https://github.com/piccoloser/Tkinter-Designer/blob/master/LICENSE)
+[View Here.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
 
 | Permissions | Restrictions | Conditions
 | --- | --- | --- 
