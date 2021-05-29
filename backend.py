@@ -20,7 +20,8 @@ def generate_code(token,link,path_to_save):
         el_r = element["fills"][0]["color"]['r'] * 255
         el_g = element["fills"][0]["color"]['g'] * 255
         el_b = element["fills"][0]["color"]['b'] * 255
-        return ('#%02x%02x%02x' % (round(el_r), round(el_g), round(el_b)))
+        hex_code = ('#%02x%02x%02x' % (round(el_r), round(el_g), round(el_b)))
+        return hex_code
 
 
     def get_coordinates(element):
