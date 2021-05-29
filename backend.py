@@ -7,8 +7,10 @@ def generate_code(token,link,path_to_save):
     generated_dir = path_to_save + "/generated_code/"
     try:
         os.mkdir(generated_dir)
-    except:
-        pass
+    except FileExistsError:
+        messagebox.showinfo("File Exists", "Existing Files will be overwritten")
+    except PermissionError:
+        messagebox.showerror("Permission Error", "Change directory or directory permissions")
 
     lines = []
     lines.extend(['from tkinter import *', 'window = Tk()', 'def btn_clicked():', '    print("Button Clicked")\n'])
@@ -66,7 +68,10 @@ def generate_code(token,link,path_to_save):
 
     ####################### Getting Window Properties #######################
 
-    fig_window = data["document"]["children"][0]['children'][0]
+    try:
+        fig_window = data["document"]["children"][0]['children'][0]
+    except KeyError:
+        messagebox.showerror("Error", "Invalid details, recheck the fields")
 
     window_width, window_height = get_dimensions(fig_window)
 

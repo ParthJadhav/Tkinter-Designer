@@ -21,10 +21,10 @@ def btnClicked():
 
 def select_path(event):
     global path_to_save
-    window.withdraw()
+    # window.withdraw()
     path_to_save = filedialog.askdirectory()
     path_entry.insert(0, path_to_save)
-    window.deiconify()
+    # window.deiconify()
 
 def know_more_clicked(event):
     url = "https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md"
