@@ -1,8 +1,20 @@
-# Tkinter Designer
+<p align="center">
+  <img width="200" src="https://user-images.githubusercontent.com/42001064/120057695-b1f6c680-c062-11eb-96d5-2c43d05f9018.png" alt="logo">
+  <h1 align="center" style="margin: 0 auto 0 auto;">Tkinter Designer</h1>
+  <h5 align="center" style="margin: 0 auto 0 auto;">Automate Tkinter GUI Creation</h5>
+  </p>
 
-![GitHub contributors](https://img.shields.io/github/contributors/ParthJadhav/Tkinter-Designer)
-![GitHub stars](https://img.shields.io/github/stars/ParthJadhav/Tkinter-Designer)
-![GitHub repo issues](https://img.shields.io/github/issues/ParthJadhav/Tkinter-Designer?label=issues)
+  <p align="center">
+    <img src="https://img.shields.io/github/last-commit/ParthJadhav/Tkinter-Designer">
+    <img src="https://tokei.rs/b1/github/ParthJadhav/Tkinter-Designer">
+    <img src="https://img.shields.io/github/contributors/ParthJadhav/Tkinter-Designer">
+    <img src="https://img.shields.io/github/issues/ParthJadhav/Tkinter-Designer?label=issues">
+    <img src="https://img.shields.io/github/stars/ParthJadhav/Tkinter-Designer">
+  </p>
+
+  <br>
+
+## 💡 Introduction
 
 Tkinter Designer was created to speed up the GUI-development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake.
 
