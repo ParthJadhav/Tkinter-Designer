@@ -17,6 +17,7 @@ Tkinter Designer uses the Figma API to analyse a design file and create the resp
 3. Ability to create more beautiful interfaces.
 
 ___
+<br>
 
 ## 🛠  Installing Tkinter Designer
 
@@ -31,8 +32,13 @@ python3 tkinter_designer.py
 ```
 ## ⚡️ Using Tkinter Designer
 
-[Watch This Video](https://youtu.be/mFjE2-rbpm8)
+The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video format.
+
+[Watch the Video](https://youtu.be/mFjE2-rbpm8)  
+[Read the Instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md)
+
 ___
+<br>
 
 ## 📐 How it Works
 The only thing the user needs to do is design an interface with Figma, and then paste the Figma file URL and API token into Tkinter Designer.
@@ -42,6 +48,7 @@ Tkinter Designer will automatically generate all the code and images required to
 <img width="467" alt="How it Works" src="https://user-images.githubusercontent.com/42001064/119832620-fb88c980-bf1b-11eb-8e9b-4affe7b92ba2.jpg">
 
 ___
+<br>
 
 ## 🎯 Examples
 The possibilities are endless with Tkinter Designer, but here are a couple of GUIs that can be perfectly replicated in Tkinter.
@@ -58,11 +65,13 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
 ## 🔥 Showcase
-If your app was made with Tkinter Designer, let me know. It will be helpful for others to see more examples.
+If your app was made with Tkinter Designer, let me know. It will be helpful for others to see more examples!  
+(See: [Contact Me](#-contact-me))
 
 ___
-
-## ✅ Figma Design Checklist (Also mentioned in the [Video](https://youtu.be/mFjE2-rbpm8))
+<br>
+ 
+## ✅ Figma Design Checklist (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md))
 
 * Background &mdash; should be named `Background` (in Figma)
 * Buttons &mdash; should be named `Button` (in Figma)
@@ -75,14 +84,24 @@ ___
 Before converting a Figma file to Python code using Tkinter Designer, make sure that both the X &amp; Y coordinates of the frame are 0.
 
 ___
+<br>
 
-## 📝 Contact
+## 📝 Contact Me
 
 If you want to contact me, you can reach me at Jadhavparth99@gmail.com
 
 ___
+<br>
 
 ## 📄 License
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
-This project uses the BSD 3-Clause "New" or "Revised" License.
+Tkinter Designer is licensed under the BSD 3-Clause "New" or "Revised" License.  
+[View Here.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
+
+| Permissions | Restrictions | Conditions
+| --- | --- | --- 
+&check; Commercial Use | &times; Liability | &#x1f6c8; License and Copyright Notice
+&check; Modification   | &times; Warranty
+&check; Distribution  
+&check; Private Use
