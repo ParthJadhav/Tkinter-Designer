@@ -106,6 +106,7 @@ ___
 3. **Text**
    * Use the <kbd>T</kbd> key to activate the text tool, then add text as desired
    * Text does not have to be renamed for use in Tkinter Designer
+   * Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
 <br><br>
 
 4. **Entry**

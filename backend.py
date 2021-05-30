@@ -3,6 +3,7 @@ import os
 from tkinter import messagebox
 
 def generate_code(token,link,path_to_save):
+    global fig_window
     generated_dir = path_to_save + "/generated_code/"
     try:
         os.mkdir(generated_dir)
@@ -125,7 +126,7 @@ def generate_code(token,link,path_to_save):
             color = get_color(element)
             font, fontSize = get_text_properties(element)
             x, y = x + (width / 2), y + (height / 2)
-
+            text = text.replace("\n", "\\n")
             lines.extend([f'canvas.create_text({x},{y},text="{text}",fill="{color}",font=("{font}",int({fontSize})))\n'])
 
         elif element["name"] == 'TextBox':
