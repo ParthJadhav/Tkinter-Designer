@@ -35,7 +35,7 @@ def generate_code(token,link,path_to_save):
         return font, fontSize
 
 
-    global fig_window
+    global fig_window,response
     generated_dir = path_to_save + "/generated_code/"
 
     lines = []
@@ -58,7 +58,12 @@ def generate_code(token,link,path_to_save):
 
     fileId = find_between(file_url, "file/", "/")
 
-    response = requests.get(f"https://api.figma.com/v1/files/{fileId}", headers={"X-FIGMA-TOKEN": token})
+    try:
+        response = requests.get(f"https://api.figma.com/v1/files/{fileId}", headers={"X-FIGMA-TOKEN": token})
+    except ValueError:
+        messagebox.showerror("Value Error", "Recheck the details")
+    except requests.ConnectionError:
+        messagebox.showerror("No Connection", "Internet access is required for Tkinter Designer to Work")
 
     data = response.json()
 
