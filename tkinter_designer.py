@@ -1,30 +1,35 @@
 from tkinter import *
-from tkinter import filedialog,messagebox
+from tkinter import filedialog, messagebox
 import backend
 import webbrowser
 
-window = Tk()
-window.title("Tkinter Designer")
-path_to_save = ""
 
-def btnClicked():
+def btn_clicked():
     token = token_entry.get()
     URL = URL_entry.get()
-    if token == "":
-        messagebox.showerror(title="Empty Fields", message="Please enter Token")
-    elif URL == "":
-        messagebox.showerror(title="Empty Fields", message="Please enter URL")
-    elif path_to_save == "":
-        messagebox.showerror(title="invalid path", message="Enter a correct path")
+
+    if not token:
+        messagebox.showerror(title="Empty Fields",
+                             message="Please enter Token")
+
+    elif not URL:
+        messagebox.showerror(title="Empty Fields",
+                             message="Please enter URL")
+
+    elif not output_path:
+        messagebox.showerror(title="invalid path",
+                             message="Enter a valid output path")
+
     else:
-        backend.generate_code(token,URL, path_to_save)
+        backend.generate_code(token,URL, output_path)
 
 def select_path(event):
-    global path_to_save
+    global output_path
+
     # window.withdraw()
-    path_to_save = filedialog.askdirectory()
+    output_path = filedialog.askdirectory()
     path_entry.delete(0, END)
-    path_entry.insert(0, path_to_save)
+    path_entry.insert(0, output_path)
     # window.deiconify()
 
 def know_more_clicked(event):
@@ -35,9 +40,15 @@ def make_label(master, x, y, h, w, *args, **kwargs):
     f = Frame(master, height=h, width=w)
     f.pack_propagate(0) # don't shrink
     f.place(x=x, y=y)
+
     label = Label(f, *args, **kwargs)
     label.pack(fill=BOTH, expand=1)
+
     return label
+
+window = Tk()
+window.title("Tkinter Designer")
+output_path = ""
 
 window.geometry("862x519")
 window.configure(bg="#3A7FF6")
@@ -88,7 +99,7 @@ know_more.place(x=27,y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
 generate_btn_img = PhotoImage(file="./images/generate.png")
-generate_btn = Button(image=generate_btn_img, borderwidth=0, highlightthickness=0, command=btnClicked, relief="flat")
+generate_btn = Button(image=generate_btn_img, borderwidth=0, highlightthickness=0, command=btn_clicked, relief="flat")
 generate_btn.place(x=557, y=401, width=180, height=55)
 
 
