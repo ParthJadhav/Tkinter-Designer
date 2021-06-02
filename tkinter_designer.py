@@ -82,7 +82,7 @@ info_text = Label(text="Tkinter Designer uses the Figma API\n"
 
 info_text.place(x=27.0,y=200.0)
 
-know_more = Label(text="How to use?", bg="#3A7FF6",fg="white", cursor="hand2")
+know_more = Label(text="Instructions", bg="#3A7FF6",fg="white", cursor="hand2")
 know_more.place(x=27,y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
