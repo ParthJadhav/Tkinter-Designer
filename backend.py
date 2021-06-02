@@ -69,9 +69,11 @@ def generate_code(token,link,path_to_save):
     ####################### Getting Window Properties #######################
 
     try:
-        fig_window = data["document"]["children"][0]['children'][0]
+        fig_window = data["document"]["children"][0]["children"][0]
     except KeyError:
         messagebox.showerror("Error", "Invalid details, recheck the fields")
+    except IndexError:
+        messagebox.showerror("Error", "Invalid design file, does your file contain a Frame?")
 
     window_width, window_height = get_dimensions(fig_window)
 
