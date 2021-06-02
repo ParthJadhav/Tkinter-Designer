@@ -18,7 +18,7 @@ def btn_clicked():
 
     elif not output_path:
         messagebox.showerror(title="invalid path",
-                             message="Enter a correct path")
+                             message="Enter a valid output path")
 
     else:
         backend.generate_code(token,URL, output_path)
