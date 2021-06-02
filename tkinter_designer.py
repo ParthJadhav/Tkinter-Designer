@@ -3,24 +3,29 @@ from tkinter import filedialog,messagebox
 import backend
 import webbrowser
 
-window = Tk()
-window.title("Tkinter Designer")
-path_to_save = ""
 
 def btnClicked():
     token = token_entry.get()
     URL = URL_entry.get()
+
     if token == "":
-        messagebox.showerror(title="Empty Fields", message="Please enter Token")
+        messagebox.showerror(title="Empty Fields",
+                             message="Please enter Token")
+
     elif URL == "":
-        messagebox.showerror(title="Empty Fields", message="Please enter URL")
+        messagebox.showerror(title="Empty Fields",
+                             message="Please enter URL")
+
     elif path_to_save == "":
-        messagebox.showerror(title="invalid path", message="Enter a correct path")
+        messagebox.showerror(title="invalid path",
+                             message="Enter a correct path")
+
     else:
         backend.generate_code(token,URL, path_to_save)
 
 def select_path(event):
     global path_to_save
+
     # window.withdraw()
     path_to_save = filedialog.askdirectory()
     path_entry.delete(0, END)
@@ -35,9 +40,15 @@ def make_label(master, x, y, h, w, *args, **kwargs):
     f = Frame(master, height=h, width=w)
     f.pack_propagate(0) # don't shrink
     f.place(x=x, y=y)
+    
     label = Label(f, *args, **kwargs)
     label.pack(fill=BOTH, expand=1)
+
     return label
+
+window = Tk()
+window.title("Tkinter Designer")
+path_to_save = ""
 
 window.geometry("862x519")
 window.configure(bg="#3A7FF6")
