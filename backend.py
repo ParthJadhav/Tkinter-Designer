@@ -3,18 +3,7 @@ import os
 from tkinter import messagebox
 
 def generate_code(token,link,path_to_save):
-    global fig_window
-    generated_dir = path_to_save + "/generated_code/"
-    try:
-        os.mkdir(generated_dir)
-    except FileExistsError:
-        messagebox.showinfo("File Exists", "Existing Files will be overwritten")
-    except PermissionError:
-        messagebox.showerror("Permission Error", "Change directory or directory permissions")
-
-    lines = []
-    lines.extend(['from tkinter import *', 'window = Tk()', 'def btn_clicked():', '    print("Button Clicked")\n'])
-
+    
     def get_color(element):
         """ Gets the element as input, checks its RGB color, then converts and returns its HEX COLOR. (STRING)"""
 
@@ -46,10 +35,21 @@ def generate_code(token,link,path_to_save):
         return font, fontSize
 
 
-    ###################### Getting File Data #######################
+    global fig_window
+    generated_dir = path_to_save + "/generated_code/"
 
-    token = token
-    file_url = link
+    try:
+        os.mkdir(generated_dir)
+    except FileExistsError:
+        messagebox.showinfo("File Exists", "Existing Files will be overwritten")
+    except PermissionError:
+        messagebox.showerror("Permission Error", "Change directory or directory permissions")
+
+    lines = []
+    lines.extend(['from tkinter import *', 'window = Tk()', 'def btn_clicked():', '    print("Button Clicked")\n'])
+
+
+    ###################### Getting File Data #######################
 
     def find_between(s, first, last):
         try:
@@ -59,6 +59,9 @@ def generate_code(token,link,path_to_save):
         except ValueError:
             return ""
 
+
+    token = token
+    file_url = link
 
     fileId = find_between(file_url, "file/", "/")
 
