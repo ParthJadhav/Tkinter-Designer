@@ -4,7 +4,7 @@ import backend
 import webbrowser
 
 
-def btnClicked():
+def btn_clicked():
     token = token_entry.get()
     URL = URL_entry.get()
 
@@ -40,7 +40,7 @@ def make_label(master, x, y, h, w, *args, **kwargs):
     f = Frame(master, height=h, width=w)
     f.pack_propagate(0) # don't shrink
     f.place(x=x, y=y)
-    
+
     label = Label(f, *args, **kwargs)
     label.pack(fill=BOTH, expand=1)
 
@@ -99,7 +99,7 @@ know_more.place(x=27,y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
 generate_btn_img = PhotoImage(file="./images/generate.png")
-generate_btn = Button(image=generate_btn_img, borderwidth=0, highlightthickness=0, command=btnClicked, relief="flat")
+generate_btn = Button(image=generate_btn_img, borderwidth=0, highlightthickness=0, command=btn_clicked, relief="flat")
 generate_btn.place(x=557, y=401, width=180, height=55)
 
 
