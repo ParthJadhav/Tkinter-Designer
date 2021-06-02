@@ -23,6 +23,7 @@ def select_path(event):
     global path_to_save
     # window.withdraw()
     path_to_save = filedialog.askdirectory()
+    path_entry.delete(0, END)
     path_entry.insert(0, path_to_save)
     # window.deiconify()
 
