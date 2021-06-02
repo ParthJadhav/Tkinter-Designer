@@ -129,7 +129,12 @@ def generate_code(token,link,path_to_save):
             text = text.replace("\n", "\\n")
             lines.extend([f'canvas.create_text({x},{y},text="{text}",fill="{color}",font=("{font}",int({fontSize})))\n'])
 
-        elif element["name"] == 'TextBox':
+        elif element["name"] in ('TextBox', 'TextArea'):
+            element_types = {
+                "TextArea": "Text",
+                "TextBox": "Entry"
+            }
+
             width, height = get_dimensions(element)
             x, y = get_coordinates(element)
             x, y = x + (width / 2), y + (height / 2)
@@ -159,7 +164,7 @@ def generate_code(token,link,path_to_save):
             x, y = get_coordinates(element)
             x = x + corner_radius
 
-            lines.extend([f'entry{text_entry_count} = Entry(bd=0,bg="{bg}",highlightthickness=0)',
+            lines.extend([f'entry{text_entry_count} = {element_types[element["name"]]}(bd=0,bg="{bg}",highlightthickness=0)',
                           f'entry{text_entry_count}.place(x={x},y={y},width={reduced_width},height={reduced_height})\n'])
 
             text_entry_count += 1
