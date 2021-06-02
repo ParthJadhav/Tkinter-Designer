@@ -3,6 +3,11 @@ from tkinter import filedialog, messagebox
 import backend
 import webbrowser
 
+# Required in order to add data files to Windows executable
+import sys, os
+path = getattr(sys, '_MEIPASS', os.getcwd())
+os.chdir(path)
+
 
 def btn_clicked():
     token = token_entry.get()
@@ -47,6 +52,7 @@ def make_label(master, x, y, h, w, *args, **kwargs):
     return label
 
 window = Tk()
+window.iconbitmap("images/iconbitmap.ico")
 window.title("Tkinter Designer")
 output_path = ""
 
