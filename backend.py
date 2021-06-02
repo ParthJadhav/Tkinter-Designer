@@ -6,7 +6,6 @@ def generate_code(token, link, output_path):
 
     def get_color(element):
         # Returns HEX form of element RGB color (str)
-
         el_r = element["fills"][0]["color"]['r'] * 255
         el_g = element["fills"][0]["color"]['g'] * 255
         el_b = element["fills"][0]["color"]['b'] * 255
@@ -139,6 +138,7 @@ def generate_code(token, link, output_path):
 
 
     # Getting Elements inside Window
+    
     window_elements = fig_window["children"]
 
     btn_count = 0
