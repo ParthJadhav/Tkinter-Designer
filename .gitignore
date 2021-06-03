@@ -8,6 +8,7 @@ __pycache__/
 .idea/workspace.xml
 .vscode
 build/
+dist/
 env
 resources/
 
