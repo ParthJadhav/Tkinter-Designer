@@ -22,41 +22,28 @@ Tkinter Designer uses the Figma API to analyse a design file and create the resp
 
 <img width="500" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/119863796-92af4a80-bf37-11eb-9f6c-61b1ab99b039.png">
 
-
 ## ☄️  Advantages of Tkinter Designer
 1. Drag and Drop Interfaces
 2. Significantly faster than creating code manually.
 3. Ability to create more beautiful interfaces.
 
 ___
-<br>
+
+## 🦋 Supporting Tkinter Designer
+
+<a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
 
 ## 🛠  Installing Tkinter Designer
 
-You can install Tkinter Designer as an executable (see: [Releases](https://github.com/ParthJadhav/Tkinter-Designer/releases)). On the right-hand sidebar, click the latest release and, under **Assets**, choose `tkinter_designer.exe`. After the executable has downloaded, you are ready to run the program!
+```
+git clone https://github.com/ParthJadhav/Tkinter-Designer
 
-*To download and run Tkinter Designer from the source code, follow the instructions below.*
+cd Tkinter-Designer
 
-1. Download the source files for Tkinter Designer
-   
-   * Using Git, run `git clone https://github.com/ParthJadhav/Tkinter-Designer`
-   * Alternatively, download the source code as `zip` or `tar.gz` from the [Releases](https://github.com/ParthJadhav/Tkinter-Designer/releases) page
+pip3 install -r requirements.txt
 
-2. Place the source files in a directory on your system
-   
-3. Open a terminal/command prompt in this directory
-   * You can navigate to this folder using the `cd` command.
-   * You can also use an IDE with a built-in terminal, such as [Visual Studio Code](https://code.visualstudio.com/).
-
-4. Install the necessary dependencies by running `pip install -r requirements.txt`
-   * In the event that pip doesn't work, also try the following commands:
-     * `pip3 install -r requirements.txt`
-     * `python -m pip install -r requirements.txt`
-     * `python3 -m pip install -r requirements.txt`
-   * If this still doesn't work, ensure that Python is added to the PATH.
-  
-5. You can run Tkinter Designer by running `python tkinter_designer.py`
-
+python3 tkinter_designer.py
+```
 ## ⚡️ Using Tkinter Designer
 
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video format.
