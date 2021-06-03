@@ -33,15 +33,30 @@ ___
 
 ## 🛠  Installing Tkinter Designer
 
-```
-git clone https://github.com/ParthJadhav/Tkinter-Designer
+You can install Tkinter Designer as an executable (see: [Releases](https://github.com/ParthJadhav/Tkinter-Designer/releases)). On the right-hand sidebar, click the latest release and, under **Assets**, choose `tkinter_designer.exe`. After the executable has downloaded, you are ready to run the program!
 
-cd Tkinter-Designer
+*To download and run Tkinter Designer from the source code, follow the instructions below.*
 
-pip3 install -r requirements.txt
+1. Download the source files for Tkinter Designer
+   
+   * Using Git, run `git clone https://github.com/ParthJadhav/Tkinter-Designer`
+   * Alternatively, download the source code as `zip` or `tar.gz` from the [Releases](https://github.com/ParthJadhav/Tkinter-Designer/releases) page
 
-python3 tkinter_designer.py
-```
+2. Place the source files in a directory on your system
+   
+3. Open a terminal/command prompt in this directory
+   * You can navigate to this folder using the `cd` command.
+   * You can also use an IDE with a built-in terminal, such as [Visual Studio Code](https://code.visualstudio.com/).
+
+4. Install the necessary dependencies by running `pip install -r requirements.txt`
+   * In the event that pip doesn't work, also try the following commands:
+     * `pip3 install -r requirements.txt`
+     * `python -m pip install -r requirements.txt`
+     * `python3 -m pip install -r requirements.txt`
+   * If this still doesn't work, ensure that Python is added to the PATH.
+  
+5. You can run Tkinter Designer by running `python tkinter_designer.py`
+
 ## ⚡️ Using Tkinter Designer
 
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video format.
