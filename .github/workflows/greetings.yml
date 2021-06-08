@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/first-interaction@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.GH_ACCESS_TOKEN }}
         issue-message: 'Thanks for creating an Issue, We will be eager to solve it.'
         pr-message: 'Thank you for the contrubuition, Welcome to Tkinter Designer team. 🎉'
