@@ -52,11 +52,8 @@ def make_label(master, x, y, h, w, *args, **kwargs):
     return label
 
 window = Tk()
-#if "Linux" == os.uname().sysname:
 logo = PhotoImage(file='images/iconbitmap.gif')
 window.call('wm', 'iconphoto', window._w, logo)
-#else:
-#window.iconbitmap("images/iconbitmap.gif")
 window.title("Tkinter Designer")
 output_path = ""
 
