@@ -52,7 +52,8 @@ def make_label(master, x, y, h, w, *args, **kwargs):
     return label
 
 window = Tk()
-window.iconbitmap("images/iconbitmap.ico")
+logo = PhotoImage(file='images/iconbitmap.gif')
+window.call('wm', 'iconphoto', window._w, logo)
 window.title("Tkinter Designer")
 output_path = ""
 
