@@ -82,7 +82,7 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 
 ## 🔥 Showcase
 If your app was made with Tkinter Designer, let me know. It will be helpful for others to see more examples!  
-(See: [Contact Me](#-contact-me))
+(See: [Contact Me](#-contact-me)) Or use [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) section in Discussions.
 
 ___
 <br>
