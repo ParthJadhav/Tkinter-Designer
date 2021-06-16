@@ -140,7 +140,7 @@ ___
    * Name the group "Button"
 <br><br>
 
-7. **Final Step**
+7. **Final Step (Most Important)**
    * Select your container (Frame) and make sure its X and Y coordinates are both zero.
 
 <br><br>
