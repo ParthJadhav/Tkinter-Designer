@@ -87,14 +87,9 @@ If your app was made with Tkinter Designer, let me know. It will be helpful for 
 ___
 <br>
  
-## ✅ Figma Design Checklist (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md))
+## ✅  Naming Guide (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md))
 
-* Background &mdash; should be named `Background` (in Figma)
-* Buttons &mdash; should be named `Button` (in Figma)
-   * When creating a button, add a Rectangle behind the actual button with the same color as the background color.
-* Entry &mdash; should be named `TextBox` (in Figma)
-* Rectangles &mdash; should be named `Rectangle` (in Figma)
-* Text &mdash; All text in the design should be created as text.
+Tkinter Designer heavily depends on names of the elements to convert it to code. See the naming guide [here](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md#2-element-guide).
 
 
 Before converting a Figma file to Python code using Tkinter Designer, make sure that both the X &amp; Y coordinates of the frame are 0.
