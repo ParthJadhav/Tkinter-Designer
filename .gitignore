@@ -13,3 +13,9 @@ env
 resources/
 
 *.spec
+test.py
+setup.py
+icon.icns
+.idea/Tkinter-Designer.iml
+.idea/inspectionProfiles/Project_Default.xml
+.eggs/README.txt
