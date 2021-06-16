@@ -85,7 +85,7 @@ ___
 | --- | --- |
 | Button | Button |
 | Rectangle | Rectangle |
-| TextArea | Text |
+| TextArea | Text Area |
 | TextBox | Entry |
 | Background | Canvas.Image() |
 
@@ -108,7 +108,7 @@ ___
    * If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
 <br><br>
 
-3. **Text (Literal)**
+3. **Text (Normal Text)**
    * Use the <kbd>T</kbd> key to activate the text tool, then add text as desired
    * Text does not have to be renamed for use in Tkinter Designer
    * Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
@@ -120,7 +120,7 @@ ___
    * Make sure the Rectangle is named "TextBox"
 <br><br>
 
-5. **Text (Multi-Line User Input)**
+5. **Text Area (Multi-Line User Input)**
    * Activate the Rectangle tool with <kbd>R</kbd>
    * Adjust the Rectangle to your liking
    * Make sure the Rectangle is named "TextArea"
