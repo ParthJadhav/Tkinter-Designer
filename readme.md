@@ -16,7 +16,7 @@
 
 ## 💡 Introduction
 
-Read this in - [Simplified Chinese](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/readme.zh-cn.md)
+Read this in - [Simplified Chinese (中国人)](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/readme.zh-cn.md)
 
 Tkinter Designer was created to speed up the GUI-development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake.
 
