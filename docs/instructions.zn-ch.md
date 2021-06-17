@@ -6,16 +6,16 @@
    2. [Install Tkinter Designer](#getting-started-2)
    3. [做一个 Figma Account](#getting-started-3)
    
-2. [**格式化你的 Figma Design**](#格式化你的-Figma-设计-top)
+2. [**格式化你的 Figma Design**](#格式化你的-figma-设计top)
    1. [参考](#formatting-1)
    2. [元素指南](#formatting-2)
    
-3. [**使用 Tkinter Designer**](#using-tkinter-designer-top)
+3. [**使用 Tkinter Designer**](#使用-tkinter-designer-top)
    1. [Personal Access Token](#using-1)
    2. [File URL](#using-2)
    3. [测试您生成的代码](#using-3)
    
-4. [**故障排除**](#troubleshooting-top)
+4. [**故障排除**](#故障排除-top)
 
 <br><br>
 
