@@ -16,6 +16,8 @@
 
 ## 💡 Introduction
 
+Read this in - [Simplified Chinese](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/readme.zn-ch.md)
+
 Tkinter Designer was created to speed up the GUI-development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake.
 
 Tkinter Designer uses the Figma API to analyse a design file and create the respective code and files needed for the GUI. Even Tkinter Designer's GUI is created using Tkinter Designer.
@@ -51,7 +53,7 @@ python3 tkinter_designer.py
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video format.
 
 [Watch the Video](https://youtu.be/mFjE2-rbpm8)  
-[Read the Instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md)
+[Read the Instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md)
 
 ___
 <br>
