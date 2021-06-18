@@ -18,16 +18,16 @@
 
 Read this in - [Simplified Chinese (中国人)](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/readme.zh-cn.md)
 
-Tkinter Designer was created to speed up the GUI-development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake.
+Tkinter Designer was created to speed up the GUI development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake 🍰.
 
 Tkinter Designer uses the Figma API to analyse a design file and create the respective code and files needed for the GUI. Even Tkinter Designer's GUI is created using Tkinter Designer.
 
 <img width="500" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/119863796-92af4a80-bf37-11eb-9f6c-61b1ab99b039.png">
 
 ## ☄️  Advantages of Tkinter Designer
-1. Drag and Drop Interfaces
-2. Significantly faster than creating code manually.
-3. Ability to create more beautiful interfaces.
+1. Drag and drop interfaces
+2. Significantly faster than creating code manually
+3. Ability to create more beautiful interfaces
 
 ___
 
@@ -50,10 +50,10 @@ python3 tkinter_designer.py
 ```
 ## ⚡️ Using Tkinter Designer
 
-The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video format.
+The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video.
 
-[Watch the Video](https://youtu.be/mFjE2-rbpm8)  
 [Read the Instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md)
+[Watch the Video](https://youtu.be/mFjE2-rbpm8)  
 
 ___
 <br>
@@ -71,7 +71,7 @@ ___
 ## 🎯 Examples
 The possibilities are endless with Tkinter Designer, but here are a couple of GUIs that can be perfectly replicated in Tkinter.
 
-<small>The following are not my creations.</small>
+<sup>The following are not my creations.</sup>
 
 ### Registration Page
 <img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
@@ -84,7 +84,7 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 
 ## 🔥 Showcase
 If your app was made with Tkinter Designer, let me know. It will be helpful for others to see more examples!  
-(See: [Contact Me](#-contact-me)) Or use [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) section in Discussions.
+(See: [Contact Me](#-contact-me)) or use [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) section in Discussions.
 
 ___
 <br>
