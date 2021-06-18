@@ -6,7 +6,6 @@
 
   <p align="center">
     <img src="https://img.shields.io/github/last-commit/ParthJadhav/Tkinter-Designer">
-    <img src="https://tokei.rs/b1/github/ParthJadhav/Tkinter-Designer">
     <img src="https://img.shields.io/github/contributors/ParthJadhav/Tkinter-Designer">
     <img src="https://img.shields.io/github/issues/ParthJadhav/Tkinter-Designer?label=issues">
     <img src="https://img.shields.io/github/stars/ParthJadhav/Tkinter-Designer">
