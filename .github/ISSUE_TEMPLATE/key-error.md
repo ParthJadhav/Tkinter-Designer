@@ -7,21 +7,10 @@ assignees: ''
 
 ---
 
-### Why does it happen?
-A key error occurs when the elements are named or grouped incorrectly. Before creating an issue, make sure that you have followed the [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md) guide correctly.  
+How to Fix ?
+A key error occurs when the elements are named or grouped incorrectly. Before creating an issue, make sure that you have followed the [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md) guide correctly.  
 
-If the issue still persists, go ahead and fill in the details below.
+If the issue still persists, create a issue with the following information.
 
-### Error content ->
-
-```
-Remove this line and paste the error text here.
-```
-
-### Screenshot of Layers Panel in Figma. (Left Side Bar) ->
-
-Remove this line and drag the screenshot here.
-
-###  Link to Figma File ->
-
-Remove this line and paste the link here.
+1. Error Message
+2. Link to the Figma File
