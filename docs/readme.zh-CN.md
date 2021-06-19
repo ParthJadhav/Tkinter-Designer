@@ -95,9 +95,6 @@ ___
 
 Tkinter Designer 在很大程度上依赖于元素的名称将其转换为代码。 请参阅命名指南 [此处](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md#2-element-guide)。
 
-
-在使用 Tkinter Designer 将 Figma 文件转换为 Python 代码之前，请确保框架的 X 和 Y 坐标均为 0。
-
 ___
 <br>
 

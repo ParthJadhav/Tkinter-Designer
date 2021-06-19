@@ -155,11 +155,6 @@ ___
 
 <br><br>
 
-9. **Final Step (Most Important)**
-   * Select your container (Frame) and make sure its X and Y coordinates are both zero.
-
-<br><br>
-
 # Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
 
 ### Open Tkinter Designer before doing the following steps.

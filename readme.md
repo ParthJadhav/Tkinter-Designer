@@ -60,10 +60,6 @@ ___
 ## ✅  Importance of Naming (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md))
 
 Tkinter Designer heavily depends on names of the elements to convert it to code. See the naming guide [here](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md#2-element-guide).
-
-
-Before converting a Figma file to Python code using Tkinter Designer, make sure that both the X &amp; Y coordinates of the frame are 0.
-
 ___
 <br>
 

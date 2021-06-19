@@ -17,10 +17,15 @@ def generate_code(token, link, output_path):
 
     def get_coordinates(element):
         # Returns element coordinates as x (int) and y (int)
-        x = int(element["absoluteBoundingBox"]["x"])
-        y = int(element["absoluteBoundingBox"]["y"])
+        element_x = int(element["absoluteBoundingBox"]["x"])
+        element_y = int(element["absoluteBoundingBox"]["y"])
+        window_x = int(fig_window["absoluteBoundingBox"]["x"])
+        window_y = int(fig_window["absoluteBoundingBox"]["y"])
 
-        return x, y
+        element_x = abs(element_x - window_x)
+        element_y = abs(element_y - window_y)
+
+        return element_x, element_y
 
 
     def get_dimensions(element):

@@ -9,9 +9,7 @@ assignees: ''
 
 How to Fix ?
 
-This issue happens due to - 
-1. Incorrect Naming
-2. Or if the X & Y Coordinates are not 0.
+This issue happens due to Incorrect Naming
 
 Try to fix it by reading the instruction carefully.
 
