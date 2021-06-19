@@ -14,6 +14,7 @@ def btn_clicked():
     token = token_entry.get()
     URL = URL_entry.get()
     output_path = path_entry.get()
+    output_path = output_path.strip()
 
     if not token:
         messagebox.showerror(title="Empty Fields", message="Please enter Token")
@@ -29,8 +30,6 @@ def btn_clicked():
 
 
 def select_path():
-    # global output_path
-    # output_path = filedialog.askdirectory()
     path_entry.delete(0, END)
     path_entry.insert(0, filedialog.askdirectory())
 
@@ -78,13 +77,16 @@ URL_entry_img = canvas.create_image(650.5, 248.5, image=text_box_bg)
 filePath_entry_img = canvas.create_image(650.5, 329.5, image=text_box_bg)
 
 token_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+token_entry.bind("<Return>", lambda event: URL_entry.focus())
 token_entry.place(x=490.0, y=137 + 25, width=321.0, height=35)
 token_entry.focus()
 
 URL_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+URL_entry.bind("<Return>", lambda event: path_entry.focus())
 URL_entry.place(x=490.0, y=218 + 25, width=321.0, height=35)
 
 path_entry = Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+path_entry.bind("<Return>", lambda event: btn_clicked())
 path_entry.place(x=490.0, y=299 + 25, width=321.0, height=35)
 
 canvas.create_text(
