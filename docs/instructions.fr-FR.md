@@ -73,7 +73,7 @@ ___
 
 <br><br>
 
-# Formater votre design Figma <small>[[Top](#table-of-contents)]</small>
+# Formater votre design Figma <small>[[Haut](#Sommaire)]</small>
 
 <a id="formatting-1"></a>
 ## 1. Référence
