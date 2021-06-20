@@ -87,7 +87,7 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 ### Frame Recorder [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
-### WhatBulk 
+### WhatBulk  [(More Info)]("https://www.instagram.com/p/CQUmKckFBbT/?utm_medium=copy_link)
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/122562284-87e06500-d060-11eb-8257-55f3b9dbecf0.PNG">
 
 
