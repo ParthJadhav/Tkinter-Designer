@@ -141,11 +141,6 @@ ___
    * 将组命名为“按钮”
 <br><br>
 
-7. **最后一步（最重要）**
-    * 选择您的容器（框架）并确保其 X 和 Y 坐标均为零。
-
-<br><br>
-
 # 使用 Tkinter Designer <small>[[Top](#目录)]</small>
 
 ### 在执行以下步骤之前打开 Tkinter Designer。

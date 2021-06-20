@@ -57,6 +57,13 @@ The instructions contain all the information about installing and using Tkinter 
 ___
 <br>
 
+## ✅  Naming Guide (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md))
+
+Tkinter Designer heavily depends on names of the elements to convert it to code. See the naming guide [here](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md#2-element-guide).
+
+___
+<br>
+
 ## 📐 How it Works
 The only thing the user needs to do is design an interface with Figma, and then paste the Figma file URL and API token into Tkinter Designer.
 
@@ -81,7 +88,7 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 ### Frame Recorder [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
-### WhatBulk 
+### WhatBulk  [(More Info)]("https://www.instagram.com/p/CQUmKckFBbT/?utm_medium=copy_link)
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/122562284-87e06500-d060-11eb-8257-55f3b9dbecf0.PNG">
 
 
@@ -92,16 +99,6 @@ If your app was made with Tkinter Designer, let me know. It will be helpful for 
 ___
 <br>
  
-## ✅  Naming Guide (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md))
-
-Tkinter Designer heavily depends on names of the elements to convert it to code. See the naming guide [here](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md#2-element-guide).
-
-
-Before converting a Figma file to Python code using Tkinter Designer, make sure that both the X &amp; Y coordinates of the frame are 0.
-
-___
-<br>
-
 ## 📝 Contact Me
 
 If you want to contact me, you can reach me at Jadhavparth99@gmail.com

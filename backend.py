@@ -16,10 +16,15 @@ def generate_code(token, link, output_path):
 
     def get_coordinates(element):
         # Returns element coordinates as x (int) and y (int)
-        x = int(element["absoluteBoundingBox"]["x"])
-        y = int(element["absoluteBoundingBox"]["y"])
+        element_x = int(element["absoluteBoundingBox"]["x"])
+        element_y = int(element["absoluteBoundingBox"]["y"])
+        window_x = int(fig_window["absoluteBoundingBox"]["x"])
+        window_y = int(fig_window["absoluteBoundingBox"]["y"])
 
-        return x, y
+        element_x = abs(element_x - window_x)
+        element_y = abs(element_y - window_y)
+
+        return element_x, element_y
 
     def get_dimensions(element):
         # Return element dimensions as width (int) and height (int)
@@ -43,7 +48,12 @@ def generate_code(token, link, output_path):
 
         for element in window_elements:
 
-            if element["name"] == "Rectangle":
+            try:
+                element_plugin_Id = element["pluginData"]["858477504263032980"]["quxType"]
+            except:
+                element_plugin_Id = "NA"
+
+            if element["name"] == "Rectangle" or element_plugin_Id == "Rectangle":
                 width, height = get_dimensions(element)
                 x, y = get_coordinates(element)
                 element_color = get_color(element)
@@ -57,7 +67,7 @@ def generate_code(token, link, output_path):
                     ]
                 )
 
-            elif element["name"] == "Button":
+            elif element["name"] == "Button" or element_plugin_Id == "Button":
                 width, height = get_dimensions(element)
                 x, y = get_coordinates(element)
 
@@ -129,8 +139,84 @@ def generate_code(token, link, output_path):
                     ]
                 )
 
-            elif element["name"] in ("TextBox", "TextArea"):
+            elif element["name"] in ("TextBox", "TextArea") or element_plugin_Id in ("TextBox", "TextArea"):
                 element_types = {"TextArea": "Text", "TextBox": "Entry"}
+
+                width, height = get_dimensions(element)
+                x, y = get_coordinates(element)
+                x, y = x + (width / 2), y + (height / 2)
+                bg = get_color(element)
+
+                item_id = element["id"]
+
+                response = requests.get(
+                    f"https://api.figma.com/v1/images/{file_id}?ids={item_id}",
+                    headers={"X-FIGMA-TOKEN": f"{token}"},
+                )
+
+                image_link = requests.get(response.json()["images"][item_id])
+
+                with open(
+                    f"{generated_dir}img_textBox{text_entry_count}.png", "wb"
+                ) as file:
+                    file.write(image_link.content)
+
+                lines.extend(
+                    [
+                        f"entry{text_entry_count}_img = PhotoImage("
+                        f'file = f"img_textBox{text_entry_count}.png")',
+                        f"entry{text_entry_count}_bg = " "canvas.create_image(",
+                        f"    {x}, {y},",
+                        f"    image = entry{text_entry_count}_img)\n",
+                    ]
+                )
+
+                try:
+                    corner_radius = element["cornerRadius"]
+
+                except KeyError:
+                    corner_radius = 0
+
+                if corner_radius > height / 2:
+                    corner_radius = height / 2
+
+                reduced_width = width - (corner_radius * 2)
+                reduced_height = height - 2
+
+                x, y = get_coordinates(element)
+                x = x + corner_radius
+
+                try:
+
+                    lines.extend(
+                        [
+                            f"entry{text_entry_count} = " f'{element_types[element["name"]]}(',
+                            "    bd = 0,",
+                            f'    bg = "{bg}",',
+                            "    highlightthickness = 0)\n",
+                            f"entry{text_entry_count}.place(",
+                            f"    x = {x}, y = {y},",
+                            f"    width = {reduced_width},",
+                            f"    height = {reduced_height})\n",
+                        ]
+                    )
+                except:
+                    lines.extend(
+                        [
+                            f"entry{text_entry_count} = " f'{element_types[element_plugin_Id]}(',
+                            "    bd = 0,",
+                            f'    bg = "{bg}",',
+                            "    highlightthickness = 0)\n",
+                            f"entry{text_entry_count}.place(",
+                            f"    x = {x}, y = {y},",
+                            f"    width = {reduced_width},",
+                            f"    height = {reduced_height})\n",
+                        ]
+                    )
+
+                text_entry_count += 1
+
+            elif element["name"] == "Password" or element_plugin_Id == "Password":
 
                 width, height = get_dimensions(element)
                 x, y = get_coordinates(element)
@@ -178,9 +264,10 @@ def generate_code(token, link, output_path):
 
                 lines.extend(
                     [
-                        f"entry{text_entry_count} = " f'{element_types[element["name"]]}(',
+                        f"entry{text_entry_count} = " f'Entry(',
                         "    bd = 0,",
                         f'    bg = "{bg}",',
+                        f"    show='*',",
                         "    highlightthickness = 0)\n",
                         f"entry{text_entry_count}.place(",
                         f"    x = {x}, y = {y},",
@@ -192,7 +279,7 @@ def generate_code(token, link, output_path):
                 text_entry_count += 1
 
 
-            elif element["name"] == "Background":
+            elif element["name"] == "Background" or element_plugin_Id == "Background":
                 width, height = get_dimensions(element)
                 x, y = get_coordinates(element)
                 x, y = x + (width / 2), y + (height / 2)
@@ -217,6 +304,19 @@ def generate_code(token, link, output_path):
                         f"    image=background_img)\n",
                     ]
                 )
+            else:
+                print(f"Element named {element['name']} of type {element['type']} is unrecognized. \nCheck the instructions for naming guide. Unsupported elements would be added as black rectangles.\n\n")
+
+                width, height = get_dimensions(element)
+                x, y = get_coordinates(element)
+                x, y = x + (width / 2), y + (height / 2)
+                element_color = "#000000"
+                
+                lines.extend(['\ncanvas.create_rectangle(',
+                            f'    {x}, {y}, {x}+{width}, {y}+{height},',
+                            f'    fill = "{element_color}",',
+                            '    outline = "")\n'])
+
 
     global fig_window, response
 
@@ -246,14 +346,14 @@ def generate_code(token, link, output_path):
 
     token = token.strip()
     file_url = link.strip()
+    pluginId = "858477504263032980"
 
     file_id = find_between(file_url, "file/", "/")
 
-    try:
+    try: # Get's Json Data 
         response = requests.get(
-            f"https://api.figma.com/v1/files/{file_id}",
-            headers={"X-FIGMA-TOKEN": token},
-        )
+            f"https://api.figma.com/v1/files/{file_id}?plugin_data={pluginId}",
+            headers={"X-FIGMA-TOKEN": token},)
 
     except ValueError:
         messagebox.showerror(

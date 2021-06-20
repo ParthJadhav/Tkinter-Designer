@@ -60,6 +60,13 @@ python3 tkinter_designer.py
 ___
 <br>
 
+## ✅  命名指南（在 [视频](https://youtu.be/mFjE2-rbpm8) 和 [说明](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md) 中提到）
+
+Tkinter Designer 在很大程度上依赖于元素的名称将其转换为代码。 请参阅命名指南 [此处](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md#2-element-guide)。
+
+___
+<br>
+
 ## 📐 这个怎么运作
 用户唯一需要做的就是用 Figma 设计一个界面，然后将 Figma 文件 URL 和 API 令牌粘贴到 Tkinter Designer 中。
 
@@ -84,6 +91,9 @@ Tkinter Designer 的可能性是无限的，但这里有几个可以在 Tkinter 
 ### Frame Recorder [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
+### WhatBulk  [(More Info)]("https://www.instagram.com/p/CQUmKckFBbT/?utm_medium=copy_link)
+<img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/122562284-87e06500-d060-11eb-8257-55f3b9dbecf0.PNG">
+
 ## 🔥 展示柜
 如果您的应用是使用 Tkinter Designer 制作的，请告诉我。 其他人看到更多的例子会很有帮助！
 （参见：[Contact Me](#-contact-me)）或使用[Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) 部分讨论 .
@@ -91,16 +101,6 @@ Tkinter Designer 的可能性是无限的，但这里有几个可以在 Tkinter 
 ___
 <br>
  
-## ✅  命名指南（在 [视频](https://youtu.be/mFjE2-rbpm8) 和 [说明](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md) 中提到）
-
-Tkinter Designer 在很大程度上依赖于元素的名称将其转换为代码。 请参阅命名指南 [此处](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md#2-element-guide)。
-
-
-在使用 Tkinter Designer 将 Figma 文件转换为 Python 代码之前，请确保框架的 X 和 Y 坐标均为 0。
-
-___
-<br>
-
 ## 📝 联络我
 
 如果你想联系我 - Jadhavparth99@gmail.com
