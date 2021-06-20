@@ -1,6 +1,6 @@
 # Comment utiliser Tkinter Designer
 
-## Sommaire :
+## Sommaire:
 1. [**Commencer**](#getting-started-top)
    1. [Installer Python](#getting-started-1)
    2. [Installer Tkinter Designer](#getting-started-2)
