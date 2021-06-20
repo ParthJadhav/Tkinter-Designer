@@ -100,88 +100,88 @@ ___
 ## 2. Guide des éléments
 <br>
 
-1. **First, create a Frame that will serve as your Tkinter Window.**
+1. **Tout d'abord, créez une Frame qui servira de fenêtre Tkinter.**
 <br><br>
 
-2. **Creating a Background**
-   * Backgrounds can be created using shapes and/or images
-   * If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
+2. **Créer un arrière-plan**
+    * Les arrière-plans peuvent être créés à l'aide de formes et/ou d'images
+    * Si vous utilisez plusieurs formes/images, vous devez les regrouper en les sélectionnant toutes et en appuyant sur <kbd>CTRL/&#8984; + G</kbd>
+    * <br><br>
+
+3. **Texte (Texte normal)**
+   * Utilisez la touche <kbd>T</kbd> pour activer l'outil texte, puis ajoutez du texte comme vous le souhaitez
+   * Le texte n'a pas besoin d'être renommé pour être utilisé dans Tkinter Designer
+   * Appuyez explicitement sur la touche <kbd>Retour</kbd> ou <kbd>Entrée</kbd> pour passer à la ligne suivante.
 <br><br>
 
-3. **Text (Normal Text)**
-   * Use the <kbd>T</kbd> key to activate the text tool, then add text as desired
-   * Text does not have to be renamed for use in Tkinter Designer
-   * Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
+4. **Entrée de texte (Entrée utilisateur sur une seule ligne)**
+   * Activez l'outil Rectangle avec <kbd>R</kbd>
+   * Ajustez le rectangle à votre convenance
+   * Assurez-vous que le rectangle est nommé "TextBox" 
 <br><br>
 
-4. **Entry (Single-Line User Input)**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "TextBox"
-<br><br>
-
-5. **Text Area (Multi-Line User Input)**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "TextArea"
+5. **Zone de texte (Entrée utilisateur sur plusieurs lignes)**
+   * Activez l'outil Rectangle avec <kbd>R</kbd>
+   * Ajustez le rectangle à votre convenance
+   * Assurez-vous que le rectangle est nommé "TextArea"
 
 6. **Rectangle**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "Rectangle"
+   * Activez l'outil Rectangle avec <kbd>R</kbd>
+   * Ajustez le rectangle à votre convenance
+   * Assurez-vous que le rectangle est nommé "Rectangle"
 <br><br>
 
-7. **Normal Button**
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
+7. **Bouton normal**
+   * Ajouter un rectangle pour servir de bouton dans votre interface graphique
+     * Facultatif : ajoutez du texte au bouton
+   * Sélectionnez le bouton (Rectangle) et tout texte facultatif, puis regroupez-les avec <kbd>CTRL/&#8984; + G</kbd>
+   * Nommez le groupe "Button"
 
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
-
-<br><br>
-
-8. **Rounded Button** 
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Make it rounded by adding corner radius by selecting the rectangle and adding corner radius from the right side. [Read more on it](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
-   * Create a Rectangle with same size of your button. Don't make it rounded. 
-   * Change the Rectangle's color to match the Background
-   * Now move the newly created rectangle below the main button(Rectangle).
-   * Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
-
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+#### Référez vous à [cette vidéo](https://youtu.be/mFjE2-rbpm8?t=275) si vous rencontrez tout problème
 
 <br><br>
 
-# Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
+8. **Bouton arrondi** 
+   * Ajouter un rectangle pour servir de bouton dans votre interface graphique
+     * Facultatif : ajoutez du texte au bouton
+   * Arrondissez-le en ajoutant un rayon d'angle en sélectionnant le rectangle et en ajoutant un rayon d'angle à partir du côté droit. [En savoir plus](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
+   * Créez un rectangle avec la même taille de votre bouton. Ne l'arrondissez pas.
+   * Changez la couleur du rectangle pour qu'elle corresponde à l'arrière-plan
+   * Déplacez maintenant le rectangle nouvellement créé sous le bouton principal (Rectangle).
+   * Sélectionnez le bouton (Rectangle) et tout texte facultatif, puis regroupez-les avec <kbd>CTRL/&#8984; + G</kbd>
+   * Nommez le groupe "Button"
 
-### Open Tkinter Designer before doing the following steps.
+#### Référez vous à [cette vidéo](https://youtu.be/mFjE2-rbpm8?t=275) si vous rencontrez tout problème
+
+<br><br>
+
+# Utiliser Tkinter Designer <small>[[Haut](#sommaire)]</small>
+
+### Ouvrez Tkinter Designer avant de suivre les étapes suivantes.
 <br>
 
 <a id="using-1"></a>
-## 1. Personal Access Token
-1. Log into your Figma account
-2. Navigate to Settings
-3. In the **Account** tab, scroll down to **Personal access tokens**
-4. Enter the name of your access token in the entry form and press <kbd>Enter</kbd>
-5. Your personal access token will be created.
-   * Copy this token and keep it somewhere safe.
-   * **You will not get another chance to copy this token.**
-6. Paste your personal access token into the **Token ID** form in Tkinter Designer
+## 1. Clé d'accès personnelle
+1. Connectez-vous à votre compte Figma
+2. Accédez à Paramètres
+3. Dans l'onglet **Compte**, faites défiler jusqu'à **Personnal access tokens**
+4. Saisissez le nom de votre clé d'accès dans le formulaire de saisie et appuyez sur <kbd>Entrée</kbd>
+5. Votre clé d'accès personnelle sera créé.
+    * Copiez cette clé et conservez-la dans un endroit sûr.
+    * **Vous n'aurez pas d'autre chance de copier cette clé.**
+6. Collez votre clé d'accès personnelle dans le formulaire **Token ID** dans Tkinter Designer
 ___
 <br>
 
 <a id="using-2"></a>
-## 2. File URL
-1. In your Figma design file, click the **Share** button in the top bar, then click on **&#x1f517; Copy link**
-2. Paste the link into the **File URL** form in Tkinter Designer
+## 2. URL du fichier
+1. Dans votre fichier de conception Figma, cliquez sur le bouton **Partager** dans la barre supérieure, puis cliquez sur **&#x1f517; Copier le lien**
+2. Collez le lien dans la zone **File URL** au sein de Tkinter Designer
 ___
 <br>
 
 <a id="using-3"></a>
-## 3. Test Your Generated Code
+## 3. Tester votre code généré
 1. In Tkinter Designer, click the **Output Path** form to open a file browser
 2. Choose an output path and click **Select Folder**
 3. Press **Generate**
