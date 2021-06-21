@@ -49,15 +49,15 @@ python3 tkinter_designer.py
 
 Les instructions contiennent toutes les informations à propos de l'installation et de l'utilisation de Tkinter Designer, ainsi que les informations pour diagnostiquer et signaler les problèmes. Il y a également une vidéo.
 
-### [Lire les instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md)
+### [Lire les instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.fr-FR.md)
 ### [Regarder la vidéo](https://youtu.be/mFjE2-rbpm8)  
 
 ___
 <br>
 
-## ✅ L'importance de nommer (mentionnée dans la [vidéo](https://youtu.be/mFjE2-rbpm8) et les [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md))
+## ✅ L'importance de nommer (mentionnée dans la [vidéo](https://youtu.be/mFjE2-rbpm8) et les [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.fr-FR.md))
 
-Tkinter Designer dépend grandement du nom des élements pour le convertir en code. Référez-vous au guide de nommage [ici](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md#2-element-guide).
+Tkinter Designer dépend grandement du nom des élements pour le convertir en code. Référez-vous au guide de nommage [ici](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.fr-FR.md#2-guide-des-éléments).
 ___
 <br>
 
