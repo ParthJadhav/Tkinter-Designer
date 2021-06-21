@@ -1,21 +1,21 @@
 # Comment utiliser Tkinter Designer
 
 ## Sommaire:
-1. [**Commencer**](#getting-started-top)
+1. [**Commencer**](#commencer-haut)
    1. [Installer Python](#getting-started-1)
    2. [Installer Tkinter Designer](#getting-started-2)
    3. [Créer un compte Figma](#getting-started-3)
    
-2. [**Formater votre design Figma**](#formatting-your-figma-design-top)
+2. [**Formater votre design Figma**](#formater-votre-design-figma-haut)
    1. [Référence](#formatting-1)
    2. [Guide des éléments](#formatting-2)
    
-3. [**Utiliser Tkinter Designer**](#using-tkinter-designer-top)
+3. [**Utiliser Tkinter Designer**](#utiliser-tkinter-designer-haut)
    1. [Clé d'accès personnelle](#using-1)
    2. [URL du fichier](#using-2)
    3. [Tester votre code généré](#using-3)
    
-4. [**Diagnostic des anomalies**](#troubleshooting-top)
+4. [**Diagnostic des anomalies**](#diagnostic-des-anomalies-haut)
 
 <br><br>
 
