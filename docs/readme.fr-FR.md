@@ -91,7 +91,7 @@ Les possibilités sont infinies avec Tkinter Designer, mais voici quelques inter
 
 ## 🔥 Vitrine
 Si votre application a été créée avec Tkinter Designer, faites le moi savoir. Il sera utile pour d'autres de voir plus d'exemples !
-(Voir: [Me contacter](#-contact-me)) ou utilisez la section [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) dans les Discussions.
+(Se référer à la rubrique [Me contacter](#-contact-me)) ou utilisez la section [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) dans les Discussions.
 
 ___
 <br>
