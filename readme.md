@@ -15,7 +15,7 @@
 
 ## 💡 Introduction
 
-Read this in - [(简体中文)](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/readme.zh-CN.md)
+Read this in - [(简体中文)](/docs/readme.zh-CN.md) [(Français)](/docs/readme.fr-FR.md)
 
 Tkinter Designer was created to speed up the GUI development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake 🍰.
 
@@ -51,15 +51,15 @@ python3 tkinter_designer.py
 
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video.
 
-### [Read the Instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md)
+### [Read the Instructions](/docs/instructions.md)
 ### [Watch the Video](https://youtu.be/mFjE2-rbpm8)  
 
 ___
 <br>
 
-## ✅  Importance of Naming (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md))
+## ✅  Importance of Naming (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](/docs/instructions.md))
 
-Tkinter Designer heavily depends on names of the elements to convert it to code. See the naming guide [here](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md#2-element-guide).
+Tkinter Designer heavily depends on names of the elements to convert it to code. See the naming guide [here](/docs/instructions.md#2-element-guide).
 ___
 <br>
 
