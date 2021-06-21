@@ -182,34 +182,34 @@ ___
 
 <a id="using-3"></a>
 ## 3. Tester votre code généré
-1. In Tkinter Designer, click the **Output Path** form to open a file browser
-2. Choose an output path and click **Select Folder**
-3. Press **Generate**
+1. In Tkinter Designer, cliquez sur la zone **Output Path** pour ouvrir l'explorateur de fichier
+2. Choisissez le chemin de sortie et cliquez **Select Folder**
+3. Appuyez sur **Generate**
 
-The output files from Tkinter Designer will be placed in your chosen directory, inside a new folder called **generated_code**. Congratulations, you have now created your Tkinter GUI using Tkinter Designer!
+Les fichiers de sortie de Tkinter Designer seront placés dans le répertoire de votre choix, dans un nouveau dossier appelé **generated_code**. Félicitations, vous avez maintenant créé votre interface graphique Tkinter à l'aide de Tkinter Designer !
 
 <br><br>
 
-# Troubleshooting <small>[[Top](#table-of-contents)]</small>
+# Diagnostic des anomalies <small>[[Haut](#sommaire)]</small>
 
-* Elements not visible? Misplaced?
-  * Please make sure that your top-level Frame is positioned with its X and Y coordinates at (0, 0)
-    * Check the right side bar, under **Design**
+* Éléments non visibles ? Mal placés ?
+  * Veuillez vous assurer que votre Frame de niveau supérieur est positionné avec ses coordonnées X et Y à (0, 0) 
+    * Vérifiez la barre latérale droite, sous **Design**
 
-* Button has an unintended gray background?
-  * Make sure you have added a Rectangle behind your button element, and that its Fill color is the same as the Background's
+* Le bouton a un arrière-plan gris non désiré ?
+  * Assurez-vous que vous avez ajouté un rectangle derrière votre élément de bouton et que sa couleur de remplissage est la même que celle de l'arrière-plan
 
-* Incorrect elements?
-  * Make sure you have named your elements correctly in Figma
-    * See [Formatting Your Figma Design, &sect;1](#formatting-1)
+* Éléments incorrects ?
+  * Assurez-vous d'avoir nommé correctement vos éléments dans Figma
+    * Se référer à [Formater votre design Figma, &sect;1](#formatting-1)
 
-* Window is larger than the screen?
-  * Reduce the size of your elements in Figma
+* La fenêtre est plus grande que l'écran ?
+  * Réduisez la taille de vos éléments dans Figma
 
-* Files not generating?
-  * Restart Tkinter Designer
-  * Double-check the token and URL
-  * Make sure your design has a Frame
+* Les fichiers ne se génèrent pas ?
+  * Redémarrez Tkinter Designer
+  * Vérifiez la clé d'API et l'URL
+  * Assurez-vous que votre design a une Frame 
 
-* Something else?
-  * [Report issues not listed here on GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
+* Autre chose ?
+  * [Signalez des problèmes non répertoriés ici sur GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
