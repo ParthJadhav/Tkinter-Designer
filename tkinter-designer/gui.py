@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog, messagebox
-import backend
+import core
 import webbrowser
 
 # Required in order to add data files to Windows executable
@@ -26,7 +26,7 @@ def btn_clicked():
                              message="Enter a valid output path")
 
     else:
-        backend.generate_code(token,URL, output_path)
+        core.generate_code(token,URL, output_path)
 
 def select_path(event):
     global output_path
@@ -81,9 +81,9 @@ path_entry.place(x=490.0,y=299+25,width=321.0,height=35)
 path_entry.bind("<1>", select_path)
 
 
-canvas.create_text(519.0,156.0,text="Token ID",fill="#515486",font=("Arial-BoldMT",int(13.0)))
-canvas.create_text(518.5,234.5,text="File URL",fill="#515486",font=("Arial-BoldMT",int(13.0)))
-canvas.create_text(529.5,315.5,text="Output Path",fill="#515486",font=("Arial-BoldMT",int(13.0)))
+canvas.create_text(490.0,156.0,text="Token ID",fill="#515486",font=("Arial-BoldMT",int(13.0)), anchor="w")
+canvas.create_text(490.0,234.5,text="File URL",fill="#515486",font=("Arial-BoldMT",int(13.0)), anchor="w")
+canvas.create_text(490.0,315.5,text="Output Path",fill="#515486",font=("Arial-BoldMT",int(13.0)), anchor="w")
 canvas.create_text(646.5,428.5,text="Generate",fill="#FFFFFF",font=("Arial-BoldMT",int(13.0)))
 canvas.create_text(573.5,88.0,text="Enter the details.",fill="#515486",font=("Arial-BoldMT",int(22.0)))
 
