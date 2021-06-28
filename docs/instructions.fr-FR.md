@@ -1,5 +1,12 @@
 # Comment utiliser Tkinter Designer
 
+#### Traductions:
+- [简体中文](/docs/instructions.zh-CN.md)
+- [English](/docs/instructions.md)
+- [Français](/docs/instructions.fr-FR.md)
+
+___
+
 ## Sommaire:
 1. [**Commencer**](#commencer-haut)
    1. [Installer Python](#getting-started-1)
