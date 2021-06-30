@@ -14,9 +14,9 @@
   <br>
 
 #### Traductions:
-- [简体中文](/docs/readme.zh-CN.md)
-- [English](/readme.md)
-- [Français](/docs/readme.fr-FR.md)
+- [简体中文](docs/README.zh-CN.md)
+- [English](README.md)
+- [ગુજરાતી](docs/README.gu-GU.md)
 
 ___ 
 

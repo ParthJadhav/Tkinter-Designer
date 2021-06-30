@@ -15,9 +15,9 @@
   <br>
 
 #### 翻译:
-- [简体中文](/docs/readme.zh-CN.md)
-- [English](/readme.md)
-- [Français](/docs/readme.fr-FR.md)
+- [English](/README.md)
+- [Français](/docs/README.fr-FR.md)
+- [ગુજરાતી](docs/README.gu-GU.md)
 
 ___ 
 

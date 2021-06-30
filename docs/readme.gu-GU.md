@@ -13,6 +13,13 @@
 
   <br>
 
+## અનુવાદો
+- [简体中文](docs/README.zh-CN.md)
+- [English](README.md)
+- [Français](docs/README.fr-FR.md)
+
+___ 
+
 ## પરિચય
 Tkinter ડિઝાઇનરને પાયથોનમાં GUI વિકાસ પ્રક્રિયા ઝડપી બનાવવા માટે બનાવવામાં આવી હતી. તે Python માં સુંદર Tkinter GUI બનાવવા માટે જાણીતા ડિઝાઇન Software [Figma](https://www.figma.com/) નો ઉપયોગ કરે છે.
 
@@ -55,7 +62,7 @@ python3 tkinter_designer.py
 ___
 <br>
 
-## નામકરણનું મહત્વ ([વિડિઓ](https://youtu.be/mFjE2-rbpm8) માં ઉલ્લેખિત અને [સૂચનો](/docs/instructions.md))
+## નામકરણનું મહત્વ ([વિડિઓ](https://youtu.be/mFjE2-rbpm8) માં ઉલ્લેખિત અને [સૂચનો](/docs/instructions.gu-GU.md))
 
 Tkinter ડિઝાઇનર તેને કોડમાં કન્વર્ટ કરવા તત્વોના નામ પર ખૂબ આધાર રાખે છે. નામકરણ માર્ગદર્શિકા જુઓ [અહીં] (/docs/instructions.gu-GU.md).
 ___
