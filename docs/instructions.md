@@ -2,7 +2,7 @@
 
 #### Translations:
 - [简体中文](/docs/instructions.zh-CN.md)
-- [English](/docs/instructions.md)
+- [ગુજરાતી](docs/instructions.gu-GU.md)
 - [Français](/docs/instructions.fr-FR.md)
 
 ___

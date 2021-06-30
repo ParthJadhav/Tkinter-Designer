@@ -13,10 +13,10 @@
 
   <br>
 
-#### Translations:
-- [简体中文](/docs/readme.zh-CN.md)
-- [English](/readme.md)
-- [Français](/docs/readme.fr-FR.md)
+## Translations
+- [简体中文](docs/readme.zh-CN.md)
+- [ગુજરાતી](docs/readme.gu-GU.md)
+- [Français](docs/readme.fr-FR.md)
 
 ___ 
 
