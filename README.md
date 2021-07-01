@@ -13,10 +13,14 @@
 
   <br>
 
+## Translations
+- [简体中文](docs/readme.zh-CN.md)
+- [ગુજરાતી](docs/readme.gu-GU.md)
+- [Français](docs/readme.fr-FR.md)
+
+___ 
+
 ## 💡 Introduction
-
-Read this in - [(简体中文)](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/readme.zh-CN.md)
-
 Tkinter Designer was created to speed up the GUI development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake 🍰.
 
 Tkinter Designer uses the Figma API to analyse a design file and create the respective code and files needed for the GUI. Even Tkinter Designer's GUI is created using Tkinter Designer.
@@ -51,9 +55,15 @@ python3 tkinter_designer.py
 
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video.
 
-[Read the Instructions](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md)
-[Watch the Video](https://youtu.be/mFjE2-rbpm8)  
+### [Read the Instructions](/docs/instructions.md)
+### [Watch the Video](https://youtu.be/mFjE2-rbpm8)  
 
+___
+<br>
+
+## ✅  Importance of Naming (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](/docs/instructions.md))
+
+Tkinter Designer heavily depends on names of the elements to convert it to code. See the naming guide [here](/docs/instructions.md#2-element-guide).
 ___
 <br>
 
@@ -88,7 +98,7 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 ### Frame Recorder [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
-### WhatBulk  [(More Info)]("https://www.instagram.com/p/CQUmKckFBbT/?utm_medium=copy_link)
+### WhatBulk  [(More Info)](https://www.instagram.com/p/CQUmKckFBbT/?utm_medium=copy_link)
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/122562284-87e06500-d060-11eb-8257-55f3b9dbecf0.PNG">
 
 

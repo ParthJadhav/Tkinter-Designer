@@ -1,5 +1,12 @@
 # How to use Tkinter Designer
 
+#### Translations:
+- [简体中文](/docs/instructions.zh-CN.md)
+- [ગુજરાતી](docs/instructions.gu-GU.md)
+- [Français](/docs/instructions.fr-FR.md)
+
+___
+
 ## Table of Contents:
 1. [**Getting Started**](#getting-started-top)
    1. [Install Python](#getting-started-1)
@@ -131,17 +138,27 @@ ___
    * Make sure the Rectangle is named "Rectangle"
 <br><br>
 
-6. **Button**
-   * Add an element to serve as a button in your GUI
-     * *Optional: Add text for the button*
-   * Create a Rectangle on the layer beneath the button
-   * Change the Rectangle's color to match the Background
-   * Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
+7. **Normal Button**
+   * Add rectangle to serve as a button in your GUI
+     * Optional: Add text for the button
+   * Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
    * Name the group "Button"
+
+#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+
 <br><br>
 
-7. **Final Step (Most Important)**
-   * Select your container (Frame) and make sure its X and Y coordinates are both zero.
+8. **Rounded Button** 
+   * Add rectangle to serve as a button in your GUI
+     * Optional: Add text for the button
+   * Make it rounded by adding corner radius by selecting the rectangle and adding corner radius from the right side. [Read more on it](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
+   * Create a Rectangle with same size of your button. Don't make it rounded. 
+   * Change the Rectangle's color to match the Background
+   * Now move the newly created rectangle below the main button(Rectangle).
+   * Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
+   * Name the group "Button"
+
+#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
 
 <br><br>
 

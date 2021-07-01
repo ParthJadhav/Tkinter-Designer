@@ -1,5 +1,12 @@
 # 如何使用 Tkinter Designer
 
+#### 翻译:
+- [简体中文](/docs/instructions.zh-CN.md)
+- [English](/docs/instructions.md)
+- [Français](/docs/instructions.fr-FR.md)
+
+___
+
 ## 目录:
 1. [**入门**](#入门-top)
    1. [安装Python](#getting-started-1)
@@ -132,7 +139,7 @@ ___
     * 确保矩形被命名为“矩形”
 <br><br>
 
-6. **按钮**
+7. **按钮**
     * 添加一个元素作为 GUI 中的按钮
       * *可选：为按钮添加文本*
     * 在按钮下方的图层上创建一个矩形

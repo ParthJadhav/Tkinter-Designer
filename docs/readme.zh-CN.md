@@ -14,6 +14,13 @@
 
   <br>
 
+#### 翻译:
+- [简体中文](/docs/readme.zh-CN.md)
+- [English](/readme.md)
+- [Français](/docs/readme.fr-FR.md)
+
+___ 
+
 ## 💡 介绍
 
 Tkinter Designer 旨在加速 Python 中的 GUI 开发过程。 它使用著名的设计软件 [Figma](https://www.figma.com/) 使在 Python 中创建漂亮的 Tkinter GUI 变得轻而易举。
@@ -82,10 +89,10 @@ Tkinter Designer 的可能性是无限的，但这里有几个可以在 Tkinter 
 
 <small>以下不是我的创作。</small>
 
-### Registration Page
+### 注册页面
 <img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
 
-### Branding Page
+### 品牌页面
 <img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
 
 ### Frame Recorder [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
@@ -101,6 +108,13 @@ Tkinter Designer 的可能性是无限的，但这里有几个可以在 Tkinter 
 ___
 <br>
  
+## ✅  命名指南（在 [视频](https://youtu.be/mFjE2-rbpm8) 和 [说明](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md) 中提到）
+
+Tkinter Designer 在很大程度上依赖于元素的名称将其转换为代码。 请参阅命名指南 [此处](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md#2-element-guide)。
+
+___
+<br>
+
 ## 📝 联络我
 
 如果你想联系我 - Jadhavparth99@gmail.com
