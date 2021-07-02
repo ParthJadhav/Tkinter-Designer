@@ -14,9 +14,9 @@
   <br>
 
 ## અનુવાદો
-- [简体中文](docs/README.zh-CN.md)
-- [English](README.md)
-- [Français](docs/README.fr-FR.md)
+- [简体中文](/docs/README.zh-CN.md)
+- [English](/README.md)
+- [Français](/docs/README.fr-FR.md)
 
 ___ 
 

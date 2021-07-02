@@ -17,7 +17,7 @@
 #### 翻译:
 - [English](/README.md)
 - [Français](/docs/README.fr-FR.md)
-- [ગુજરાતી](docs/README.gu-GU.md)
+- [ગુજરાતી](/docs/README.gu-GU.md)
 
 ___ 
 

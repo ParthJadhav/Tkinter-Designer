@@ -14,9 +14,9 @@
   <br>
 
 ## Translations
-- [简体中文](docs/README.zh-CN.md)
-- [Français](docs/README.fr-FR.md)
-- [ગુજરાતી](docs/README.gu-GU.md)
+- [简体中文](/docs/README.zh-CN.md)
+- [Français](/docs/README.fr-FR.md)
+- [ગુજરાતી](/docs/README.gu-GU.md)
 
 ___ 
 
