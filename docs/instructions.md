@@ -2,8 +2,8 @@
 
 #### Translations:
 - [简体中文](/docs/instructions.zh-CN.md)
-- [ગુજરાતી](docs/instructions.gu-GU.md)
 - [Français](/docs/instructions.fr-FR.md)
+- [ગુજરાતી](docs/instructions.gu-GU.md)
 
 ___
 
