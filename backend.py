@@ -300,7 +300,7 @@ def generate_code(token, link, output_path):
                 lines.extend(
                     [
                         f"image_{image_count} = PhotoImage(" f'file = "image_{image_count}.png")',
-                        "background = canvas.create_image(",
+                        f"canvas_image_{image_count} = canvas.create_image(",
                         f"    {x}, {y},",
                         f"    image=image_{image_count})\n",
                     ]
