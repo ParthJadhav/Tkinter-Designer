@@ -45,6 +45,7 @@ def generate_code(token, link, output_path):
 
         btn_count = 0
         text_entry_count = 0
+        image_count = 0
 
         for element in window_elements:
 
@@ -293,17 +294,18 @@ def generate_code(token, link, output_path):
 
                 image_link = requests.get(response.json()["images"][item_id])
 
-                with open(f"{generated_dir}background.png", "wb") as file:
+                with open(f"{generated_dir}image_{image_count}.png", "wb") as file:
                     file.write(image_link.content)
 
                 lines.extend(
                     [
-                        "background_img = PhotoImage(" 'file = f"background.png")',
+                        f"image_{image_count} = PhotoImage(" f'file = "image_{image_count}.png")',
                         "background = canvas.create_image(",
                         f"    {x}, {y},",
-                        f"    image=background_img)\n",
+                        f"    image=image_{image_count})\n",
                     ]
                 )
+                image_count += 1
             else:
                 print(f"Element named {element['name']} of type {element['type']} is unrecognized. \nCheck the instructions for naming guide. Unsupported elements would be added as black rectangles.\n\n")
 
