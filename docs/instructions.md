@@ -94,6 +94,7 @@ ___
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |
+| Password | Password Entry
 | Background | Canvas.Image() |
 
 <br>
@@ -138,29 +139,33 @@ ___
    * Make sure the Rectangle is named "Rectangle"
 <br><br>
 
-7. **Normal Button**
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
+7. **Button**
+   * Add a shape for the button.
+     * Optional: Add text for the button.
+   * You can also use image for a button.
+   * Select the button shape, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
+   * The group should look like this now. It will work fine !
+   <br>
+   <img width="250" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/124475596-86809d80-ddbf-11eb-838a-92b3a09f3763.png">
 
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+   * But if  you have multiple shapes or images for the button then group all the shape layers together. And leave the text layer at the top.
+   <br>
+   <br> From This 👇
+   <br>
+   <img width="250" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/124476541-9482ee00-ddc0-11eb-8a23-74dbf58bc73b.png"> 
+   <br> To this 👇
+   <br>
+   <img width="250" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/124477103-3e627a80-ddc1-11eb-88fb-56c84cd016b2.png"> 
 
-<br><br>
-
-8. **Rounded Button** 
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Make it rounded by adding corner radius by selecting the rectangle and adding corner radius from the right side. [Read more on it](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
-   * Create a Rectangle with same size of your button. Don't make it rounded. 
-   * Change the Rectangle's color to match the Background
-   * Now move the newly created rectangle below the main button(Rectangle).
-   * Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
-
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+   * Name the group "Button" Or Use Plugin
 
 <br><br>
+
+# Using Plugin to skip Naming part
+
+You can use [Figma-Low-Code](https://www.figma.com/community/plugin/858477504263032980/Figma-Low-Code) Plugin to skip the naming the elements.
+
+Watch this video to know how to use the plugin.
 
 # Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
 
