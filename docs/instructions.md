@@ -109,11 +109,13 @@ ___
 <br>
 
 1. **First, create a Frame that will serve as your Tkinter Window.**
+   * To Create a Frame press <kbd>F</kbd>.
+   * You can either select a size from right side or make your own.
 <br><br>
 
-2. **Creating a Background**
-   * Backgrounds can be created using shapes and/or images
-   * If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
+2. **Creating a Background Or Images**
+   * Backgrounds & Images can be created using shapes and/or images
+   * Any layer named "Background" would be added as Canvas Image to the generated code.
 <br><br>
 
 3. **Text (Normal Text)**
@@ -159,7 +161,12 @@ ___
 
    * Name the group "Button" Or Use Plugin
 
-<br><br>
+<br>
+
+### **Naming is Important !**
+Every element is converted to code on basis of their names. 
+
+If a element has unkown name then it would be converted to a black rectangle. But if the name has mismatched then Tkinter Designer is likely to crash.
 
 # Using Plugin to skip Naming part
 
