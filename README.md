@@ -13,10 +13,14 @@
 
   <br>
 
+## Translations
+- [简体中文](/docs/README.zh-CN.md)
+- [Français](/docs/README.fr-FR.md)
+- [ગુજરાતી](/docs/README.gu-GU.md)
+
+___ 
+
 ## 💡 Introduction
-
-Read this in - [(简体中文)](/docs/readme.zh-CN.md) [(Français)](/docs/readme.fr-FR.md)
-
 Tkinter Designer was created to speed up the GUI development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake 🍰.
 
 Tkinter Designer uses the Figma API to analyse a design file and create the respective code and files needed for the GUI. Even Tkinter Designer's GUI is created using Tkinter Designer.

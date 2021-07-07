@@ -1,5 +1,12 @@
 # 如何使用 Tkinter Designer
 
+#### 翻译:
+- [English](/docs/instructions.md)
+- [Français](/docs/instructions.fr-FR.md)
+- [ગુજરાતી](docs/instructions.gu-GU.md)
+
+___
+
 ## 目录:
 1. [**入门**](#入门-top)
    1. [安装Python](#getting-started-1)
@@ -87,7 +94,7 @@ ___
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |
-| Background | Canvas.Image() |
+| Image | Canvas.Image() |
 
 <br>
 
@@ -103,9 +110,10 @@ ___
 1. **首先，创建一个框架作为您的 Tkinter 窗口。**
 <br><br>
 
-2. **创建背景**
-   * 可以使用形状和/或图像创建背景
-    * 如果您使用多个形状/图像，您必须通过选择它们并按下将它们组合在一起 <kbd>CTRL/&#8984; + G</kbd>
+2. **添加图片**
+   * 可以使用形状和/或图像创建图像
+   * 如果您使用多个形状/图像，您必须通过选择它们并按 <kbd>CTRL/&#8984; 将它们组合在一起。 + G</kbd>
+   * 在此之后将元素或组命名为“图像”。
 <br><br>
 
 3. **文本（普通文本）**

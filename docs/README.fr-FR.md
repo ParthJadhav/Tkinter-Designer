@@ -13,6 +13,13 @@
 
   <br>
 
+#### Traductions:
+- [简体中文](/docs/README.zh-CN.md)
+- [English](/README.md)
+- [ગુજરાતી](/docs/README.gu-GU.md)
+
+___ 
+
 ## 💡 Introduction
 
 Tkinter Designer a été créé pour accélérer le processus de développement des interfaces en Python. Il utilise le logiciel de design bien connu [Figma](https://www.figma.com/) afin de rendre la création de magnifiques interfaces Tkinter en Python du gâteau 🍰.

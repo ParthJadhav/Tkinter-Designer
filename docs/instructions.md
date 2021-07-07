@@ -1,5 +1,12 @@
 # How to use Tkinter Designer
 
+#### Translations:
+- [简体中文](/docs/instructions.zh-CN.md)
+- [Français](/docs/instructions.fr-FR.md)
+- [ગુજરાતી](docs/instructions.gu-GU.md)
+
+___
+
 ## Table of Contents:
 1. [**Getting Started**](#getting-started-top)
    1. [Install Python](#getting-started-1)
@@ -87,7 +94,7 @@ ___
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |
-| Background | Canvas.Image() |
+| Image | Canvas.Image() |
 
 <br>
 
@@ -103,9 +110,10 @@ ___
 1. **First, create a Frame that will serve as your Tkinter Window.**
 <br><br>
 
-2. **Creating a Background**
-   * Backgrounds can be created using shapes and/or images
+2. **Adding Images**
+   * Images can be created using shapes and/or images
    * If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
+   * After that name the element or group as "Image".
 <br><br>
 
 3. **Text (Normal Text)**
