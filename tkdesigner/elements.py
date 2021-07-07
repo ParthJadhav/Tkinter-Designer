@@ -121,9 +121,13 @@ canvas.create_text(
 
 
 class TextEntryElement(FigmaElement):
-    def __init__(self, x, y, width, height, entry_type, bg_color, image_path, corner_radius):
+    def __init__(self, x, y, width, height, entry_x, entry_y, entry_width, entry_height, entry_type, bg_color, image_path, corner_radius):
         super().__init__(x, y, width, height)
 
+        self.entry_x = entry_x
+        self.entry_y = entry_y
+        self.entry_width = entry_width
+        self.entry_height = entry_height
         self.entry_type = entry_type
         self.bg_color = bg_color
         self.image_path = image_path
@@ -146,10 +150,10 @@ entry_{self.id_} = {self.entry_type}(
     highlightthickness=0
 )
 entry_{self.id_}.place(
-    x={self.x},
-    y={self.y},
-    width={self.width},
-    height={self.height}
+    x={self.entry_x},
+    y={self.entry_y},
+    width={self.entry_width},
+    height={self.entry_height}
 )
 """
 

@@ -181,13 +181,13 @@ class FigmaParser():
         if corner_radius > height / 2:
             corner_radius = height / 2
 
-        width = width - (corner_radius * 2)
-        height = height - 2
+        entry_width = width - (corner_radius * 2)
+        entry_height = height - 2
 
-        x, y = self.get_coordinates(element_data, frame_data)
-        x = x + corner_radius
+        entry_x, entry_y = self.get_coordinates(element_data, frame_data)
+        entry_x = entry_x + corner_radius
 
-        return elements.TextEntryElement(x, y, width, height, elements.TEXT_INPUT_ELEMENT_TYPES[element_data["name"]], bg_color, image_path, corner_radius)
+        return elements.TextEntryElement(x, y, width, height, entry_x, entry_y, entry_width, entry_height, elements.TEXT_INPUT_ELEMENT_TYPES[element_data["name"]], bg_color, image_path, corner_radius)
 
     def parse_image_element(self, element_data, frame_data):
         x, y = self.get_coordinates(element_data, frame_data)
