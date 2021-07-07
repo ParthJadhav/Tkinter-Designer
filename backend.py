@@ -267,7 +267,7 @@ def generate_code(token, link, output_path):
 
             text_entry_count += 1
 
-        elif element["name"] == "Background":
+        elif element["name"] == "Image":
                 width, height = get_dimensions(element)
                 x, y = get_coordinates(element)
                 x, y = x + (width / 2), y + (height / 2)

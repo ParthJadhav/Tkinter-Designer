@@ -94,7 +94,7 @@ ___
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |
-| Background | Canvas.Image() |
+| Image | Canvas.Image() |
 
 <br>
 
@@ -110,10 +110,10 @@ ___
 1. **Tout d'abord, créez une Frame qui servira de fenêtre Tkinter.**
 <br><br>
 
-2. **Créer un arrière-plan**
-    * Les arrière-plans peuvent être créés à l'aide de formes et/ou d'images
+2. **Ajout d'images**
+    * Les images peuvent être créées à l'aide de formes et/ou d'images
     * Si vous utilisez plusieurs formes/images, vous devez les regrouper en les sélectionnant toutes et en appuyant sur <kbd>CTRL/&#8984; + G</kbd>
-    * <br><br>
+    * Après cela, nommez l'élément ou le groupe comme "Image".
 
 3. **Texte (Texte normal)**
    * Utilisez la touche <kbd>T</kbd> pour activer l'outil texte, puis ajoutez du texte comme vous le souhaitez
