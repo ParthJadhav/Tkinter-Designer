@@ -157,24 +157,12 @@ ___
 
 # Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
 
-## Using the CLI
-
-Using the CLI is as simple as installing the package and running the CLI tool.
-
-```bash
-$ tkdesigner output/ https://www.figma.com/file/zGAo3tgCahV0n7NtqysgwY/SampleShack-TKDesigner?node-id=0%3A1 205235-fb7f1ea2-f48a-4bb1-8636-XXXXXXX
-```
-
-### 1. Personal Access Token
-### 2. File URL
-### 3. Generating the GUI
-
-## Using the GUI
-### Open Tkinter Designer before doing the following steps.
-<br>
+## Required Inputs
+There are some inputs you'll need to collect to be able to use the TKinter Designer.
 
 <a id="using-1"></a>
-## 1. Personal Access Token
+
+### 1. Personal Access Token
 1. Log into your Figma account
 2. Navigate to Settings
 3. In the **Account** tab, scroll down to **Personal access tokens**
@@ -182,22 +170,39 @@ $ tkdesigner output/ https://www.figma.com/file/zGAo3tgCahV0n7NtqysgwY/SampleSha
 5. Your personal access token will be created.
    * Copy this token and keep it somewhere safe.
    * **You will not get another chance to copy this token.**
-6. Paste your personal access token into the **Token ID** form in Tkinter Designer
-___
-<br>
 
 <a id="using-2"></a>
-## 2. File URL
+
+### 2. File URL
 1. In your Figma design file, click the **Share** button in the top bar, then click on **&#x1f517; Copy link**
-2. Paste the link into the **File URL** form in Tkinter Designer
-___
+
+## Using the CLI
+
+Using the CLI is as simple as installing the package and running the CLI tool.
+
+```bash
+# Example data
+$ tkdesigner https://www.figma.com/file/zGAo3tgCahV0n7NtqysgwY/SampleShack-TKDesigner?node-id=0%3A1 205235-fb7f1ea2-f48a-4bb1-8636-XXXXXXX
+```
+
+By default, the GUI code will be written to build/gui.py.
+
+To run the generated GUI, cd into the directory you built it to (e.g. build/) and run it just as you would any Tkinter GUI.
+```bash
+$ cd build
+$ python3 gui.py
+```
+
+## Using the GUI
+### Open Tkinter Designer before doing the following steps.
 <br>
 
-<a id="using-3"></a>
-## 3. Test Your Generated Code
-1. In Tkinter Designer, click the **Output Path** form to open a file browser
-2. Choose an output path and click **Select Folder**
-3. Press **Generate**
+1. Open TKinter Designer
+2. Paste your *personal access token* into the **Token ID** form in Tkinter Designer
+3. Paste the link into the **File URL** form in Tkinter Designer
+4. Click the **Output Path** form to open a file browser
+5. Choose an output path and click **Select Folder**
+6. Press **Generate**
 
 The output files from Tkinter Designer will be placed in your chosen directory, inside a new folder called **generated_code**. Congratulations, you have now created your Tkinter GUI using Tkinter Designer!
 
