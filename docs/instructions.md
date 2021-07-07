@@ -182,7 +182,10 @@ Using the CLI is as simple as installing the package and running the CLI tool.
 
 ```bash
 # Example data
-$ tkdesigner https://www.figma.com/file/zGAo3tgCahV0n7NtqysgwY/SampleShack-TKDesigner?node-id=0%3A1 205235-fb7f1ea2-f48a-4bb1-8636-XXXXXXX
+$ python -m tkdesigner.cli https://www.figma.com/file/zGAo3tgCahV0n7NtqysgwY/SampleShack-TKDesigner?node-id=0%3A1 205235-fb7f1ea2-f48a-4bb1-8636-XXXXXXX -f
+
+# To learn more about how to use the cli, pass the --help flag
+$ python -m tkdesigner.cli --help
 ```
 
 By default, the GUI code will be written to build/gui.py.
