@@ -1,6 +1,8 @@
+from tkdesigner.utils import find_between
+from tkdesigner.parse import FigmaParser
+from tkdesigner import figma_api
 from tkinter import *
 from tkinter import filedialog, messagebox
-import core
 import webbrowser
 
 # Required in order to add data files to Windows executable
@@ -26,7 +28,19 @@ def btn_clicked():
                              message="Enter a valid output path")
 
     else:
-        core.generate_code(token,URL, output_path)
+        token = token.strip()
+        file_url = URL.strip()
+
+        figma_data, figma_file_id = figma_api.get_file_and_id(token, file_url)
+
+        os.makedirs(os.path.join(output_path, "assets"))
+
+        parser = FigmaParser(token, figma_file_id, os.path.join(output_path, "assets"))
+        gui = parser.parse_gui(figma_data)
+        generated_code = gui.to_code()
+
+        with open(os.path.join(output_path, "gui.py"), "w") as f:
+            f.write(generated_code)
 
 def select_path(event):
     global output_path

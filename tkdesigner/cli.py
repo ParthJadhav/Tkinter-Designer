@@ -56,7 +56,7 @@ def main():
     with open(os.path.join(args.output, "figma_data.json"), "w") as f:
         json.dump(figma_data, f)
 
-    parser = FigmaParser(args.token, figma_file_id, "assets")
+    parser = FigmaParser(args.token, figma_file_id, os.path.join(args.output, "assets"))
     gui = parser.parse_gui(figma_data)
     generated_code = gui.to_code()
 
