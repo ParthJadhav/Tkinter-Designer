@@ -33,7 +33,7 @@ def btn_clicked():
 
         figma_data, figma_file_id = figma_api.get_file_and_id(token, file_url)
 
-        os.makedirs(os.path.join(output_path, "assets"))
+        os.makedirs(os.path.join(output_path, "assets"), exist_ok=True)
 
         parser = FigmaParser(token, figma_file_id, os.path.join(output_path, "assets"))
         gui = parser.parse_gui(figma_data)
