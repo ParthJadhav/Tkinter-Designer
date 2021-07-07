@@ -148,6 +148,7 @@ def generate_code(token, link, output_path):
 
     btn_count = 0
     text_entry_count = 0
+    image_count = 0
 
     for element in window_elements:
 
@@ -266,27 +267,32 @@ def generate_code(token, link, output_path):
 
             text_entry_count += 1
 
-        elif element["name"] == "Background":
-            width, height = get_dimensions(element)
-            x, y = get_coordinates(element)
-            x, y = x + (width / 2), y + (height / 2)
-            item_id = element["id"]
+        elif element["name"] == "Image":
+                width, height = get_dimensions(element)
+                x, y = get_coordinates(element)
+                x, y = x + (width / 2), y + (height / 2)
+                item_id = element["id"]
 
-            response = requests.get(
-                f"https://api.figma.com/v1/images/{file_id}"
-                f"?ids={item_id}&use_absolute_bounds=true",
-                headers={"X-FIGMA-TOKEN": f"{token}"})
+                response = requests.get(
+                    f"https://api.figma.com/v1/images/{file_id}"
+                    f"?ids={item_id}&use_absolute_bounds=true",
+                    headers={"X-FIGMA-TOKEN": f"{token}"},
+                )
 
-            image_link = requests.get(response.json()["images"][item_id])
+                image_link = requests.get(response.json()["images"][item_id])
 
-            with open(f"{generated_dir}background.png", "wb") as file:
-                file.write(image_link.content)
+                with open(f"{generated_dir}image_{image_count}.png", "wb") as file:
+                    file.write(image_link.content)
 
-            lines.extend(['background_img = PhotoImage('
-                          'file = f"background.png")',
-                          'background = canvas.create_image(',
-                          f'    {x}, {y},',
-                          f'    image=background_img)\n'])
+                lines.extend(
+                    [
+                        f"image_{image_count} = PhotoImage(" f'file = "image_{image_count}.png")',
+                        f"canvas_image_{image_count} = canvas.create_image(",
+                        f"    {x}, {y},",
+                        f"    image=image_{image_count})\n",
+                    ]
+                )
+                image_count += 1
 
 
     # Adding Generated Code to window.py
