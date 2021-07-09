@@ -38,7 +38,7 @@ def select_path(event):
     # window.deiconify()
 
 def know_more_clicked(event):
-    url = "https://github.com/ParthJadhav/Tkinter-Designer/blob/master/instructions.md"
+    url = "https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md"
     webbrowser.open_new(url)
 
 def make_label(master, x, y, h, w, *args, **kwargs):
