@@ -3,7 +3,7 @@ Module to handle parsing Figma elements.
 """
 
 import os
-from typing import Dict, List
+from typing import Dict, List, Type
 import uuid
 
 import requests
@@ -81,7 +81,41 @@ class FigmaParser():
         return image_path
 
     
+    def parse_element(self, element_data, frame_data) -> Type[elements.FigmaElement]:
+        """Parse element according to it's name and/or type.
+        
+        Arguments:
+            element_data: The Figma document data for the element.
+            frame_data: The Figma frame data that contains the element.
+
+        Returns:
+            A FigmaElement subclass, depending on the type of element data passed in.
+
+        Raises:
+            NotImplementedError: If the element passed in is not supported by the parser.
+        """
+        element_name = element_data["name"]
+        element_type = element_data["type"]
+
+        if element_name == "Rectangle":
+            return self.parse_rectangle_element(element_data, frame_data)
+        elif element_name == "Button":
+            return self.parse_button_element(element_data, frame_data)
+        elif element_name in ("TextBox", "TextArea"):
+            return self.parse_text_entry(element_data, frame_data)
+        elif element_name == "Image":
+            return self.parse_image_element(element_data, frame_data)
+        elif element_type == "TEXT":
+            return self.parse_text_element(element_data, frame_data)
+        else:
+            raise NotImplementedError(f"Element with the name: `{element_name}` cannot be parsed.")
+
+    
     def parse_gui(self, data):
+        """Takes the entire Figma document `data` and parses each element.
+        
+        Generally this would be the entry point to parsing Figma GUIs.
+        """
         frame_data = data["document"]["children"][0]["children"][0]
 
         width, height = self.get_dimensions(frame_data)
@@ -94,24 +128,7 @@ class FigmaParser():
 
         parsed_elements: List[elements.Element] = []
         for element_data in frame_data["children"]:
-            element_name = element_data["name"]
-            element_type = element_data["type"]
-
-            parsed_element = None
-            if element_name == "Rectangle":
-                parsed_element = self.parse_rectangle_element(element_data, frame_data)
-            elif element_name == "Button":
-                parsed_element = self.parse_button_element(element_data, frame_data)
-            elif element_name in ("TextBox", "TextArea"):
-                parsed_element = self.parse_text_entry(element_data, frame_data)
-            elif element_name == "Image":
-                parsed_element = self.parse_image_element(element_data, frame_data)
-            elif element_type == "TEXT":
-                parsed_element = self.parse_text_element(element_data, frame_data)
-            else:
-                raise NotImplementedError(f"Element with the name: `{element_name}` cannot be parsed.")
-
-            parsed_elements.append(parsed_element)
+            parsed_elements.append(self.parse_element(element_data, frame_data))
 
         return elements.FigmaFrame(
             width,
