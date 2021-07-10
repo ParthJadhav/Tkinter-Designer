@@ -1,3 +1,8 @@
+import sys
+import os
+from pathlib import Path
+sys.path.insert(0, str(Path(os.path.abspath(__file__)).parents[1])) # Add tkdesigner to path
+
 from tkdesigner.utils import find_between
 from tkdesigner.parse import FigmaParser
 from tkdesigner import figma_api
@@ -5,11 +10,20 @@ from tkinter import *
 from tkinter import filedialog, messagebox
 import webbrowser
 
+DIR_NAME = os.path.dirname(__file__)
+ASSETS_PATH = os.path.join(DIR_NAME, "assets")
+
+def rel_path(path):
+    # Constructs relative path from gui file
+    return os.path.join(DIR_NAME, path)
+
+def rel_asset_path(path):
+    # Constructs a relative path from the gui file to an asset
+    return os.path.join(ASSETS_PATH, path)
+
 # Required in order to add data files to Windows executable
-import sys, os
 path = getattr(sys, '_MEIPASS', os.getcwd())
 os.chdir(path)
-
 
 def btn_clicked():
     token = token_entry.get()
@@ -66,7 +80,7 @@ def make_label(master, x, y, h, w, *args, **kwargs):
     return label
 
 window = Tk()
-logo = PhotoImage(file='images/iconbitmap.gif')
+logo = PhotoImage(file=rel_asset_path("iconbitmap.gif"))
 window.call('wm', 'iconphoto', window._w, logo)
 window.title("Tkinter Designer")
 output_path = ""
@@ -78,7 +92,7 @@ canvas.place(x=0,y=0)
 canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC",outline="")
 canvas.create_rectangle(40, 160, 40 + 60, 160 + 5, fill="#FCFCFC",outline="")
 
-text_box_bg = PhotoImage(file=f"images/TextBox_Bg.png")
+text_box_bg = PhotoImage(file=rel_asset_path("TextBox_Bg.png"))
 token_entry_img = canvas.create_image(650.5,167.5,image=text_box_bg)
 URL_entry_img = canvas.create_image(650.5,248.5,image=text_box_bg)
 filePath_entry_img = canvas.create_image(650.5,329.5,image=text_box_bg)
@@ -119,10 +133,9 @@ know_more = Label(text="Click here for instructions", bg="#3A7FF6",fg="white", c
 know_more.place(x=27,y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
-generate_btn_img = PhotoImage(file="./images/generate.png")
+generate_btn_img = PhotoImage(file=rel_asset_path("generate.png"))
 generate_btn = Button(image=generate_btn_img, borderwidth=0, highlightthickness=0, command=btn_clicked, relief="flat")
 generate_btn.place(x=557, y=401, width=180, height=55)
-
 
 window.resizable(False, False)
 window.mainloop()
