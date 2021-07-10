@@ -3,20 +3,66 @@ Module to handle parsing Figma elements.
 """
 
 import os
-from typing import Dict, List, Type
+from typing import List, Type
 import uuid
+from enum import Enum
 
 import requests
 
 from tkdesigner import elements
 
 
+class Elements(Enum):
+    RECTANGLE = 0
+    BUTTON = 1
+    TEXT = 2
+    TEXTENTRY = 3
+    IMAGE = 4
+
+
+class ElementCounter():
+    """Manages counting elements to generate unique incremental IDs."""
+
+    def __init__(self, elements: List[Elements]):
+        self.counter = {element_type: 1 for element_type in elements}
+
+    def get_and_increment(self, element: Elements):
+        curr_value = self.counter.get(element)
+
+        if curr_value is None:
+            raise ValueError(
+                f"There is no counter for the element type {element.name}. Make sure that "
+                "all element types to be counted are passed to the `ElementCounter` constructor.")
+
+        self.counter[element] += 1
+
+        return curr_value
+
+
 class FigmaParser():
+    """Parses Figma GUI data.
+    
+    Will mostly be used for the `.parse_gui()` method as an entrypoint to parsing
+    Figma documents and its elements.
+    """
+
+    # List of currently supported element types by the parser. Must be updated
+    # when adding new element types.
+    SUPPORTED_ELEMENTS = [
+        Elements.RECTANGLE,
+        Elements.BUTTON,
+        Elements.TEXT,
+        Elements.TEXTENTRY,
+        Elements.IMAGE
+    ]
+
     def __init__(self, token: str, file_id: str, asset_dir: str):
         self.token = token
         self.file_id = file_id
         self.asset_dir = asset_dir
-
+        
+        self.counter = ElementCounter(self.SUPPORTED_ELEMENTS)
+        
         
     def get_color(self, element_data: dict):
         # Returns HEX form of element RGB color (str)
@@ -67,7 +113,7 @@ class FigmaParser():
         """
 
         def generate_image_id(length=16):
-            return str(uuid.uuid4())[:16]
+            return str(uuid.uuid4())[:length]
 
         response = requests.get(
             f"https://api.figma.com/v1/images/{self.file_id}?ids={item_id}",
@@ -155,7 +201,13 @@ class FigmaParser():
         width, height = self.get_dimensions(element_data)
         fill_color = self.get_color(element_data)
 
-        return elements.RectangleElement(x, y, width, height, fill_color)
+        return elements.RectangleElement(
+            self.counter.get_and_increment(Elements.RECTANGLE),
+            x,
+            y,
+            width,
+            height,
+            fill_color)
 
 
     def parse_button_element(self, element_data, frame_data):
@@ -165,7 +217,14 @@ class FigmaParser():
 
         image_path = self.download_image(item_id)
 
-        return elements.ButtonElement(x, y, width, height, image_path)
+        return elements.ButtonElement(
+            self.counter.get_and_increment(Elements.BUTTON),
+            x,
+            y,
+            width,
+            height,
+            image_path)
+
 
     def parse_text_element(self, element_data, frame_data):
         x, y = self.get_coordinates(element_data, frame_data)
@@ -177,7 +236,16 @@ class FigmaParser():
 
         x, y = x + (width / 2), y + (height / 2)
 
-        return elements.TextElement(x, y, width, height, color, font, font_size, text)
+        return elements.TextElement(
+            self.counter.get_and_increment(Elements.TEXT),
+            x,
+            y,
+            width,
+            height,
+            color,
+            font,
+            font_size,
+            text)
 
 
     def parse_text_entry(self, element_data, frame_data):
@@ -204,7 +272,20 @@ class FigmaParser():
         entry_x, entry_y = self.get_coordinates(element_data, frame_data)
         entry_x = entry_x + corner_radius
 
-        return elements.TextEntryElement(x, y, width, height, entry_x, entry_y, entry_width, entry_height, elements.TEXT_INPUT_ELEMENT_TYPES[element_data["name"]], bg_color, image_path, corner_radius)
+        return elements.TextEntryElement(
+            self.counter.get_and_increment(Elements.TEXTENTRY),
+            x, 
+            y, 
+            width, 
+            height, 
+            entry_x, 
+            entry_y, 
+            entry_width, 
+            entry_height, 
+            elements.TEXT_INPUT_ELEMENT_TYPES[element_data["name"]], 
+            bg_color, 
+            image_path, 
+            corner_radius)
 
     def parse_image_element(self, element_data, frame_data):
         x, y = self.get_coordinates(element_data, frame_data)
@@ -214,4 +295,10 @@ class FigmaParser():
 
         image_path = self.download_image(item_id)
 
-        return elements.ImageElement(x, y, width, height, image_path)
+        return elements.ImageElement(
+            self.counter.get_and_increment(Elements.IMAGE),
+            x,
+            y,
+            width,
+            height,
+            image_path)

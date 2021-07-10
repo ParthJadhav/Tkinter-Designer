@@ -1,6 +1,3 @@
-from tkinter.constants import W
-import uuid
-
 from jinja2 import Template
 from tkdesigner.template import TEMPLATE
 
@@ -40,27 +37,27 @@ class FigmaElement:
     Each element has a position, size, and a unique ID.
 
     Attributes:
+        id_: ID unique to that element, useful for variable names.
         x: X position coordinate of the element.
         y: Y position coordinate of the element.
         width: Width of the element.
         height: Height of the element.
-        id_: ID unique to that element, useful for variable names.
     """
 
-    def __init__(self, x, y, width, height):
+    def __init__(self, id_, x, y, width, height):
+        self.id_ = id_
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.id_ = str(uuid.uuid4())[:8]
 
     def to_code(self):
         raise NotImplementedError("to_code() not implemented on element class.")
 
 
 class RectangleElement(FigmaElement):
-    def __init__(self, x, y, width, height, fill_color):
-        super().__init__(x, y, width, height)
+    def __init__(self, id_, x, y, width, height, fill_color):
+        super().__init__(id_, x, y, width, height)
 
         self.fill_color = fill_color
 
@@ -77,8 +74,8 @@ canvas.create_rectangle(
 
 
 class ButtonElement(FigmaElement):
-    def __init__(self, x, y, width, height, image_path):
-        super().__init__(x, y, width, height)
+    def __init__(self, id_, x, y, width, height, image_path):
+        super().__init__(id_, x, y, width, height)
 
         self.image_path = image_path
 
@@ -99,8 +96,8 @@ button_{self.id_}.place(
 """
 
 class TextElement(FigmaElement):
-    def __init__(self, x, y, width, height, color, font, font_size, text):
-        super().__init__(x, y, width, height)
+    def __init__(self, id_, x, y, width, height, color, font, font_size, text):
+        super().__init__(id_, x, y, width, height)
 
         self.color = color
         self.font = font
@@ -121,8 +118,8 @@ canvas.create_text(
 
 
 class TextEntryElement(FigmaElement):
-    def __init__(self, x, y, width, height, entry_x, entry_y, entry_width, entry_height, entry_type, bg_color, image_path, corner_radius):
-        super().__init__(x, y, width, height)
+    def __init__(self, id_, x, y, width, height, entry_x, entry_y, entry_width, entry_height, entry_type, bg_color, image_path, corner_radius):
+        super().__init__(id_, x, y, width, height)
 
         self.entry_x = entry_x
         self.entry_y = entry_y
@@ -159,8 +156,8 @@ entry_{self.id_}.place(
 
 
 class ImageElement(FigmaElement):
-    def __init__(self, x, y, width, height, image_path):
-        super().__init__(x, y, width, height)
+    def __init__(self, id_, x, y, width, height, image_path):
+        super().__init__(id_, x, y, width, height)
 
         self.image_path = image_path
 
