@@ -1,3 +1,4 @@
+from tkdesigner.constants import ASSETS_PATH
 from jinja2 import Template
 from tkdesigner.template import TEMPLATE
 
@@ -14,21 +15,19 @@ class FigmaFrame:
     Attributes:
         width: Width of the window.
         height: Height of the window.
-        asset_dir: Where the generated assets are stored.
         elements: Child GUI elements.
         bg_color: Color of the GUI background.
     """
-    def __init__(self, width, height, asset_dir, bg_color="#FFFFFF", elements=[]):
+    def __init__(self, width, height, bg_color="#FFFFFF", elements=[]):
         self.width = width
         self.height = height
-        self.asset_dir = asset_dir
         self.elements = elements
         self.bg_color = bg_color
 
 
     def to_code(self, template=TEMPLATE):
         t = Template(template)
-        return t.render(window=self, elements=self.elements)
+        return t.render(window=self, elements=self.elements, assets_path=ASSETS_PATH)
 
 
 class FigmaElement:
@@ -81,7 +80,7 @@ class ButtonElement(FigmaElement):
 
     def to_code(self):
         return f"""
-button_image_{self.id_} = PhotoImage(file="{self.image_path}")
+button_image_{self.id_} = PhotoImage(file=rel_asset_path("{self.image_path}"))
 button_{self.id_} = Button(
     image=button_image_{self.id_},
     borderwidth=0,
@@ -134,7 +133,7 @@ class TextEntryElement(FigmaElement):
     def to_code(self):
         return f"""
 entry_image_{self.id_} = PhotoImage(
-    file="{self.image_path}"
+    file=rel_asset_path("{self.image_path}")
 )
 entry_bg_{self.id_} = canvas.create_image(
     {self.x},
@@ -164,7 +163,7 @@ class ImageElement(FigmaElement):
     
     def to_code(self):
         return f"""
-image_image_{self.id_} = PhotoImage(file="{self.image_path}")
+image_image_{self.id_} = PhotoImage(file=rel_asset_path("{self.image_path}"))
 image_{self.id_} = canvas.create_image(
     {self.x},
     {self.y},

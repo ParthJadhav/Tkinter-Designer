@@ -3,6 +3,7 @@ Module to handle parsing Figma elements.
 """
 
 import os
+from tkdesigner.constants import ASSETS_PATH
 from typing import List, Type
 import uuid
 from enum import Enum
@@ -56,10 +57,10 @@ class FigmaParser():
         Elements.IMAGE
     ]
 
-    def __init__(self, token: str, file_id: str, asset_dir: str):
+    def __init__(self, token: str, file_id: str, output_path: str):
         self.token = token
         self.file_id = file_id
-        self.asset_dir = asset_dir
+        self.output_path = output_path
         
         self.counter = ElementCounter(self.SUPPORTED_ELEMENTS)
         
@@ -109,7 +110,7 @@ class FigmaParser():
         Download the image for the `item_id` and save it to the asset directory.
 
         Returns:
-            The file path of the saved image.
+            The path to the image relative to the assets directory.
         """
 
         def generate_image_id(length=16):
@@ -120,8 +121,9 @@ class FigmaParser():
             headers={"X-FIGMA-TOKEN": f"{self.token}"})
 
         image_response = requests.get(response.json()["images"][item_id])
-        image_path = os.path.join(self.asset_dir, f"img-{generate_image_id()}.png")
-        with open(image_path, "wb") as file:
+        image_path = f"img-{generate_image_id()}.png"
+        output_image_path = os.path.join(self.output_path, ASSETS_PATH, image_path)
+        with open(output_image_path, "wb") as file:
             file.write(image_response.content)
         
         return image_path
@@ -179,7 +181,6 @@ class FigmaParser():
         return elements.FigmaFrame(
             width,
             height,
-            self.asset_dir,
             bg_color,
             parsed_elements)
             
@@ -193,7 +194,7 @@ class FigmaParser():
             # If the background colour can't be parsed, fallback to white
             bg_color = "#FFFFFF"
 
-        return elements.FigmaFrame(width, height, self.asset_dir, bg_color)
+        return elements.FigmaFrame(width, height, bg_color)
 
 
     def parse_rectangle_element(self, element_data, frame_data):

@@ -7,6 +7,7 @@ import json
 import shutil
 import logging
 import argparse
+from tkdesigner.constants import ASSETS_PATH
 from tkdesigner.parse import FigmaParser
 
 from tkdesigner import figma_api
@@ -20,9 +21,9 @@ else:
 logging.basicConfig(level=log_level)
 
 
-def create_dirs(output_path):
+def create_dirs(output_path, asset_path):
     os.mkdir(output_path)
-    os.mkdir(os.path.join(output_path, "assets"))
+    os.mkdir(asset_path)
 
 
 def main():
@@ -39,14 +40,15 @@ def main():
     logging.info(f"args: {args}")
 
     # Create the output and output/assets directory
+    asset_path = os.path.join(args.output, ASSETS_PATH)
     try:
-        create_dirs(args.output)
+        create_dirs(args.output, asset_path)
     except FileExistsError as e:
-        logging.info(f"{args.output} already exists")
+        logging.info(f"{args.output} or {asset_path} already exists")
         if args.force:
-            logging.info(f"Overwritting exisiting output directory: {args.output}")
+            logging.info(f"Overwritting exisiting output directory")
             shutil.rmtree(args.output)
-            create_dirs(args.output)
+            create_dirs(args.output, asset_path)
     except PermissionError as e:
         print("An error occurred creating output directories.")
         raise e
@@ -56,7 +58,7 @@ def main():
     with open(os.path.join(args.output, "figma_data.json"), "w") as f:
         json.dump(figma_data, f)
 
-    parser = FigmaParser(args.token, figma_file_id, os.path.join(args.output, "assets"))
+    parser = FigmaParser(args.token, figma_file_id, args.output)
     gui = parser.parse_gui(figma_data)
     generated_code = gui.to_code()
 
