@@ -111,7 +111,6 @@ canvas.create_text(
     {self.y},
     text="{self.text}",
     fill="{self.color}",
-    anchor='nw',
     font=("{self.font}", int({self.font_size}))
 )
 """
