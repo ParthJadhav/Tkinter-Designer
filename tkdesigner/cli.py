@@ -3,13 +3,14 @@ TKinter Designer command-line interface.
 """
 
 import os
+import sys
 import json
 import shutil
 import logging
 import argparse
+
 from tkdesigner.constants import ASSETS_PATH
 from tkdesigner.parse import FigmaParser
-
 from tkdesigner import figma_api
 
 
@@ -49,6 +50,11 @@ def main():
             logging.info(f"Overwritting exisiting output directory")
             shutil.rmtree(args.output)
             create_dirs(args.output, asset_path)
+        else:
+            logging.info(f"Output folder exists and force flag not given. Exiting...")
+            print(f"Output folder {args.output} already exists. If you want to overwrite the output folder, "
+                  "use the -f or --force flags.")
+            sys.exit()
     except PermissionError as e:
         print("An error occurred creating output directories.")
         raise e
