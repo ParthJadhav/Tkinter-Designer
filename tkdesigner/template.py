@@ -16,7 +16,7 @@ def rel_path(path):
 def rel_asset_path(path):
     # Constructs a relative path from the gui file to an asset
     return os.path.join(ASSETS_PATH, path)
-    
+
 window = Tk()
 
 window.geometry("{{ window.width }}x{{ window.height }}")

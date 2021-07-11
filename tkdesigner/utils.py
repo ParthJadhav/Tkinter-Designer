@@ -2,6 +2,7 @@
 Small utility functions.
 """
 
+
 def find_between(s, first, last):
     try:
         start = s.index(first) + len(first)

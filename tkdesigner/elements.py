@@ -11,7 +11,7 @@ TEXT_INPUT_ELEMENT_TYPES = {
 
 class FigmaFrame:
     """Represents the Figma Frame for which the GUI will be generated.
-    
+
     Attributes:
         width: Width of the window.
         height: Height of the window.
@@ -24,10 +24,10 @@ class FigmaFrame:
         self.elements = elements
         self.bg_color = bg_color
 
-
     def to_code(self, template=TEMPLATE):
         t = Template(template)
-        return t.render(window=self, elements=self.elements, assets_path=ASSETS_PATH)
+        return t.render(
+            window=self, elements=self.elements, assets_path=ASSETS_PATH)
 
 
 class FigmaElement:
@@ -51,7 +51,8 @@ class FigmaElement:
         self.height = height
 
     def to_code(self):
-        raise NotImplementedError("to_code() not implemented on element class.")
+        raise NotImplementedError(
+            "to_code() not implemented on element class.")
 
 
 class RectangleElement(FigmaElement):
@@ -94,6 +95,7 @@ button_{self.id_}.place(
     height={self.height})
 """
 
+
 class TextElement(FigmaElement):
     def __init__(self, id_, x, y, width, height, color, font, font_size, text):
         super().__init__(id_, x, y, width, height)
@@ -103,8 +105,7 @@ class TextElement(FigmaElement):
         self.font_size = font_size
         self.text = text
 
-    
-    def to_code(self): #This Change can be ignored.
+    def to_code(self):  # This Change can be ignored.
         return f"""
 canvas.create_text(
     {self.x},
@@ -117,7 +118,11 @@ canvas.create_text(
 
 
 class TextEntryElement(FigmaElement):
-    def __init__(self, id_, x, y, width, height, entry_x, entry_y, entry_width, entry_height, entry_type, bg_color, image_path, corner_radius):
+    def __init__(
+            self, id_, x, y, width, height, entry_x, entry_y,
+            entry_width, entry_height, entry_type,
+            bg_color, image_path, corner_radius
+    ):
         super().__init__(id_, x, y, width, height)
 
         self.entry_x = entry_x
@@ -128,7 +133,6 @@ class TextEntryElement(FigmaElement):
         self.bg_color = bg_color
         self.image_path = image_path
         self.corner_radius = corner_radius
-
 
     def to_code(self):
         return f"""
@@ -160,7 +164,6 @@ class ImageElement(FigmaElement):
 
         self.image_path = image_path
 
-    
     def to_code(self):
         return f"""
 image_image_{self.id_} = PhotoImage(file=rel_asset_path("{self.image_path}"))
