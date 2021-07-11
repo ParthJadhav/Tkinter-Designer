@@ -1,4 +1,5 @@
 import sys
+import json
 import os
 from pathlib import Path
 sys.path.insert(0, str(Path(os.path.abspath(__file__)).parents[1])) # Add tkdesigner to path
@@ -25,6 +26,10 @@ def rel_asset_path(path):
 path = getattr(sys, '_MEIPASS', os.getcwd())
 os.chdir(path)
 
+def create_dirs(output_path, asset_path):
+    os.mkdir(output_path)
+    os.mkdir(asset_path)
+
 def btn_clicked():
     token = token_entry.get()
     URL = URL_entry.get()
@@ -42,19 +47,36 @@ def btn_clicked():
                              message="Enter a valid output path")
 
     else:
+        output_dir = os.path.join(output_path, "build")
         token = token.strip()
         file_url = URL.strip()
 
+        # Create the output and output/assets directory
+        asset_path = os.path.join(output_dir, "assets")
+        try:
+            create_dirs(output_dir, asset_path)
+        except FileExistsError as e:
+            messagebox.showerror(
+                title="Output folder exists",
+                message=f"Output folder {output_dir} already exists.")
+            return
+
         figma_data, figma_file_id = figma_api.get_file_and_id(token, file_url)
 
-        os.makedirs(os.path.join(output_path, "assets"), exist_ok=True)
+        with open(os.path.join(output_dir, "figma_data.json"), "w") as f:
+            json.dump(figma_data, f)
 
-        parser = FigmaParser(token, figma_file_id, os.path.join(output_path, "assets"))
+        parser = FigmaParser(token, figma_file_id, output_dir)
         gui = parser.parse_gui(figma_data)
         generated_code = gui.to_code()
 
-        with open(os.path.join(output_path, "gui.py"), "w") as f:
+        with open(os.path.join(output_dir, "gui.py"), "w") as f:
             f.write(generated_code)
+
+        messagebox.showinfo(
+            title="Success",
+            message=f"Generated GUI code saved to {output_dir}."
+        )
 
 def select_path(event):
     global output_path
