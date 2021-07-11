@@ -85,7 +85,7 @@ button_{self.id_} = Button(
     image=button_image_{self.id_},
     borderwidth=0,
     highlightthickness=0,
-    command=lambda _: print("button_{self.id_} clicked"),
+    command=lambda: print("button_{self.id_} clicked"),
     relief="flat")
 button_{self.id_}.place(
     x={self.x},
@@ -104,13 +104,14 @@ class TextElement(FigmaElement):
         self.text = text
 
     
-    def to_code(self):
+    def to_code(self): #This Change can be ignored.
         return f"""
 canvas.create_text(
     {self.x},
     {self.y},
     text="{self.text}",
     fill="{self.color}",
+    anchor='nw',
     font=("{self.font}", int({self.font_size}))
 )
 """

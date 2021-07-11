@@ -4,7 +4,7 @@ Module to handle parsing Figma elements.
 
 import os
 from tkdesigner.constants import ASSETS_PATH
-from typing import List, Type
+from typing import Counter, List, Type
 import uuid
 from enum import Enum
 
@@ -105,7 +105,7 @@ class FigmaParser():
         return font, fontSize
 
     
-    def download_image(self, item_id):
+    def download_image(self, item_id, item_type, item_count):
         """
         Download the image for the `item_id` and save it to the asset directory.
 
@@ -113,15 +113,15 @@ class FigmaParser():
             The path to the image relative to the assets directory.
         """
 
-        def generate_image_id(length=16):
-            return str(uuid.uuid4())[:length]
+        def generate_image_id(type,count):
+            return type+"-"+str(count)
 
         response = requests.get(
             f"https://api.figma.com/v1/images/{self.file_id}?ids={item_id}",
             headers={"X-FIGMA-TOKEN": f"{self.token}"})
 
         image_response = requests.get(response.json()["images"][item_id])
-        image_path = f"img-{generate_image_id()}.png"
+        image_path = f"{generate_image_id(item_type,item_count)}-img.png"
         output_image_path = os.path.join(self.output_path, ASSETS_PATH, image_path)
         with open(output_image_path, "wb") as file:
             file.write(image_response.content)
@@ -215,11 +215,12 @@ class FigmaParser():
         x, y = self.get_coordinates(element_data, frame_data)
         width, height = self.get_dimensions(element_data)
         item_id = element_data["id"]
+        counter = self.counter.get_and_increment(Elements.BUTTON)
 
-        image_path = self.download_image(item_id)
+        image_path = self.download_image(item_id,"button", counter)
 
         return elements.ButtonElement(
-            self.counter.get_and_increment(Elements.BUTTON),
+            counter,
             x,
             y,
             width,
@@ -235,7 +236,7 @@ class FigmaParser():
         text = element_data["characters"]
         text = text.replace("\n", "\\n")
 
-        x, y = x + (width / 2), y + (height / 2)
+        # x, y = x + (width / 2), y + (height / 2)
 
         return elements.TextElement(
             self.counter.get_and_increment(Elements.TEXT),
@@ -254,10 +255,11 @@ class FigmaParser():
         width, height = self.get_dimensions(element_data)
         x, y = x + (width / 2), y + (height / 2)
         bg_color = self.get_color(element_data)
+        counter = self.counter.get_and_increment(Elements.TEXTENTRY)
 
         item_id = element_data["id"]
 
-        image_path = self.download_image(item_id)
+        image_path = self.download_image(item_id,"entry", counter)
 
         try:
             corner_radius = element_data["cornerRadius"]
@@ -274,7 +276,7 @@ class FigmaParser():
         entry_x = entry_x + corner_radius
 
         return elements.TextEntryElement(
-            self.counter.get_and_increment(Elements.TEXTENTRY),
+            counter,
             x, 
             y, 
             width, 
@@ -293,11 +295,12 @@ class FigmaParser():
         width, height = self.get_dimensions(element_data)
         x, y = x + (width / 2), y + (height / 2)
         item_id = element_data["id"]
+        counter = self.counter.get_and_increment(Elements.IMAGE)
 
-        image_path = self.download_image(item_id)
+        image_path = self.download_image(item_id,"image", counter)
 
         return elements.ImageElement(
-            self.counter.get_and_increment(Elements.IMAGE),
+            counter,
             x,
             y,
             width,
