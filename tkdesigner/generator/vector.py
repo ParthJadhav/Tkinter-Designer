@@ -6,7 +6,6 @@ class Vector(Node):
         super().__init__(node)
 
     def color(self):
-        # print(self.node)
         try:
             color = self.node["fills"][0]["color"]
             rgba = [int(color.get(i, 0) * 255) for i in "rgba"]

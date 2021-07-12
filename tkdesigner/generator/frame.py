@@ -1,4 +1,3 @@
-from ..template import TEMPLATE
 from ..constants import ASSETS_PATH
 from ..utils import download_image
 
@@ -13,8 +12,8 @@ from pathlib import Path
 class Frame(Node):
     def __init__(self, node, file_key, figma_user, output_path):
         super().__init__(node)
-        self.width, self.height = self.get_dimensions()
-        self.bg_color = self.get_color()
+        self.width, self.height = self.size()
+        self.bg_color = self.color()
 
         self.counter = 0
 
@@ -32,29 +31,34 @@ class Frame(Node):
         # TODO: Convert nodes to Node objects before returning a list of them.
         return self.node.get("children")
 
-    def get_color(self):
+    def color(self):
         # Returns HEX form of element RGB color (str)
-        el_r = self.node["fills"][0]["color"]['r'] * 255
-        el_g = self.node["fills"][0]["color"]['g'] * 255
-        el_b = self.node["fills"][0]["color"]['b'] * 255
+        try:
+            color = self.node["fills"][0]["color"]
+            rgba = [int(color.get(i, 0) * 255) for i in "rgba"]
+            return f"#{rgba[0]:0X}{rgba[1]:0X}{rgba[2]:0X}"
+        except Exception:
+            return "#FFFFFF"
 
-        hex_code = ('#%02x%02x%02x' % (round(el_r), round(el_g), round(el_b)))
-        return hex_code
-
-    def get_dimensions(self):
+    def size(self):
         # Return element dimensions as width (int) and height (int)
-        width = int(self.node["absoluteBoundingBox"]["width"])
-        height = int(self.node["absoluteBoundingBox"]["height"])
+        bbox = self.node["absoluteBoundingBox"]
+        width = bbox["width"]
+        height = bbox["height"]
         return width, height
 
     def create_element(self, element, *, id_=None):
         element_name = element["name"].strip()
         element_type = element["type"].strip()
 
-        print(f"Creating Element {{ name: {element_name}, type: {element_type} }}")
+        print(
+            "Creating Element "
+            f"{{ name: {element_name}, type: {element_type} }}"
+        )
 
         if element_name == "Rectangle":
             return Rectangle(element, self)
+
         elif element_name == "Button":
             item_id = element["id"]
             self.counter += 1
@@ -100,7 +104,7 @@ class Frame(Node):
             raise NotImplementedError(
                 f"Element with the name: `{element_name}` cannot be parsed.")
 
-    def to_code(self, template=TEMPLATE):
+    def to_code(self, template):
         t = Template(template)
         return t.render(
             window=self, elements=self.elements, assets_path=ASSETS_PATH)
