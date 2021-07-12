@@ -5,7 +5,6 @@ Module to handle parsing Figma elements.
 import os
 from tkdesigner.constants import ASSETS_PATH
 from typing import Counter, List, Type
-import uuid
 from enum import Enum
 
 import requests
@@ -42,7 +41,7 @@ class ElementCounter():
 
 class FigmaParser():
     """Parses Figma GUI data.
-    
+
     Will mostly be used for the `.parse_gui()` method as an entrypoint to parsing
     Figma documents and its elements.
     """
@@ -61,10 +60,10 @@ class FigmaParser():
         self.token = token
         self.file_id = file_id
         self.output_path = output_path
-        
+
         self.counter = ElementCounter(self.SUPPORTED_ELEMENTS)
-        
-        
+
+
     def get_color(self, element_data: dict):
         # Returns HEX form of element RGB color (str)
         el_r = element_data["fills"][0]["color"]['r'] * 255
@@ -104,7 +103,7 @@ class FigmaParser():
 
         return font, fontSize
 
-    
+
     def download_image(self, item_id, item_type, item_count):
         """
         Download the image for the `item_id` and save it to the asset directory.
@@ -125,13 +124,13 @@ class FigmaParser():
         output_image_path = os.path.join(self.output_path, ASSETS_PATH, image_path)
         with open(output_image_path, "wb") as file:
             file.write(image_response.content)
-        
+
         return image_path
 
-    
+
     def parse_element(self, element_data, frame_data) -> Type[elements.FigmaElement]:
         """Parse element according to it's name and/or type.
-        
+
         Arguments:
             element_data: The Figma document data for the element.
             frame_data: The Figma frame data that contains the element.
@@ -158,10 +157,10 @@ class FigmaParser():
         else:
             raise NotImplementedError(f"Element with the name: `{element_name}` cannot be parsed.")
 
-    
+
     def parse_gui(self, data):
         """Takes the entire Figma document `data` and parses each element.
-        
+
         Generally this would be the entry point to parsing Figma GUIs.
         """
         frame_data = data["document"]["children"][0]["children"][0]
@@ -183,7 +182,7 @@ class FigmaParser():
             height,
             bg_color,
             parsed_elements)
-            
+
 
     def parse_frame(self, frame_data: dict):
         width, height = self.get_dimensions(frame_data)
@@ -214,6 +213,7 @@ class FigmaParser():
     def parse_button_element(self, element_data, frame_data):
         x, y = self.get_coordinates(element_data, frame_data)
         width, height = self.get_dimensions(element_data)
+
         item_id = element_data["id"]
         counter = self.counter.get_and_increment(Elements.BUTTON)
 
@@ -232,6 +232,7 @@ class FigmaParser():
         x, y = self.get_coordinates(element_data, frame_data)
         width, height = self.get_dimensions(element_data)
         color = self.get_color(element_data)
+
         font, font_size = self.get_text_properties(element_data)
         text = element_data["characters"]
         text = text.replace("\n", "\\n")
@@ -277,23 +278,24 @@ class FigmaParser():
 
         return elements.TextEntryElement(
             counter,
-            x, 
-            y, 
-            width, 
-            height, 
-            entry_x, 
-            entry_y, 
-            entry_width, 
-            entry_height, 
-            elements.TEXT_INPUT_ELEMENT_TYPES[element_data["name"]], 
-            bg_color, 
-            image_path, 
+            x,
+            y,
+            width,
+            height,
+            entry_x,
+            entry_y,
+            entry_width,
+            entry_height,
+            elements.TEXT_INPUT_ELEMENT_TYPES[element_data["name"]],
+            bg_color,
+            image_path,
             corner_radius)
 
     def parse_image_element(self, element_data, frame_data):
         x, y = self.get_coordinates(element_data, frame_data)
         width, height = self.get_dimensions(element_data)
         x, y = x + (width / 2), y + (height / 2)
+
         item_id = element_data["id"]
         counter = self.counter.get_and_increment(Elements.IMAGE)
 

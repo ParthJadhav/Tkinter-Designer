@@ -14,6 +14,7 @@ def rel_path(path):
     return os.path.join(DIR_NAME, path)
 
 def rel_asset_path(path):
+    return path
     # Constructs a relative path from the gui file to an asset
     return os.path.join(ASSETS_PATH, path)
 
@@ -31,9 +32,13 @@ canvas = Canvas(
     highlightthickness = 0,
     relief = "ridge")
 canvas.place(x = 0, y = 0)
+
+
 {%- for element in elements -%}
     {{ element.to_code() }}
 {%- endfor -%}
+
+
 window.resizable(False, False)
 window.mainloop()
 """

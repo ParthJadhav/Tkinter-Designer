@@ -12,6 +12,8 @@ from tkdesigner.parse import FigmaParser
 
 from tkdesigner import figma_api
 
+from pathlib import Path
+
 
 if int(os.getenv("TKDESIGNER_VERBOSE", 0)) == 1:
     log_level = logging.INFO
@@ -21,9 +23,9 @@ else:
 logging.basicConfig(level=log_level)
 
 
-def create_dirs(output_path, asset_path):
-    os.mkdir(output_path)
-    os.mkdir(asset_path)
+# def create_dirs(output_path, asset_path):
+#     os.mkdir(output_path)
+#     os.mkdir(asset_path)
 
 
 def main():
@@ -38,6 +40,13 @@ def main():
     logging.basicConfig()
 
     logging.info(f"args: {args}")
+
+    output_path = Path(args.output)
+    assets_path = output_path / ASSETS_PATH
+
+    output_path.mkdir(exist_ok=True)
+    assets_path.mkdir(exist_ok=True)
+
 
     # Create the output and output/assets directory
     asset_path = os.path.join(args.output, ASSETS_PATH)
