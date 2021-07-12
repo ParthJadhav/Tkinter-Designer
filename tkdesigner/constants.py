@@ -1,2 +1,2 @@
-# Path to assets (i.e. images) relative to the output folder
-ASSETS_PATH = "assets"
+# Path to assets directory (i.e. images) relative to the output directory.
+ASSETS_PATH = "./assets"

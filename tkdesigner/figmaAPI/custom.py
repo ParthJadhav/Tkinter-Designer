@@ -15,7 +15,8 @@ class Button(Rectangle):
 
     def to_code(self):
         return f"""
-button_image_{self.id_} = PhotoImage(file=rel_asset_path("{self.image_path}"))
+button_image_{self.id_} = PhotoImage(
+    file=relative_to_output("{self.image_path}"))
 button_{self.id_} = Button(
     image=button_image_{self.id_},
     borderwidth=0,
@@ -95,7 +96,8 @@ class Image(Vector):
 
     def to_code(self):
         return f"""
-image_image_{self.id_} = PhotoImage(file=rel_asset_path("{self.image_path}"))
+image_image_{self.id_} = PhotoImage(
+    file=relative_to_output("{self.image_path}"))
 image_{self.id_} = canvas.create_image(
     {self.x},
     {self.y},
@@ -133,7 +135,7 @@ class TextEntry(Vector):
     def to_code(self):
         return f"""
 entry_image_{self.id_} = PhotoImage(
-    file=rel_asset_path("{self.image_path}")
+    file=relative_to_output("{self.image_path}")
 )
 entry_bg_{self.id_} = canvas.create_image(
     {self.x},

@@ -2,13 +2,12 @@
 TKinter Designer command-line interface.
 """
 
+from tkdesigner.designer import Designer
+
 import re
 import os
 import logging
 import argparse
-
-from tkdesigner.constants import ASSETS_PATH
-from tkdesigner.designer import Designer
 
 from pathlib import Path
 
@@ -41,12 +40,6 @@ def main():
 
     logging.basicConfig()
     logging.info(f"args: {args}")
-
-    output_path = Path(args.output)
-    assets_path = output_path / ASSETS_PATH
-
-    output_path.mkdir(exist_ok=True)
-    assets_path.mkdir(exist_ok=True)
 
     match = re.search(r'https://www.figma.com/file/([^/]+)', args.file_url)
     if match is None:

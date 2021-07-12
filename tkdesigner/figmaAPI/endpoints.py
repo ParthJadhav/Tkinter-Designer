@@ -1,20 +1,26 @@
+"""Utility classes and functions for Figma API endpoints.
+"""
 from tkdesigner import errors
 import requests
 
 
-class FigmaUser:
-    API_ENDPOINT = "https://api.figma.com/v1"
+class Files:
+    """https://www.figma.com/developers/api#files-endpoints
+    """
 
-    def __init__(self, token):
+    API_ENDPOINT_URL = "https://api.figma.com/v1"
+
+    def __init__(self, token, file_key):
         self.token = token
+        self.file_key = file_key
 
     def __str__(self):
-        return f"FigmaUser {{ Token: {self.token} }} "
+        return f"Files {{ Token: {self.token}, File: {self.file_key} }}"
 
-    def get_files(self, file_key):
+    def get_file(self) -> dict:
         try:
             response = requests.get(
-                f"{self.API_ENDPOINT}/files/{file_key}",
+                f"{self.API_ENDPOINT_URL}/files/{self.file_key}",
                 headers={"X-FIGMA-TOKEN": self.token}
             )
         except ValueError as e:
@@ -26,9 +32,9 @@ class FigmaUser:
         else:
             return response.json()
 
-    def get_images(self, file_key, item_id):
+    def get_image(self, item_id) -> str:
         response = requests.get(
-            f"{self.API_ENDPOINT}/images/{file_key}?ids={item_id}",
+            f"{self.API_ENDPOINT_URL}/images/{self.file_key}?ids={item_id}",
             headers={"X-FIGMA-TOKEN": self.token}
         )
 
