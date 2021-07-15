@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 
 # Add tkdesigner to path
-sys.path.insert(0, str(Path(__file__).parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from tkdesigner.designer import Designer
 
 
