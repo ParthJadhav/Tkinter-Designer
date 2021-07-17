@@ -29,42 +29,45 @@ def btn_clicked():
     if not token:
         tk.messagebox.showerror(
             title="Empty Fields!", message="Please enter Token.")
-    elif not URL:
+        return
+    if not URL:
         tk.messagebox.showerror(
             title="Empty Fields!", message="Please enter URL.")
-    elif not output_path:
+        return
+    if not output_path:
         tk.messagebox.showerror(
             title="Invalid Path!", message="Enter a valid output path.")
-    else:
-        match = re.search(
-            r'https://www.figma.com/file/([0-9A-Za-z]+)', URL.strip())
-        if match is None:
-            tk.messagebox.showerror(
-                "Invalid URL!", "Please enter a valid file URL.")
+        return
+
+    match = re.search(
+        r'https://www.figma.com/file/([0-9A-Za-z]+)', URL.strip())
+    if match is None:
+        tk.messagebox.showerror(
+            "Invalid URL!", "Please enter a valid file URL.")
+        return
+
+    file_key = match.group(1).strip()
+    token = token.strip()
+    output = Path(output_path.strip()).expanduser().resolve()
+
+    if output.exists() and not output.is_dir():
+        tk.messagebox.showerror(
+            "Exists!",
+            f"{output} already exists and is not a directory.\n"
+            "Enter a valid output directory.")
+    elif output.exists() and output.is_dir() and tuple(output.glob('*')):
+        response = tk.messagebox.askyesno(
+            "Continue?",
+            f"Directory {output} is not empty.\n"
+            "Do you want to continue and overwrite?")
+        if not response:
             return
 
-        file_key = match.group(1).strip()
-        token = token.strip()
-        output = Path(output_path.strip()).expanduser().resolve()
+    designer = Designer(token, file_key, output)
+    designer.design()
 
-        if output.exists() and not output.is_dir():
-            tk.messagebox.showerror(
-                "Exists!",
-                f"{output} already exists and is not a directory.\n"
-                "Enter a valid output directory.")
-        elif output.exists() and output.is_dir() and tuple(output.glob('*')):
-            response = tk.messagebox.askyesno(
-                "Continue?",
-                f"Directory {output} is not empty.\n"
-                "Do you want to continue and overwrite?")
-            if not response:
-                return
-
-        designer = Designer(token, file_key, output)
-        designer.design()
-
-        tk.messagebox.showinfo(
-            "Success!", f"Project successfully generated at {output}.")
+    tk.messagebox.showinfo(
+        "Success!", f"Project successfully generated at {output}.")
 
 
 def select_path(event):
