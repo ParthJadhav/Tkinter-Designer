@@ -9,7 +9,10 @@ from pathlib import Path
 
 # Add tkdesigner to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from tkdesigner.designer import Designer
+try:
+    from tkdesigner.designer import Designer
+except ModuleNotFoundError:
+    raise RuntimeError("Couldn't add tkdesigner to the PATH.")
 
 
 # Path to asset files for this GUI window.
@@ -48,7 +51,7 @@ def btn_clicked():
 
     file_key = match.group(1).strip()
     token = token.strip()
-    output = Path(output_path.strip()).expanduser().resolve()
+    output = Path(output_path).expanduser().resolve()
 
     if output.exists() and not output.is_dir():
         tk.messagebox.showerror(
