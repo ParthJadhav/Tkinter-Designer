@@ -13,8 +13,8 @@ OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("{{ assets_path }}")
 
 
-def relative_to_output(path: str) -> Path:
-    return OUTPUT_PATH / Path(path)
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)
 
 
 window = Tk()

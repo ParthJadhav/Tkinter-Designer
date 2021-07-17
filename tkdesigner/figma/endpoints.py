@@ -1,6 +1,5 @@
 """Utility classes and functions for Figma API endpoints.
 """
-from tkdesigner import errors
 import requests
 
 
@@ -23,12 +22,12 @@ class Files:
                 f"{self.API_ENDPOINT_URL}/files/{self.file_key}",
                 headers={"X-FIGMA-TOKEN": self.token}
             )
-        except ValueError as e:
-            raise errors.UserError(
-                e, "Invalid Input. Please check your input and try again.")
-        except requests.ConnectionError as e:
-            raise errors.UserError(
-                e, "Tkinter Designer requires internet access to work.")
+        except ValueError:
+            raise RuntimeError(
+                "Invalid Input. Please check your input and try again.")
+        except requests.ConnectionError:
+            raise RuntimeError(
+                "Tkinter Designer requires internet access to work.")
         else:
             return response.json()
 

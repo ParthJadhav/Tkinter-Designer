@@ -52,7 +52,7 @@ class Frame(Node):
                 self.assets_path / f"button_{self.counter[Button]}.png")
             download_image(image_url, image_path)
 
-            image_path = image_path.relative_to(self.output_path)
+            image_path = image_path.relative_to(self.assets_path)
 
             return Button(
                 element, self, image_path, id_=f"{self.counter[Button]}")
@@ -66,7 +66,7 @@ class Frame(Node):
                 self.assets_path / f"entry_{self.counter[TextEntry]}.png")
             download_image(image_url, image_path)
 
-            image_path = image_path.relative_to(self.output_path)
+            image_path = image_path.relative_to(self.assets_path)
 
             return TextEntry(
                 element, self, image_path, id_=f"{self.counter[TextEntry]}")
@@ -79,7 +79,7 @@ class Frame(Node):
             image_path = self.assets_path / f"image_{self.counter[Image]}.png"
             download_image(image_url, image_path)
 
-            image_path = image_path.relative_to(self.output_path)
+            image_path = image_path.relative_to(self.assets_path)
 
             return Image(
                 element, self, image_path, id_=f"{self.counter[Image]}")
