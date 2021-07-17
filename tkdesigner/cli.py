@@ -26,8 +26,10 @@ def main():
         description="Generate TKinter GUI code from Figma design.")
 
     parser.add_argument(
-        "-o", "--output", type=str, default="build/",
-        help="Folder to output code and image assets to. Defaults to build/.")
+        "-o", "--output", type=str, default=".",
+        help=(
+            "Folder to output code and image assets to. "
+            "Defaults to current working directory."))
     parser.add_argument(
         "-f", "--force", action="store_true",
         help=(
