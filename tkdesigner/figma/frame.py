@@ -16,15 +16,15 @@ class Frame(Node):
         self.width, self.height = self.size()
         self.bg_color = self.color()
 
-        self.counter = 0
+        self.counter = {}
 
         self.figma_file = figma_file
 
         self.output_path: Path = output_path
         self.assets_path: Path = output_path / ASSETS_PATH
 
-        self.output_path.mkdir(exist_ok=True)
-        self.assets_path.mkdir(exist_ok=True)
+        self.output_path.mkdir(parents=True, exist_ok=True)
+        self.assets_path.mkdir(parents=True, exist_ok=True)
 
         self.elements = [
             self.create_element(j, id_=str(i))
@@ -44,40 +44,45 @@ class Frame(Node):
             return Rectangle(element, self)
 
         elif element_name == "Button":
-            item_id = element["id"]
-            self.counter += 1
+            self.counter[Button] = self.counter.get(Button, 0) + 1
 
+            item_id = element["id"]
             image_url = self.figma_file.get_image(item_id)
-            image_path = self.assets_path / f"button_{self.counter}.png"
+            image_path = (
+                self.assets_path / f"button_{self.counter[Button]}.png")
             download_image(image_url, image_path)
 
             image_path = image_path.relative_to(self.output_path)
 
             return Button(
-                element, self, image_path, id_=f"{self.counter}")
+                element, self, image_path, id_=f"{self.counter[Button]}")
 
         elif element_name in ("TextBox", "TextArea"):
+            self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
+
             item_id = element["id"]
-            self.counter += 1
             image_url = self.figma_file.get_image(item_id)
-            image_path = self.assets_path / f"entry_{self.counter}.png"
+            image_path = (
+                self.assets_path / f"entry_{self.counter[TextEntry]}.png")
             download_image(image_url, image_path)
 
             image_path = image_path.relative_to(self.output_path)
 
             return TextEntry(
-                element, self, image_path, id_=f"{self.counter}")
+                element, self, image_path, id_=f"{self.counter[TextEntry]}")
 
         elif element_name == "Image":
+            self.counter[Image] = self.counter.get(Image, 0) + 1
+
             item_id = element["id"]
-            self.counter += 1
             image_url = self.figma_file.get_image(item_id)
-            image_path = self.assets_path / f"entry_{self.counter}.png"
+            image_path = self.assets_path / f"image_{self.counter[Image]}.png"
             download_image(image_url, image_path)
 
             image_path = image_path.relative_to(self.output_path)
 
-            return Image(element, self, image_path, id_=f"{self.counter}")
+            return Image(
+                element, self, image_path, id_=f"{self.counter[Image]}")
 
         elif element_type == "TEXT":
             return Text(element, self)

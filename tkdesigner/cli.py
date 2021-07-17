@@ -50,7 +50,7 @@ def main():
 
     file_key = match.group(1).strip()
     token = args.token.strip()
-    output_path = Path(args.output.strip()).expanduser().resolve()
+    output_path = Path(args.output.strip()).expanduser().resolve() / "build"
 
     if output_path.exists() and not output_path.is_dir():
         raise RuntimeError(

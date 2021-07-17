@@ -74,6 +74,7 @@ def select_path(event):
     global output_path
 
     output_path = tk.filedialog.askdirectory()
+    output_path = Path(output_path) / "build"
     path_entry.delete(0, tk.END)
     path_entry.insert(0, output_path)
 
