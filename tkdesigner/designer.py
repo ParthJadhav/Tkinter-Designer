@@ -1,5 +1,5 @@
-import tkdesigner.figmaAPI.endpoints as endpoints
-from tkdesigner.figmaAPI.frame import Frame
+import tkdesigner.figma.endpoints as endpoints
+from tkdesigner.figma.frame import Frame
 
 from tkdesigner.template import TEMPLATE
 
