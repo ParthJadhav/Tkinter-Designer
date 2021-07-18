@@ -8,21 +8,22 @@
 ___
 
 ## Table of Contents:
-1. [**Getting Started**](#getting-started-top)
+1. [**Getting Started**](#getting-started-1)
    1. [Install Python](#getting-started-1)
    2. [Install Tkinter Designer](#getting-started-2)
    3. [Make a Figma Account](#getting-started-3)
    
-2. [**Formatting Your Figma Design**](#formatting-your-figma-design-top)
+2. [**Formatting Your Figma Design**](#formatting-1)
    1. [Reference](#formatting-1)
    2. [Element Guide](#formatting-2)
    
-3. [**Using Tkinter Designer**](#using-tkinter-designer-top)
+3. [**Using Tkinter Designer**](#Using-Tkinter-Designer)
    1. [Personal Access Token](#using-1)
    2. [File URL](#using-2)
-   3. [Test Your Generated Code](#using-3)
+   3. [Using CLI](#using-cli)
+   4. [Using GUI](#using-gui)
    
-4. [**Troubleshooting**](#troubleshooting-top)
+4. [**Troubleshooting**](#Troubleshooting)
 
 <br><br>
 
@@ -47,22 +48,26 @@ On the right-hand sidebar, click the latest release and, under **Assets**, choos
 
 *To run Tkinter Designer from the source code, follow the instructions below.*
 
-1. Download the source files for Tkinter Designer
+1. Download the source files for Tkinter Designer by downloading it manually or using git :-
 
-2. Unzip the source files to a directory on your system
+` git clone https://github.com/ParthJadhav/Tkinter-Designer.git `
+
+2. Change your working directory to Tkinter Designer.
+
+`cd Tkinter-Designer`
    
-3. Open a terminal/command prompt in this directory
-   * You can navigate to this folder using the `cd` command.
-   * You can also use an IDE with a built-in terminal, such as [Visual Studio Code](https://code.visualstudio.com/).
+4. Install the necessary dependencies by running 
 
-4. Install the necessary dependencies by running `pip install -r requirements.txt`
+`pip install -r requirements.txt`
    * In the event that pip doesn't work, also try the following commands:
      * `pip3 install -r requirements.txt`
      * `python -m pip install -r requirements.txt`
      * `python3 -m pip install -r requirements.txt`
    * If this still doesn't work, ensure that Python is added to the PATH.
   
-5. You can run Tkinter Designer by running `python tkinter_designer.py`
+This will install all requirements and Tkinter Designer. Before you use Tkinter Designer you need to create a Figma File with the below instructions.
+
+If you already have created a file then skip to [**Using Tkinter Designer**](#Using-Tkinter-Designer) Section.
 
 ___
 <br>
@@ -80,9 +85,9 @@ ___
 
 <br><br>
 
+<a id="formatting-1"></a>
 # Formatting Your Figma Design <small>[[Top](#table-of-contents)]</small>
 
-<a id="formatting-1"></a>
 ## 1. Reference
 <br>
 
@@ -163,6 +168,7 @@ ___
 
 <br><br>
 
+<a id="Using-Tkinter-Designer"></a>
 # Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
 
 ## Required Inputs
@@ -184,13 +190,16 @@ There are some inputs you'll need to collect to be able to use the TKinter Desig
 ### 2. File URL
 1. In your Figma design file, click the **Share** button in the top bar, then click on **&#x1f517; Copy link**
 
+<a id="using-cli"></a>
 ## Using the CLI
 
-Using the CLI is as simple as installing the package and running the CLI tool.
+Using the CLI is as simple as installing the package and running the CLI tool. 
+
+You can use the below command as test by replacing $YOUR_FIGMA_TOKEN by your generated Figma Personal Access Token. If you haven't got the token then refer to [**Required Inputs Section**](#using-1) .
 
 ```bash
 # Example data
-$ python -m tkdesigner.cli https://www.figma.com/file/zGAo3tgCahV0n7NtqysgwY/SampleShack-TKDesigner?node-id=0%3A1 205235-fb7f1ea2-f48a-4bb1-8636-XXXXXXX -f
+$ python -m tkdesigner.cli https://www.figma.com/file/WVLnulVsI177tvnxSdqOUZ/Untitled?node-id=0%3A1 $YOUR_FIGMA_TOKEN -f
 
 # To learn more about how to use the cli, pass the --help flag
 $ python -m tkdesigner.cli --help
@@ -203,27 +212,33 @@ To run the generated GUI, cd into the directory you built it to (e.g. build/) an
 $ cd build
 $ python3 gui.py
 ```
-
+<a id="using-gui"></a>
 ## Using the GUI
 ### Open Tkinter Designer before doing the following steps.
 <br>
 
-1. Open TKinter Designer
+1. Open TKinter Designer by
+```
+cd Tkinter-Designer
+cd gui
+python3 gui.py
+```
 2. Paste your *personal access token* into the **Token ID** form in Tkinter Designer
 3. Paste the link into the **File URL** form in Tkinter Designer
 4. Click the **Output Path** form to open a file browser
 5. Choose an output path and click **Select Folder**
 6. Press **Generate**
 
-The output files from Tkinter Designer will be placed in your chosen directory, inside a new folder called **generated_code**. Congratulations, you have now created your Tkinter GUI using Tkinter Designer!
+The output files from Tkinter Designer will be placed in your chosen directory, inside a new folder called **build**. Congratulations, you have now created your Tkinter GUI using Tkinter Designer!
 
 <br><br>
+
+<a id="Troubleshooting"></a>
 
 # Troubleshooting <small>[[Top](#table-of-contents)]</small>
 
 * Elements not visible? Misplaced?
-  * Please make sure that your top-level Frame is positioned with its X and Y coordinates at (0, 0)
-    * Check the right side bar, under **Design**
+  * Please make sure that your Figma File has it's elements named correctly. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
 
 * Button has an unintended gray background?
   * Make sure you have added a Rectangle behind your button element, and that its Fill color is the same as the Background's
