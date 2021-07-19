@@ -2,16 +2,14 @@
 TKinter Designer command-line interface.
 """
 
+from tkdesigner.designer import Designer
+
+import re
 import os
-import sys
-import json
-import shutil
 import logging
 import argparse
 
-from tkdesigner.constants import ASSETS_PATH
-from tkdesigner.parse import FigmaParser
-from tkdesigner import figma_api
+from pathlib import Path
 
 
 if int(os.getenv("TKDESIGNER_VERBOSE", 0)) == 1:
@@ -22,54 +20,55 @@ else:
 logging.basicConfig(level=log_level)
 
 
-def create_dirs(output_path, asset_path):
-    os.mkdir(output_path)
-    os.mkdir(asset_path)
-
-
 def main():
-    # Parse command-line arguments
-    parser = argparse.ArgumentParser(description="Generate TKinter GUI code from Figma design.")
-    parser.add_argument("file_url", type=str, help="File url of the Figma design.")
+    # TODO: Add support for `--force`. Be careful while deleting files.
+    parser = argparse.ArgumentParser(
+        description="Generate TKinter GUI code from Figma design.")
+
+    parser.add_argument(
+        "-o", "--output", type=str, default=".",
+        help=(
+            "Folder to output code and image assets to. "
+            "Defaults to current working directory."))
+    parser.add_argument(
+        "-f", "--force", action="store_true",
+        help=(
+            "If this flag is passed in, the output directory given "
+            "will be overwritten if it exists."))
+
+    parser.add_argument(
+        "file_url", type=str, help="File url of the Figma design.")
     parser.add_argument("token", type=str, help="Figma token.")
-    parser.add_argument("-o", "--output", type=str, default="build/", help="Folder to output code and image assets to. Defaults to build/.")
-    parser.add_argument("-f", "--force", action="store_true", help="If this flag is passed in, the output directory given will be overwritten if it exists.")
+
     args = parser.parse_args()
 
     logging.basicConfig()
-
     logging.info(f"args: {args}")
 
-    # Create the output and output/assets directory
-    asset_path = os.path.join(args.output, ASSETS_PATH)
-    try:
-        create_dirs(args.output, asset_path)
-    except FileExistsError as e:
-        logging.info(f"{args.output} or {asset_path} already exists")
-        if args.force:
-            logging.info(f"Overwritting exisiting output directory")
-            shutil.rmtree(args.output)
-            create_dirs(args.output, asset_path)
-        else:
-            logging.info(f"Output folder exists and force flag not given. Exiting...")
-            print(f"Output folder {args.output} already exists. If you want to overwrite the output folder, "
-                  "use the -f or --force flags.")
-            sys.exit()
-    except PermissionError as e:
-        print("An error occurred creating output directories.")
-        raise e
+    match = re.search(
+        r'https://www.figma.com/file/([0-9A-Za-z]+)', args.file_url)
+    if match is None:
+        raise ValueError("Invalid file URL.")
 
-    figma_data, figma_file_id = figma_api.get_file_and_id(args.token, args.file_url)
+    file_key = match.group(1).strip()
+    token = args.token.strip()
+    output_path = Path(args.output.strip()).expanduser().resolve() / "build"
 
-    with open(os.path.join(args.output, "figma_data.json"), "w") as f:
-        json.dump(figma_data, f)
+    if output_path.exists() and not output_path.is_dir():
+        raise RuntimeError(
+            f"`{output_path}` already exists and is not a directory.\n"
+            "Hints: Input a different output directory "
+            "or remove that existing file.")
+    elif output_path.exists() and output_path.is_dir():
+        if tuple(output_path.glob('*')) and not args.force:
+            print(f"Directory `{output_path}` already exists.")
+            response = input("Do you want to continue and overwrite? [N/y] ")
+            if response.lower().strip() != "y":
+                print("Aborting!")
+                exit(-1)
 
-    parser = FigmaParser(args.token, figma_file_id, args.output)
-    gui = parser.parse_gui(figma_data)
-    generated_code = gui.to_code()
-
-    with open(os.path.join(args.output, "gui.py"), "w") as f:
-        f.write(generated_code)
+    designer = Designer(token, file_key, output_path)
+    designer.design()
 
 
 if __name__ == "__main__":

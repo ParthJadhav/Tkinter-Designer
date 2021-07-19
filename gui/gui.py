@@ -1,162 +1,181 @@
+import webbrowser
+import re
 import sys
 import json
 import os
+import tkinter as tk
+import tkinter.messagebox
+import tkinter.filedialog
 from pathlib import Path
-sys.path.insert(0, str(Path(os.path.abspath(__file__)).parents[1])) # Add tkdesigner to path
 
-from tkdesigner.utils import find_between
-from tkdesigner.parse import FigmaParser
-from tkdesigner import figma_api
-from tkinter import *
-from tkinter import filedialog, messagebox
-import webbrowser
+# Add tkdesigner to path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+try:
+    from tkdesigner.designer import Designer
+except ModuleNotFoundError:
+    raise RuntimeError("Couldn't add tkdesigner to the PATH.")
 
-DIR_NAME = os.path.dirname(__file__)
-ASSETS_PATH = os.path.join(DIR_NAME, "assets")
 
-def rel_path(path):
-    # Constructs relative path from gui file
-    return os.path.join(DIR_NAME, path)
-
-def rel_asset_path(path):
-    # Constructs a relative path from the gui file to an asset
-    return os.path.join(ASSETS_PATH, path)
+# Path to asset files for this GUI window.
+ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 
 # Required in order to add data files to Windows executable
 path = getattr(sys, '_MEIPASS', os.getcwd())
 os.chdir(path)
 
-def create_dirs(output_path, asset_path):
-    os.mkdir(output_path)
-    os.mkdir(asset_path)
+output_path = ""
+
 
 def btn_clicked():
     token = token_entry.get()
     URL = URL_entry.get()
 
     if not token:
-        messagebox.showerror(title="Empty Fields",
-                             message="Please enter Token")
+        tk.messagebox.showerror(
+            title="Empty Fields!", message="Please enter Token.")
+        return
+    if not URL:
+        tk.messagebox.showerror(
+            title="Empty Fields!", message="Please enter URL.")
+        return
+    if not output_path:
+        tk.messagebox.showerror(
+            title="Invalid Path!", message="Enter a valid output path.")
+        return
 
-    elif not URL:
-        messagebox.showerror(title="Empty Fields",
-                             message="Please enter URL")
+    match = re.search(
+        r'https://www.figma.com/file/([0-9A-Za-z]+)', URL.strip())
+    if match is None:
+        tk.messagebox.showerror(
+            "Invalid URL!", "Please enter a valid file URL.")
+        return
 
-    elif not output_path:
-        messagebox.showerror(title="invalid path",
-                             message="Enter a valid output path")
+    file_key = match.group(1).strip()
+    token = token.strip()
+    output = Path(output_path).expanduser().resolve()
 
-    else:
-        output_dir = os.path.join(output_path, "build")
-        token = token.strip()
-        file_url = URL.strip()
-
-        # Create the output and output/assets directory
-        asset_path = os.path.join(output_dir, "assets")
-        try:
-            create_dirs(output_dir, asset_path)
-        except FileExistsError as e:
-            messagebox.showerror(
-                title="Output folder exists",
-                message=f"Output folder {output_dir} already exists.")
+    if output.exists() and not output.is_dir():
+        tk.messagebox.showerror(
+            "Exists!",
+            f"{output} already exists and is not a directory.\n"
+            "Enter a valid output directory.")
+    elif output.exists() and output.is_dir() and tuple(output.glob('*')):
+        response = tk.messagebox.askyesno(
+            "Continue?",
+            f"Directory {output} is not empty.\n"
+            "Do you want to continue and overwrite?")
+        if not response:
             return
 
-        figma_data, figma_file_id = figma_api.get_file_and_id(token, file_url)
+    designer = Designer(token, file_key, output)
+    designer.design()
 
-        with open(os.path.join(output_dir, "figma_data.json"), "w") as f:
-            json.dump(figma_data, f)
+    tk.messagebox.showinfo(
+        "Success!", f"Project successfully generated at {output}.")
 
-        parser = FigmaParser(token, figma_file_id, output_dir)
-        gui = parser.parse_gui(figma_data)
-        generated_code = gui.to_code()
-
-        with open(os.path.join(output_dir, "gui.py"), "w") as f:
-            f.write(generated_code)
-
-        messagebox.showinfo(
-            title="Success",
-            message=f"Generated GUI code saved to {output_dir}."
-        )
 
 def select_path(event):
     global output_path
 
-    # window.withdraw()
-    output_path = filedialog.askdirectory()
-    path_entry.delete(0, END)
+    output_path = tk.filedialog.askdirectory()
+    output_path = Path(output_path) / "build"
+    path_entry.delete(0, tk.END)
     path_entry.insert(0, output_path)
-    # window.deiconify()
+
 
 def know_more_clicked(event):
-    url = "https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md"
-    webbrowser.open_new(url)
+    instructions = (
+        "https://github.com/ParthJadhav/Tkinter-Designer/"
+        "blob/master/docs/instructions.md")
+    webbrowser.open_new_tab(instructions)
+
 
 def make_label(master, x, y, h, w, *args, **kwargs):
-    f = Frame(master, height=h, width=w)
-    f.pack_propagate(0) # don't shrink
+    f = tk.Frame(master, height=h, width=w)
+    f.pack_propagate(0)  # don't shrink
     f.place(x=x, y=y)
 
-    label = Label(f, *args, **kwargs)
-    label.pack(fill=BOTH, expand=1)
+    label = tk.Label(f, *args, **kwargs)
+    label.pack(fill=tk.BOTH, expand=1)
 
     return label
 
-window = Tk()
-logo = PhotoImage(file=rel_asset_path("iconbitmap.gif"))
+
+window = tk.Tk()
+logo = tk.PhotoImage(file=ASSETS_PATH / "iconbitmap.gif")
 window.call('wm', 'iconphoto', window._w, logo)
 window.title("Tkinter Designer")
-output_path = ""
 
 window.geometry("862x519")
 window.configure(bg="#3A7FF6")
-canvas = Canvas(window,bg="#3A7FF6",height=519,width=862,bd=0, highlightthickness=0,relief="ridge")
-canvas.place(x=0,y=0)
-canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC",outline="")
-canvas.create_rectangle(40, 160, 40 + 60, 160 + 5, fill="#FCFCFC",outline="")
+canvas = tk.Canvas(
+    window, bg="#3A7FF6", height=519, width=862,
+    bd=0, highlightthickness=0, relief="ridge")
+canvas.place(x=0, y=0)
+canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC", outline="")
+canvas.create_rectangle(40, 160, 40 + 60, 160 + 5, fill="#FCFCFC", outline="")
 
-text_box_bg = PhotoImage(file=rel_asset_path("TextBox_Bg.png"))
-token_entry_img = canvas.create_image(650.5,167.5,image=text_box_bg)
-URL_entry_img = canvas.create_image(650.5,248.5,image=text_box_bg)
-filePath_entry_img = canvas.create_image(650.5,329.5,image=text_box_bg)
+text_box_bg = tk.PhotoImage(file=ASSETS_PATH / "TextBox_Bg.png")
+token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)
+URL_entry_img = canvas.create_image(650.5, 248.5, image=text_box_bg)
+filePath_entry_img = canvas.create_image(650.5, 329.5, image=text_box_bg)
 
-token_entry = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
-token_entry.place(x=490.0,y=137+25,width=321.0,height=35)
+token_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+token_entry.place(x=490.0, y=137+25, width=321.0, height=35)
 token_entry.focus()
 
-URL_entry = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
-URL_entry.place(x=490.0,y=218+25,width=321.0,height=35)
+URL_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+URL_entry.place(x=490.0, y=218+25, width=321.0, height=35)
 
-path_entry = Entry(bd=0,bg="#F6F7F9",highlightthickness=0)
-path_entry.place(x=490.0,y=299+25,width=321.0,height=35)
+path_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+path_entry.place(x=490.0, y=299+25, width=321.0, height=35)
 path_entry.bind("<1>", select_path)
 
 
-canvas.create_text(490.0,156.0,text="Token ID",fill="#515486",font=("Arial-BoldMT",int(13.0)), anchor="w")
-canvas.create_text(490.0,234.5,text="File URL",fill="#515486",font=("Arial-BoldMT",int(13.0)), anchor="w")
-canvas.create_text(490.0,315.5,text="Output Path",fill="#515486",font=("Arial-BoldMT",int(13.0)), anchor="w")
-canvas.create_text(646.5,428.5,text="Generate",fill="#FFFFFF",font=("Arial-BoldMT",int(13.0)))
-canvas.create_text(573.5,88.0,text="Enter the details.",fill="#515486",font=("Arial-BoldMT",int(22.0)))
+canvas.create_text(
+    490.0, 156.0, text="Token ID", fill="#515486",
+    font=("Arial-BoldMT", int(13.0)), anchor="w")
+canvas.create_text(
+    490.0, 234.5, text="File URL", fill="#515486",
+    font=("Arial-BoldMT", int(13.0)), anchor="w")
+canvas.create_text(
+    490.0, 315.5, text="Output Path",
+    fill="#515486", font=("Arial-BoldMT", int(13.0)), anchor="w")
+canvas.create_text(
+    646.5, 428.5, text="Generate",
+    fill="#FFFFFF", font=("Arial-BoldMT", int(13.0)))
+canvas.create_text(
+    573.5, 88.0, text="Enter the details.",
+    fill="#515486", font=("Arial-BoldMT", int(22.0)))
 
-title = Label(text="Welcome to Tkinter Designer", bg="#3A7FF6",fg="white",font=("Arial-BoldMT",int(20.0)))
-title.place(x=27.0,y=120.0)
+title = tk.Label(
+    text="Welcome to Tkinter Designer", bg="#3A7FF6",
+    fg="white", font=("Arial-BoldMT", int(20.0)))
+title.place(x=27.0, y=120.0)
 
-info_text = Label(text="Tkinter Designer uses the Figma API\n"
-                   "to analyse a design file, then creates\n"
-                   "the respective code and files needed\n"
-                   "for your GUI.\n\n"
-                   
-                   "Even this GUI was created\n"
-                   "using Tkinter Designer.",
-              bg="#3A7FF6",fg="white",justify="left",font=("Georgia",int(16.0)))
+info_text = tk.Label(
+    text="Tkinter Designer uses the Figma API\n"
+    "to analyse a design file, then creates\n"
+    "the respective code and files needed\n"
+    "for your GUI.\n\n"
 
-info_text.place(x=27.0,y=200.0)
+    "Even this GUI was created\n"
+    "using Tkinter Designer.",
+    bg="#3A7FF6", fg="white", justify="left",
+    font=("Georgia", int(16.0)))
 
-know_more = Label(text="Click here for instructions", bg="#3A7FF6",fg="white", cursor="hand2")
-know_more.place(x=27,y=400)
+info_text.place(x=27.0, y=200.0)
+
+know_more = tk.Label(
+    text="Click here for instructions",
+    bg="#3A7FF6", fg="white", cursor="hand2")
+know_more.place(x=27, y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
-generate_btn_img = PhotoImage(file=rel_asset_path("generate.png"))
-generate_btn = Button(image=generate_btn_img, borderwidth=0, highlightthickness=0, command=btn_clicked, relief="flat")
+generate_btn_img = tk.PhotoImage(file=ASSETS_PATH / "generate.png")
+generate_btn = tk.Button(
+    image=generate_btn_img, borderwidth=0, highlightthickness=0,
+    command=btn_clicked, relief="flat")
 generate_btn.place(x=557, y=401, width=180, height=55)
 
 window.resizable(False, False)
