@@ -19,9 +19,9 @@ ___
    
 3. [**Using Tkinter Designer**](#Using-Tkinter-Designer)
    1. [Personal Access Token](#using-1)
-   2. [File URL](#using-2)
-   3. [Using CLI](#using-cli)
-   4. [Using GUI](#using-gui)
+   2. [Getting your File URL](#using-2)
+   3. [Using The CLI](#using-cli)
+   4. [Using The GUI](#using-gui)
    
 4. [**Troubleshooting**](#Troubleshooting)
 
@@ -48,15 +48,15 @@ On the right-hand sidebar, click the latest release and, under **Assets**, choos
 
 *To run Tkinter Designer from the source code, follow the instructions below.*
 
-1. Download the source files for Tkinter Designer by downloading it manually or using git :-
+1. Download the source files for Tkinter Designer by downloading it manually or using GIT.
 
 ` git clone https://github.com/ParthJadhav/Tkinter-Designer.git `
 
 2. Change your working directory to Tkinter Designer.
 
-`cd Tkinter-Designer`
+`cd tkinter-designer`
    
-4. Install the necessary dependencies by running 
+3. Install the necessary dependencies by running 
 
 `pip install -r requirements.txt`
    * In the event that pip doesn't work, also try the following commands:
@@ -187,7 +187,7 @@ There are some inputs you'll need to collect to be able to use the TKinter Desig
 
 <a id="using-2"></a>
 
-### 2. File URL
+### 2. Getting your File URL
 1. In your Figma design file, click the **Share** button in the top bar, then click on **&#x1f517; Copy link**
 
 <a id="using-cli"></a>
@@ -217,7 +217,7 @@ $ python3 gui.py
 ### Open Tkinter Designer before doing the following steps.
 <br>
 
-1. Open TKinter Designer by
+1. Open TKinter Designer GUI by
 ```
 cd Tkinter-Designer
 cd gui
@@ -238,7 +238,7 @@ The output files from Tkinter Designer will be placed in your chosen directory, 
 # Troubleshooting <small>[[Top](#table-of-contents)]</small>
 
 * Elements not visible? Misplaced?
-  * Please make sure that your Figma File has it's elements named correctly. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
+  * Please make sure that your Figma File has its elements named correctly. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
 
 * Button has an unintended gray background?
   * Make sure you have added a Rectangle behind your button element, and that its Fill color is the same as the Background's
