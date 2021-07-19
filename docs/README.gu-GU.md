@@ -40,19 +40,8 @@ Coffee :coffee:  વિનાનું જીવન કંઈક વિનાન
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src = "https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" Alt="મને એક કોફી ખરીદો" width= "217px"></a>
 
-## Tkinter ડિઝાઇનર ઇન્સ્ટોલ 
 
-```
-git clone https://github.com/ParthJadhav/Tkinter-Designer
-
-cd Tkinter-Designer/
-
-pip3 install -r requirements.txt
-
-python3 tkinter_designer.py
-```
-
-## Tkinter ડિઝાઇનરનો ઉપયોગ કરીને
+## ઇન્સ્ટોલ અને ઉપયોગ કરી રહ્યું છે Tkinter Designer
 
 સૂચનોમાં મુશ્કેલીનિવારણ અને રિપોર્ટિંગ મુદ્દાઓની માહિતી સાથે, ટિંકિટર ડિઝાઇનર ઇન્સ્ટોલ કરવા અને વાપરવા વિશેની તમામ માહિતી શામેલ છે. એક વીડિયો પણ છે.
 

@@ -8,21 +8,22 @@
 ___
 
 ## 目录:
-1. [**入门**](#入门-top)
+1. [**入门**](#getting-started-1)
    1. [安装Python](#getting-started-1)
    2. [Install Tkinter Designer](#getting-started-2)
    3. [做一个 Figma Account](#getting-started-3)
    
-2. [**格式化你的 Figma Design**](#格式化你的-figma-设计top)
+2. [**格式化你的 Figma Design**](#formatting-1)
    1. [参考](#formatting-1)
    2. [元素指南](#formatting-2)
    
-3. [**使用 Tkinter Designer**](#使用-tkinter-designer-top)
+3. [**使用 Tkinter Designer**](#Using-Tkinter-Designer)
    1. [Personal Access Token](#using-1)
    2. [File URL](#using-2)
-   3. [测试您生成的代码](#using-3)
+   3. [使用命令行](#using-cli)
+   4. [使用图形界面](#using-gui)
    
-4. [**故障排除**](#故障排除-top)
+4. [**故障排除**](#Troubleshooting)
 
 <br><br>
 
@@ -47,22 +48,30 @@ ___
 
 *要从源代码运行 Tkinter Designer，请按照以下说明进行操作。*
 
-1. 下载Tkinter Designer的源文件
+1. 通过手动下载或使用 git 下载 Tkinter Designer 的源文件：-
 
-2. 将源文件解压到系统目录
+      ` git clone https://github.com/ParthJadhav/Tkinter-Designer.git `
+
+2. 将您的工作目录更改为 Tkinter Designer。
+
+   `cd Tkinter-Designer`
    
-3. 在此目录中打开终端/命令提示符
-    * 您可以使用 `cd` 命令导航到此文件夹。
-    * 您也可以使用带有内置终端的 IDE，例如 [Visual Studio Code](https://code.visualstudio.com/)。
 
-4. 通过运行`pip install -r requirements.txt`安装必要的依赖项
+3. 通过运行安装必要的依赖项
+
+   `pip install -r requirements.txt`
+
+   安装必要的依赖项
+
     * 如果 pip 不起作用，还可以尝试以下命令：
       * `pip3 install -r requirements.txt`
       * `python -m pip install -r requirements.txt`
       * `python3 -m pip install -r requirements.txt`
     * 如果这仍然不起作用，请确保将 Python 添加到 PATH。
   
-5. 你可以通过运行`python tkinter_designer.py`来运行Tkinter Designer
+   这将安装所有要求和 Tkinter Designer。 在使用 Tkinter Designer 之前，您需要按照以下说明创建 Figma 文件。
+
+   如果您已经创建了文件，请跳至 [**Using Tkinter Designer**](#使用-Tkinter-Designer) 部分。
 
 ___
 <br>
@@ -80,9 +89,9 @@ ___
 
 <br><br>
 
+<a id="formatting-1"></a>
 # 格式化你的 Figma 设计<small>[[Top](#目录)]</small>
 
-<a id="formatting-1"></a>
 ## 1. 参考
 <br>
 
@@ -150,9 +159,10 @@ ___
    
 <br><br>
 
+
+<a id="Using-Tkinter-Designer"></a>
 # 使用 Tkinter Designer <small>[[Top](#目录)]</small>
 
-### 在执行以下步骤之前打开 Tkinter Designer。
 <br>
 
 <a id="using-1"></a>
@@ -175,21 +185,50 @@ ___
 ___
 <br>
 
-<a id="using-3"></a>
-## 3. 测试你生成的代码
-1. 在 Tkinter Designer 中，单击 **Output Path** 表单打开文件浏览器
-2. 选择一个输出路径并点击**Select Folder**
-3. 按**生成**
+<a id="using-cli"></a>
 
-Tkinter Designer 的输出文件将放置在您选择的目录中，位于名为 **generated_code** 的新文件夹中。 恭喜，您现在已经使用 Tkinter Designer 创建了您的 Tkinter GUI！
+## 使用 CLI
 
-<br><br>
+使用 CLI 就像安装软件包和运行 CLI 工具一样简单。
 
+您可以通过将 $YOUR_FIGMA_TOKEN 替换为您生成的 Figma Personal Access Token 来使用以下命令作为测试。 如果您还没有获得令牌，请参阅 [**Required Inputs Section**](#using-1) 。
+
+```bash
+# 示例数据
+$ python -m tkdesigner.cli https://www.figma.com/file/WVLnulVsI177tvnxSdqOUZ/Untitled?node-id=0%3A1 $YOUR_FIGMA_TOKEN -f
+# 要了解有关如何使用 cli 的更多信息，请传递 --help 标志
+$ python -m tkdesigner.cli --help
+```
+默认情况下，GUI 代码将写入 build/gui.py。
+要运行生成的 GUI，请 cd 进入您构建它的目录（例如 build/）并像运行任何 Tkinter GUI 一样运行它。
+```bash
+$ cd 构建
+$ python3 gui.py
+```
+
+<a id="using-gui"></a>
+## 使用 GUI
+<br>
+1.打开TKinter Designer
+
+```
+cd Tkinter-设计师
+cd gui
+python3 gui.py
+```
+2. 将您的 *个人访问令牌* 粘贴到 Tkinter Designer 中的 **令牌 ID** 表单中
+3. 将链接粘贴到 Tkinter Designer 中的 **File URL** 表单中
+4. 单击**输出路径**表单打开文件浏览器
+5. 选择一个输出路径并点击**Select Folder**
+6. 按**生成**
+
+Tkinter Designer 的输出文件将放置在您选择的目录中，位于名为 **build** 的新文件夹中。 恭喜，您现在已经使用 Tkinter Designer 创建了您的 Tkinter GUI！
+
+<a id="Troubleshooting"></a>
 # 故障排除 <small>[[Top](#目录)]</small>
 
 * 元素不可见？ 放错地方了？
-   * 请确保您的顶级 Frame 的 X 和 Y 坐标位于 (0, 0)
-     * 检查右侧栏，在 **Design** 下
+   * 请确保您的 Figma 文件具有正确命名的元素。 * 请参阅 [格式化您的 Figma 设计，&sect;1](#formatting-1)
 
 * 按钮有意外的灰色背景？
    * 确保您在按钮元素后面添加了一个矩形，并且其填充颜色与背景的相同

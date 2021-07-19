@@ -43,18 +43,7 @@ ___
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
 
-## 🛠  安装 Tkinter Designer
-
-```
-git clone https://github.com/ParthJadhav/Tkinter-Designer
-
-cd Tkinter-Designer
-
-pip3 install -r requirements.txt
-
-python3 tkinter_designer.py
-```
-## ⚡️ 使用 Tkinter Designer
+## ⚡️ 安装和使用 Tkinter Designer
 
 这些说明包含有关安装和使用 Tkinter Designer 的所有信息，以及用于故障排除和报告问题的信息。 还有一种视频格式。
 
