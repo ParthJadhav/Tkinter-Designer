@@ -40,18 +40,8 @@ Life without coffee is like something without something … sorry, I haven’t h
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
 
-## 🛠  Installing Tkinter Designer
 
-```
-git clone https://github.com/ParthJadhav/Tkinter-Designer
-
-cd Tkinter-Designer
-
-pip3 install -r requirements.txt
-
-python3 tkinter_designer.py
-```
-## ⚡️ Using Tkinter Designer
+## ⚡️ Installing & Using Tkinter Designer
 
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video.
 
