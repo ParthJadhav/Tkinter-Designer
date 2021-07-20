@@ -1,4 +1,4 @@
-from .vector import Vector, Rectangle
+from .vector_elements import Vector, Rectangle
 
 
 TEXT_INPUT_ELEMENT_TYPES = {

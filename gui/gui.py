@@ -29,6 +29,8 @@ output_path = ""
 def btn_clicked():
     token = token_entry.get()
     URL = URL_entry.get()
+    output_path = path_entry.get()
+    output_path = output_path.strip()
 
     if not token:
         tk.messagebox.showerror(
@@ -52,7 +54,7 @@ def btn_clicked():
 
     file_key = match.group(1).strip()
     token = token.strip()
-    output = Path(output_path).expanduser().resolve()
+    output = Path(output_path + "/build").expanduser().resolve()
 
     if output.exists() and not output.is_dir():
         tk.messagebox.showerror(
@@ -74,11 +76,10 @@ def btn_clicked():
         "Success!", f"Project successfully generated at {output}.")
 
 
-def select_path(event):
+def select_path():
     global output_path
 
     output_path = tk.filedialog.askdirectory()
-    output_path = Path(output_path) / "build"
     path_entry.delete(0, tk.END)
     path_entry.insert(0, output_path)
 
@@ -129,8 +130,22 @@ URL_entry.place(x=490.0, y=218+25, width=321.0, height=35)
 
 path_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
 path_entry.place(x=490.0, y=299+25, width=321.0, height=35)
-path_entry.bind("<1>", select_path)
 
+path_picker_img = tk.PhotoImage(file = ASSETS_PATH / "path_picker.png")
+path_picker_button = tk.Button(
+    image = path_picker_img,
+    text = '',
+    compound = 'center',
+    fg = 'white',
+    borderwidth = 0,
+    highlightthickness = 0,
+    command = select_path,
+    relief = 'flat')
+
+path_picker_button.place(
+    x = 783, y = 319,
+    width = 24,
+    height = 22)
 
 canvas.create_text(
     490.0, 156.0, text="Token ID", fill="#515486",

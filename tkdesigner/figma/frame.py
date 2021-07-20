@@ -1,9 +1,10 @@
+import re
 from ..constants import ASSETS_PATH
 from ..utils import download_image
 
 from .node import Node
-from .vector import Rectangle
-from .custom import Button, Text, Image, TextEntry
+from .vector_elements import Rectangle, UnknownElement
+from .custom_elements import Button, Text, Image, TextEntry
 
 from jinja2 import Template
 from pathlib import Path
@@ -86,9 +87,10 @@ class Frame(Node):
 
         elif element_type == "TEXT":
             return Text(element, self)
+
         else:
-            raise NotImplementedError(
-                f"Element with the name: `{element_name}` cannot be parsed.")
+            print(f"Element with the name: `{element_name}` cannot be parsed. Would be displayed as Black Rectangle")
+            return UnknownElement(element, self)
 
     @property
     def children(self):

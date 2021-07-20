@@ -80,3 +80,20 @@ canvas.create_rectangle(
     fill="{self.fill_color}",
     outline="")
 """
+
+class UnknownElement(Vector):
+    def __init__(self, node, frame):
+        super().__init__(node)
+        self.x, self.y = self.position(frame)
+        self.width, self.height = self.size()
+
+    def to_code(self):
+        return f"""
+canvas.create_rectangle(
+    {self.x},
+    {self.y},
+    {self.x + self.width},
+    {self.y + self.height},
+    fill="#000000",
+    outline="")
+"""
