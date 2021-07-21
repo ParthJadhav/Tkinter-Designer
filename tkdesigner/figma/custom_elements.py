@@ -65,6 +65,7 @@ class Text(Vector):
     def font_property(self):
         style = self.node.get("style")
         font_name = style["fontPostScriptName"]
+        font_name = font_name.replace('-', ' ')
         font_size = style["fontSize"]
         return font_name, font_size
 
