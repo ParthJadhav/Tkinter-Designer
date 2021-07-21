@@ -68,7 +68,6 @@ class Text(Vector):
         font_size = style["fontSize"]
         return font_name, font_size
 
-    # This Change can be ignored.
     def to_code(self):
         return f"""
 canvas.create_text(
@@ -77,7 +76,7 @@ canvas.create_text(
     anchor="nw",
     text="{self.text}",
     fill="{self.text_color}",
-    font=("{self.font}", int({self.font_size}))
+    font=("{self.font}", -1 * {int(self.font_size)})
 )
 """
 
