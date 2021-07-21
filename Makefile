@@ -6,7 +6,7 @@
 # or run `make precommit` to run the lint target script and if it successfully exits then the test target script.
 
 # List of phony make targets
-.PHONY: test, lint, build, precommit
+.PHONY: test, lint, build, precommit, cli, gui
 
 setup:
 	pip install -r requirements.txt
@@ -24,3 +24,9 @@ build: lint test
 
 # Run this. `make precommit`
 precommit: lint test
+
+cli:
+	python -m tkdesigner.tkdesigner.cli ${FIGMA_PROJECT_URL} ${FIGMA_TOKEN} -f
+
+gui:
+	python gui/gui.py
