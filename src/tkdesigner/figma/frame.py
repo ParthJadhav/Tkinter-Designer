@@ -1,4 +1,3 @@
-import re
 from ..constants import ASSETS_PATH
 from ..utils import download_image
 
