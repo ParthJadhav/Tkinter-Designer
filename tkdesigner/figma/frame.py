@@ -28,11 +28,11 @@ class Frame(Node):
         self.assets_path.mkdir(parents=True, exist_ok=True)
 
         self.elements = [
-            self.create_element(j, id_=str(i))
-            for i, j in enumerate(self.children)
+            self.create_element(child)
+            for child in self.children
         ]
 
-    def create_element(self, element, *, id_=None):
+    def create_element(self, element):
         element_name = element["name"].strip()
         element_type = element["type"].strip()
 
