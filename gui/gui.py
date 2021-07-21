@@ -10,7 +10,7 @@ from pathlib import Path
 # Add tkdesigner to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 try:
-    from tkdesigner.tkdesigner.designer import Designer
+    from tkdesigner.designer import Designer
 except ModuleNotFoundError:
     raise RuntimeError("Couldn't add tkdesigner to the PATH.")
 

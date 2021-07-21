@@ -1,7 +1,7 @@
-import tkdesigner.tkdesigner.figma.endpoints as endpoints
-from tkdesigner.tkdesigner.figma.frame import Frame
+import tkdesigner.figma.endpoints as endpoints
+from tkdesigner.figma.frame import Frame
 
-from tkdesigner.tkdesigner.template import TEMPLATE
+from tkdesigner.template import TEMPLATE
 
 from pathlib import Path
 

@@ -26,7 +26,7 @@ build: lint test
 precommit: lint test
 
 cli:
-	python -m tkdesigner.tkdesigner.cli ${FIGMA_PROJECT_URL} ${FIGMA_TOKEN} -f
+	python -m tkdesigner.cli ${FIGMA_PROJECT_URL} ${FIGMA_TOKEN} -f
 
 gui:
 	python gui/gui.py

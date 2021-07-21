@@ -2,7 +2,7 @@
 TKinter Designer command-line interface.
 """
 
-from tkdesigner.tkdesigner.designer import Designer
+from tkdesigner.designer import Designer
 
 import re
 import os
