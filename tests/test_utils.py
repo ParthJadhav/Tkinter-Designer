@@ -1,6 +1,6 @@
 import os
-from tkdesigner.constants import ASSETS_PATH
-from tkdesigner.utils import find_between, download_image
+from tkdesigner.tkdesigner.constants import ASSETS_PATH
+from tkdesigner.tkdesigner.utils import find_between, download_image
 
 
 def test_assets_path():

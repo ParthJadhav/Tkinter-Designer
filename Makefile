@@ -8,6 +8,9 @@
 # List of phony make targets
 .PHONY: test, lint, build, precommit
 
+setup:
+	pip install -r requirements.txt
+
 # run flake8 with these params. E251 and E226 are errors about whitespace around operators.
 lint:
 	flake8 --ignore=E251,E226 --max-line-length=127
