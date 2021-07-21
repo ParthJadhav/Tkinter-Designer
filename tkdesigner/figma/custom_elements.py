@@ -74,6 +74,7 @@ class Text(Vector):
 canvas.create_text(
     {self.x},
     {self.y},
+    anchor="nw",
     text="{self.text}",
     fill="{self.text_color}",
     font=("{self.font}", int({self.font_size}))
