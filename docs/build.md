@@ -32,8 +32,9 @@ Staging environment:
     - create a new project directory, blank
     - create a venv or whatever you're into: `python -m venv .venv`
     - activate your virtualenv
-    - `pip install -i https://test.pypi.org/simple/ tkinter-designer-cli-jvendegna==0.0.3` for example. That one works, feel free to test it.
-    - `python -m tkdesigner.cli <URL_TO_FIGMA_FILE> $YOUR_FIGMA_TOKEN -f`
+    - `pip install -i https://test.pypi.org/simple/ tkdesigner-cli-jvendegna==1.0.11` for example. That one works, feel free to test it.
+    - `tkdesigner <URL_TO_FIGMA_FILE> $YOUR_FIGMA_TOKEN -f`
+    - `python build/gui.py`
 
 
 * Note: everywhere you see `python` is python3, not python2
