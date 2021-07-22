@@ -3,10 +3,6 @@ name: Upload Python Package
 on:
   release:
     types: [published]
-  push:
-    branches:
-      - main
-      - issues/69/packaging_and_automation
   
     
 jobs:
@@ -54,4 +50,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
         with:
           user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          password: pypi-${{ secrets.PYPI_API_TOKEN }}
