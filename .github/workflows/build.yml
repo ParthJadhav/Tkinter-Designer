@@ -3,6 +3,11 @@ name: Upload Python Package
 on:
   release:
     types: [published]
+  push:
+    branches:
+      - main
+      - issues/69/packaging_and_automation
+  
     
 jobs:
   lint_and_test:
