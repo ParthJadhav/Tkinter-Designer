@@ -38,7 +38,7 @@ ___
 
 Life without coffee is like something without something … sorry, I haven’t had any coffee yet. 
 
-<a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
+<a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a> 
 
 
 ## ⚡️ Installing & Using Tkinter Designer
@@ -50,6 +50,13 @@ The instructions contain all the information about installing and using Tkinter 
 
 ___
 <br>
+
+## 🔵 Join Official Tkinter Designer's Discord server
+
+Click the button below to join the discord server and take part in discussions. 
+
+<a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="217px" ></a> 
+
 
 ## ✅  Importance of Naming (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](/docs/instructions.md))
 
