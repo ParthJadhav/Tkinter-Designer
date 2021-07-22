@@ -3,7 +3,6 @@ TEMPLATE = """
 # https://github.com/ParthJadhav/Tkinter-Designer
 
 
-import os
 from pathlib import Path
 
 from tkinter import *
