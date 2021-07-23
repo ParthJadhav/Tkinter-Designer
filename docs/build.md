@@ -1,5 +1,19 @@
-# Building & Releasing to Pypi
+# Building & Releasing to Pypi with Poetry
 
+## A Note:
+Packaging in python has been a contentious issue and everyone has an opinion.
+We migrated to poetry based on discussion in [pull request #84](https://github.com/ParthJadhav/Tkinter-Designer/pull/84)
+Have we made a huge mistake? If so, open an issue and let us know!
+
+## Publishing to testpypi
+1. [Install Poetry](https://python-poetry.org/docs/#installation) - ! do not pip install poetry
+2. `poetry install` - installs dependencies
+3. `poetry config repositories.testpypi https://test.pypi.org/legacy/`
+4. `poetry version $VERSION` - bump the version number to the value of <$VERSION>
+5. `poetry publish --build -r testpypi -u __token__ -p $TESTPYPI_TOKEN`
+  
+
+## Packaging the old way [deprecated]
 A brief explanation: packages in python are implicitly declared by providing an \_\_init\_\_.py file.
 Any directory with that file present is a package, every file within a package is a module.
 
@@ -10,7 +24,7 @@ Our build environment needs wheel and setuptools packages to handle building for
 
 [Here's a tutorial](https://packaging.python.org/tutorials/packaging-projects/) on building/releasing packages for anyone with more interest.
 
-## Manual Release
+### Manual Release
 
 Staging environment:
 - Make sure conventions are followed and tests pass: `flake8 && pytest`
