@@ -46,7 +46,17 @@ class Text(Vector):
 
     @property
     def characters(self) -> str:
-        return self.node.get("characters")
+        string: str = self.node.get("characters")
+        text_case: str = self.style.get("textCase", "ORIGINAL")
+
+        if text_case == "UPPER":
+            string = string.upper()
+        elif text_case == "LOWER":
+            string = string.lower()
+        elif text_case == "TITLE":
+            string = string.title()
+
+        return string
 
     @property
     def style(self):
