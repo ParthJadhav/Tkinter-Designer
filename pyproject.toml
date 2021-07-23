@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tkdesigner-jvendegna"
+name = "tkdesigner"
 version = "v1.0.0"
 description = "CLI Package for Tkinter-Designer"
 authors = ["ParthJadhav <jadhavparth99@gmail.com>"]
