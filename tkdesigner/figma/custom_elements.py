@@ -46,7 +46,17 @@ class Text(Vector):
 
     @property
     def characters(self) -> str:
-        return self.node.get("characters")
+        string: str = self.node.get("characters")
+        text_case: str = self.style.get("textCase", "ORIGINAL")
+
+        if text_case == "UPPER":
+            string = string.upper()
+        elif text_case == "LOWER":
+            string = string.lower()
+        elif text_case == "TITLE":
+            string = string.title()
+
+        return string
 
     @property
     def style(self):
@@ -64,7 +74,11 @@ class Text(Vector):
 
     def font_property(self):
         style = self.node.get("style")
-        font_name = style["fontPostScriptName"]
+
+        font_name = style.get("fontPostScriptName")
+        if font_name is None:
+            font_name = style["fontFamily"]
+
         font_name = font_name.replace('-', ' ')
         font_size = style["fontSize"]
         return font_name, font_size
@@ -77,7 +91,8 @@ canvas.create_text(
     anchor="nw",
     text="{self.text}",
     fill="{self.text_color}",
-    font=("{self.font}", -1 * {int(self.font_size)})
+    font=("{self.font}", {int(self.font_size)} * -1),
+    width={self.width}
 )
 """
 

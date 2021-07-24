@@ -1,4 +1,3 @@
-import re
 from ..constants import ASSETS_PATH
 from ..utils import download_image
 
@@ -30,6 +29,7 @@ class Frame(Node):
         self.elements = [
             self.create_element(child)
             for child in self.children
+            if Node(child).visible
         ]
 
     def create_element(self, element):
@@ -89,7 +89,9 @@ class Frame(Node):
             return Text(element, self)
 
         else:
-            print(f"Element with the name: `{element_name}` cannot be parsed. Would be displayed as Black Rectangle")
+            print(
+                f"Element with the name: `{element_name}` cannot be parsed. "
+                "Would be displayed as Black Rectangle")
             return UnknownElement(element, self)
 
     @property
