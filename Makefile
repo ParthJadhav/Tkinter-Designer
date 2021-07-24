@@ -9,24 +9,24 @@
 .PHONY: test, lint, build, precommit, cli, gui
 
 setup:
-	pip install -r requirements.txt
+	poetry install
 
 # run flake8 with these params. E251 and E226 are errors about whitespace around operators.
 lint:
-	flake8 --ignore=E251,E226 --max-line-length=127
+	poetry run flake8 --ignore=E251,E226 --max-line-length=127
 
 test:
-	pytest
+	poetry run pytest
 
 # lint and test and build the pypi package
 build: lint test
-	python -m build
+	poetry build
 
 # Run this. `make precommit`
 precommit: lint test
 
 cli:
-	python -m tkdesigner.cli ${FIGMA_PROJECT_URL} ${FIGMA_TOKEN} -f
+	poetry run tkdesigner ${FIGMA_PROJECT_URL} ${FIGMA_TOKEN} -f
 
 gui:
-	python gui/gui.py
+	poetry run python gui/gui.py
