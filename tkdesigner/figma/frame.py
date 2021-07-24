@@ -29,6 +29,7 @@ class Frame(Node):
         self.elements = [
             self.create_element(child)
             for child in self.children
+            if Node(child).visible
         ]
 
     def create_element(self, element):

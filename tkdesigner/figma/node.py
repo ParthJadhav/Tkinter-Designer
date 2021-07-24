@@ -12,7 +12,9 @@ class Node:
 
     @property
     def visible(self) -> bool:
-        return self.node.get("visible")
+        """Whether or not the node is visible on the canvas.
+        """
+        return self.node.get("visible", True)
 
     @property
     def type(self) -> str:
