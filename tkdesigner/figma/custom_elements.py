@@ -80,7 +80,6 @@ class Text(Vector):
         return font_name, font_size
 
     def to_code(self):
-        text_width = int(self.get("absoluteBoundingBox").get("width"))
         return f"""
 canvas.create_text(
     {self.x},
@@ -89,7 +88,7 @@ canvas.create_text(
     text="{self.text}",
     fill="{self.text_color}",
     font=("{self.font}", {int(self.font_size)} * -1),
-    width={text_width}
+    width={self.width}
 )
 """
 
