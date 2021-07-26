@@ -5,6 +5,9 @@ on:
   # from every branch, including forks.
   workflow_dispatch:
   pull_request:
+  push:
+    branches:
+      - master
   
 jobs:
   # Flake8 & Pytest
@@ -55,7 +58,7 @@ jobs:
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
           source $HOME/.poetry/env && echo "Poetry directory sourced."
           # set version number equal to latest git tag
-          git describe --tags | head -n 1 | poetry version
+          poetry version $(git describe --tags | head -n 1) || echo "Version System Error" && exit 1
 
       - name: Build & Publish package
         run: |
