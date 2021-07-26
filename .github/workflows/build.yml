@@ -5,6 +5,9 @@ on:
   # from every branch, including forks.
   workflow_dispatch:
   pull_request:
+  push:
+    branches:
+      - master
   
 jobs:
   # Flake8 & Pytest
