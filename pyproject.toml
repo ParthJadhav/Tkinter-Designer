@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tkdesigner"
-version = "1.0.0"
+version = "0.9.99"
 description = "CLI Package for Tkinter-Designer"
 authors = ["ParthJadhav <jadhavparth99@gmail.com>"]
 license = "BSD-3-Clause"
