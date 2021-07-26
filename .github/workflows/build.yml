@@ -40,7 +40,7 @@ jobs:
   build_and_release:
     runs-on: ubuntu-latest
     needs: lint_and_test
-    # if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -58,12 +58,9 @@ jobs:
           git describe --tags | head -n 1 | poetry version
 
       - name: Build & Publish package
-        env:
-          DUMB: ${{ secrets.DUMMY_SECRET }}
         run: |
           source $HOME/.poetry/env
           poetry config repositories.testpypi https://test.pypi.org/legacy/
-          echo $DUMB
           poetry publish --build -r testpypi -u __token__ -p ${{ secrets.TEST_PYPI_TOKEN }}
 
       - name: Create GitHub Release
