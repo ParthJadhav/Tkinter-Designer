@@ -59,12 +59,13 @@ jobs:
           source $HOME/.poetry/env && echo "Poetry directory sourced."
           # set version number equal to latest git tag
           poetry version $(git tag | tail -1)
-          poetry config repositories.testpypi https://test.pypi.org/legacy/
-          poetry publish --build -r testpypi -u __token__ -p ${{ secrets.TEST_PYPI_TOKEN }}
-
-      - name: Create GitHub Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "dist/*"
-          bodyFile: "README.md"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # poetry config repositories.testpypi https://test.pypi.org/legacy/
+          # poetry publish --build -r testpypi -u __token__ -p ${{ secrets.TEST_PYPI_TOKEN }}
+          poetry publish --build -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
+          
+      # - name: Create GitHub Release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     artifacts: "dist/*"
+      #     bodyFile: "README.md"
+      #     token: ${{ secrets.GITHUB_TOKEN }}
