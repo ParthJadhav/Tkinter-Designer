@@ -1,4 +1,4 @@
-name: Upload Python Package
+name: Test, Build, Release
 
 on:
   # Allows for manual triggering and pull requests
@@ -53,9 +53,9 @@ jobs:
       - name: Version
         run: |
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-          source $HOME/.poetry/env
+          source $HOME/.poetry/env && echo "Poetry directory sourced."
           # set version number equal to latest git tag
-          poetry version $(git describe --tags | head -n 1') || echo "Version System Error" && exit 1
+          git describe --tags | head -n 1 | poetry version
 
       - name: Build & Publish package
         run: |
