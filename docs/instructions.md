@@ -199,10 +199,13 @@ You can use the below command as test by replacing $YOUR_FIGMA_TOKEN by your gen
 
 ```bash
 # Example data
-$ python -m tkdesigner.cli https://www.figma.com/file/WVLnulVsI177tvnxSdqOUZ/Untitled?node-id=0%3A1 $YOUR_FIGMA_TOKEN -f
+$ python -m tkdesigner https://www.figma.com/file/WVLnulVsI177tvnxSdqOUZ/Untitled?node-id=0%3A1 $YOUR_FIGMA_TOKEN -f
 
 # To learn more about how to use the cli, pass the --help flag
-$ python -m tkdesigner.cli --help
+$ python -m tkdesigner --help
+
+# You can invoke tkdesigner directly as well
+$ tkdesigner https://www.figma.com/file/WVLnulVsI177tvnxSdqOUZ/Untitled?node-id=0%3A1 $YOUR_FIGMA_TOKEN -f
 ```
 
 By default, the GUI code will be written to build/gui.py.

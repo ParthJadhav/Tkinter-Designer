@@ -12,5 +12,5 @@ dist/
 env
 resources/
 venv/
-
+*.egg-info/
 *.spec

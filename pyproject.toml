@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "tkdesigner"
+version = "v1.0.0"
+description = "CLI Package for Tkinter-Designer"
+authors = ["ParthJadhav <jadhavparth99@gmail.com>"]
+license = "BSD-3-Clause"
+readme = "README.md"
+homepage = "https://github.com/ParthJadhav/Tkinter-Designer"
+repository = "https://github.com/ParthJadhav/Tkinter-Designer"
+documentation = "https://github.com/ParthJadhav/Tkinter-Designer"
+
+keywords = ["tkinter", "drag-and-drop", "figma", "gui", "easy"]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent"
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/ParthJadhav/Tkinter-Designer/issues"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "2.25.1"
+urllib3 = "1.26.4"
+Jinja2 = "3.0.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+flake8 = "^3.9.2"
+
+[tool.poetry.scripts]
+tkdesigner = 'tkdesigner.cli:main'
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
