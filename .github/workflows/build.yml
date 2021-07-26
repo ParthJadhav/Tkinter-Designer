@@ -1,4 +1,4 @@
-name: Upload Python Package
+name: Test, Build, Release
 
 on:
   # Allows for manual triggering and pull requests
@@ -61,6 +61,7 @@ jobs:
         run: |
           source $HOME/.poetry/env
           poetry config repositories.testpypi https://test.pypi.org/legacy/
+          echo ${{ secrets.DUMMY_SECRET }}
           poetry publish --build -r testpypi -u __token__ -p ${{ secrets.TEST_PYPI_TOKEN }}
 
       - name: Create GitHub Release
