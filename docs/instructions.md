@@ -195,20 +195,32 @@ There are some inputs you'll need to collect to be able to use the TKinter Desig
 
 Using the CLI is as simple as installing the package and running the CLI tool. 
 
-You can use the below command as test by replacing $YOUR_FIGMA_TOKEN by your generated Figma Personal Access Token. If you haven't got the token then refer to [**Required Inputs Section**](#using-1) .
+### From PyPi
+
+You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
+
+
+``` bash
+$ pip install tkdesigner
+
+$ tkdesigner $FILE_URL $FIGMA_TOKEN
+```
+
+### From Source
+
+To use CLI from the source code you need to clone the repository and then follow the below instructions.
+
+You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
 
 ```bash
-# Example data
-$ python -m tkdesigner https://www.figma.com/file/WVLnulVsI177tvnxSdqOUZ/Untitled?node-id=0%3A1 $YOUR_FIGMA_TOKEN -f
+$ python -m tkdesigner.cli $FILE_URL $FIGMA_TOKEN
 
 # To learn more about how to use the cli, pass the --help flag
 $ python -m tkdesigner --help
-
-# You can invoke tkdesigner directly as well
-$ tkdesigner https://www.figma.com/file/WVLnulVsI177tvnxSdqOUZ/Untitled?node-id=0%3A1 $YOUR_FIGMA_TOKEN -f
 ```
 
-By default, the GUI code will be written to build/gui.py.
+### Output
+By default, the GUI code will be written to build/gui.py. You can specify the output path by using `-o` Flag and providing the path.
 
 To run the generated GUI, cd into the directory you built it to (e.g. build/) and run it just as you would any Tkinter GUI.
 ```bash
