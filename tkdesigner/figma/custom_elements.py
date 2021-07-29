@@ -36,13 +36,12 @@ button_{self.id_}.place(
 class Text(Vector):
     def __init__(self, node, frame):
         super().__init__(node)
-
         self.x, self.y = self.position(frame)
         self.width, self.height = self.size()
-
         self.text_color = self.color()
         self.font, self.font_size = self.font_property()
         self.text = self.characters.replace("\n", "\\n")
+        self.anchor = self.alignment()
 
     @property
     def characters(self) -> str:
@@ -81,6 +80,7 @@ class Text(Vector):
 
         font_name = font_name.replace('-', ' ')
         font_size = style["fontSize"]
+        print(font_name, font_size)
         return font_name, font_size
 
     def to_code(self):
@@ -88,7 +88,7 @@ class Text(Vector):
 canvas.create_text(
     {self.x},
     {self.y},
-    anchor="nw",
+    anchor={self.anchor},
     text="{self.text}",
     fill="{self.text_color}",
     font=("{self.font}", {int(self.font_size)} * -1),

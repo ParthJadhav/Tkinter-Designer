@@ -34,6 +34,25 @@ class Vector(Node):
         y = abs(y - frame_y)
         return x, y
 
+    # Returns a two-letter string as a parameter for the 'anchor' property of
+    # a Tkinter Text widget. The string is a combination of the Figma properties
+    # textAlignHorizontal and textAlingVertical
+    def alignment(self):
+        align_translate = {
+            "LEFT-TOP": "NW",
+            "CENTER-TOP": "N",
+            "RIGHT-TOP": "NE",
+            "LEFT-CENTER": "W",
+            "CENTER-CENTER": "CENTER",
+            "RIGHT-CENTER": "E",
+            "LEFT-BOTTOM": "SW",
+            "CENTER-BOTTOM": "S",
+            "RIGHT-BOTTOM": "SE"
+        }
+        halign = self.style["textAlignHorizontal"]
+        valign = self.style["textAlignVertical"]
+        return(align_translate[f"{halign}-{valign}"])
+
 
 class Star(Vector):
     def __init__(self, node):
