@@ -80,7 +80,6 @@ class Text(Vector):
 
         font_name = font_name.replace('-', ' ')
         font_size = style["fontSize"]
-        print(font_name, font_size)
         return font_name, font_size
 
     def to_code(self):
