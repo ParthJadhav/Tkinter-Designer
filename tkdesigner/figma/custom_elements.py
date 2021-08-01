@@ -92,7 +92,7 @@ canvas.create_text(
     text="{self.text}",
     fill="{self.text_color}",
     font=("{self.font}", {int(self.font_size)} * -1),
-    width={self.width}
+    width={self.width} + {int(self.font_size)}
 )
 """
 
