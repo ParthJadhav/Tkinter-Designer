@@ -69,6 +69,7 @@ def main():
 
     designer = Designer(token, file_key, output_path)
     designer.design()
+    print(f"\nProject successfully generated at {output_path}.\n")
 
 
 if __name__ == "__main__":
