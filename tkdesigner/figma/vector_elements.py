@@ -5,12 +5,13 @@ class Vector(Node):
     def __init__(self, node):
         super().__init__(node)
 
-    def color(self):
+    def color(self) -> str:
+        """Returns HEX form of element RGB color (str)
+        """
         try:
             color = self.node["fills"][0]["color"]
-            rgba = [int(color.get(i, 0) * 255) for i in "rgba"]
-            # return tuple(rgba)
-            return f"#{rgba[0]:0X}{rgba[1]:0X}{rgba[2]:0X}"
+            r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
+            return f"#{r:02X}{g:02X}{b:02X}"
         except Exception:
             return "#FFFFFF"
 
