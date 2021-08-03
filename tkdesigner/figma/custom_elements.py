@@ -216,8 +216,56 @@ class TextEntry(Vector):
 
         self.entry_type = TEXT_INPUT_ELEMENT_TYPES.get(self.get("name"))
 
-    def to_code(self):
-        return f"""
+    if SCALED_VERSION == 'PIL':
+
+        def to_code(self):
+            return f"""
+im = Image.open((relative_to_assets("{self.image_path}")))
+im = im.resize((round(im.size[0]*0.5), round(im.size[1]*0.5)), {SCALE_RESAMPLE_METHOD})
+entry_image_{self.id_} = ImageTk.PhotoImage(im)
+entry_bg_{self.id_} = canvas.create_image(
+    {self.x},
+    {self.y},
+    image=entry_image_{self.id_}
+)
+entry_{self.id_} = {self.entry_type}(
+    bd=0,
+    bg="{self.bg_color}",
+    highlightthickness=0
+)
+entry_{self.id_}.place(
+    x={self.entry_x},
+    y={self.entry_y},
+    width={self.entry_width},
+    height={self.entry_height}
+)
+"""
+    elif SCALED_VERSION == 'TK':
+        def to_code(self):
+            return f"""
+im = PhotoImage(
+    file=relative_to_assets("{self.image_path}"))
+entry_image_{self.id_} = im.subsample(2,2)
+entry_bg_{self.id_} = canvas.create_image(
+    {self.x},
+    {self.y},
+    image=entry_image_{self.id_}
+)
+entry_{self.id_} = {self.entry_type}(
+    bd=0,
+    bg="{self.bg_color}",
+    highlightthickness=0
+)
+entry_{self.id_}.place(
+    x={self.entry_x},
+    y={self.entry_y},
+    width={self.entry_width},
+    height={self.entry_height}
+)
+"""
+    else:
+        def to_code(self):
+            return f"""
 entry_image_{self.id_} = PhotoImage(
     file=relative_to_assets("{self.image_path}")
 )
@@ -238,3 +286,4 @@ entry_{self.id_}.place(
     height={self.entry_height}
 )
 """
+
