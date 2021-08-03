@@ -286,4 +286,3 @@ entry_{self.id_}.place(
     height={self.entry_height}
 )
 """
-
