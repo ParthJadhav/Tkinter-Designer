@@ -189,8 +189,6 @@ image_{self.id_} = canvas.create_image(
 )
 """
 
-
-
 class TextEntry(Vector):
     def __init__(self, node, frame, image_path, *, id_):
         super().__init__(node)

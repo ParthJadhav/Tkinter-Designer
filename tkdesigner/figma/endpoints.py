@@ -3,6 +3,7 @@
 import requests
 from ..constants import SCALED_VERSION
 
+
 class Files:
     """https://www.figma.com/developers/api#files-endpoints
     """
