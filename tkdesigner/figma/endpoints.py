@@ -33,7 +33,7 @@ class Files:
 
     def get_image(self, item_id) -> str:
         response = requests.get(
-            f"{self.API_ENDPOINT_URL}/images/{self.file_key}?ids={item_id}",
+            f"{self.API_ENDPOINT_URL}/images/{self.file_key}?ids={item_id}&scale=2",
             headers={"X-FIGMA-TOKEN": self.token}
         )
 

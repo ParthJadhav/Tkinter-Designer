@@ -15,8 +15,9 @@ class Button(Rectangle):
 
     def to_code(self):
         return f"""
-button_image_{self.id_} = PhotoImage(
-    file=relative_to_assets("{self.image_path}"))
+im = Image.open((relative_to_assets("{self.image_path}")))
+im = im.resize((round(im.size[0]*0.5), round(im.size[1]*0.5)), Image.ANTIALIAS)
+button_image_{self.id_} = ImageTk.PhotoImage(im)
 button_{self.id_} = Button(
     image=button_image_{self.id_},
     borderwidth=0,

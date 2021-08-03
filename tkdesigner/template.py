@@ -7,6 +7,8 @@ from pathlib import Path
 
 from tkinter import *
 
+from PIL import Image, ImageTk
+
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("{{ assets_path }}")
