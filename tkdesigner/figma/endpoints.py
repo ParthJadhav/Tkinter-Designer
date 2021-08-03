@@ -1,7 +1,7 @@
 """Utility classes and functions for Figma API endpoints.
 """
 import requests
-
+from ..constants import SCALED_VERSION
 
 class Files:
     """https://www.figma.com/developers/api#files-endpoints
@@ -31,9 +31,15 @@ class Files:
         else:
             return response.json()
 
+    scale_value = 1 if SCALED_VERSION else 2
+    if SCALED_VERSION:
+        scale_value = 2
+    else:
+        scale_value = 1
+
     def get_image(self, item_id) -> str:
         response = requests.get(
-            f"{self.API_ENDPOINT_URL}/images/{self.file_key}?ids={item_id}&scale=2",
+            f"{self.API_ENDPOINT_URL}/images/{self.file_key}?ids={item_id}&scale={self.scale_value}",
             headers={"X-FIGMA-TOKEN": self.token}
         )
 

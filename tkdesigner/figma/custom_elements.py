@@ -1,5 +1,5 @@
 from .vector_elements import Vector, Rectangle
-
+from ..constants import SCALED_VERSION, SCALE_RESAMPLE_METHOD
 
 TEXT_INPUT_ELEMENT_TYPES = {
     "TextArea": "Text",
@@ -13,11 +13,52 @@ class Button(Rectangle):
         self.image_path = image_path
         self.id_ = id_
 
-    def to_code(self):
-        return f"""
+    if SCALED_VERSION == 'PIL':
+
+        def to_code(self):
+            return f"""
 im = Image.open((relative_to_assets("{self.image_path}")))
-im = im.resize((round(im.size[0]*0.5), round(im.size[1]*0.5)), Image.ANTIALIAS)
+im = im.resize((round(im.size[0]*0.5), round(im.size[1]*0.5)), {SCALE_RESAMPLE_METHOD})
 button_image_{self.id_} = ImageTk.PhotoImage(im)
+button_{self.id_} = Button(
+    image=button_image_{self.id_},
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_{self.id_} clicked"),
+    relief="flat"
+)
+button_{self.id_}.place(
+    x={self.x},
+    y={self.y},
+    width={self.width},
+    height={self.height}
+)
+"""
+    elif SCALED_VERSION == 'TK':
+        def to_code(self):
+            return f"""
+im = PhotoImage(
+    file=relative_to_assets("{self.image_path}"))
+button_image_{self.id_} = im.subsample(2,2)
+button_{self.id_} = Button(
+    image=button_image_{self.id_},
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("button_{self.id_} clicked"),
+    relief="flat"
+)
+button_{self.id_}.place(
+    x={self.x},
+    y={self.y},
+    width={self.width},
+    height={self.height}
+)
+"""
+    else:
+        def to_code(self):
+            return f"""
+button_image_{self.id_} = PhotoImage(
+    file=relative_to_assets("{self.image_path}"))
 button_{self.id_} = Button(
     image=button_image_{self.id_},
     borderwidth=0,
@@ -111,8 +152,34 @@ class Image(Vector):
         self.image_path = image_path
         self.id_ = id_
 
-    def to_code(self):
-        return f"""
+    if SCALED_VERSION == 'PIL':
+
+        def to_code(self):
+            return f"""
+im = Image.open((relative_to_assets("{self.image_path}")))
+im = im.resize((round(im.size[0]*0.5), round(im.size[1]*0.5)), {SCALE_RESAMPLE_METHOD})
+image_image_{self.id_} = ImageTk.PhotoImage(im)
+image_{self.id_} = canvas.create_image(
+    {self.x},
+    {self.y},
+    image=image_image_{self.id_}
+)
+"""
+    elif SCALED_VERSION == 'TK':
+        def to_code(self):
+            return f"""
+im = PhotoImage(
+    file=relative_to_assets("{self.image_path}"))
+image_image_{self.id_} = im.subsample(2,2)
+image_{self.id_} = canvas.create_image(
+    {self.x},
+    {self.y},
+    image=image_image_{self.id_}
+)
+"""
+    else:
+        def to_code(self):
+            return f"""
 image_image_{self.id_} = PhotoImage(
     file=relative_to_assets("{self.image_path}"))
 image_{self.id_} = canvas.create_image(
@@ -121,6 +188,7 @@ image_{self.id_} = canvas.create_image(
     image=image_image_{self.id_}
 )
 """
+
 
 
 class TextEntry(Vector):
