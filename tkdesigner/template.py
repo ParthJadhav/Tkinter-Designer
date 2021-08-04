@@ -5,7 +5,9 @@ TEMPLATE = """
 
 from pathlib import Path
 
-from tkinter import *
+# from tkinter import *
+# Explicit imports to satisfy Flake8
+from tkinter import Tk, Canvas, Entry, Text, Button
 
 from PIL import Image, ImageTk
 
@@ -44,4 +46,5 @@ canvas.place(x = 0, y = 0)
 
 window.resizable(False, False)
 window.mainloop()
+
 """

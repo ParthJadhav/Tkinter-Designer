@@ -30,6 +30,7 @@ Pillow = "^8.3.1"
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
 flake8 = "^3.9.2"
+pylint = "^2.9.6"
 
 [tool.poetry.scripts]
 tkdesigner = 'tkdesigner.cli:main'
