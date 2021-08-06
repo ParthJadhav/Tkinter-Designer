@@ -90,8 +90,7 @@ canvas.create_text(
     anchor="nw",
     text="{self.text}",
     fill="{self.text_color}",
-    font=("{self.font}", {int(self.font_size)} * -1),
-    width={self.width}
+    font=("{self.font}", {int(self.font_size)} * -1)
 )
 """
 
