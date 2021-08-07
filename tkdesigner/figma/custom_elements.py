@@ -1,6 +1,5 @@
 from .vector_elements import Vector, Rectangle
 
-
 TEXT_INPUT_ELEMENT_TYPES = {
     "TextArea": "Text",
     "TextBox": "Entry"
@@ -150,8 +149,7 @@ class TextEntry(Vector):
     def to_code(self):
         return f"""
 entry_image_{self.id_} = PhotoImage(
-    file=relative_to_assets("{self.image_path}")
-)
+    file=relative_to_assets("{self.image_path}"))
 entry_bg_{self.id_} = canvas.create_image(
     {self.x},
     {self.y},
