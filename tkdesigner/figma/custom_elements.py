@@ -20,6 +20,7 @@ button_{self.id_} = Button(
     image=button_image_{self.id_},
     borderwidth=0,
     highlightthickness=0,
+    activebackground="{self.frame.color()}",
     command=lambda: print("button_{self.id_} clicked"),
     relief="flat"
 )
