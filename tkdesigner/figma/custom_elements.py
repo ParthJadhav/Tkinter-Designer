@@ -11,6 +11,7 @@ class Button(Rectangle):
         super().__init__(node, frame)
         self.image_path = image_path
         self.id_ = id_
+        self.frame = frame
 
     def to_code(self):
         return f"""
