@@ -212,7 +212,7 @@ $ python3 gui.py
 1.打开TKinter Designer
 
 ```
-cd Tkinter-设计师
+cd Tkinter-Designer
 cd gui
 python3 gui.py
 ```
