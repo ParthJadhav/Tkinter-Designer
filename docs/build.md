@@ -13,7 +13,10 @@ Have we made a huge mistake? If so, open an issue and let us know!
 5. `poetry publish --build -r testpypi -u __token__ -p $TESTPYPI_TOKEN`
   
 
-## Packaging the old way [deprecated]
+## Packaging [deprecated in Tkinter-Designer as of 1.0.100]
+
+> This was preserved as a reference for anyone interested
+
 A brief explanation: packages in python are implicitly declared by providing an \_\_init\_\_.py file.
 Any directory with that file present is a package, every file within a package is a module.
 
