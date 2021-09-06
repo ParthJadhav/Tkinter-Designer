@@ -28,7 +28,7 @@ class Node:
     def shared_plugin_data(self):
         return self.node.get("sharedPluginData")
 
-    def get(self, key, default=None, /):
+    def get(self, key, default=None):
         return self.node.get(key, default)
 
 

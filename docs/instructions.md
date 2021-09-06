@@ -42,32 +42,38 @@ ___
 
 <a id="getting-started-2"></a>
 ## 2. Install Tkinter Designer
-Once you have Python installed, you can download Tkinter Designer from the [official repository](https://github.com/ParthJadhav/Tkinter-Designer).
 
-On the right-hand sidebar, click the latest release and, under **Assets**, choose `tkinter_designer.exe`. After the executable has downloaded, you are ready to run the program!
+*Three options:*
 
-*To run Tkinter Designer from the source code, follow the instructions below.*
+1. `pip install tkdesigner`
 
-1. Download the source files for Tkinter Designer by downloading it manually or using GIT.
+2. Install [poetry](https:python-poetry.org)
+   * `poetry new <gui_project_name> && cd <gui_project_name>`
+   * `poetry add tkdesigner`
+   * `poetry install`
 
-` git clone https://github.com/ParthJadhav/Tkinter-Designer.git `
+3. To run Tkinter Designer from the source code, follow the instructions below.
 
-2. Change your working directory to Tkinter Designer.
+   1. Download the source files for Tkinter Designer by downloading it manually or using GIT.
 
-`cd tkinter-designer`
+      ` git clone https://github.com/ParthJadhav/Tkinter-Designer.git `
+
+   2. Change your working directory to Tkinter Designer.
+
+      `cd tkinter-designer`
+      
+   3. Install the necessary dependencies by running 
+
+      * `pip install -r requirements.txt`
+         * In the event that pip doesn't work, also try the following commands:
+         * `pip3 install -r requirements.txt`
+         * `python -m pip install -r requirements.txt`
+         * `python3 -m pip install -r requirements.txt`
+         * If this still doesn't work, ensure that Python is added to the PATH.
    
-3. Install the necessary dependencies by running 
+   This will install all requirements and Tkinter Designer. Before you use Tkinter Designer you need to create a Figma File with the below instructions.
 
-`pip install -r requirements.txt`
-   * In the event that pip doesn't work, also try the following commands:
-     * `pip3 install -r requirements.txt`
-     * `python -m pip install -r requirements.txt`
-     * `python3 -m pip install -r requirements.txt`
-   * If this still doesn't work, ensure that Python is added to the PATH.
-  
-This will install all requirements and Tkinter Designer. Before you use Tkinter Designer you need to create a Figma File with the below instructions.
-
-If you already have created a file then skip to [**Using Tkinter Designer**](#Using-Tkinter-Designer) Section.
+   If you already have created a file then skip to [**Using Tkinter Designer**](#Using-Tkinter-Designer) Section.
 
 ___
 <br>
