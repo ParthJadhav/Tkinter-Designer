@@ -1,86 +1,86 @@
-# How to use Tkinter Designer
+# Tkinter Designer Nasıl Kullanılır
 
 #### Translations:
 - [简体中文](/docs/instructions.zh-CN.md)
-- [Français](/docs/instructions.fr-FR.md)
+- [English](/docs/instructions.md)
 - [ગુજરાતી](docs/instructions.gu-GU.md)
 
 ___
 
-## Table of Contents:
-1. [**Getting Started**](#getting-started-1)
-   1. [Install Python](#getting-started-1)
-   2. [Install Tkinter Designer](#getting-started-2)
-   3. [Make a Figma Account](#getting-started-3)
+## İçindekiler:
+1. [**Başlarken**](#getting-started-1)
+   1. [Python'u Kurun](#getting-started-1)
+   2. [Tkinter Designer'ı Yükleyin](#getting-started-2)
+   3. [Bir Figma Hesabı Oluşturun](#getting-started-3)
    
-2. [**Formatting Your Figma Design**](#formatting-1)
-   1. [Reference](#formatting-1)
-   2. [Element Guide](#formatting-2)
+2. [**Figma Tasarımınızı Biçimlendirme**](#formatting-1)
+   1. [Referans](#formatting-1)
+   2. [Element Kılavuzu](#formatting-2)
    
-3. [**Using Tkinter Designer**](#Using-Tkinter-Designer)
-   1. [Personal Access Token](#using-1)
-   2. [Getting your File URL](#using-2)
-   3. [Using The CLI](#using-cli)
-   4. [Using The GUI](#using-gui)
+3. [**Tkinter Designer'ı Kullanma**](#Using-Tkinter-Designer)
+   1. [Kişisel Erişim Tokenı](#using-1)
+   2. [Dosya URL'nizi Elde Etme](#using-2)
+   3. [CLI'ı Kullanma](#using-cli)
+   4. [GUI'yi Kullanma](#using-gui)
    
-4. [**Troubleshooting**](#Troubleshooting)
+4. [**Sorun Giderme**](#Troubleshooting)
 
 <br><br>
 
-# Getting Started <small>[[Top](#table-of-contents)]</small>
+# Başlarken <small>[[Top](#table-of-contents)]</small>
 
 <a id="getting-started-1"></a>
-## 1. Install Python
-Before using Tkinter Designer, you'll need to install Python.  
-* [Here is a link to the Python downloads page.](https://www.python.org/downloads)  
-* [Here is a helpful guide to installing Python on various operating systems.](https://wiki.python.org/moin/BeginnersGuide/Download)
+## 1. Python'u Kurun
+Tkinter Designer'ı kullanmaya başlamadan önce Python'u kurmanız gerekmektedir.
+* [Python'u burdan indirebilirsiniz.](https://www.python.org/downloads)  
+* [Burda ise Python'u çeşitli işletim sistemlerine indirmeye yarayacak bir rehber var.](https://wiki.python.org/moin/BeginnersGuide/Download)
 
-*Later in this guide, you will use the Package Installer for Python (pip), which may require you to add Python to your system PATH.*
+*Bu rehberden sonra Python'un paket yükleyicisi olan "pip"i kullanacaksınız, bu yüzden Python'u sistem yoluna eklemeniz gerekebilir.*
 
 ___
 <br>
 
 <a id="getting-started-2"></a>
-## 2. Install Tkinter Designer
+## 2. Tkinter Designer'ı Yükleyin
 
-*Three options:*
+*Üç yol*
 
 1. `pip install tkdesigner`
 
 2. Install [poetry](https:python-poetry.org)
-   * `poetry new <gui_project_name> && cd <gui_project_name>`
+   * `poetry new <gui_proje_ismi> && cd <gui_proje_ismi>`
    * `poetry add tkdesigner`
    * `poetry install`
 
-3. To run Tkinter Designer from the source code, follow the instructions below.
+3. Tkinter Designer'ı kaynak kodundan çalıştırmak için aşağıdaki adımları izleyin.
 
-   1. Download the source files for Tkinter Designer by downloading it manually or using GIT.
+   1. Tkinter Designer'ın kaynak kodunu GIT kullanarak veya manuel olarak indirin.
 
       ` git clone https://github.com/ParthJadhav/Tkinter-Designer.git `
 
-   2. Change your working directory to Tkinter Designer.
+   2. Çalışma alanınızı Tkinter Designer olarak değiştirin.
 
       `cd tkinter-designer`
       
-   3. Install the necessary dependencies by running 
+   3. Bunları çalıştırarak gerekenleri indirin.
 
       * `pip install -r requirements.txt`
-         * In the event that pip doesn't work, also try the following commands:
+         * O an "pip" çalışmıyorsa şu komutları deneyin:
          * `pip3 install -r requirements.txt`
          * `python -m pip install -r requirements.txt`
          * `python3 -m pip install -r requirements.txt`
-         * If this still doesn't work, ensure that Python is added to the PATH.
+         * Eğer halen çalışmıyorsa Python'un sistem yoluna eklendiğinden emin olun.
    
-   This will install all requirements and Tkinter Designer. Before you use Tkinter Designer you need to create a Figma File with the below instructions.
+   Bu tüm gerekli şeyleri ve Tkinter Designer'ı kuracaktır. Tkinter Designer'ı kullanmadan önce aşağıdaki yönergeler ile bir Figma dosyası oluşturmanız gerekmektedir.
 
-   If you already have created a file then skip to [**Using Tkinter Designer**](#Using-Tkinter-Designer) Section.
+   Eğer zaten oluşturduysanız [**Tkinter Designer'ı Kullanma**](#Using-Tkinter-Designer) kısmına atlayabilirsiniz.
 
 ___
 <br>
 
 <a id="getting-started-3"></a>
-## 3. Make a Figma Account
-1. In a web browser, navigate to [figma.com](https://www.figma.com/) and click 'Sign up'
+## 3. Bir Figma Hesabı Oluşturma
+1. Tarayıcınızdan [figma.com](https://www.figma.com/) adresine gidin ve "Üye Ol // Sign Up" tuşuna tıklayın.
 2. Enter your information, then verify your email
 3. Create a new Figma Design file
 4. Get started making your GUI
