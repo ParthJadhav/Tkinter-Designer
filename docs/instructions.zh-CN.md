@@ -202,7 +202,7 @@ $ python -m tkdesigner.cli --help
 默认情况下，GUI 代码将写入 build/gui.py。
 要运行生成的 GUI，请 cd 进入您构建它的目录（例如 build/）并像运行任何 Tkinter GUI 一样运行它。
 ```bash
-$ cd 构建
+$ cd build
 $ python3 gui.py
 ```
 
