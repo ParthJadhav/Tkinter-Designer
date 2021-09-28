@@ -115,20 +115,20 @@ ___
 <br>
 
 <a id="formatting-2"></a>
-## 2. Element Yönergesi
+## 2. Element Kılavuzu
 <br>
 
-1. **First, create a Frame that will serve as your Tkinter Window.**
+1. **Öncelikle, Tkinter Penceresi olarak kullanacağınız bir "frame" oluşturun.**
 <br><br>
 
-2. **Adding Images**
-   * Images can be created using shapes and/or images
-   * If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
-   * After that name the element or group as "Image".
+2. **Resim Ekleme**
+   * Resimler, şekiller ve resimler kullanılarak oluşturulabilir.
+   * Eğer birden fazla şekil veya resim kullandıysanız, önce hepsini seçip ardından <kbd>CTRL/&#8984; + G</kbd> kısayolu ile gruplandırmanız gerekir.
+   * Bundan sonra elementi veya grubu "Image" olarak isimlendirin.
 <br><br>
 
-3. **Text (Normal Text)**
-   * Use the <kbd>T</kbd> key to activate the text tool, then add text as desired
+3. **Yazı (Normal Yazı)**
+   * <kbd>T</kbd> tuşunu kullanarak yazı aracını aktif edin. Ardından ikey to activate the text tool, then add text as desired
    * Text does not have to be renamed for use in Tkinter Designer
    * Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
 <br><br>
