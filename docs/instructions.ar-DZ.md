@@ -244,5 +244,51 @@ $ cd build
 $ python3 gui.py
 ```
 
+<a id="using-gui"></a>
+## استعمال واجهة المستخدم
+### افتح Tkinter Designer قبل تنفيذ الخطوات التالية
+<br>
+
+1. افتح Tkinter Designer GUI عن طريق
+```
+cd Tkinter-Designer
+cd gui
+python3 gui.py
+```
+2. إنسخ *access token الشخصي إلى* **Token ID** في Tkinter Designer
+3. إنسخ الرابط إلى **File URL** في Tkinter Designer
+4. إضغط على **Output Path** لفتح متصفح الملفات
+5. إختر path مخرجات وإضغط على **Select Folder**
+6. إضغط على **Generate**
+
+سيتم وضع ملفات الإخراج من Tkinter Designer في path الذي اخترته ، داخل مجلد جديد يسمى **build**. تهانينا ، لقد قمت الآن بإنشاء Tkinter GUI باستخدام Tkinter Designer!
+
+<br><br>
+
+<a id="Troubleshooting"></a>
+
+# Troubleshooting <small>[[الأعلى](#table-of-contents)]</small>
+
+* العناصر غير مرئية؟ في غير محلها؟
+  * يرجى التأكد من أن ملف Figma الخاص بك يحتوي على عناصره المسماة بشكل صحيح. * أنظر إلى [تنسيق تصميم Figma, &sect;1](#formatting-1)
+
+* الزر له خلفية رمادية من غير قصد؟
+  * تأكد من إضافة مستطيل خلف عنصر الزر الخاص بك ، وأن لون التعبئة الخاص به هو نفسه لون الخلفية
+
+* عناصر غير صحيحة؟
+  * تأكد من تسمية العناصر الخاصة بك بشكل صحيح في Figma
+    * أنظر إلى [تنسيق تصميم Figma, &sect;1](#formatting-1)
+
+* النافذة أكبر من الشاشة؟
+  * قم بتصغير العناصر الخاصة بك في Figma
+
+* الملفات لم تُولّد؟
+  * أعد تشغيل Tkinter Designer
+  * تحقق مرة أخرى access token  وعنوان URL
+  * تأكد من أن التصميم الخاص بك يحتوي على Frame
+
+* شيء آخر؟
+  * [الإبلاغ عن المشكلات غير المدرجة هنا على GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
+
 
 </div>
