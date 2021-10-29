@@ -156,15 +156,15 @@ ___
    * Butonu(Rectangle), ve herhangi bir yazıyı seçin,  ardından onları <kbd>CTRL/&#8984; + G</kbd> ile guruplayın
    * Grubu "Button" olarak adlandırın
 
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+#### Herhangi bir problemde [bu videoyu](https://youtu.be/mFjE2-rbpm8?t=275) referans alın
 
 <br><br>
 
-8. **Rounded Button** 
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Make it rounded by adding corner radius by selecting the rectangle and adding corner radius from the right side. [Read more on it](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
-   * Create a Rectangle with same size of your button. Don't make it rounded. 
+8. **Köşeli Buton** 
+   * Buton olarak kullanmak için bir rectangle(dikdörtgen) ekleyin
+     * Opsiyonel: Buton için bir yazı ekleyin
+   * Diktörtgene sağ taraftan kenar-yumuşatma ekleyerek kenarlarını yuvarlayın. [Daha fazlasına ulaşın](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
+   * Butonunuz ile aynı boyutta bir diktörtgen oluşturun. Onu yuvarlatmayın.
    * Change the Rectangle's color to match the Background
    * Now move the newly created rectangle below the main button(Rectangle).
    * Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
