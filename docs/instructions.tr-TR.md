@@ -128,33 +128,33 @@ ___
 <br><br>
 
 3. **Yazı (Normal Yazı)**
-   * <kbd>T</kbd> tuşunu kullanarak yazı aracını aktif edin. Ardından ikey to activate the text tool, then add text as desired
-   * Text does not have to be renamed for use in Tkinter Designer
-   * Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
+   * <kbd>T</kbd> tuşunu kullanarak yazı aracını aktif edin. Ardından istediğiniz yazıyı girin
+   * Tkinter Designer'da yazının kullanımı için yeniden isimlendirilmesine gerek yoktur
+   * <kbd>Return</kbd>  ya da  <kbd>Enter</kbd> tuşuna basarak sonraki satıra ilerleyin.
 <br><br>
 
-4. **Entry (Single-Line User Input)**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "TextBox"
+4. **Giriş (Tek Satır Kullanıcı Input'u)**
+   * <kbd>R</kbd> tuşu ile Rectangle(Dikdörtgen) aracını aktive edin
+   * Diktörtgeni beğeninize göre ayarlayın
+   * Dikdörtgenin "TextBox" olarak adlandırıldığından emin olun
 <br><br>
 
-5. **Text Area (Multi-Line User Input)**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "TextArea"
+5. **Yazı Alanı (Çoklu Kullanıcı Input)**
+   * <kbd>R</kbd> tuşu ile Rectangle(Dikdörtgen) aracını aktive edin
+   * Diktörtgeni beğeninize göre ayarlayın
+   * Dikdörtgenin "TextArea" olarak adlandırıldığından emin olun
 
-6. **Rectangle**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "Rectangle"
+6. **Dikdörtgen**
+   * <kbd>R</kbd> tuşu ile Rectangle(Dikdörtgen) aracını aktive edin
+   * Diktörtgeni beğeninize göre ayarlayın
+   * Dikdörtgenin "Rectangle" olarak adlandırıldığından emin olun
 <br><br>
 
-7. **Normal Button**
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
+7. **Normal Buton**
+   * Buton olarak kullanmak için bir rectangle(dikdörtgen) ekleyin
+     * Opsiyonel: Buton için bir yazı ekleyin
+   * Butonu(Rectangle), ve herhangi bir yazıyı seçin,  ardından onları <kbd>CTRL/&#8984; + G</kbd> ile guruplayın
+   * Grubu "Button" olarak adlandırın
 
 #### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
 
