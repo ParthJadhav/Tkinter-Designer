@@ -165,45 +165,45 @@ ___
      * Opsiyonel: Buton için bir yazı ekleyin
    * Diktörtgene sağ taraftan kenar-yumuşatma ekleyerek kenarlarını yuvarlayın. [Daha fazlasına ulaşın](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
    * Butonunuz ile aynı boyutta bir diktörtgen oluşturun. Onu yuvarlatmayın.
-   * Change the Rectangle's color to match the Background
-   * Now move the newly created rectangle below the main button(Rectangle).
-   * Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
+   * Dikdörtgeninizin rengini arkaplan ile eşleşmesi için değiştirin
+   * Şimdi yeni oluşturulan dikdörtgeni ana düğmenin(dikdörtgenin) altına taşıyın.
+   * Butonu, dikdörtgeni ve herhangi opsiyonel yazıyı seçin ve onları <kbd>CTRL/&#8984; + G</kbd> ile gruplandırın
+   * Grubu "Button" olarak adlandırın.
 
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+#### Herhangi bir problemde [bu videoyu](https://youtu.be/mFjE2-rbpm8?t=275) referans alın
 
 <br><br>
 
 <a id="Using-Tkinter-Designer"></a>
-# Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
+# Tkinter Designer'ı Kullanma <small>[[Top](#table-of-contents)]</small>
 
-## Required Inputs
-There are some inputs you'll need to collect to be able to use the TKinter Designer.
+## Gerekli Girdiler
+TKinter Designer'ı kullanabilmek için bazı girdileri toplamanız gerekmektedir.
 
 <a id="using-1"></a>
 
-### 1. Personal Access Token
-1. Log into your Figma account
-2. Navigate to Settings
-3. In the **Account** tab, scroll down to **Personal access tokens**
-4. Enter the name of your access token in the entry form and press <kbd>Enter</kbd>
-5. Your personal access token will be created.
-   * Copy this token and keep it somewhere safe.
-   * **You will not get another chance to copy this token.**
+### 1. Kişisel Erişim Tokenı
+1. Figma hesabınıza girin
+2. Ayarlara gidin
+3. **Account** sekmesinde, **Personal access tokens** kısmına kadar kaydırın
+4. Giriş formu için erişim tokeninizin ismini girin ve <kbd>Enter</kbd> tuşuna basın
+5. Kişisel erişim tokeniniz oluşturalacak.
+   * Bu tokeni kopyalayın ve güvenli bir yerde saklayın.
+   * **Bu tokenı kopyalamak için başka şansınız olmayacak.**
 
 <a id="using-2"></a>
 
-### 2. Getting your File URL
-1. In your Figma design file, click the **Share** button in the top bar, then click on **&#x1f517; Copy link**
+### 2. Dosya URL'nizi Elde Etme
+1. Figma tasarım dosyanızda üst menüden **Share** butonuna, ardından **&#x1f517; Copy link**'e tıklayın
 
 <a id="using-cli"></a>
-## Using the CLI
+## CLI'ı Kullanma
 
-Using the CLI is as simple as installing the package and running the CLI tool. 
+CLI'yı kullanmak paketi yüklemek ve CLI aracını çalıştırmak kadar kolaydır.
 
-### From PyPi
+### PyPi'den
 
-You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
+Verilerinizle $FILE_URL & $FIGMA_TOKEN değiştirerek aşağıdaki komutu test olarak kullanabilirsiniz. Eğer linke ve tokena ulaşamadıysanız [**Gerekli Girdiler**](#using-1) kısmına bakın.
 
 
 ``` bash
@@ -212,11 +212,11 @@ $ pip install tkdesigner
 $ tkdesigner $FILE_URL $FIGMA_TOKEN
 ```
 
-### From Source
+### Kaynaktan
 
-To use CLI from the source code you need to clone the repository and then follow the below instructions.
+CLI'ı kaynak kodundan kullanmak için depoyu klonlamanız ve ardından aşağıdaki talimatları izlemeniz gerekir.
 
-You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
+Verilerinizle $FILE_URL & $FIGMA_TOKEN değiştirerek aşağıdaki komutu test olarak kullanabilirsiniz. Eğer linke ve tokena ulaşamadıysanız [**Gerekli Girdiler**](#using-1) kısmına bakın.
 
 ```bash
 $ python -m tkdesigner.cli $FILE_URL $FIGMA_TOKEN
@@ -225,56 +225,56 @@ $ python -m tkdesigner.cli $FILE_URL $FIGMA_TOKEN
 $ python -m tkdesigner --help
 ```
 
-### Output
-By default, the GUI code will be written to build/gui.py. You can specify the output path by using `-o` Flag and providing the path.
+### Çıktı
+Varsayılan olarak GUI kodu build/gui.py dosyasına yazılacak. Çıktı yolunu `-o` ile değiştirebilirsiniz.
 
-To run the generated GUI, cd into the directory you built it to (e.g. build/) and run it just as you would any Tkinter GUI.
+Oluşturulan GUI'yi çalıştırmak için GUI'yi oluşturduğunuz konuma gidin ve herhangi normal bir Tkinter GUI'si çalıştırır gibi çalıştırın.
 ```bash
 $ cd build
 $ python3 gui.py
 ```
 <a id="using-gui"></a>
-## Using the GUI
-### Open Tkinter Designer before doing the following steps.
+## GUI'yi Kullanma
+###  Sıradaki adımları yapmadan önce Tkinter Designer'ı açın.
 <br>
 
-1. Open TKinter Designer GUI by
+1. TKinter Designer GUI'sini aşağıdaki kod yardımıyla açın
 ```
 cd Tkinter-Designer
 cd gui
 python3 gui.py
 ```
-2. Paste your *personal access token* into the **Token ID** form in Tkinter Designer
-3. Paste the link into the **File URL** form in Tkinter Designer
-4. Click the **Output Path** form to open a file browser
-5. Choose an output path and click **Select Folder**
-6. Press **Generate**
+2. *kişisel erişim tokenı*'nı Tkinter Designer'daki **Token ID** kısmına yapıştırın.
+3. Tkinter Designer'da linki **File URL** kısmına yapıştırın
+4. Dosya gezgininden bir dosya açmak için **Output Path**'a tıklayın
+5. Bir çıktı yolu seçin ve **Select Folder**'a basın
+6. **Generate**'e tıklayın
 
-The output files from Tkinter Designer will be placed in your chosen directory, inside a new folder called **build**. Congratulations, you have now created your Tkinter GUI using Tkinter Designer!
+Tkinter Designer'ın çıktı dosyaları, seçtiğiniz dizine, **build** adlı yeni bir klasöre yerleştirilecektir. Tebrikler, şimdi Tkinter GUI'nizi Tkinter Designer kullanarak oluşturdunuz!
 
 <br><br>
 
 <a id="Troubleshooting"></a>
 
-# Troubleshooting <small>[[Top](#table-of-contents)]</small>
+# Sorun Giderme <small>[[Top](#table-of-contents)]</small>
 
-* Elements not visible? Misplaced?
-  * Please make sure that your Figma File has its elements named correctly. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
+* Elementler görünmüyor mu? Yanlış mı yerleştirilmiş?
+  * Lütfen Figma dosyasındaki elementlerin doğru isimlendirildiğinden emin olun. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
 
-* Button has an unintended gray background?
-  * Make sure you have added a Rectangle behind your button element, and that its Fill color is the same as the Background's
+* Butonun istenmeyen bir gri arka planı mı var?
+  * Buton elementinizin arkasına dikdörtgen eklediğinizden ve dolgu renginin arka plan rengiyle aynı olduğundan emin olun.
 
-* Incorrect elements?
-  * Make sure you have named your elements correctly in Figma
-    * See [Formatting Your Figma Design, &sect;1](#formatting-1)
+* Yanlış elementler?
+  * Figmada elementinizi doğru isimlendirdiğinizden emin olun
+    * Şu kısma bakın: [Figma Tasarımınızı Biçimlendirme, &sect;1](#formatting-1)
 
-* Window is larger than the screen?
-  * Reduce the size of your elements in Figma
+* Pencere ekranınızdan daha mı büyük?
+  * Figma'da elementlerinizin boyutunu düşürün
 
-* Files not generating?
-  * Restart Tkinter Designer
-  * Double-check the token and URL
-  * Make sure your design has a Frame
+* Dosya oluşturulmuyor mu?
+  * Tkinter Designer'ı yeniden başlatın
+  * Token'ı ve URL'yi iki kez kontrol edin
+  * Tasarımınızın bir Frame'e(çerçeve) sahip olduğundan emin olun
 
-* Something else?
-  * [Report issues not listed here on GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
+* Başka bir şey?
+  * [GitHub'da burda listelenmeyen sorunları bildirin](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
