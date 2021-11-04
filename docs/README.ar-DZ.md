@@ -37,20 +37,17 @@ ___
 
 ___
 
+## ⚡️ تثبيت واستعمال Tkinter Designer
+
+تحتوي التعليمات على كل المعلومات حول تثبيت واستعمال Tkinter Designer، بالإضافة إلى troubleshooting والإبلاغ عن المشاكل. يوجد أيضًا مقطع فيديو.
+
+### [إقرأ التعليمات](/docs/instructions.ar-DZ.md)
+
 ## 🦋 دعم Tkinter Designer
 
 الحياة بدون قهوة، كشيءٍ بلا شيء... آسف، لم أشرب أي قهوة بعد.
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
-
-## ⚡️ تثبيت واستعمال Tkinter Designer
-
-تحتوي التعليمات على كل المعلومات حول تثبيت واستعمال Tkinter Designer، بالإضافة إلى troubleshooting والإبلاغ عن المشاكل. يوجد أيضًا مقطع فيديو.
-
-
-
-### [إقرأ التعليمات](/docs/instructions.ar-DZ.md)
-### [شاهد الفيديو](https://youtu.be/mFjE2-rbpm8)  
 
 ___
 <br>
@@ -60,10 +57,6 @@ ___
 إضغط على الزر أدناه للانضمام الى الdiscord server للمشاركة في النقاشات.
 
 <a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="217px" ></a>
-
-## ✅ أهمية التسمية (مذكورة في [الفيديو](https://youtu.be/mFjE2-rbpm8) و [التعليمات](/docs/instructions.ar-DZ.md))
-
-Tkinter Designer يعتمد بشكل كبير على أسماء العناصر لتحويلها إلى كود. أنظر إلى دليل التسمية [هنا](/docs/instructions.md#2-element-guide).
 
 ___
 <br>
