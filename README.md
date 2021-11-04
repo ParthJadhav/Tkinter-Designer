@@ -46,7 +46,7 @@ ___
 
 ## 🦋 Supporting Tkinter Designer
 
-Life without coffee is like something without something … sorry, I haven’t had any coffee yet. 
+If you or your company has benefited from Tkinter Designer, consider supporting the development of the project through donations. This will feul the development of Tkinter Designer! It's as easy as making a Coffee; Please make one for me ;)
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a> 
 
@@ -59,12 +59,6 @@ Click the button below to join the discord server and take part in discussions.
 
 <a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="217px" ></a> 
 
-
-## ✅  Importance of Naming (mentioned in the [video](https://youtu.be/mFjE2-rbpm8) and [instructions](/docs/instructions.md))
-
-Tkinter Designer heavily depends on names of the elements to convert it to code. See the naming guide [here](/docs/instructions.md#2-element-guide).
-___
-<br>
 
 ## 📐 How it Works
 The only thing the user needs to do is design an interface with Figma, and then paste the Figma file URL and API token into Tkinter Designer.
