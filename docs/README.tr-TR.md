@@ -18,6 +18,8 @@
 - [简体中文](/docs/README.zh-CN.md)
 - [English](/README.md)
 - [ગુજરાતી](/docs/README.gu-GU.md)
+- [हिन्दी](/docs/README.hin-HIN.md)
+- [عربية](/docs/README.ar-DZ.md)
 
 ---
 
@@ -47,7 +49,7 @@ Hayat sanki kahvesiz daha … pardon, şu ana kadar hiç kahvem olmadı.
 
 Yönergeler sorun giderme ve hata bildirme ile birlikte Tkinter Designer'ı kurmak ve kullanmak için gereken tüm bilgileri içeriyor. Hatta bunun hakkında bir video bile var.
 
-### [Yönergeleri Okuyun](/docs/instructions.md)
+### [Yönergeleri Okuyun](/docs/instructions.tr-TR.md)
 
 ### [Videoyu İzleyin](https://youtu.be/mFjE2-rbpm8)
 
@@ -61,9 +63,9 @@ Aşağıdaki butona tıklayarak Discord sunucumuza katılın ve tartışmalarda 
 
 <a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="217px" ></a>
 
-## ✅ İsimlendirmenin önemi ([videoda](https://youtu.be/mFjE2-rbpm8) ve [yönergelerde](/docs/instructions.md) bahsedildi)
+## ✅ İsimlendirmenin önemi ([videoda](https://youtu.be/mFjE2-rbpm8) ve [yönergelerde](/docs/instructions.tr-TR.md) bahsedildi)
 
-Tkinter Designer koda çevrilen elementlerin isimlerine dayanır. İsimlendirme yönergesini [buradan](/docs/instructions.md#2-element-guide) görün.
+Tkinter Designer koda çevrilen elementlerin isimlerine dayanır. İsimlendirme yönergesini [buradan](/docs/instructions.tr-TR.md.md#2-element-guide) görün.
 
 ---
 
