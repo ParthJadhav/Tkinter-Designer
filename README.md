@@ -36,13 +36,9 @@ Tkinter Designer uses the Figma API to analyse a design file and create the resp
 2. Significantly faster than creating code manually
 3. Ability to create more beautiful interfaces
 
-## ⚡️ Using Tkinter Designer (Documentation)
+## ⚡️ Read the instruction here -> [Documentation](/docs/instructions.md) 
 
 The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues.
-
-### [Read the Instructions](/docs/instructions.md) 
-
-___
 
 ## 🦋 Supporting Tkinter Designer
 
@@ -50,15 +46,11 @@ If you or your company has benefited from Tkinter Designer, consider supporting 
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a> 
 
-___
-<br>
-
 ## 🔵 Join Official Tkinter Designer's Discord server
 
 Click the button below to join the discord server and take part in discussions. 
 
 <a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="217px" ></a> 
-
 
 ## 📐 How it Works
 The only thing the user needs to do is design an interface with Figma, and then paste the Figma file URL and API token into Tkinter Designer.
@@ -91,9 +83,6 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 ## 🔥 Showcase
 If your app was made with Tkinter Designer, let me know. It will be helpful for others to see more examples!  
 (See: [Contact Me](#-contact-me)) or use [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) section in Discussions.
-
-___
-<br>
  
 
 ## 📝 Contact Me
