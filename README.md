@@ -17,6 +17,7 @@
 - [简体中文](/docs/README.zh-CN.md)
 - [Français](/docs/README.fr-FR.md)
 - [ગુજરાતી](/docs/README.gu-GU.md)
+- [عربية](/docs/README.ar-DZ.md)
 
 ___ 
 
