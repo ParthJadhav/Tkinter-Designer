@@ -1,7 +1,7 @@
 # Makefiles are traditionally for building C projects... Or something, IDK. Whatever.
 # They're a great drop in for shared script runners, keeping cmd syntax brief.
 
-# Declare a PHONY target, write the sequence of commands it executes, then chain them togehter.
+# Declare a PHONY target, write the sequence of commands it executes, then chain them together.
 # In your shell just run `make lint` to just run flake8 with the options listed.
 # or run `make precommit` to run the lint target script and if it successfully exits then the test target script.
 
