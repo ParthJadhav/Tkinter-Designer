@@ -4,6 +4,8 @@
 - [简体中文](/docs/instructions.zh-CN.md)
 - [Français](/docs/instructions.fr-FR.md)
 - [ગુજરાતી](docs/instructions.gu-GU.md)
+- [عربية](/docs/instructions.ar-DZ.md)
+- [Turkish](/docs/instructions.tr-TR.md)
 
 ___
 

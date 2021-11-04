@@ -15,9 +15,12 @@
   <br>
 
 #### 翻译:
-- [English](/README.md)
+- [简体中文](/docs/README.zh-CN.md)
 - [Français](/docs/README.fr-FR.md)
 - [ગુજરાતી](/docs/README.gu-GU.md)
+- [हिन्दी](/docs/README.hin-HIN.md)
+- [عربية](/docs/README.ar-DZ.md)
+- [Turkish](/docs/README.tr-TR.md)
 
 ___ 
 
@@ -37,21 +40,17 @@ Tkinter Designer 使用 Figma API 来分析设计文件并创建 GUI 所需的�
 
 ___
 
+## ⚡️ 安装和使用 Tkinter Designer
+
+这些说明包含有关安装和使用 Tkinter Designer 的所有信息，以及用于故障排除和报告问题的信息.
+
+[阅读说明书](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md)
+
 ## 🦋 支持 Tkinter Designer
 
 没有咖啡的生活是艰难的……对不起，我还没有喝过咖啡。
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
-
-## ⚡️ 安装和使用 Tkinter Designer
-
-这些说明包含有关安装和使用 Tkinter Designer 的所有信息，以及用于故障排除和报告问题的信息。 还有一种视频格式。
-
-<br>
-
-[观看视频](https://youtu.be/mFjE2-rbpm8)  
-
-[阅读说明书](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md)
 
 ___
 <br>
@@ -87,12 +86,6 @@ Tkinter Designer 的可能性是无限的，但这里有几个可以在 Tkinter 
 ___
 <br>
  
-## ✅  命名指南（在 [视频](https://youtu.be/mFjE2-rbpm8) 和 [说明](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md) 中提到）
-
-Tkinter Designer 在很大程度上依赖于元素的名称将其转换为代码。 请参阅命名指南 [此处](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.zh-CN.md#2-element-guide)。
-
-___
-<br>
 
 ## 📝 联络我
 

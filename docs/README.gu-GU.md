@@ -15,8 +15,10 @@
 
 ## અનુવાદો
 - [简体中文](/docs/README.zh-CN.md)
-- [English](/README.md)
 - [Français](/docs/README.fr-FR.md)
+- [हिन्दी](/docs/README.hin-HIN.md)
+- [عربية](/docs/README.ar-DZ.md)
+- [Turkish](/docs/README.tr-TR.md)
 
 ___ 
 
@@ -34,19 +36,18 @@ Tkinter ડિઝાઇનર ડિઝાઇન ફાઇલનું વિશ
 
 ___
 
+## ઇન્સ્ટોલ અને ઉપયોગ કરી રહ્યું છે Tkinter Designer
+
+સૂચનોમાં મુશ્કેલીનિવારણ અને રિપોર્ટિંગ મુદ્દાઓની માહિતી સાથે, ટિંકિટર ડિઝાઇનર ઇન્સ્ટોલ કરવા અને વાપરવા વિશેની તમામ માહિતી શામેલ છે.
+
+### [સૂચનો વાંચો](/docs/instructions.gu-GU.md)
+
+
 ## Tkinter સહાયક ટિંકિટર ડિઝાઇનર
 
 Coffee :coffee:  વિનાનું જીવન કંઈક વિનાનું છે ... માફ કરશો, મારી પાસે હજી સુધી કોઈ કોફી નથી.
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src = "https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" Alt="મને એક કોફી ખરીદો" width= "217px"></a>
-
-
-## ઇન્સ્ટોલ અને ઉપયોગ કરી રહ્યું છે Tkinter Designer
-
-સૂચનોમાં મુશ્કેલીનિવારણ અને રિપોર્ટિંગ મુદ્દાઓની માહિતી સાથે, ટિંકિટર ડિઝાઇનર ઇન્સ્ટોલ કરવા અને વાપરવા વિશેની તમામ માહિતી શામેલ છે. એક વીડિયો પણ છે.
-
-### [સૂચનો વાંચો](/docs/instructions.gu-GU.md)
-### [વિડિઓ જુઓ](https://youtu.be/mFjE2-rbpm8)
 
 ___
 <br>

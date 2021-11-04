@@ -1,9 +1,10 @@
 # 如何使用 Tkinter Designer
 
 #### 翻译:
-- [English](/docs/instructions.md)
 - [Français](/docs/instructions.fr-FR.md)
 - [ગુજરાતી](docs/instructions.gu-GU.md)
+- [عربية](/docs/instructions.ar-DZ.md)
+- [Turkish](/docs/instructions.tr-TR.md)
 
 ___
 
