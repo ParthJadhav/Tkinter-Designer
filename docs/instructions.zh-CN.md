@@ -147,7 +147,7 @@ ___
 6. **矩形**
     * 使用 <kbd>R</kbd> 激活矩形工具
     * 根据您的喜好调整矩形
-    * 确保矩形被命名为“矩形”
+    * 确保矩形被命名为“Rectangle”
 <br><br>
 
 7. **按钮**
@@ -156,7 +156,7 @@ ___
     * 在按钮下方的图层上创建一个矩形
     * 更改矩形的颜色以匹配背景
     * 选择按钮、矩形和任何可选文本，然后将它们与<kbd>CTRL/&#8984; + G</kbd>
-   * 将组命名为“按钮”
+   * 将组命名为“Button”
    
 <br><br>
 
@@ -203,7 +203,7 @@ $ python -m tkdesigner.cli --help
 默认情况下，GUI 代码将写入 build/gui.py。
 要运行生成的 GUI，请 cd 进入您构建它的目录（例如 build/）并像运行任何 Tkinter GUI 一样运行它。
 ```bash
-$ cd 构建
+$ cd build
 $ python3 gui.py
 ```
 
