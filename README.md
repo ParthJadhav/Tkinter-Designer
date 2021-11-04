@@ -35,6 +35,12 @@ Tkinter Designer uses the Figma API to analyse a design file and create the resp
 2. Significantly faster than creating code manually
 3. Ability to create more beautiful interfaces
 
+## ⚡️ Using Tkinter Designer (Documentation)
+
+The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues.
+
+### [Read the Instructions](/docs/instructions.md) 
+
 ___
 
 ## 🦋 Supporting Tkinter Designer
@@ -42,14 +48,6 @@ ___
 Life without coffee is like something without something … sorry, I haven’t had any coffee yet. 
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a> 
-
-
-## ⚡️ Installing & Using Tkinter Designer
-
-The instructions contain all the information about installing and using Tkinter Designer, along with information for troubleshooting and reporting issues. There is also a video.
-
-### [Read the Instructions](/docs/instructions.md)
-### [Watch the Video](https://youtu.be/mFjE2-rbpm8)  
 
 ___
 <br>

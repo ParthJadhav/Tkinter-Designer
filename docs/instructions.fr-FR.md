@@ -2,8 +2,9 @@
 
 #### Traductions:
 - [简体中文](/docs/instructions.zh-CN.md)
-- [English](/docs/instructions.md)
 - [ગુજરાતી](docs/instructions.gu-GU.md)
+- [عربية](/docs/instructions.ar-DZ.md)
+- [Turkish](/docs/instructions.tr-TR.md)
 
 ___
 

@@ -39,21 +39,20 @@ Tkinter Designer Figma API'sini kullanarak bir tasarım dosyasını analiz eder 
 
 ---
 
+## ⚡️ Tkinter Designer'ı Kurmak ve Kullanmak
+
+Yönergeler sorun giderme ve hata bildirme ile birlikte Tkinter Designer'ı kurmak ve kullanmak için gereken tüm bilgileri içeriyor.
+
+### [Yönergeleri Okuyun](/docs/instructions.tr-TR.md)
+
+---
+
 ## 🦋 Tkinter Designer'ı Destekleme
 
 Hayat sanki kahvesiz daha … pardon, şu ana kadar hiç kahvem olmadı.
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
 
-## ⚡️ Tkinter Designer'ı Kurmak ve Kullanmak
-
-Yönergeler sorun giderme ve hata bildirme ile birlikte Tkinter Designer'ı kurmak ve kullanmak için gereken tüm bilgileri içeriyor. Hatta bunun hakkında bir video bile var.
-
-### [Yönergeleri Okuyun](/docs/instructions.tr-TR.md)
-
-### [Videoyu İzleyin](https://youtu.be/mFjE2-rbpm8)
-
----
 
 <br>
 
@@ -62,12 +61,6 @@ Yönergeler sorun giderme ve hata bildirme ile birlikte Tkinter Designer'ı kurm
 Aşağıdaki butona tıklayarak Discord sunucumuza katılın ve tartışmalarda yer alın.
 
 <a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="217px" ></a>
-
-## ✅ İsimlendirmenin önemi ([videoda](https://youtu.be/mFjE2-rbpm8) ve [yönergelerde](/docs/instructions.tr-TR.md) bahsedildi)
-
-Tkinter Designer koda çevrilen elementlerin isimlerine dayanır. İsimlendirme yönergesini [buradan](/docs/instructions.tr-TR.md.md#2-element-guide) görün.
-
----
 
 <br>
 

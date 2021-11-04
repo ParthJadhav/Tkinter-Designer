@@ -15,8 +15,10 @@
 
 #### Traductions:
 - [简体中文](/docs/README.zh-CN.md)
-- [English](/README.md)
 - [ગુજરાતી](/docs/README.gu-GU.md)
+- [हिन्दी](/docs/README.hin-HIN.md)
+- [عربية](/docs/README.ar-DZ.md)
+- [Turkish](/docs/README.tr-TR.md)
 
 ___ 
 
@@ -35,25 +37,18 @@ Tkinter Designer utilise l'API de Figma pour analyser les fichiers de design afi
 
 ___
 
+## ⚡️ Installation et utilisation de Tkinter Designer
+
+Les instructions contiennent toutes les informations à propos de l'installation et de l'utilisation de Tkinter Designer, ainsi que les informations pour diagnostiquer et signaler les problèmes.
+
+### [Lire les instructions](instructions.fr-FR.md)
+
 ## 🦋 Soutenir Tkinter Designer
 
 La vie sans café est quelque chose sans quelque chose… désolé, je n'ai pas encore eu mon café.
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
 
-## ⚡️ Installation et utilisation de Tkinter Designer
-
-Les instructions contiennent toutes les informations à propos de l'installation et de l'utilisation de Tkinter Designer, ainsi que les informations pour diagnostiquer et signaler les problèmes. Il y a également une vidéo.
-
-### [Lire les instructions](instructions.fr-FR.md)
-### [Regarder la vidéo](https://youtu.be/mFjE2-rbpm8)  
-
-___
-<br>
-
-## ✅ L'importance de nommer (mentionnée dans la [vidéo](https://youtu.be/mFjE2-rbpm8) et les [instructions](instructions.fr-FR.md))
-
-Tkinter Designer dépend grandement du nom des élements pour le convertir en code. Référez-vous au guide de nommage [ici](instructions.fr-FR.md#2-guide-des-éléments).
 ___
 <br>
 
