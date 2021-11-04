@@ -41,14 +41,13 @@ ___
 
 تحتوي التعليمات على كل المعلومات حول تثبيت واستعمال Tkinter Designer، بالإضافة إلى troubleshooting والإبلاغ عن المشاكل. يوجد أيضًا مقطع فيديو.
 
+### [إقرأ التعليمات](/docs/instructions.ar-DZ.md)
+
 ## 🦋 دعم Tkinter Designer
 
 الحياة بدون قهوة، كشيءٍ بلا شيء... آسف، لم أشرب أي قهوة بعد.
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
-
-
-### [إقرأ التعليمات](/docs/instructions.ar-DZ.md)
 
 ___
 <br>
