@@ -28,9 +28,10 @@ Pillow = "^8.3.1"
 urllib3 = "^1.26.6"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.4"
+cleo = "^0.8.1"
 flake8 = "^3.9.2"
 pylint = "^2.9.6"
+pytest = "^6.2.4"
 
 [tool.poetry.scripts]
 tkdesigner = 'tkdesigner.cli:main'
