@@ -88,7 +88,7 @@ class Frame(Node):
             return Image(
                 element, self, image_path, id_=f"{self.counter[Image]}")
 
-        elif element_name == "text":
+        elif element_type == "text":
             return Text(element, self)
 
         else:
