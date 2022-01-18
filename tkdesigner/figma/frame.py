@@ -2,7 +2,7 @@ from ..constants import ASSETS_PATH
 from ..utils import download_image
 
 from .node import Node
-from .vector_elements import Rectangle, UnknownElement
+from .vector_elements import Line, Rectangle, UnknownElement
 from .custom_elements import Button, Text, Image, TextEntry
 
 from jinja2 import Template
@@ -43,6 +43,9 @@ class Frame(Node):
 
         if element_name == "Rectangle":
             return Rectangle(element, self)
+
+        if element_name == "Line":
+            return Line(element, self)
 
         elif element_name == "Button":
             self.counter[Button] = self.counter.get(Button, 0) + 1
