@@ -33,21 +33,21 @@ class Frame(Node):
         ]
 
     def create_element(self, element):
-        element_name = element["name"].strip()
-        element_type = element["type"].strip()
+        element_name = element["name"].strip().lower()
+        element_type = element["type"].strip().lower()
 
         print(
             "Creating Element "
             f"{{ name: {element_name}, type: {element_type} }}"
         )
 
-        if element_name == "Rectangle":
+        if element_name == "rectangle":
             return Rectangle(element, self)
 
-        if element_name == "Line":
+        if element_name == "line":
             return Line(element, self)
 
-        elif element_name == "Button":
+        elif element_name == "button":
             self.counter[Button] = self.counter.get(Button, 0) + 1
 
             item_id = element["id"]
@@ -61,7 +61,7 @@ class Frame(Node):
             return Button(
                 element, self, image_path, id_=f"{self.counter[Button]}")
 
-        elif element_name in ("TextBox", "TextArea"):
+        elif element_name in ("textbox", "textarea"):
             self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
 
             item_id = element["id"]
@@ -75,7 +75,7 @@ class Frame(Node):
             return TextEntry(
                 element, self, image_path, id_=f"{self.counter[TextEntry]}")
 
-        elif element_name == "Image":
+        elif element_name == "image":
             self.counter[Image] = self.counter.get(Image, 0) + 1
 
             item_id = element["id"]
@@ -88,7 +88,7 @@ class Frame(Node):
             return Image(
                 element, self, image_path, id_=f"{self.counter[Image]}")
 
-        elif element_type == "TEXT":
+        elif element_name == "text":
             return Text(element, self)
 
         else:
