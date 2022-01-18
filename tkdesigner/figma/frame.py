@@ -41,13 +41,7 @@ class Frame(Node):
             f"{{ name: {element_name}, type: {element_type} }}"
         )
 
-        if element_name == "rectangle":
-            return Rectangle(element, self)
-
-        if element_name == "line":
-            return Line(element, self)
-
-        elif element_name == "button":
+        if element_name == "button":
             self.counter[Button] = self.counter.get(Button, 0) + 1
 
             item_id = element["id"]
@@ -87,6 +81,12 @@ class Frame(Node):
 
             return Image(
                 element, self, image_path, id_=f"{self.counter[Image]}")
+
+        if element_name == "rectangle" or element_type == "rectangle":
+            return Rectangle(element, self)
+
+        if element_name == "line" or element_type == "line":
+            return Line(element, self)
 
         elif element_type == "text":
             return Text(element, self)
