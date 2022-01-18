@@ -95,6 +95,7 @@ ___
 | ફિગ્મા Element નામ | Tkinter |
 | --- | --- |
 | Button | Button |
+| Line | Line |
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |

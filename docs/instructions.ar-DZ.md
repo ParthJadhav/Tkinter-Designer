@@ -113,6 +113,7 @@ ___
 | اسم العنصر في Figma | عنصر Tkinter |
 | --- | --- |
 | Button | Button |
+| Line | Line |
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |
