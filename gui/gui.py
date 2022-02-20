@@ -24,7 +24,6 @@ os.chdir(path)
 
 output_path = ""
 
-
 def btn_clicked():
     token = token_entry.get()
     URL = URL_entry.get()
@@ -100,34 +99,42 @@ def make_label(master, x, y, h, w, *args, **kwargs):
 
     return label
 
-
 window = tk.Tk()
 logo = tk.PhotoImage(file=ASSETS_PATH / "iconbitmap.gif")
 window.call('wm', 'iconphoto', window._w, logo)
 window.title("Tkinter Designer")
 
-window.geometry("862x519")
-window.configure(bg="#3A7FF6")
+window_height = 519
+window_width = 862
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
+x_cordinate = int((screen_width/2) - (window_width/2))
+y_cordinate = int((screen_height/2) - (window_height/2))
+window.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
+
 canvas = tk.Canvas(
-    window, bg="#3A7FF6", height=519, width=862,
+    window, bg="#FCFCFC", height=519, width=862,
     bd=0, highlightthickness=0, relief="ridge")
 canvas.place(x=0, y=0)
-canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC", outline="")
-canvas.create_rectangle(40, 160, 40 + 60, 160 + 5, fill="#FCFCFC", outline="")
+
+bg_image = tk.PhotoImage(file=ASSETS_PATH / "backround1.png")
+backround = tk.Label(window, image=bg_image,  height=519, width=428,
+    bd=0, highlightthickness=0, relief="ridge")
+backround.place(x=0, y=0)
 
 text_box_bg = tk.PhotoImage(file=ASSETS_PATH / "TextBox_Bg.png")
 token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)
 URL_entry_img = canvas.create_image(650.5, 248.5, image=text_box_bg)
 filePath_entry_img = canvas.create_image(650.5, 329.5, image=text_box_bg)
 
-token_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+token_entry = tk.Entry(bd=0, bg="#F6F7F9", fg="black" ,highlightthickness=0)
 token_entry.place(x=490.0, y=137+25, width=321.0, height=35)
 token_entry.focus()
 
-URL_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+URL_entry = tk.Entry(bd=0, bg="#F6F7F9",fg= "black", highlightthickness=0)
 URL_entry.place(x=490.0, y=218+25, width=321.0, height=35)
 
-path_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+path_entry = tk.Entry(bd=0, bg="#F6F7F9",fg= "black", highlightthickness=0)
 path_entry.place(x=490.0, y=299+25, width=321.0, height=35)
 
 path_picker_img = tk.PhotoImage(file = ASSETS_PATH / "path_picker.png")
@@ -162,28 +169,10 @@ canvas.create_text(
     573.5, 88.0, text="Enter the details.",
     fill="#515486", font=("Arial-BoldMT", int(22.0)))
 
-title = tk.Label(
-    text="Welcome to Tkinter Designer", bg="#3A7FF6",
-    fg="white", font=("Arial-BoldMT", int(20.0)))
-title.place(x=27.0, y=120.0)
-
-info_text = tk.Label(
-    text="Tkinter Designer uses the Figma API\n"
-    "to analyse a design file, then creates\n"
-    "the respective code and files needed\n"
-    "for your GUI.\n\n"
-
-    "Even this GUI was created\n"
-    "using Tkinter Designer.",
-    bg="#3A7FF6", fg="white", justify="left",
-    font=("Georgia", int(16.0)))
-
-info_text.place(x=27.0, y=200.0)
-
 know_more = tk.Label(
     text="Click here for instructions",
-    bg="#3A7FF6", fg="white", cursor="hand2")
-know_more.place(x=27, y=400)
+    bg="#515486", fg="white", cursor="hand2")
+know_more.place(x=38, y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
 generate_btn_img = tk.PhotoImage(file=ASSETS_PATH / "generate.png")
