@@ -18,11 +18,8 @@ button_image_{self.id_} = PhotoImage(
     file=relative_to_assets("{self.image_path}"))
 button_{self.id_} = Button(
     image=button_image_{self.id_},
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_{self.id_} clicked"),
-    relief="flat"
 )
+button_{self.id_}.bind('<Button-1>', lambda _: print("button_{self.id_} clicked"))
 button_{self.id_}.place(
     x={self.x},
     y={self.y},
