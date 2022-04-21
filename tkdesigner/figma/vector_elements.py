@@ -50,6 +50,7 @@ class Line(Vector):
         self.x, self.y = self.position(frame)
         self.width, self.height = self.size()
         self.fill_color = self.color(stroke = True)
+        self.outline_width = self.node["strokeWeight"]
 
     def to_code(self):
         return f"""
@@ -58,7 +59,8 @@ canvas.create_line(
     {self.y},
     {self.x + self.width},
     {self.y + self.height},
-    fill="{self.fill_color}")
+    fill="{self.fill_color}",
+    width="{self.outline_width}")
 """
 
 
@@ -97,6 +99,10 @@ class Rectangle(Vector):
         self.x, self.y = self.position(frame)
         self.width, self.height = self.size()
         self.fill_color = self.color()
+        if self.node["strokes"]:
+            self.outline_color = self.color(stroke = True)
+        else:
+            self.outline_color = self.fill_color
 
     @property
     def corner_radius(self):
@@ -114,7 +120,7 @@ canvas.create_rectangle(
     {self.x + self.width},
     {self.y + self.height},
     fill="{self.fill_color}",
-    outline="{self.fill_color}")
+    outline="{self.outline_color}")
 """
 
 
