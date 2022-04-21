@@ -5,24 +5,17 @@ class Vector(Node):
     def __init__(self, node):
         super().__init__(node)
 
-    def color(self) -> str:
+    def color(self, stroke = False) -> str:
         """Returns HEX form of element RGB color (str)
         """
-        found = False
-        try:
+        if stroke:
+                color = self.node["strokes"][0]["color"]
+        else:
             color = self.node["fills"][0]["color"]
-            found = True
-        except IndexError:
 
-            # Line's color
-            color = self.node["strokes"][0]["color"]
-            found = True
-        finally:
-            if found:
-                r, g, b, *_ = [round(color.get(i, 0) * 255) for i in "rgba"]
-                return f"#{r:02X}{g:02X}{b:02X}"
-            return "#FFFFFF"
+        r, g, b, *_ = [round(color.get(i, 0) * 255) for i in "rgba"]
 
+        return f"#{r:02X}{g:02X}{b:02X}"
 
 
     def size(self):
@@ -56,7 +49,7 @@ class Line(Vector):
         super().__init__(node)
         self.x, self.y = self.position(frame)
         self.width, self.height = self.size()
-        self.fill_color = self.color()
+        self.fill_color = self.color(stroke = True)
 
     def to_code(self):
         return f"""
@@ -76,6 +69,10 @@ class Ellipse(Vector):
         self.x, self.y = self.position(frame)
         self.width, self.height = self.size()
         self.fill_color = self.color()
+        if self.node["strokes"]:
+            self.outline_color = self.color(stroke = True)
+        else:
+            self.outline_color = self.fill_color
 
     def to_code(self):
         return f"""
@@ -85,7 +82,7 @@ canvas.create_oval(
     {self.x + self.width},
     {self.y + self.height},
     fill="{self.fill_color}",
-    outline="{self.fill_color}")
+    outline="{self.outline_color}")
 """
 
 
