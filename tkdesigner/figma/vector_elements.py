@@ -8,12 +8,22 @@ class Vector(Node):
     def color(self) -> str:
         """Returns HEX form of element RGB color (str)
         """
+        found = False
         try:
             color = self.node["fills"][0]["color"]
-            r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
-            return f"#{r:02X}{g:02X}{b:02X}"
-        except Exception:
+            found = True
+        except IndexError:
+
+            # Line's color
+            color = self.node["strokes"][0]["color"]
+            found = True
+        finally:
+            if found:
+                r, g, b, *_ = [round(color.get(i, 0) * 255) for i in "rgba"]
+                return f"#{r:02X}{g:02X}{b:02X}"
             return "#FFFFFF"
+
+
 
     def size(self):
         bbox = self.node["absoluteBoundingBox"]
@@ -42,13 +52,41 @@ class Star(Vector):
 
 
 class Line(Vector):
-    def __init__(self, node):
+    def __init__(self, node, frame):
         super().__init__(node)
+        self.x, self.y = self.position(frame)
+        self.width, self.height = self.size()
+        self.fill_color = self.color()
+
+    def to_code(self):
+        return f"""
+canvas.create_line(
+    {self.x},
+    {self.y},
+    {self.x + self.width},
+    {self.y + self.height},
+    fill="{self.fill_color}")
+"""
+
 
 
 class Ellipse(Vector):
-    def __init__(self, node):
+    def __init__(self, node, frame):
         super().__init__(node)
+        self.x, self.y = self.position(frame)
+        self.width, self.height = self.size()
+        self.fill_color = self.color()
+
+    def to_code(self):
+        return f"""
+canvas.create_oval(
+    {self.x},
+    {self.y},
+    {self.x + self.width},
+    {self.y + self.height},
+    fill="{self.fill_color}",
+    outline="{self.fill_color}")
+"""
 
 
 class RegularPolygon(Vector):
@@ -79,7 +117,7 @@ canvas.create_rectangle(
     {self.x + self.width},
     {self.y + self.height},
     fill="{self.fill_color}",
-    outline="")
+    outline="{self.fill_color}")
 """
 
 
