@@ -52,6 +52,7 @@ def btn_clicked():
         return
 
     file_key = match.group(1).strip()
+    print(file_key)
     token = token.strip()
     output = Path(output_path + "/build").expanduser().resolve()
 
