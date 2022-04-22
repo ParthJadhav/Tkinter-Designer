@@ -1,70 +1,70 @@
-# How to use Tkinter Designer
+# Como usar o Tkinter Designer
 
-#### Translations:
+#### Traduções:
 - [简体中文](/docs/instructions.zh-CN.md)
-- [Français](/docs/instructions.fr-FR.md)
+- [Frances](/docs/instructions.fr-FR.md)
 - [ગુજરાતી](docs/instructions.gu-GU.md)
 - [عربية](/docs/instructions.ar-DZ.md)
-- [Turkish](/docs/instructions.tr-TR.md)
+- [Turco](/docs/instructions.tr-TR.md)
 
 ___
 
-## Table of Contents:
-1. [**Getting Started**](#getting-started-1)
-   1. [Install Python](#getting-started-1)
-   2. [Install Tkinter Designer](#getting-started-2)
-   3. [Make a Figma Account](#getting-started-3)
+## Índice:
+1. [**Comece por aqui**](#getting-started-1)
+   1. [Instalação do Python](#getting-started-1)
+   2. [Instalação do Tkinter Designer](#getting-started-2)
+   3. [Faça uma conta no Figma](#getting-started-3)
    
-2. [**Formatting Your Figma Design**](#formatting-1)
-   1. [Reference](#formatting-1)
-   2. [Element Guide](#formatting-2)
+2. [**Formatando seu design Figma**](#formatting-1)
+   1. [Referência](#formatting-1)
+   2. [Guia de elementos](#formatting-2)
    
-3. [**Using Tkinter Designer**](#Using-Tkinter-Designer)
-   1. [Personal Access Token](#using-1)
-   2. [Getting your File URL](#using-2)
-   3. [Using The CLI](#using-cli)
-   4. [Using The GUI](#using-gui)
+3. [**Usando o Tkinter Designer**](#Using-Tkinter-Designer)
+   1. [Token de acesso pessoal](#using-1)
+   2. [Obtendo o URL do seu arquivo](#using-2)
+   3. [Usando a CLI](#using-cli)
+   4. [Usando a GUI](#using-gui)
    
-4. [**Troubleshooting**](#Troubleshooting)
+4. [**Solução de problemas**](#Troubleshooting)
 
 <br><br>
 
-# Getting Started <small>[[Top](#table-of-contents)]</small>
+# Começando <small>[[Top](#table-of-contents)]</small>
 
 <a id="getting-started-1"></a>
-## 1. Install Python
-Before using Tkinter Designer, you'll need to install Python.  
-* [Here is a link to the Python downloads page.](https://www.python.org/downloads)  
-* [Here is a helpful guide to installing Python on various operating systems.](https://wiki.python.org/moin/BeginnersGuide/Download)
+## 1. Instalando Python
+Antes de usar o Tkinter Designer, você precisará instalar o Python.  
+* [Aqui está um link para a página de downloads do Python.](https://www.python.org/downloads)  
+* [Aqui está um guia útil para instalar o Python em vários sistemas operacionais.](https://wiki.python.org/moin/BeginnersGuide/Download)
 
-*Later in this guide, you will use the Package Installer for Python (pip), which may require you to add Python to your system PATH.*
+*Mais adiante neste guia, você usará o Package Installer for Python (pip), que pode exigir que você adicione o Python ao PATH do seu sistema.*
 
 ___
 <br>
 
 <a id="getting-started-2"></a>
-## 2. Install Tkinter Designer
+## 2. Instalando Tkinter Designer
 
-*Three options:*
+*Três opções:*
 
 1. `pip install tkdesigner`
 
-2. Install [poetry](https:python-poetry.org)
+2. Instale [poetry](https:python-poetry.org)
    * `poetry new <gui_project_name> && cd <gui_project_name>`
    * `poetry add tkdesigner`
    * `poetry install`
 
-3. To run Tkinter Designer from the source code, follow the instructions below.
+3. Para executar o Tkinter Designer a partir do código-fonte, siga as instruções abaixo.
 
-   1. Download the source files for Tkinter Designer by downloading it manually or using GIT.
+   1. Baixe os arquivos de origem do Tkinter Designer, você pode baixar manualmente ou usar o GIT.
 
       ` git clone https://github.com/ParthJadhav/Tkinter-Designer.git `
 
-   2. Change your working directory to Tkinter Designer.
+   2. Altere seu diretório de trabalho para Tkinter Designer.
 
       `cd tkinter-designer`
       
-   3. Install the necessary dependencies by running 
+   3. Instale as dependências necessárias executando 
 
       * `pip install -r requirements.txt`
          * In the event that pip doesn't work, also try the following commands:
@@ -73,33 +73,33 @@ ___
          * `python3 -m pip install -r requirements.txt`
          * If this still doesn't work, ensure that Python is added to the PATH.
    
-   This will install all requirements and Tkinter Designer. Before you use Tkinter Designer you need to create a Figma File with the below instructions.
+   Isso instalará todos os requisitos e o Tkinter Designer. Antes de usar o Tkinter Designer, você precisa criar um arquivo Figma com as instruções abaixo.
 
-   If you already have created a file then skip to [**Using Tkinter Designer**](#Using-Tkinter-Designer) Section.
+  Se você já criou um arquivo, pule para [**Usando o Tkinter Designer**](#Using-Tkinter-Designer).
 
 ___
 <br>
 
 <a id="getting-started-3"></a>
-## 3. Make a Figma Account
-1. In a web browser, navigate to [figma.com](https://www.figma.com/) and click 'Sign up'
-2. Enter your information, then verify your email
-3. Create a new Figma Design file
-4. Get started making your GUI
-   * The next section covers required formatting for Tkinter Designer input.
-     * [Here is the official Figma tutorial series for beginners.](https://www.youtube.com/watch?v=Cx2dkpBxst8&list=PLXDU_eVOJTx7QHLShNqIXL1Cgbxj7HlN4)
-     * [Here is the official Figma YouTube channel.](https://www.youtube.com/c/Figmadesign/featured)
-     * [Here is the Figma Help Center.](https://help.figma.com/hc/en-us)
+## 3. Faça uma conta no Figma
+1. Em um navegador da Web, navegue até [figma.com](https://www.figma.com/) e clique em 'Sign up'
+2. Insira suas informações e, em seguida, verifique seu e-mail
+3. Crie um novo arquivo Figma Design
+4. Comece a fazer sua GUI
+   * A próxima seção abrange a formatação necessária para a entrada do Tkinter Designer.
+     * [Aqui está a série oficial de tutoriais do Figma para iniciantes.](https://www.youtube.com/watch?v=Cx2dkpBxst8&list=PLXDU_eVOJTx7QHLShNqIXL1Cgbxj7HlN4)
+     * [Aqui está o canal oficial da Figma no YouTube.](https://www.youtube.com/c/Figmadesign/featured)
+     * [Aqui está o Centro de Ajuda Figma.](https://help.figma.com/hc/en-us)
 
 <br><br>
 
 <a id="formatting-1"></a>
-# Formatting Your Figma Design <small>[[Top](#table-of-contents)]</small>
+# Formatando seu design Figma <small>[[Top](#table-of-contents)]</small>
 
-## 1. Reference
+## 1. Referência
 <br>
 
-### Naming is Important
+### Nomear é importante
 
 | Figma Element Name | Tkinter Element |
 | --- | --- |
@@ -112,34 +112,34 @@ ___
 
 <br>
 
-The code generated by Tkinter Designer is based on the names of elements from your Figma design and, as such, you need to name your elements accordingly. In Figma, rename your elements by double-clicking them in the Layers panel.
+O código gerado pelo Tkinter Designer é baseado nos nomes dos elementos do seu design Figma e, como tal, você precisa nomear seus elementos de acordo. No Figma, renomeie seus elementos clicando duas vezes neles no painel Camadas.
 
 ___
 <br>
 
 <a id="formatting-2"></a>
-## 2. Element Guide
+## 2. Guia de elementos
 <br>
 
-1. **First, create a Frame that will serve as your Tkinter Window.**
+1. **Primeiro, crie um Frame que servirá como sua janela Tkinter.**
 <br><br>
 
-2. **Adding Images**
-   * Images can be created using shapes and/or images
-   * If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
-   * After that name the element or group as "Image".
+2. **Adicionando imagens**
+   * As imagens podem ser criadas usando shapes and/or images
+   * Se você usar vários shapes/images, você selecionar todos e pressionar <kbd>CTRL/&#8984; + G</kbd>
+   * Depois disso nomeie o elemento ou grupo como "Image".
 <br><br>
 
-3. **Text (Normal Text)**
-   * Use the <kbd>T</kbd> key to activate the text tool, then add text as desired
-   * Text does not have to be renamed for use in Tkinter Designer
-   * Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
+3. **Texto (Texto normal)**
+   * Use o atalho <kbd>T</kbd> para ativar a ferramenta de texto e, em seguida, adicione o texto conforme desejado
+   * O texto não precisa ser renomeado para uso no Tkinter Designer
+   * Para pular linhas pressione <kbd>Return</kbd>  ou  <kbd>Enter</kbd> 
 <br><br>
 
-4. **Entry (Single-Line User Input)**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "TextBox"
+4. **Entrada (Single-Line User Input)**
+   * Pressione <kbd>R</kbd> para habilitar a ferramenta Rectangle
+   * Ajuste o retângulo ao seu gosto
+   * Renomeio o retângulo para "TextBox"
 <br><br>
 
 5. **Text Area (Multi-Line User Input)**
