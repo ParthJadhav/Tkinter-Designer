@@ -136,77 +136,77 @@ ___
    * Para pular linhas pressione <kbd>Return</kbd>  ou  <kbd>Enter</kbd> 
 <br><br>
 
-4. **Entrada (Single-Line User Input)**
-   * Pressione <kbd>R</kbd> para habilitar a ferramenta Rectangle
+4. **Entrada de texto (Uma linha para entrada do usuario)**
+   * Pressione <kbd>R</kbd> para habilitar a ferramenta Retângulo
    * Ajuste o retângulo ao seu gosto
    * Renomeio o retângulo para "TextBox"
 <br><br>
 
-5. **Text Area (Multi-Line User Input)**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "TextArea"
+5. **Entrada de texto (Entrada de usuário de várias linhas)**
+   * Pressione <kbd>R</kbd> para habilitar a ferramenta Retângulo
+   * Ajuste o retângulo ao seu gosto
+   * Renomeio o retângulo para "TextArea"
 
-6. **Rectangle**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "Rectangle"
+6. **Retângulo**
+   * Pressione <kbd>R</kbd> para habilitar a ferramenta Retângulo
+   * Ajuste o retângulo ao seu gosto
+   * Renomeio o retângulo para "Rectangle"
 <br><br>
 
-7. **Normal Button**
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
+7. **Botão normal**
+   * Adicione um retângulo para servir como um botão em sua GUI
+     * Opcional: adicione texto para o botão
+   * Selecione o botão (Retângulo) e qualquer texto opcional e agrupe-os com <kbd>CTRL/&#8984; + G</kbd>
+   * Nomeie o grupo "Button"
 
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+#### Consulte [esté video](https://youtu.be/mFjE2-rbpm8?t=275) se tiver algum problema
 
 <br><br>
 
-8. **Rounded Button** 
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Make it rounded by adding corner radius by selecting the rectangle and adding corner radius from the right side. [Read more on it](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
-   * Create a Rectangle with same size of your button. Don't make it rounded. 
-   * Change the Rectangle's color to match the Background
-   * Now move the newly created rectangle below the main button(Rectangle).
-   * Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
+8. **Botão arredondado** 
+   * Adicione um retângulo para servir como um botão em sua GUI
+     * Opcional: adicione texto para o botão
+   * Para fazer o arredondamento no botão modifique o raio (´Corner radius´) [Leia mais sobre isso](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
+   * Crie um retângulo com o mesmo tamanho do seu botão. Não o torne arredondado. 
+   * Altere a cor do retângulo para corresponder ao plano de fundo
+   * Agora mova o retângulo recém-criado abaixo do botão principal (Retângulo).
+   * Selecione o botão, Retângulo e qualquer texto opcional e, em seguida, agrupe-os com <kbd>CTRL/&#8984; + G</kbd>
+   * Nomeie o grupo "Button"
 
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+#### Consulte [esté video](https://youtu.be/mFjE2-rbpm8?t=275) se tiver algum problema
 
 <br><br>
 
 <a id="Using-Tkinter-Designer"></a>
-# Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
+# Usando o Tkinter Designer <small>[[Top](#table-of-contents)]</small>
 
-## Required Inputs
-There are some inputs you'll need to collect to be able to use the TKinter Designer.
+## Entradas Necessárias
+Existem algumas entradas que você precisará coletar para poder usar o TKinter Designer.
 
 <a id="using-1"></a>
 
-### 1. Personal Access Token
-1. Log into your Figma account
-2. Navigate to Settings
-3. In the **Account** tab, scroll down to **Personal access tokens**
-4. Enter the name of your access token in the entry form and press <kbd>Enter</kbd>
-5. Your personal access token will be created.
-   * Copy this token and keep it somewhere safe.
-   * **You will not get another chance to copy this token.**
+### 1. Token de acesso pessoal
+1. Faça login na sua conta Figma
+2. Navegue até Configurações
+3. Na guia **Account** role para baixo até **Personal access tokens**
+4. Digite o nome do seu token de acesso no formulário de entrada e pressione <kbd>Enter</kbd>
+5. Seu token de acesso pessoal será criado.
+   * Copie este token e mantenha-o em algum lugar seguro.
+   * **Você não terá outra chance de copiar este token.**
 
 <a id="using-2"></a>
 
-### 2. Getting your File URL
-1. In your Figma design file, click the **Share** button in the top bar, then click on **&#x1f517; Copy link**
+### 2. Obtendo o URL do seu arquivo
+1. Em seu arquivo de design Figma, clique no **Share** botão na barra superior, em seguida, clique em **&#x1f517; Copy link**
 
 <a id="using-cli"></a>
-## Using the CLI
+## Usando a CLI
 
-Using the CLI is as simple as installing the package and running the CLI tool. 
+Usar a CLI é tão simples quanto instalar o pacote e executar a ferramenta CLI.
 
-### From PyPi
+### De PyPi
 
-You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
+Você pode usar o comando abaixo como teste substituindo $FILE_URL & $FIGMA_TOKEN Se você não tiver o token e o link, consulte a [**Seção de Entradas Requeridas**](#using-1).
 
 
 ``` bash
@@ -215,11 +215,11 @@ $ pip install tkdesigner
 $ tkdesigner $FILE_URL $FIGMA_TOKEN
 ```
 
-### From Source
+### Da fonte
 
-To use CLI from the source code you need to clone the repository and then follow the below instructions.
+Para usar a CLI a partir do código-fonte, você precisa clonar o repositório e seguir as instruções abaixo.
 
-You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
+Você pode usar o comando abaixo como teste substituindo $FILE_URL & $FIGMA_TOKEN por seus dados. Se você não tiver o token e o link, consulte a [**Seção de Entradas Requeridas**](#using-1).
 
 ```bash
 $ python -m tkdesigner.cli $FILE_URL $FIGMA_TOKEN
@@ -228,56 +228,56 @@ $ python -m tkdesigner.cli $FILE_URL $FIGMA_TOKEN
 $ python -m tkdesigner --help
 ```
 
-### Output
-By default, the GUI code will be written to build/gui.py. You can specify the output path by using `-o` Flag and providing the path.
+### Saída
+Por padrão, o código GUI será escrito em build/gui.py. Você pode especificar o caminho de saída usando o sinalizador `-o` e fornecendo o caminho.
 
-To run the generated GUI, cd into the directory you built it to (e.g. build/) and run it just as you would any Tkinter GUI.
+Para executar a GUI gerada, cd no diretório em que você a construiu (por exemplo, build/) e execute-a como faria com qualquer GUI do Tkinter.
 ```bash
 $ cd build
 $ python3 gui.py
 ```
 <a id="using-gui"></a>
-## Using the GUI
-### Open Tkinter Designer before doing the following steps.
+## Usando a GUI
+### Abra o Tkinter Designer antes de executar as etapas a seguir.
 <br>
 
-1. Open TKinter Designer GUI by
+1. Abra a GUI do TKinter Designer por
 ```
 cd Tkinter-Designer
 cd gui
 python3 gui.py
 ```
-2. Paste your *personal access token* into the **Token ID** form in Tkinter Designer
-3. Paste the link into the **File URL** form in Tkinter Designer
-4. Click the **Output Path** form to open a file browser
-5. Choose an output path and click **Select Folder**
-6. Press **Generate**
+2. Cole seu *token de acesso pessoal* no formulário **Token ID** no Tkinter Designer
+3. Cole o link no formulário **URL do arquivo** no Tkinter Designer
+4. Clique no formulário **Output Path** para abrir um navegador de arquivos
+5. Escolha um caminho de saída e clique em **Select Folder**
+6. Pressione **Generate**
 
-The output files from Tkinter Designer will be placed in your chosen directory, inside a new folder called **build**. Congratulations, you have now created your Tkinter GUI using Tkinter Designer!
+Os arquivos de saída do Tkinter Designer serão colocados no diretório escolhido, dentro de uma nova pasta chamada **build**. Parabéns, você agora criou sua GUI do Tkinter usando o Tkinter Designer!
 
 <br><br>
 
 <a id="Troubleshooting"></a>
 
-# Troubleshooting <small>[[Top](#table-of-contents)]</small>
+# Solução de problemas <small>[[Top](#table-of-contents)]</small>
 
-* Elements not visible? Misplaced?
-  * Please make sure that your Figma File has its elements named correctly. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
+* Elementos não visíveis? Extraviado?
+   * Certifique-se de que seu arquivo Figma tenha seus elementos nomeados corretamente. * Consulte [Formatando o design do Figma, &sect;1](#formatting-1)
 
-* Button has an unintended gray background?
-  * Make sure you have added a Rectangle behind your button element, and that its Fill color is the same as the Background's
+* O botão tem um fundo cinza não intencional?
+   * Certifique-se de ter adicionado um retângulo atrás do elemento do botão e que sua cor de preenchimento seja a mesma do plano de fundo
 
-* Incorrect elements?
-  * Make sure you have named your elements correctly in Figma
-    * See [Formatting Your Figma Design, &sect;1](#formatting-1)
+* Elementos incorretos?
+   * Certifique-se de ter nomeado seus elementos corretamente no Figma
+     * Consulte [Formatando o design do Figma, &sect;1](#formatting-1)
 
-* Window is larger than the screen?
-  * Reduce the size of your elements in Figma
+* A janela é maior que a tela?
+   * Reduza o tamanho de seus elementos no Figma
 
-* Files not generating?
-  * Restart Tkinter Designer
-  * Double-check the token and URL
-  * Make sure your design has a Frame
+* Arquivos não estão gerando?
+   * Reinicie o Tkinter Designer
+   * Verifique novamente o token e o URL
+   * Certifique-se de que seu design tenha um quadro
 
-* Something else?
-  * [Report issues not listed here on GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
+* Algo mais?
+   * [Relatar problemas não listados aqui no GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
