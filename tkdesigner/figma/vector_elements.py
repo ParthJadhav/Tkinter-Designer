@@ -9,14 +9,13 @@ class Vector(Node):
         """Returns HEX form of element RGB color (str)
         """
         if stroke:
-                color = self.node["strokes"][0]["color"]
+            color = self.node["strokes"][0]["color"]
         else:
             color = self.node["fills"][0]["color"]
 
         r, g, b, *_ = [round(color.get(i, 0) * 255) for i in "rgba"]
 
         return f"#{r:02X}{g:02X}{b:02X}"
-
 
     def size(self):
         bbox = self.node["absoluteBoundingBox"]
@@ -62,7 +61,6 @@ canvas.create_line(
     fill="{self.fill_color}",
     width="{self.outline_width}")
 """
-
 
 
 class Ellipse(Vector):
