@@ -42,9 +42,9 @@ I started by writing code to add Frame Feature. Figma has an element called Fram
 
 _Psuedocode ahead_
 
-```
+```python
 response = requests.get(
-    https://www.figma.com/developers/api#files-endpoints + FileID"
+    "https://www.figma.com/developers/api#files-endpoints + {FileID}"
     )
 ```
 
@@ -89,9 +89,60 @@ Process :-
 
 1. Write Python code to create the desired element in Tkinter.
 
+Example :-
+
+This is a code to create a Tkinter canvas, I've added some values to it..
+
+```python
+canvas = Canvas(
+    window,
+    bg = "Blue",
+    height = 200,
+    width = 400,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+```
+
 2. Replace the values of that element with the values from Figma.
 
+Example :-
+
+Here we take that same code and replace the values of the element with the values from Figma.
+
+`bg` -> figma.window.bg_color (Background color of a frame)
+
+`height` -> figma.window.height (Height of a frame)
+
+`width` -> figma.window.width (Width of a frame)
+
+```python
+canvas = Canvas(
+    window,
+    bg = "{{ figma.window.bg_color }}",
+    height = {{ figma.window.height }},
+    width = {{ figma.window.width }},
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+```
+
 3. Write the output code to a Python file.
+
+And once we convert all the elements to Tkinter, we can write the code to a Python file.
+
+```python
+def write_text(self, data, encoding=None, errors=None, newline=None):
+        encoding = io.text_encoding(encoding)
+        with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+            return f.write(data)
+
+def design(self):
+        code = self.to_code() #Code is the converted Tkinter code. 
+        self.output_path.joinpath(CODE_FILE_NAME).write_text(code)
+```
 
 ### Element Identification
 
@@ -101,7 +152,7 @@ You can create a rectangle in Figma and name it 'Button' and it would be identif
 
 ## Finishing up
 
-Once I had for basic elements I uploaded the code to Github. It started to gain attention and popularity. More and more people were using it and it was fun to see it happen. I learned a lot on the way. The most fascinating part was the community. I was able to connect with people who were using it. I learned a lot from them. 
+Once I had the basic elements working I uploaded the code to Github. It started to gain attention and popularity. More and more people were using it and it was fun to see it happen. I learned a lot on the way. The most fascinating part was the community. I was able to connect with people who were using it. I learned a lot from them.
 
 [piccoloser](https://github.com/piccoloser) was one of the first contributor to this project. He refined and improved the documentation.
 
