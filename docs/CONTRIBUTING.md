@@ -17,9 +17,7 @@ To get an overview of the project, read the [README](../README.md). Here are som
 
 ## Getting started
 
-If you find something that can be improved, solved or changed you are welcome to do so.
-
-### Issues
+If you find something that can be improved, solved or changed you are welcome to do so. 
 
 #### Create a new issue
 
