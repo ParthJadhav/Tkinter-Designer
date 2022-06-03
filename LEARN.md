@@ -4,7 +4,8 @@
 
  Hello everyone, I'm Parth Jadhav. I am a 17 year old student. And I would like to share how I created this repository.
 
-## How does it work? 
+## How does it work?
+
  Tkinter Designer uses Figma to generate the GUI. Users design the desired user interface in Figma. Then paste the URL into Tkinter Designer. TkinterDesigner uses the Figma API to get information about the file. Use that data to generate Tkinter-based GUI code in Python, using templates and more.
 
 ## How it all started
@@ -158,6 +159,6 @@ Once I had the basic elements working I uploaded the code to Github. It started 
 
 [Jason Chin](https://github.com/jrobchin) helped me in refactoring the code. The original code was a single big python file which was hard to read and build up on. Jason created a pull request which was really amazing. You can have a look at it here -> [PR 67](https://github.com/ParthJadhav/Tkinter-Designer/pull/67)
 
-[Jakob Vendegna](https://github.com/jvendegna) helped a lot in CI/CD stuff. He also helped me publish code on PyPi. 
+[Jakob Vendegna](https://github.com/jvendegna) helped a lot in CI/CD stuff. He also helped me publish code on PyPi.
 
 That's the beauty of open source. We meet people who are more smarter than us; We learn from them. We meet people who we can teach something to. We exchange knowledge and ideas. And at the end of the day it's all about learning and making a difference.
