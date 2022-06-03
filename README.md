@@ -117,6 +117,8 @@ We welcome all kinds of contributions from the open-source community, individual
 
 [Code of conduct](CODE_OF_CONDUCT.md)
 
+[LEARN.md](LEARN.md)
+
 ## 📝 Contact Me
 
 If you want to contact me, you can
