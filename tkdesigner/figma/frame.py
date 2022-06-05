@@ -2,7 +2,7 @@ from ..constants import ASSETS_PATH
 from ..utils import download_image
 
 from .node import Node
-from .vector_elements import Rectangle, UnknownElement
+from .vector_elements import Rectangle, UnknownElement, Line, Ellipse
 from .custom_elements import Button, Text, Image, TextEntry
 
 from jinja2 import Template
@@ -41,10 +41,10 @@ class Frame(Node):
             f"{{ name: {element_name}, type: {element_type} }}"
         )
 
-        if element_name == "Rectangle":
+        if element_type == "VECTOR":
             return Rectangle(element, self)
 
-        elif element_name == "Button":
+        elif element_type == "Button":
             self.counter[Button] = self.counter.get(Button, 0) + 1
 
             item_id = element["id"]
@@ -58,7 +58,7 @@ class Frame(Node):
             return Button(
                 element, self, image_path, id_=f"{self.counter[Button]}")
 
-        elif element_name in ("TextBox", "TextArea"):
+        elif element_type in ("TextBox", "TextArea"):
             self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
 
             item_id = element["id"]
@@ -72,7 +72,7 @@ class Frame(Node):
             return TextEntry(
                 element, self, image_path, id_=f"{self.counter[TextEntry]}")
 
-        elif element_name == "Image":
+        elif element_type == "Image":
             self.counter[Image] = self.counter.get(Image, 0) + 1
 
             item_id = element["id"]
@@ -87,6 +87,12 @@ class Frame(Node):
 
         elif element_type == "TEXT":
             return Text(element, self)
+
+        elif element_type == "LINE":
+            return Line(element, self)
+
+        elif element_type == "ELLIPSE":
+            return Ellipse(element, self)
 
         else:
             print(

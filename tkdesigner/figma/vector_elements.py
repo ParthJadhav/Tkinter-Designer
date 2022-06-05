@@ -5,15 +5,17 @@ class Vector(Node):
     def __init__(self, node):
         super().__init__(node)
 
-    def color(self) -> str:
+    def color(self, stroke = False) -> str:
         """Returns HEX form of element RGB color (str)
         """
-        try:
+        if stroke:
+            color = self.node["strokes"][0]["color"]
+        else:
             color = self.node["fills"][0]["color"]
-            r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
-            return f"#{r:02X}{g:02X}{b:02X}"
-        except Exception:
-            return "#FFFFFF"
+
+        r, g, b, *_ = [round(color.get(i, 0) * 255) for i in "rgba"]
+
+        return f"#{r:02X}{g:02X}{b:02X}"
 
     def size(self):
         bbox = self.node["absoluteBoundingBox"]
@@ -42,13 +44,46 @@ class Star(Vector):
 
 
 class Line(Vector):
-    def __init__(self, node):
+    def __init__(self, node, frame):
         super().__init__(node)
+        self.x, self.y = self.position(frame)
+        self.width, self.height = self.size()
+        self.fill_color = self.color(stroke = True)
+        self.outline_width = self.node["strokeWeight"]
+
+    def to_code(self):
+        return f"""
+canvas.create_line(
+    {self.x},
+    {self.y},
+    {self.x + self.width},
+    {self.y + self.height},
+    fill="{self.fill_color}",
+    width="{self.outline_width}")
+"""
 
 
 class Ellipse(Vector):
-    def __init__(self, node):
+    def __init__(self, node, frame):
         super().__init__(node)
+        self.x, self.y = self.position(frame)
+        self.width, self.height = self.size()
+        self.fill_color = self.color()
+        if self.node["strokes"]:
+            self.outline_color = self.color(stroke = True)
+        else:
+            self.outline_color = self.fill_color
+
+    def to_code(self):
+        return f"""
+canvas.create_oval(
+    {self.x},
+    {self.y},
+    {self.x + self.width},
+    {self.y + self.height},
+    fill="{self.fill_color}",
+    outline="{self.outline_color}")
+"""
 
 
 class RegularPolygon(Vector):
@@ -62,6 +97,10 @@ class Rectangle(Vector):
         self.x, self.y = self.position(frame)
         self.width, self.height = self.size()
         self.fill_color = self.color()
+        if self.node["strokes"]:
+            self.outline_color = self.color(stroke = True)
+        else:
+            self.outline_color = self.fill_color
 
     @property
     def corner_radius(self):
@@ -79,7 +118,7 @@ canvas.create_rectangle(
     {self.x + self.width},
     {self.y + self.height},
     fill="{self.fill_color}",
-    outline="")
+    outline="{self.outline_color}")
 """
 
 
