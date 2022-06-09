@@ -103,6 +103,7 @@ ___
 | Figma Element İsmi | Tkinter Elementi |
 | --- | --- |
 | Button | Button |
+| Line | Line |
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |

@@ -104,6 +104,7 @@ ___
 | Figma Element Name | Tkinter Element |
 | --- | --- |
 | Button | Button |
+| Line | Line |
 | Text | Name it anything |
 | Rectangle | Rectangle |
 | TextArea | Text Area |

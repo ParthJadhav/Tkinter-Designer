@@ -94,6 +94,7 @@ ___
 | Nom de l'élément Figma | Élément Tkinter |
 | --- | --- |
 | Button | Button |
+| Line | Line |
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |

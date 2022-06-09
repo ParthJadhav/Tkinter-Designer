@@ -101,6 +101,7 @@ ___
 | Figma 元素名称 | Tkinter 元素 |
 | --- | --- |
 | Button | Button |
+| Line | Line |
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |

@@ -40,12 +40,6 @@ class Star(Vector):
     def __init__(self, node):
         super().__init__(node)
 
-
-class Line(Vector):
-    def __init__(self, node):
-        super().__init__(node)
-
-
 class Ellipse(Vector):
     def __init__(self, node):
         super().__init__(node)
@@ -81,6 +75,29 @@ canvas.create_rectangle(
     fill="{self.fill_color}",
     outline="")
 """
+
+
+class Line(Rectangle):
+    def __init__(self, node, frame):
+        super().__init__(node, frame)
+
+    def color(self) -> str:
+        """Returns HEX form of element RGB color (str)
+        """
+        try:
+            color = self.node["strokes"][0]["color"]
+            r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
+            return f"#{r:02X}{g:02X}{b:02X}"
+        except Exception:
+            return "#FFFFFF"
+
+    def size(self):
+        width, height = super().size()
+        return width + self.node["strokeWeight"], height + self.node["strokeWeight"]
+
+    def position(self, frame):
+        x, y = super().position(frame)
+        return x - self.node["strokeWeight"], y - self.node["strokeWeight"]
 
 
 class UnknownElement(Vector):

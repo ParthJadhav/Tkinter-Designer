@@ -2,7 +2,7 @@ from ..constants import ASSETS_PATH
 from ..utils import download_image
 
 from .node import Node
-from .vector_elements import Rectangle, UnknownElement
+from .vector_elements import Line, Rectangle, UnknownElement
 from .custom_elements import Button, Text, Image, TextEntry
 
 from jinja2 import Template
@@ -33,18 +33,15 @@ class Frame(Node):
         ]
 
     def create_element(self, element):
-        element_name = element["name"].strip()
-        element_type = element["type"].strip()
+        element_name = element["name"].strip().lower()
+        element_type = element["type"].strip().lower()
 
         print(
             "Creating Element "
             f"{{ name: {element_name}, type: {element_type} }}"
         )
 
-        if element_name == "Rectangle":
-            return Rectangle(element, self)
-
-        elif element_name == "Button":
+        if element_name == "button":
             self.counter[Button] = self.counter.get(Button, 0) + 1
 
             item_id = element["id"]
@@ -58,7 +55,7 @@ class Frame(Node):
             return Button(
                 element, self, image_path, id_=f"{self.counter[Button]}")
 
-        elif element_name in ("TextBox", "TextArea"):
+        elif element_name in ("textbox", "textarea"):
             self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
 
             item_id = element["id"]
@@ -72,7 +69,7 @@ class Frame(Node):
             return TextEntry(
                 element, self, image_path, id_=f"{self.counter[TextEntry]}")
 
-        elif element_name == "Image":
+        elif element_name == "image":
             self.counter[Image] = self.counter.get(Image, 0) + 1
 
             item_id = element["id"]
@@ -85,7 +82,13 @@ class Frame(Node):
             return Image(
                 element, self, image_path, id_=f"{self.counter[Image]}")
 
-        elif element_type == "TEXT":
+        if element_name == "rectangle" or element_type == "rectangle":
+            return Rectangle(element, self)
+
+        if element_name == "line" or element_type == "line":
+            return Line(element, self)
+
+        elif element_type == "text":
             return Text(element, self)
 
         else:
