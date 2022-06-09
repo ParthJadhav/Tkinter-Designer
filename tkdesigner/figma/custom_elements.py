@@ -16,7 +16,7 @@ class Button(Rectangle):
         return f"""
 button_image_{self.id_} = PhotoImage(
     file=relative_to_assets("{self.image_path}"))
-button_{self.id_} = Button(
+button_{self.id_} = Label(
     image=button_image_{self.id_},
 )
 button_{self.id_}.bind('<Button-1>', lambda _: print("button_{self.id_} clicked"))
