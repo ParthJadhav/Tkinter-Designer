@@ -21,6 +21,7 @@
 - [हिन्दी](/docs/README.hin-HIN.md)
 - [عربية](/docs/README.ar-DZ.md)
 - [Turkish](/docs/README.tr-TR.md)
+- [Brazil](/docs/README.pt-BR.md)
 
 ___
 

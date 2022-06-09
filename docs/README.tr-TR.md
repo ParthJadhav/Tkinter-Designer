@@ -13,16 +13,6 @@
 
   <br>
 
-## Çeviriler
-
-- [简体中文](/docs/README.zh-CN.md)
-- [English](/README.md)
-- [ગુજરાતી](/docs/README.gu-GU.md)
-- [हिन्दी](/docs/README.hin-HIN.md)
-- [عربية](/docs/README.ar-DZ.md)
-
----
-
 ## 💡 Tanıtım
 
 Tkinter Designer Python'da GUI hazırlama sürecini hızlandırmak için yapılmıştır. Tkinter Designer bu tasarımı kolayca yapabilmeniz için [Figma](https://www.figma.com/) yazılımını kullanır.
@@ -52,7 +42,6 @@ Yönergeler sorun giderme ve hata bildirme ile birlikte Tkinter Designer'ı kurm
 Hayat sanki kahvesiz daha … pardon, şu ana kadar hiç kahvem olmadı.
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
-
 
 <br>
 
@@ -100,14 +89,13 @@ Tkinter Designer ile olasılıklar sonsuzdur, ama burada mükemmel bir şekilde 
 
 ## 🔥 Vitrin
 
-Eğer Tkinter Designer ile tasarlanmış bir uygulamanız var ise lütfen bana haber verin. Başkalarının daha çok örnek görmesi için yararlı olacaktır! 
+Eğer Tkinter Designer ile tasarlanmış bir uygulamanız var ise lütfen bana haber verin. Başkalarının daha çok örnek görmesi için yararlı olacaktır!
 
 (Ayrıca: [Bana Ulaşın](#-contact-me)) ya da tartışmalardan [Göster ve Anlat](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) bölümünü kullanın.
 
 ---
 
 <br>
-
 
 ## 📝 İletişim
 

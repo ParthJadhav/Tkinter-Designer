@@ -13,14 +13,7 @@
 
   <br>
 
-#### Traductions:
-- [简体中文](/docs/README.zh-CN.md)
-- [ગુજરાતી](/docs/README.gu-GU.md)
-- [हिन्दी](/docs/README.hin-HIN.md)
-- [عربية](/docs/README.ar-DZ.md)
-- [Turkish](/docs/README.tr-TR.md)
-
-___ 
+___
 
 ## 💡 Introduction
 
@@ -31,6 +24,7 @@ Tkinter Designer utilise l'API de Figma pour analyser les fichiers de design afi
 <img width="500" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/119863796-92af4a80-bf37-11eb-9f6c-61b1ab99b039.png">
 
 ## ☄️ Avantages de Tkinter Designer
+
 1. Interfaces en drag and drop
 2. Significativement plus rapide que créer le code manuellement
 3. Capacité de créer des interface encore plus belles
@@ -53,6 +47,7 @@ ___
 <br>
 
 ## 📐 Comment ça marche
+
 La seule chose que l'utilisateur a besoin de faire est de designer l'interface avec Figma, puis coller le lien du fichier Figma et de sa clé d'API dans  Tkinter Designer.
 
 Tkinter Designer génèrera automatiquement tout le code et les images requises à créer l'interface avec Tkinter.
@@ -63,30 +58,34 @@ ___
 <br>
 
 ## 🎯 Exemples
+
 Les possibilités sont infinies avec Tkinter Designer, mais voici quelques interfaces pouvant être parfaitement répliquées au sein de Tkinter.
 
 <sup>Les créations suivantes ne sont pas les miennes.</sup>
 
 ### Page d'inscription
+
 <img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
 
 ### Page de marque
+
 <img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
 
 ### Enregistreur d'images [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
+
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
 ### WhatBulk  [(More Info)](https://www.instagram.com/p/CQUmKckFBbT/?utm_medium=copy_link)
+
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/122562284-87e06500-d060-11eb-8257-55f3b9dbecf0.PNG">
 
-
 ## 🔥 Vitrine
+
 Si votre application a été créée avec Tkinter Designer, faites le moi savoir. Il sera utile pour d'autres de voir plus d'exemples !
 (Se référer à la rubrique [Me contacter](#-contact-me)) ou utilisez la section [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) dans les Discussions.
 
 ___
 <br>
- 
 
 ## 📝 Me contacter
 
@@ -102,7 +101,7 @@ Tkinter Designer est mis à disposition sous licence BSD 3-Clause "Nouvelle" ou 
 [Trouvez-la ici.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
 
 | Permissions | Restrictions | Conditions
-| --- | --- | --- 
+| --- | --- | ---
 &check; Utilisation commerciale | &times; Responsabilité | &#x1f6c8; License et Copyright
 &check; Modification   | &times; Garrantie
 &check; Distribution  

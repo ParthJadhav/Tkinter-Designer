@@ -15,15 +15,10 @@
 
 <br>
 
-## الترجمات
-- [简体中文](/docs/README.zh-CN.md)
-- [Français](/docs/README.fr-FR.md)
-- [ગુજરાતી](/docs/README.gu-GU.md)
-- [العربية](/docs/README.ar-DZ.md)
-
-___ 
+___
 
 ## مقدمة
+
 تم إنشاء Tkinter Designer لتسريع عملية تطوير واجهات المستخدم GUI في Python. يستخدم هذا المشروع برنامج التصميم المعروف [Figma](https://www.figma.com/) لتسهيل علمية تطوير واجهات المستخدم الجميلة GUI.
 
 يستخدم المشروع Figma API لتحليل ملف تصميم وإنشاء الكود والملفات المطلوبة لواجهة المستخدم GUI. حتى واجهة المستخدم هذا المشروع تم إنشاؤها باستخدام Tkinter Designer.
@@ -31,6 +26,7 @@ ___
 <img width="500" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/119863796-92af4a80-bf37-11eb-9f6c-61b1ab99b039.png">
 
 ## ☄️ مزايا Tkinter Designer
+
 1. واجهات drag and drop
 2. أسرع بكثير من تطوير الواجهات يديويًا
 3. القدرة على إنشاء واجهات أكثر جمالاً
@@ -67,8 +63,6 @@ ___
 
 سيقوم Tkinter Designer تلقائيًا بإنشاء الكود والصور المطلوبة لإنشاء واجهة المستخدم في Tkinter.
 
-
-
 <img width="467" alt="How it Works" src="https://user-images.githubusercontent.com/42001064/119832620-fb88c980-bf1b-11eb-8e9b-4affe7b92ba2.jpg">
 
 ___
@@ -81,22 +75,26 @@ ___
 <sup>الأمثلة الموالية ليست من إنشائي</sup>
 
 ### صفحة تسجيل
+
 <img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
 
 ### صفحة علامة تجارية
+
 <img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
 
 ### مسجل إطارات [(المزيد من المعلومات)](https://github.com/mehmet-mert/FrameRecorder)
+
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
 ### WhatBulk  [(المزيد من المعلومات)](https://www.instagram.com/p/CQUmKckFBbT/?utm_medium=copy_link)
+
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/122562284-87e06500-d060-11eb-8257-55f3b9dbecf0.PNG">
 
 ## 🔥 عرض
 
 إذا تم إنشاء تطبيقك باستخدام Tkinter Designer، أخبرني بذلك. رؤية المزيد من الأمثلة سيكون مفيدًا لآخرين!
 
-(أنظر إلى: [إتصل بي](#-contact-me)) أو استعمل قسم [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) في الDiscussions. 
+(أنظر إلى: [إتصل بي](#-contact-me)) أو استعمل قسم [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) في الDiscussions.
 
 ___
 <br>
@@ -116,7 +114,7 @@ ___
 [إنظر هنا.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
 
 | الإذن | القيود | الشروط
-| --- | --- | --- 
+| --- | --- | ---
 &check; الاستخدام التجاري | &times; المسؤولية القانونية | &#x1f6c8; إشعار الترخيص وحقوق النشر
 &check; التعديل   | &times; الضمان
 &check; التوزيع

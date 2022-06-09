@@ -14,15 +14,7 @@
 
   <br>
 
-#### 翻译:
-- [简体中文](/docs/README.zh-CN.md)
-- [Français](/docs/README.fr-FR.md)
-- [ગુજરાતી](/docs/README.gu-GU.md)
-- [हिन्दी](/docs/README.hin-HIN.md)
-- [عربية](/docs/README.ar-DZ.md)
-- [Turkish](/docs/README.tr-TR.md)
-
-___ 
+___
 
 ## 💡 介绍
 
@@ -56,6 +48,7 @@ ___
 <br>
 
 ## 📐 这个怎么运作
+
 用户唯一需要做的就是用 Figma 设计一个界面，然后将 Figma 文件 URL 和 API 令牌粘贴到 Tkinter Designer 中。
 
 Tkinter Designer 将自动生成在 Tkinter 中创建 GUI 所需的所有代码和图像。
@@ -66,26 +59,30 @@ ___
 <br>
 
 ## 🎯 Examples
+
 Tkinter Designer 的可能性是无限的，但这里有几个可以在 Tkinter 中完美复制的 GUI。
 
 <small>以下不是我的创作。</small>
 
 ### 注册页面
+
 <img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
 
 ### 品牌页面
+
 <img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
 
 ### Frame Recorder [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
+
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
 
 ## 🔥 展示柜
+
 如果您的应用是使用 Tkinter Designer 制作的，请告诉我。 其他人看到更多的例子会很有帮助！
 （参见：[Contact Me](#-contact-me)）或使用[Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) 部分讨论 .
 
 ___
 <br>
- 
 
 ## 📝 联络我
 
@@ -101,7 +98,7 @@ Tkinter Designer 根据 BSD 3 条款“新”或“修订”许可获得许可�
 [View Here.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
 
 | 权限 | 限制 | 使适应
-| --- | --- | --- 
+| --- | --- | ---
 &check; 商业用途 | &times; 责任 | &#x1f6c8; 许可和版权声明
 &check; 修改   | &times; 保修单
 &check; 分配  

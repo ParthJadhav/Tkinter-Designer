@@ -1,6 +1,7 @@
 # How to use Tkinter Designer
 
-#### Translations:
+#### Translations
+
 - [简体中文](/docs/instructions.zh-CN.md)
 - [Français](/docs/instructions.fr-FR.md)
 - [ગુજરાતી](docs/instructions.gu-GU.md)
@@ -9,22 +10,23 @@
 
 ___
 
-## Table of Contents:
+## Table of Contents
+
 1. [**Getting Started**](#getting-started-1)
    1. [Install Python](#getting-started-1)
    2. [Install Tkinter Designer](#getting-started-2)
    3. [Make a Figma Account](#getting-started-3)
-   
+
 2. [**Formatting Your Figma Design**](#formatting-1)
    1. [Reference](#formatting-1)
    2. [Element Guide](#formatting-2)
-   
+
 3. [**Using Tkinter Designer**](#Using-Tkinter-Designer)
    1. [Personal Access Token](#using-1)
    2. [Getting your File URL](#using-2)
    3. [Using The CLI](#using-cli)
    4. [Using The GUI](#using-gui)
-   
+
 4. [**Troubleshooting**](#Troubleshooting)
 
 <br><br>
@@ -32,10 +34,12 @@ ___
 # Getting Started <small>[[Top](#table-of-contents)]</small>
 
 <a id="getting-started-1"></a>
+
 ## 1. Install Python
+
 Before using Tkinter Designer, you'll need to install Python.  
-* [Here is a link to the Python downloads page.](https://www.python.org/downloads)  
-* [Here is a helpful guide to installing Python on various operating systems.](https://wiki.python.org/moin/BeginnersGuide/Download)
+- [Here is a link to the Python downloads page.](https://www.python.org/downloads)  
+- [Here is a helpful guide to installing Python on various operating systems.](https://wiki.python.org/moin/BeginnersGuide/Download)
 
 *Later in this guide, you will use the Package Installer for Python (pip), which may require you to add Python to your system PATH.*
 
@@ -43,6 +47,7 @@ ___
 <br>
 
 <a id="getting-started-2"></a>
+
 ## 2. Install Tkinter Designer
 
 *Three options:*
@@ -50,9 +55,9 @@ ___
 1. `pip install tkdesigner`
 
 2. Install [poetry](https:python-poetry.org)
-   * `poetry new <gui_project_name> && cd <gui_project_name>`
-   * `poetry add tkdesigner`
-   * `poetry install`
+   - `poetry new <gui_project_name> && cd <gui_project_name>`
+   - `poetry add tkdesigner`
+   - `poetry install`
 
 3. To run Tkinter Designer from the source code, follow the instructions below.
 
@@ -63,16 +68,16 @@ ___
    2. Change your working directory to Tkinter Designer.
 
       `cd tkinter-designer`
-      
-   3. Install the necessary dependencies by running 
 
-      * `pip install -r requirements.txt`
-         * In the event that pip doesn't work, also try the following commands:
-         * `pip3 install -r requirements.txt`
-         * `python -m pip install -r requirements.txt`
-         * `python3 -m pip install -r requirements.txt`
-         * If this still doesn't work, ensure that Python is added to the PATH.
-   
+   3. Install the necessary dependencies by running
+
+      - `pip install -r requirements.txt`
+         - In the event that pip doesn't work, also try the following commands:
+         - `pip3 install -r requirements.txt`
+         - `python -m pip install -r requirements.txt`
+         - `python3 -m pip install -r requirements.txt`
+         - If this still doesn't work, ensure that Python is added to the PATH.
+
    This will install all requirements and Tkinter Designer. Before you use Tkinter Designer you need to create a Figma File with the below instructions.
 
    If you already have created a file then skip to [**Using Tkinter Designer**](#Using-Tkinter-Designer) Section.
@@ -81,22 +86,26 @@ ___
 <br>
 
 <a id="getting-started-3"></a>
+
 ## 3. Make a Figma Account
+
 1. In a web browser, navigate to [figma.com](https://www.figma.com/) and click 'Sign up'
 2. Enter your information, then verify your email
 3. Create a new Figma Design file
 4. Get started making your GUI
-   * The next section covers required formatting for Tkinter Designer input.
-     * [Here is the official Figma tutorial series for beginners.](https://www.youtube.com/watch?v=Cx2dkpBxst8&list=PLXDU_eVOJTx7QHLShNqIXL1Cgbxj7HlN4)
-     * [Here is the official Figma YouTube channel.](https://www.youtube.com/c/Figmadesign/featured)
-     * [Here is the Figma Help Center.](https://help.figma.com/hc/en-us)
+   - The next section covers required formatting for Tkinter Designer input.
+     - [Here is the official Figma tutorial series for beginners.](https://www.youtube.com/watch?v=Cx2dkpBxst8&list=PLXDU_eVOJTx7QHLShNqIXL1Cgbxj7HlN4)
+     - [Here is the official Figma YouTube channel.](https://www.youtube.com/c/Figmadesign/featured)
+     - [Here is the Figma Help Center.](https://help.figma.com/hc/en-us)
 
 <br><br>
 
 <a id="formatting-1"></a>
+
 # Formatting Your Figma Design <small>[[Top](#table-of-contents)]</small>
 
 ## 1. Reference
+
 <br>
 
 ### Naming is Important
@@ -119,101 +128,107 @@ ___
 <br>
 
 <a id="formatting-2"></a>
+
 ## 2. Element Guide
+
 <br>
 
 1. **First, create a Frame that will serve as your Tkinter Window.**
 <br><br>
 
 2. **Adding Images**
-   * Images can be created using shapes and/or images
-   * If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
-   * After that name the element or group as "Image".
+   - Images can be created using shapes and/or images
+   - If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
+   - After that name the element or group as "Image".
 <br><br>
 
 3. **Text (Normal Text)**
-   * Use the <kbd>T</kbd> key to activate the text tool, then add text as desired
-   * Text does not have to be renamed for use in Tkinter Designer
-   * Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
+   - Use the <kbd>T</kbd> key to activate the text tool, then add text as desired
+   - Text does not have to be renamed for use in Tkinter Designer
+   - Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
 <br><br>
 
 4. **Entry (Single-Line User Input)**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "TextBox"
+   - Activate the Rectangle tool with <kbd>R</kbd>
+   - Adjust the Rectangle to your liking
+   - Make sure the Rectangle is named "TextBox"
 <br><br>
 
 5. **Text Area (Multi-Line User Input)**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "TextArea"
+   - Activate the Rectangle tool with <kbd>R</kbd>
+   - Adjust the Rectangle to your liking
+   - Make sure the Rectangle is named "TextArea"
 
 6. **Rectangle**
-   * Activate the Rectangle tool with <kbd>R</kbd>
-   * Adjust the Rectangle to your liking
-   * Make sure the Rectangle is named "Rectangle"
+   - Activate the Rectangle tool with <kbd>R</kbd>
+   - Adjust the Rectangle to your liking
+   - Make sure the Rectangle is named "Rectangle"
 <br><br>
 
 7. **Normal Button**
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
+   - Add rectangle to serve as a button in your GUI
+     - Optional: Add text for the button
+   - Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
+   - Name the group "Button"
 
 #### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
 
 <br><br>
 
-8. **Rounded Button** 
-   * Add rectangle to serve as a button in your GUI
-     * Optional: Add text for the button
-   * Make it rounded by adding corner radius by selecting the rectangle and adding corner radius from the right side. [Read more on it](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
-   * Create a Rectangle with same size of your button. Don't make it rounded. 
-   * Change the Rectangle's color to match the Background
-   * Now move the newly created rectangle below the main button(Rectangle).
-   * Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   * Name the group "Button"
+8. **Rounded Button**
+   - Add rectangle to serve as a button in your GUI
+     - Optional: Add text for the button
+   - Make it rounded by adding corner radius by selecting the rectangle and adding corner radius from the right side. [Read more on it](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
+   - Create a Rectangle with same size of your button. Don't make it rounded.
+   - Change the Rectangle's color to match the Background
+   - Now move the newly created rectangle below the main button(Rectangle).
+   - Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
+   - Name the group "Button"
 
 #### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
 
 <br><br>
 
 <a id="Using-Tkinter-Designer"></a>
+
 # Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
 
 ## Required Inputs
+
 There are some inputs you'll need to collect to be able to use the TKinter Designer.
 
 <a id="using-1"></a>
 
 ### 1. Personal Access Token
+
 1. Log into your Figma account
 2. Navigate to Settings
 3. In the **Account** tab, scroll down to **Personal access tokens**
 4. Enter the name of your access token in the entry form and press <kbd>Enter</kbd>
 5. Your personal access token will be created.
-   * Copy this token and keep it somewhere safe.
-   * **You will not get another chance to copy this token.**
+   - Copy this token and keep it somewhere safe.
+   - **You will not get another chance to copy this token.**
 
 <a id="using-2"></a>
 
 ### 2. Getting your File URL
+
 1. In your Figma design file, click the **Share** button in the top bar, then click on **&#x1f517; Copy link**
 
 <a id="using-cli"></a>
+
 ## Using the CLI
 
-Using the CLI is as simple as installing the package and running the CLI tool. 
+Using the CLI is as simple as installing the package and running the CLI tool.
 
 ### From PyPi
 
 You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
 
-
 ``` bash
-$ pip install tkdesigner
+pip install tkdesigner
 
-$ tkdesigner $FILE_URL $FIGMA_TOKEN
+tkdesigner $FILE_URL $FIGMA_TOKEN
 ```
 
 ### From Source
@@ -230,24 +245,32 @@ $ python -m tkdesigner --help
 ```
 
 ### Output
+
 By default, the GUI code will be written to build/gui.py. You can specify the output path by using `-o` Flag and providing the path.
 
 To run the generated GUI, cd into the directory you built it to (e.g. build/) and run it just as you would any Tkinter GUI.
+
 ```bash
-$ cd build
-$ python3 gui.py
+cd build
+python3 gui.py
 ```
+
 <a id="using-gui"></a>
+
 ## Using the GUI
-### Open Tkinter Designer before doing the following steps.
+
+### Open Tkinter Designer before doing the following steps
+
 <br>
 
 1. Open TKinter Designer GUI by
+
 ```
 cd Tkinter-Designer
 cd gui
 python3 gui.py
 ```
+
 2. Paste your *personal access token* into the **Token ID** form in Tkinter Designer
 3. Paste the link into the **File URL** form in Tkinter Designer
 4. Click the **Output Path** form to open a file browser
@@ -262,23 +285,23 @@ The output files from Tkinter Designer will be placed in your chosen directory, 
 
 # Troubleshooting <small>[[Top](#table-of-contents)]</small>
 
-* Elements not visible? Misplaced?
-  * Please make sure that your Figma File has its elements named correctly. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
+- Elements not visible? Misplaced?
+  - Please make sure that your Figma File has its elements named correctly. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
 
-* Button has an unintended gray background?
-  * Make sure you have added a Rectangle behind your button element, and that its Fill color is the same as the Background's
+- Button has an unintended gray background?
+  - Make sure you have added a Rectangle behind your button element, and that its Fill color is the same as the Background's
 
-* Incorrect elements?
-  * Make sure you have named your elements correctly in Figma
-    * See [Formatting Your Figma Design, &sect;1](#formatting-1)
+- Incorrect elements?
+  - Make sure you have named your elements correctly in Figma
+    - See [Formatting Your Figma Design, &sect;1](#formatting-1)
 
-* Window is larger than the screen?
-  * Reduce the size of your elements in Figma
+- Window is larger than the screen?
+  - Reduce the size of your elements in Figma
 
-* Files not generating?
-  * Restart Tkinter Designer
-  * Double-check the token and URL
-  * Make sure your design has a Frame
+- Files not generating?
+  - Restart Tkinter Designer
+  - Double-check the token and URL
+  - Make sure your design has a Frame
 
-* Something else?
-  * [Report issues not listed here on GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
+- Something else?
+  - [Report issues not listed here on GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
