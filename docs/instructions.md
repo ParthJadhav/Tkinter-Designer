@@ -105,6 +105,7 @@ ___
 | --- | --- |
 | Button | Button |
 | Line | Line |
+| Text | Name it anything |
 | Rectangle | Rectangle |
 | TextArea | Text Area |
 | TextBox | Entry |
