@@ -67,7 +67,7 @@ ___
 
    2. Change your working directory to Tkinter Designer.
 
-      `cd tkinter-designer`
+      `cd Tkinter-Designer`
 
    3. Install the necessary dependencies by running
 
