@@ -46,7 +46,7 @@ Le istruzioni contengono tutte le informazioni utili ad installare ed utilizzare
 
 ## 🦋 Supporta Tkinter Designer
 
-Se tu o la tua azienda avete beneficiato di Tkinter Designer, considera a supportare lo sviluppo del progetto tramite una donazione. Questo aiuterebbe lo sviluppo di Tkinter Designer! È tanto facile quanto preparare un caffè; preparamene uno per me ;)
+Se tu o la tua azienda avete beneficiato di Tkinter Designer, considera a supportare lo sviluppo del progetto tramite una donazione. Questo ne aiuterebbe lo sviluppo! È tanto facile quanto preparare un caffè; preparamene uno per me ;)
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
 
