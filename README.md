@@ -23,6 +23,7 @@
 - [عربية](/docs/README.ar-DZ.md)
 - [Turkish](/docs/README.tr-TR.md)
 - [Brazil](/docs/README.pt-BR.md)
+- [Spanish](/docs/README.spa-SPA.md)
 
 ___
 
