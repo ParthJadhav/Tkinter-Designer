@@ -6,6 +6,7 @@ import tkinter as tk
 import tkinter.messagebox
 import tkinter.filedialog
 from pathlib import Path
+import threading
 
 # Add tkdesigner to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -24,6 +25,14 @@ os.chdir(path)
 
 output_path = ""
 
+def thread_it(func, *args):
+    '''Execute the function in a thread'''
+    # create thread 创建一个线程
+    t = threading.Thread(target=func, args=args)
+    # Daemon thread 守护这个进程
+    t.setDaemon(True)
+    # start thread 开始执行这个线程
+    t.start()
 
 def btn_clicked():
     token = token_entry.get()
@@ -189,7 +198,7 @@ know_more.bind('<Button-1>', know_more_clicked)
 generate_btn_img = tk.PhotoImage(file=ASSETS_PATH / "generate.png")
 generate_btn = tk.Button(
     image=generate_btn_img, borderwidth=0, highlightthickness=0,
-    command=btn_clicked, relief="flat")
+    command=lambda :thread_it(btn_clicked), relief="flat")
 generate_btn.place(x=557, y=401, width=180, height=55)
 
 window.resizable(False, False)
