@@ -28,5 +28,8 @@ precommit: lint test
 cli:
 	poetry run tkdesigner ${FIGMA_PROJECT_URL} ${FIGMA_TOKEN} -f
 
+cli.build.test:
+	poetry run tkdesigner https://www.figma.com/file/WVLnulVsI177tvnxSdqOUZ/Untitled ${FIGMA_TOKEN} -f
+
 gui:
 	poetry run python gui/gui.py
