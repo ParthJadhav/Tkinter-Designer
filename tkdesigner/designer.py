@@ -27,4 +27,4 @@ class Designer:
         """Write code and assets to the specified directories.
         """
         code = self.to_code()
-        self.output_path.joinpath(CODE_FILE_NAME).write_text(code)
+        self.output_path.joinpath(CODE_FILE_NAME).write_text(code, encoding='UTF-8')
