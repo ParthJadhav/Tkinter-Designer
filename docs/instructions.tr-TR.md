@@ -161,7 +161,7 @@ ___
    - Butonu(Rectangle), ve herhangi bir yazıyı seçin,  ardından onları <kbd>CTRL/&#8984; + G</kbd> ile guruplayın
    - Grubu "Button" olarak adlandırın
 
-#### Herhangi bir problemde [bu videoyu](https://youtu.be/mFjE2-rbpm8?t=275) referans alın
+#### Herhangi bir problemde [bu videoyu](https://youtu.be/Qd-jJjduWeQ) referans alın
 
 <br><br>
 
@@ -175,7 +175,7 @@ ___
    - Butonu, dikdörtgeni ve herhangi opsiyonel yazıyı seçin ve onları <kbd>CTRL/&#8984; + G</kbd> ile gruplandırın
    - Grubu "Button" olarak adlandırın.
 
-#### Herhangi bir problemde [bu videoyu](https://youtu.be/mFjE2-rbpm8?t=275) referans alın
+#### Herhangi bir problemde [bu videoyu](https://youtu.be/Qd-jJjduWeQ) referans alın
 
 <br><br>
 

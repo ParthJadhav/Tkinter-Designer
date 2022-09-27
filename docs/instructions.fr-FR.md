@@ -153,7 +153,7 @@ ___
    - Sélectionnez le bouton (Rectangle) et tout texte facultatif, puis regroupez-les avec <kbd>CTRL/&#8984; + G</kbd>
    - Nommez le groupe "Button"
 
-#### Référez vous à [cette vidéo](https://youtu.be/mFjE2-rbpm8?t=275) si vous rencontrez tout problème
+#### Référez vous à [cette vidéo](https://youtu.be/Qd-jJjduWeQ) si vous rencontrez tout problème
 
 <br><br>
 
@@ -167,7 +167,7 @@ ___
    - Sélectionnez le bouton (Rectangle) et tout texte facultatif, puis regroupez-les avec <kbd>CTRL/&#8984; + G</kbd>
    - Nommez le groupe "Button"
 
-#### Référez vous à [cette vidéo](https://youtu.be/mFjE2-rbpm8?t=275) si vous rencontrez tout problème
+#### Référez vous à [cette vidéo](https://youtu.be/Qd-jJjduWeQ) si vous rencontrez tout problème
 
 <br><br>
 

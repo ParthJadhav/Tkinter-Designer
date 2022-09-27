@@ -172,7 +172,7 @@ ___
    - Seleziona il pulsante (Rettangolo), e l'eventuale testo, e raggruppali premendo i tasti <kbd>CTRL/&#8984; + G</kbd>
    - Rinomina il gruppo "Button"
 
-#### Guarda [questo video](https://youtu.be/mFjE2-rbpm8?t=275) se dovessi riscontrare problemi.
+#### Guarda [questo video](https://youtu.be/Qd-jJjduWeQ) se dovessi riscontrare problemi.
 
 <br><br>
 
@@ -186,7 +186,7 @@ ___
    - Seleziona il pulsante (Rettangolo), e l'eventuale testo, e raggruppali premendo i tasti <kbd>CTRL/&#8984; + G</kbd>
    - Rinomina il gruppo "Button"
 
-#### Guarda [questo video](https://youtu.be/mFjE2-rbpm8?t=275) se dovessi riscontrare problemi.
+#### Guarda [questo video](https://youtu.be/Qd-jJjduWeQ) se dovessi riscontrare problemi.
 
 <br><br>
 

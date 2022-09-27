@@ -162,7 +162,7 @@ ___
    - Selecione o botão (Retângulo) e qualquer texto opcional e agrupe-os com <kbd>CTRL/&#8984; + G</kbd>
    - Nomeie o grupo "Button"
 
-#### Consulte [esté video](https://youtu.be/mFjE2-rbpm8?t=275) se tiver algum problema
+#### Consulte [esté video](https://youtu.be/Qd-jJjduWeQ) se tiver algum problema
 
 <br><br>
 
@@ -176,7 +176,7 @@ ___
    - Selecione o botão, Retângulo e qualquer texto opcional e, em seguida, agrupe-os com <kbd>CTRL/&#8984; + G</kbd>
    - Nomeie o grupo "Button"
 
-#### Consulte [esté video](https://youtu.be/mFjE2-rbpm8?t=275) se tiver algum problema
+#### Consulte [esté video](https://youtu.be/Qd-jJjduWeQ) se tiver algum problema
 
 <br><br>
 

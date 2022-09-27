@@ -171,7 +171,7 @@ ___
    - Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
    - Name the group "Button"
 
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+#### Refer to [this video](https://youtu.be/Qd-jJjduWeQ) if you face any problem
 
 <br><br>
 
@@ -185,7 +185,7 @@ ___
    - Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
    - Name the group "Button"
 
-#### Refer to [this video](https://youtu.be/mFjE2-rbpm8?t=275) if you face any problem
+#### Refer to [this video](https://youtu.be/Qd-jJjduWeQ) if you face any problem
 
 <br><br>
 
