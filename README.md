@@ -23,6 +23,7 @@
 - [عربية](/docs/README.ar-DZ.md)
 - [Turkish](/docs/README.tr-TR.md)
 - [Brazil](/docs/README.pt-BR.md)
+- [Spanish](/docs/README.spa-SPA.md)
 
 ___
 
@@ -46,7 +47,7 @@ The instructions contain all the information about installing and using Tkinter 
 
 ## 🦋 Supporting Tkinter Designer
 
-If you or your company has benefited from Tkinter Designer, consider supporting the development of the project through donations. This will feul the development of Tkinter Designer! It's as easy as making a Coffee; Please make one for me ;)
+If you or your company has benefited from Tkinter Designer, consider supporting the development of the project through donations. This will fuel the development of Tkinter Designer! It's as easy as making a Coffee; I'll be glad to have one ;)
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="217px" ></a>
 
