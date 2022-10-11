@@ -5,10 +5,6 @@ from tkdesigner.template import TEMPLATE
 
 from pathlib import Path
 
-
-CODE_FILE_NAME = "gui.py"
-
-
 class Designer:
     def __init__(self, token, file_key, output_path: Path):
         self.output_path = output_path
@@ -18,15 +14,19 @@ class Designer:
     def to_code(self) -> str:
         """Return main code.
         """
-        window_data = self.file_data["document"]["children"][0]["children"][0]
-        try:
-            frame = Frame(window_data, self.figma_file, self.output_path)
-        except Exception:
-            raise Exception("Frame not found in figma file or is empty")
-        return frame.to_code(TEMPLATE)
+        frames = [];
+        for f in self.file_data["document"]["children"][0]["children"]:
+            try:
+                frame = Frame(f, self.figma_file, self.output_path)
+            except Exception:
+                raise Exception("Frame not found in figma file or is empty")
+            frames.append(frame.to_code(TEMPLATE))
+        return frames
+
 
     def design(self):
         """Write code and assets to the specified directories.
         """
         code = self.to_code()
-        self.output_path.joinpath(CODE_FILE_NAME).write_text(code, encoding='UTF-8')
+        for index in range(len(code)):
+            self.output_path.joinpath(f"frame{index}.py").write_text(code[index], encoding='UTF-8')
