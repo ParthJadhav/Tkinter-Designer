@@ -3,7 +3,6 @@ import re
 import sys
 import os
 import tkinter as tk
-import tkinter.messagebox
 import tkinter.filedialog
 from pathlib import Path
 
@@ -120,14 +119,14 @@ token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)
 URL_entry_img = canvas.create_image(650.5, 248.5, image=text_box_bg)
 filePath_entry_img = canvas.create_image(650.5, 329.5, image=text_box_bg)
 
-token_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+token_entry = tk.Entry(bd=0, bg="#F6F7F9",fg="#000716",  highlightthickness=0)
 token_entry.place(x=490.0, y=137+25, width=321.0, height=35)
 token_entry.focus()
 
-URL_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+URL_entry = tk.Entry(bd=0, bg="#F6F7F9", fg="#000716",  highlightthickness=0)
 URL_entry.place(x=490.0, y=218+25, width=321.0, height=35)
 
-path_entry = tk.Entry(bd=0, bg="#F6F7F9", highlightthickness=0)
+path_entry = tk.Entry(bd=0, bg="#F6F7F9", fg="#000716", highlightthickness=0)
 path_entry.place(x=490.0, y=299+25, width=321.0, height=35)
 
 path_picker_img = tk.PhotoImage(file = ASSETS_PATH / "path_picker.png")
