@@ -19,7 +19,9 @@ class Designer:
         """Return main code.
         """
         window_data = self.file_data["document"]["children"][0]["children"][0]
-
+        
+        if type(window_data) != list:
+            raise Exception("No frame found in the figma file, please add a frame to the file.")
         frame = Frame(window_data, self.figma_file, self.output_path)
         return frame.to_code(TEMPLATE)
 
