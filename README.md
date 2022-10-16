@@ -130,3 +130,5 @@ We welcome all kinds of contributions from the open-source community, individual
 
 If you want to contact me, you can
 reach me at Jadhavparth99@gmail.com
+
+Connect with me on [![Linkedin](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/parthjadhav04/)
