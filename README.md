@@ -55,6 +55,9 @@ If you or your company has benefited from Tkinter Designer, consider supporting 
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="180" ></a>
 
+<a href="https://paypal.me/parthJadhav22?country.x=IN&locale.x=en_GB" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196043185-ebd61195-44ee-480f-9b76-f5eb7cfcaf55.png" alt="Paypal" width="180" ></a>
+
+
 ## 🔵 Discord server & Linkedin
 
 Click the button below to join the discord server or Linkedin 
@@ -73,8 +76,6 @@ Tkinter Designer will automatically generate all the code and images required to
 <img width="467" alt="How it Works" src="https://user-images.githubusercontent.com/42001064/119832620-fb88c980-bf1b-11eb-8e9b-4affe7b92ba2.jpg">
 
 ___
-<br>
-
 
 ## 🎯 Examples
 
