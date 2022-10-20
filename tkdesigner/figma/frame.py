@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 class Frame(Node):
-    def __init__(self, node, figma_file, output_path):
+    def __init__(self, node, figma_file, output_path, frameCount=0):
         super().__init__(node)
 
         self.width, self.height = self.size()
@@ -21,7 +21,7 @@ class Frame(Node):
         self.figma_file = figma_file
 
         self.output_path: Path = output_path
-        self.assets_path: Path = output_path / ASSETS_PATH
+        self.assets_path: Path = output_path / ASSETS_PATH / f"frame{frameCount}"
 
         self.output_path.mkdir(parents=True, exist_ok=True)
         self.assets_path.mkdir(parents=True, exist_ok=True)
@@ -123,7 +123,7 @@ class Frame(Node):
     def to_code(self, template):
         t = Template(template)
         return t.render(
-            window=self, elements=self.elements, assets_path=ASSETS_PATH)
+            window=self, elements=self.elements, assets_path=self.assets_path)
 
 
 # Frame Subclasses

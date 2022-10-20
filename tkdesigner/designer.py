@@ -10,6 +10,7 @@ class Designer:
         self.output_path = output_path
         self.figma_file = endpoints.Files(token, file_key)
         self.file_data = self.figma_file.get_file()
+        self.frameCounter = 0
 
     def to_code(self) -> str:
         """Return main code.
@@ -17,10 +18,11 @@ class Designer:
         frames = [];
         for f in self.file_data["document"]["children"][0]["children"]:
             try:
-                frame = Frame(f, self.figma_file, self.output_path)
+                frame = Frame(f, self.figma_file, self.output_path, self.frameCounter)
             except Exception:
                 raise Exception("Frame not found in figma file or is empty")
             frames.append(frame.to_code(TEMPLATE))
+            self.frameCounter += 1
         return frames
 
 
@@ -29,4 +31,4 @@ class Designer:
         """
         code = self.to_code()
         for index in range(len(code)):
-            self.output_path.joinpath(f"frame{index}.py").write_text(code[index], encoding='UTF-8')
+            self.output_path.joinpath(f"gui{index}.py").write_text(code[index], encoding='UTF-8')
