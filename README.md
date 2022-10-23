@@ -46,7 +46,6 @@ Tkinter Designer uses the Figma API to analyze a design file and create the resp
 Read the Instructions or Watch the Youtube video down below.
 
 <a href="/docs/instructions.md" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196041925-64f81f75-8bee-42ac-a234-a93339bc8cdc.png" alt="Instructions" width="180px" ></a>
-
 <a href="https://www.youtube.com/watch?v=Qd-jJjduWeQ" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196041927-c94c1a94-c708-44a4-9c81-df83bac686d4.png" alt="Youtube Tutorial" width="180px" ></a>
 
 ## 🦋 Supporting Tkinter Designer
@@ -54,7 +53,6 @@ Read the Instructions or Watch the Youtube video down below.
 If you or your company has benefited from Tkinter Designer, consider supporting the development of the project through donations. This will fuel the development of Tkinter Designer! It's as easy as making a Coffee; I'll be glad to have one ;)
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="180" ></a>
-
 <a href="https://paypal.me/parthJadhav22?country.x=IN&locale.x=en_GB" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196043185-ebd61195-44ee-480f-9b76-f5eb7cfcaf55.png" alt="Paypal" width="180" ></a>
 
 
@@ -63,8 +61,7 @@ If you or your company has benefited from Tkinter Designer, consider supporting 
 Click the button below to join the discord server or Linkedin 
 
 <a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="180px" ></a>
-
-<a href="https://www.linkedin.com/in/parthjadhav04" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin" alt="Connect on Linkedin" width="180px" ></a>
+<a href="https://www.linkedin.com/in/parthjadhav04" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin" alt="Connect on Linkedin" width="180px" height="58"></a>
 
 
 ## 📐 How it Works
