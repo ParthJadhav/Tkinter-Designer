@@ -51,7 +51,7 @@ View the YouTube video or read the instructions below.
 
 ## 🦋 Supporting Tkinter Designer
 
-If you or your company has benefited from Tkinter Designer, consider supporting the development of the project through donations. This will fuel the development of Tkinter Designer! It's as easy as making a Coffee; I'll be glad to have one ;)
+Consider making a donation to the Tkinter Designer project if you or your business have benefited from it. This will accelerate Tkinter Designer's development! Making coffee is simple; I'll be happy to enjoy one.
 
 <a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="180" ></a>
 
