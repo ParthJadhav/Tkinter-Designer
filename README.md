@@ -43,7 +43,7 @@ Tkinter Designer uses the Figma API to analyze a design file and create the resp
 
 ## ⚡️ Read the instruction here
 
-Read the Instructions or Watch the Youtube video down below.
+View the YouTube video or read the instructions below.
 
 <a href="/docs/instructions.md" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196041925-64f81f75-8bee-42ac-a234-a93339bc8cdc.png" alt="Instructions" width="180px" ></a>
 
