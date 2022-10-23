@@ -106,7 +106,9 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 
 ## 🔥 Showcase
 
-If your app was made with Tkinter Designer, let me know. It will be helpful for others to see more examples!  
+Please let me know if Tkinter Designer was used to create your app. More illustrations will be
+beneficial for other people!
+
 (See: [Contact Me](#-contact-me)) or use [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) section in Discussions.
 
 ## 📄 License
