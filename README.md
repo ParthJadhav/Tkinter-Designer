@@ -124,7 +124,7 @@ Tkinter Designer is licensed under the BSD 3-Clause "New" or "Revised" License.
 
 ## Contribute
 
-We welcome all kinds of contributions from the open-source community, individuals and partners. We owe our success to your active involvement.
+All contributions from the open-source community, individuals, and partners are welcomed. Our achievement is a result of your active participation.
 
 [Contributing guidelines](docs/CONTRIBUTING.md)
 
