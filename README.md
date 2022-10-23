@@ -37,9 +37,9 @@ Tkinter Designer uses the Figma API to analyze a design file and create the resp
 
 ## ☄️  Advantages of Tkinter Designer
 
-1. Drag and drop interfaces
-2. Significantly faster than creating code manually
-3. Ability to create more beautiful interfaces
+1. Interfaces with drag and drop.
+2. A great deal quicker than writing code by hand
+3. Produce more gorgeous interfaces
 
 ## ⚡️ Read the instruction here
 
