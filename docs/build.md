@@ -1,7 +1,7 @@
 # Building & Releasing to Pypi with Poetry
 
 ## A Note:
-Packaging in python has been a contentious issue and everyone has an opinion.
+Python packaging is a hot topic, and everyone has an opinion about it.
 We migrated to poetry based on discussion in [pull request #84](https://github.com/ParthJadhav/Tkinter-Designer/pull/84)
 Have we made a huge mistake? If so, open an issue and let us know!
 
