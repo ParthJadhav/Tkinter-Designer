@@ -158,6 +158,7 @@ entry_bg_{self.id_} = canvas.create_image(
 entry_{self.id_} = {self.entry_type}(
     bd=0,
     bg="{self.bg_color}",
+    fg="#000716",
     highlightthickness=0
 )
 entry_{self.id_}.place(

@@ -31,4 +31,8 @@ class Designer:
         """
         code = self.to_code()
         for index in range(len(code)):
-            self.output_path.joinpath(f"gui{index}.py").write_text(code[index], encoding='UTF-8')
+            # tutorials on youtube mention `python3 gui.py` added the below check to keep them valid
+            if (index == 0):
+                self.output_path.joinpath(f"gui.py").write_text(code[index], encoding='UTF-8')
+            else:
+                self.output_path.joinpath(f"gui{index}.py").write_text(code[index], encoding='UTF-8')
