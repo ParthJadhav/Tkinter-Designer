@@ -35,6 +35,14 @@ Tkinter Designer uses the Figma API to analyze a design file and create the resp
 
 <img width="500" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/119863796-92af4a80-bf37-11eb-9f6c-61b1ab99b039.png">
 
+## 📢 Announcement
+### 🎉 Multi frame support is here! 🎉
+
+You can now create multiple frames in a single design file and Tkinter Designer will create the respective code and files for each frame. This is a huge step for Tkinter Designer and I'm really excited to see what you guys create with it.
+
+Feel free to share your creations with the community on [Discord](https://discord.gg/QfE5jMXxJv).
+
+If you encounter any bugs or have any suggestions, please create an issue [here](https://github.com/ParthJadhav/Tkinter-Designer).
 ## ☄️  Advantages of Tkinter Designer
 
 1. Interfaces with drag and drop.
