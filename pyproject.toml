@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tkdesigner"
-version = "1.0.5"
+version = "1.0.6"
 description = "CLI Package for Tkinter-Designer"
 authors = ["ParthJadhav <jadhavparth99@gmail.com>"]
 license = "BSD-3-Clause"
@@ -34,6 +34,12 @@ pylint = "^2.9.6"
 
 [tool.poetry.scripts]
 tkdesigner = 'tkdesigner.cli:main'
+
+[[tool.poetry.source]]
+name = "tkdesigner"
+url = "https://test.pypi.org/project/tkdesigner/"
+default = false
+secondary = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
