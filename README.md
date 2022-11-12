@@ -24,6 +24,7 @@
 - [Turkish](/docs/README.tr-TR.md)
 - [Brazil](/docs/README.pt-BR.md)
 - [Spanish](/docs/README.spa-SPA.md)
+- [मराठी](/docs/README.mr-MR.md)
 
 ___
 
