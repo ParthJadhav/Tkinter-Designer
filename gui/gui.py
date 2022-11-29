@@ -2,7 +2,8 @@ import webbrowser
 import re
 import sys
 import os
-import tkinter as tk
+import  tkinter as tk
+import tkinter.messagebox as tk1
 import tkinter.filedialog
 from pathlib import Path
 
@@ -55,12 +56,12 @@ def btn_clicked():
     output = Path(output_path + "/build").expanduser().resolve()
 
     if output.exists() and not output.is_dir():
-        tk.messagebox.showerror(
+        tk1.showerror(
             "Exists!",
             f"{output} already exists and is not a directory.\n"
             "Enter a valid output directory.")
     elif output.exists() and output.is_dir() and tuple(output.glob('*')):
-        response = tk.messagebox.askyesno(
+        response = tk1.askyesno(
             "Continue?",
             f"Directory {output} is not empty.\n"
             "Do you want to continue and overwrite?")
