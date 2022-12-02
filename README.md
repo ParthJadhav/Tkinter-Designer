@@ -113,6 +113,10 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/122562284-87e06500-d060-11eb-8257-55f3b9dbecf0.PNG">
 
+### Atarbals-Modern-Antivirus [(More Info)](https://github.com/HarshscGithub/Atarbals-Modern-Antivirus)
+
+<img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/205285178-74fb46c7-0c36-4fc5-983d-afbaaedb7cb9.png">
+
 ## 🔥 Showcase
 
 Please let me know if Tkinter Designer was used to create your app. More illustrations will be
