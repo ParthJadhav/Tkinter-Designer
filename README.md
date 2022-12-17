@@ -97,13 +97,9 @@ The possibilities are endless with Tkinter Designer, but here are a couple of GU
 
 <img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/181297276-fc8c4106-c988-4b1a-89d2-5e833a574aab.png">
 
-### Registration Page
+### BeAnonymous [(More Info)](https://github.com/MambaCodes/BeAnonymous)
 
-<img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/119250338-1f1adf80-bbbd-11eb-8ee1-72028a4e7a7f.png">
-
-### Branding Page
-
-<img width="467" alt="Example 2" src="https://user-images.githubusercontent.com/42001064/119250668-496d9c80-bbbf-11eb-886b-cb1e75da18df.png">
+<img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/208241685-a3c51f59-746d-4e00-aaeb-c2c8357efb89.png">
 
 ### Frame Recorder [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
 
