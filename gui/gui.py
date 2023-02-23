@@ -113,7 +113,7 @@ canvas = tk.Canvas(
     bd=0, highlightthickness=0, relief="ridge")
 canvas.place(x=0, y=0)
 canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC", outline="")
-canvas.create_rectangle(40, 160, 40 + 60, 160 + 5, fill="#FCFCFC", outline="")
+canvas.create_rectangle(33, 160, 33 + 60, 160 + 5, fill="#FCFCFC", outline="")
 
 text_box_bg = tk.PhotoImage(file=ASSETS_PATH / "TextBox_Bg.png")
 token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)
@@ -164,7 +164,7 @@ canvas.create_text(
 
 title = tk.Label(
     text="Welcome to Tkinter Designer", bg="#3A7FF6",
-    fg="white", font=("Arial-BoldMT", int(20.0)))
+    fg="white",justify="left", font=("Arial-BoldMT", int(20.0)))
 title.place(x=20.0, y=120.0)
 
 info_text = tk.Label(
@@ -182,8 +182,8 @@ info_text.place(x=20.0, y=200.0)
 
 know_more = tk.Label(
     text="Click here for instructions",
-    bg="#3A7FF6", fg="white", cursor="hand2")
-know_more.place(x=27, y=400)
+    bg="#3A7FF6", fg="white",justify="left", cursor="hand2")
+know_more.place(x=20, y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
 generate_btn_img = tk.PhotoImage(file=ASSETS_PATH / "generate.png")
