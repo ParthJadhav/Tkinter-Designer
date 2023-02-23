@@ -165,7 +165,7 @@ canvas.create_text(
 title = tk.Label(
     text="Welcome to Tkinter Designer", bg="#3A7FF6",
     fg="white", font=("Arial-BoldMT", int(20.0)))
-title.place(x=27.0, y=120.0)
+title.place(x=20.0, y=120.0)
 
 info_text = tk.Label(
     text="Tkinter Designer uses the Figma API\n"
@@ -178,7 +178,7 @@ info_text = tk.Label(
     bg="#3A7FF6", fg="white", justify="left",
     font=("Georgia", int(16.0)))
 
-info_text.place(x=27.0, y=200.0)
+info_text.place(x=20.0, y=200.0)
 
 know_more = tk.Label(
     text="Click here for instructions",
