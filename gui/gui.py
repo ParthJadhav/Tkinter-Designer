@@ -113,7 +113,6 @@ canvas = tk.Canvas(
     bd=0, highlightthickness=0, relief="ridge")
 canvas.place(x=0, y=0)
 canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC", outline="")
-canvas.create_rectangle(33, 160, 33 + 60, 160 + 5, fill="#FCFCFC", outline="")
 
 text_box_bg = tk.PhotoImage(file=ASSETS_PATH / "TextBox_Bg.png")
 token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)
@@ -166,6 +165,7 @@ title = tk.Label(
     text="Welcome to Tkinter Designer", bg="#3A7FF6",
     fg="white",justify="left", font=("Arial-BoldMT", int(20.0)))
 title.place(x=20.0, y=120.0)
+canvas.create_rectangle(25, 160, 33 + 60, 160 + 5, fill="#FCFCFC", outline="")
 
 info_text = tk.Label(
     text="Tkinter Designer uses the Figma API\n"
