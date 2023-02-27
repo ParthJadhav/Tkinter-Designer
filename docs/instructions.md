@@ -119,6 +119,7 @@ ___
 | TextArea | Text Area |
 | TextBox | Entry |
 | Image | Canvas.Image() |
+| ButtonHover | Button shown on hover |
 
 <br>
 
@@ -189,6 +190,17 @@ ___
 
 <br><br>
 
+9. **Button with Hover Effect**
+   - Duplicate the Button you created in the previous step
+     - You can duplicate the Button by selecting the button group and pressing <kbd>CTRL/&#8984; + D</kbd>
+   - Rename the duplicate button to "ButtonHover"
+   - Place the duplicate button above the original button
+   - Make sure it's on the same position as the original button
+     - x and y coordinates should be the same
+   - Make changes to the duplicate button for the hover effect
+     - For example, change the color
+
+<br><br>
 <a id="Using-Tkinter-Designer"></a>
 
 # Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
