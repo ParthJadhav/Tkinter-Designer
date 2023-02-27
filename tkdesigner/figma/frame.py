@@ -3,7 +3,7 @@ from ..utils import download_image
 
 from .node import Node
 from .vector_elements import Line, Rectangle, UnknownElement
-from .custom_elements import Button, Text, Image, TextEntry
+from .custom_elements import Button, Text, Image, TextEntry, ButtonHover
 
 from jinja2 import Template
 from pathlib import Path
@@ -54,6 +54,20 @@ class Frame(Node):
 
             return Button(
                 element, self, image_path, id_=f"{self.counter[Button]}")
+
+        elif element_name == "buttonhover":
+            self.counter[ButtonHover] = self.counter.get(ButtonHover, 0) + 1
+
+            item_id = element["id"]
+            image_url = self.figma_file.get_image(item_id)
+            image_path = (
+                self.assets_path / f"button_hover_{self.counter[ButtonHover]}.png")
+            download_image(image_url, image_path)
+
+            image_path = image_path.relative_to(self.assets_path)
+
+            return ButtonHover(
+                element, self, image_path)
 
         elif element_name in ("textbox", "textarea"):
             self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
