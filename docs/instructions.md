@@ -200,6 +200,8 @@ ___
    - Make changes to the duplicate button for the hover effect
      - For example, change the color
 
+#### Refer to [this video](https://watch.screencastify.com/v/saDGrNayjwSmxbFbShB1) if you face any problem
+
 <br><br>
 <a id="Using-Tkinter-Designer"></a>
 
