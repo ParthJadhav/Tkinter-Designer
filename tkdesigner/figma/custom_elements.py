@@ -13,21 +13,21 @@ class Button(Rectangle):
         self.id_ = id_
 
     def to_code(self):
-        identiy = self.id_
+        identify = self.id_
         name = self.get("name").strip().lower()
         if '_' in name:
-            identiy = name.split('_')[1]
+            identify = name.split('_')[1]
         return f"""
-button_image_{identiy} = ImageTk.PhotoImage(Image.open(
+button_image_{identify} = ImageTk.PhotoImage(Image.open(
     relative_to_assets("{self.image_path}")))
-button_{identiy} = Button(
-    image=button_image_{identiy},
+button_{identify} = Button(
+    image=button_image_{identify},
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_{identiy} clicked"),
+    command=lambda: print("button_{identify} clicked"),
     relief="flat"
 )
-button_{identiy}.place(
+button_{identify}.place(
     x={self.x},
     y={self.y},
     width={self.width},
@@ -113,17 +113,17 @@ class Image(Vector):
         self.id_ = id_
 
     def to_code(self):
-        identiy = self.id_
+        identify = self.id_
         name = self.get("name").strip().lower()
         if '_' in name:
-            identiy = name.split('_')[1]
+            identify = name.split('_')[1]
         return f"""
-image_image_{identiy} = ImageTk.PhotoImage(Image.open(
+image_image_{identify} = ImageTk.PhotoImage(Image.open(
     relative_to_assets("{self.image_path}")))
-image_{identiy} = canvas.create_image(
+image_{identify} = canvas.create_image(
     {self.x},
     {self.y},
-    image=image_image_{identiy}
+    image=image_image_{identify}
 )
 """
 
@@ -154,25 +154,25 @@ class TextEntry(Vector):
         self.entry_type = TEXT_INPUT_ELEMENT_TYPES.get(self.get("name").split("_")[0])
 
     def to_code(self):
-        identiy = self.id_
+        identify = self.id_
         name = self.get("name").strip().lower()
         if '_' in name:
-            identiy = name.split('_')[1]
+            identify = name.split('_')[1]
         return f"""
-entry_image_{identiy} = ImageTk.PhotoImage(Image.open(
+entry_image_{identify} = ImageTk.PhotoImage(Image.open(
     relative_to_assets("{self.image_path}")))
-entry_bg_{identiy} = canvas.create_image(
+entry_bg_{identify} = canvas.create_image(
     {self.x},
     {self.y},
-    image=entry_image_{identiy}
+    image=entry_image_{identify}
 )
-entry_{identiy} = {self.entry_type}(
+entry_{identify} = {self.entry_type}(
     bd=0,
     bg="{self.bg_color}",
     fg="#000716",
     highlightthickness=0
 )
-entry_{identiy}.place(
+entry_{identify}.place(
     x={self.entry_x},
     y={self.entry_y},
     width={self.entry_width},
