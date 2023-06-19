@@ -21,7 +21,6 @@ logging.basicConfig(level=log_level)
 
 
 def main():
-    # TODO: Add support for `--force`. Be careful while deleting files.
     parser = argparse.ArgumentParser(
         description="Generate TKinter GUI code from Figma design.")
 
@@ -46,7 +45,7 @@ def main():
     logging.info(f"args: {args}")
 
     match = re.search(
-        r'https://www.figma.com/file/([0-9A-Za-z]+)', args.file_url)
+        r'https://www.figma.com/file/([0-9A-Za-z]+)', args.file_url.split("?")[0])
     if match is None:
         raise ValueError("Invalid file URL.")
 
