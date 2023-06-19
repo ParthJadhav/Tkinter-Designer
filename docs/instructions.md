@@ -7,6 +7,7 @@
 - [ગુજરાતી](docs/instructions.gu-GU.md)
 - [عربية](/docs/instructions.ar-DZ.md)
 - [Turkish](/docs/instructions.tr-TR.md)
+- [Korean](/docs/instructions.kr-KR.md)
 
 ___
 
