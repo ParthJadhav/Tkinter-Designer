@@ -33,6 +33,7 @@ button_{self.id_}.place(
 )
 """
 
+#EXPERIMENTAL FEATURE
 class ButtonHover(Rectangle):
     def __init__(self, node, frame, image_path):
         super().__init__(node, frame)

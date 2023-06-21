@@ -119,7 +119,7 @@ ___
 | TextArea | Text Area |
 | TextBox | Entry |
 | Image | Canvas.Image() |
-| ButtonHover | Button shown on hover |
+| ButtonHover (EXPERIMENTAL) | Button shown on hover |
 
 <br>
 
@@ -190,7 +190,7 @@ ___
 
 <br><br>
 
-9. **Button with Hover Effect**
+9. **Button with Hover Effect (EXPERIMENTAL)**
    - Duplicate the Button you created in the previous step
      - You can duplicate the Button by selecting the button group and pressing <kbd>CTRL/&#8984; + D</kbd>
    - Rename the duplicate button to "ButtonHover"
