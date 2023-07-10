@@ -51,9 +51,9 @@ def btn_clicked():
             "Invalid URL!", "Please enter a valid file URL.")
         return
 
-    file_key = match.group(1).strip()
+    file_key = match[1].strip()
     token = token.strip()
-    output = Path(output_path + "/build").expanduser().resolve()
+    output = Path(f"{output_path}/build").expanduser().resolve()
 
     if output.exists() and not output.is_dir():
         tk1.showerror(

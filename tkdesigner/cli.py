@@ -49,7 +49,7 @@ def main():
     if match is None:
         raise ValueError("Invalid file URL.")
 
-    file_key = match.group(1).strip()
+    file_key = match[1].strip()
     token = args.token.strip()
     output_path = Path(args.output.strip()).expanduser().resolve() / "build"
 
