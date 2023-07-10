@@ -135,9 +135,7 @@ class TextEntry(Vector):
         self.bg_color = self.color()
 
         corner_radius = self.get("cornerRadius", 0)
-        if corner_radius > height / 2:
-            corner_radius = height / 2
-
+        corner_radius = min(corner_radius, height / 2)
         self.entry_width = width - (corner_radius * 2)
         self.entry_height = height - 2
 
