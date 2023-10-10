@@ -132,9 +132,9 @@ ___
 
 [LEARN.md](LEARN.md)
 
-## 📝 Contact Me
+## 📝 আমার সাথে যোগাযোগ কর
 
-If you want to contact me, you can
-reach me at Jadhavparth99@gmail.com
+আমার সাথে যোগাযোগ করতে চাইলে করতে পারেন
+আমার কাছে পৌঁছান Jadhavparth99@gmail.com
 
-Connect with me on [![Linkedin](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/parthjadhav04/)
+আমার সাথে সংযোগ করুন [![লিঙ্কড-ইন](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/parthjadhav04/)
