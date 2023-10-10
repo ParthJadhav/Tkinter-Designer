@@ -4,11 +4,15 @@
 
 - [简体中文](/docs/instructions.zh-CN.md)
 - [Français](/docs/instructions.fr-FR.md)
-- [ગુજરાતી](docs/instructions.gu-GU.md)
-- [عربية](/docs/instructions.ar-DZ.md)
+- [ગુજરાતી](/docs/instructions.gu-GU.md)
+- [Italiano](/docs/instructions.it-IT.md)
+- [عربية](/docs/instructions.ar-DZ.md/)
 - [Turkish](/docs/instructions.tr-TR.md)
+- [Brazil](/docs/instructions.pt-BR.md)
+- [Spanish](/docs/instructions.spa-SPA.md)
 - [Korean](/docs/instructions.kr-KR.md)
 - [Tiếng Việt](/docs/instructions.vi-VN.md)
+- [Русский](/docs/instructions.ru-RU.md)
 
 ___
 
