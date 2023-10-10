@@ -16,21 +16,6 @@
 </p>
   <br>
 
-## Translations
-
-- [简体中文](/docs/README.zh-CN.md)
-- [Français](/docs/README.fr-FR.md)
-- [ગુજરાતી](/docs/README.gu-GU.md)
-- [हिन्दी](/docs/README.hin-HIN.md)
-- [Italiano](/docs/README.it-IT.md)
-- [عربية](/docs/README.ar-DZ.md)
-- [Turkish](/docs/README.tr-TR.md)
-- [Brazil](/docs/README.pt-BR.md)
-- [Spanish](/docs/README.spa-SPA.md)
-- [मराठी](/docs/README.mr-MR.md)
-- [Korean](/docs/README.kr-KR.md)
-- [Tiếng Việt](/docs/README.vi-VN.md)
-
 ___
 
 ## 💡 পরিচিতি
