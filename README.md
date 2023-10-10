@@ -30,7 +30,7 @@
 - [मराठी](/docs/README.mr-MR.md)
 - [Korean](/docs/README.kr-KR.md)
 - [Tiếng Việt](/docs/README.vi-VN.md)
-- [বাংলা](/docs/README.bn-BN.md)
+- [বাংলা](/docs/README.ban-BAN.md)
 
 ___
 
