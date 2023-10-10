@@ -63,11 +63,11 @@ ___
    3. Instale as dependências necessárias executando
 
       - `pip install -r requirements.txt`
-         - In the event that pip doesn't work, also try the following commands:
+         - No evento do pip não funcionar, tente também os seguintes comandos:
          - `pip3 install -r requirements.txt`
          - `python -m pip install -r requirements.txt`
          - `python3 -m pip install -r requirements.txt`
-         - If this still doesn't work, ensure that Python is added to the PATH.
+         - Se ainda assim não funcionar, se certifique de que o Python está adicionado ao PATH.
 
    Isso instalará todos os requisitos e o Tkinter Designer. Antes de usar o Tkinter Designer, você precisa criar um arquivo Figma com as instruções abaixo.
 
@@ -101,10 +101,10 @@ ___
 
 ### Nomear é importante
 
-| Figma Element Name | Tkinter Element |
+| Nome do Elemento no Figma | Elemento no Tkinter |
 | --- | --- |
 | Button | Button |
-| Text | Name it anything |
+| Text | Qualquer nome |
 | Rectangle | Rectangle |
 | Line | Line |
 | TextArea | Text Area |
@@ -128,8 +128,8 @@ ___
 <br><br>
 
 2. **Adicionando imagens**
-   - As imagens podem ser criadas usando shapes and/or images
-   - Se você usar vários shapes/images, você selecionar todos e pressionar <kbd>CTRL/&#8984; + G</kbd>
+   - As imagens podem ser criadas usando formatos e/ou imagens
+   - Se você usar vários formatos/imagens, você selecionar todos e pressionar <kbd>CTRL/&#8984; + G</kbd>
    - Depois disso nomeie o elemento ou grupo como "Image".
 <br><br>
 
@@ -162,7 +162,7 @@ ___
    - Selecione o botão (Retângulo) e qualquer texto opcional e agrupe-os com <kbd>CTRL/&#8984; + G</kbd>
    - Nomeie o grupo "Button"
 
-#### Consulte [esté video](https://youtu.be/Qd-jJjduWeQ) se tiver algum problema
+#### Consulte [este vídeo](https://youtu.be/Qd-jJjduWeQ) se tiver algum problema
 
 <br><br>
 
@@ -176,7 +176,7 @@ ___
    - Selecione o botão, Retângulo e qualquer texto opcional e, em seguida, agrupe-os com <kbd>CTRL/&#8984; + G</kbd>
    - Nomeie o grupo "Button"
 
-#### Consulte [esté video](https://youtu.be/Qd-jJjduWeQ) se tiver algum problema
+#### Consulte [este vídeo](https://youtu.be/Qd-jJjduWeQ) se tiver algum problema
 
 <br><br>
 
