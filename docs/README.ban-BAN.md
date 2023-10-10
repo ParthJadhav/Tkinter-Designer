@@ -1,6 +1,6 @@
 <p align="center">
   <img width="200" src="https://user-images.githubusercontent.com/42001064/120057695-b1f6c680-c062-11eb-96d5-2c43d05f9018.png" alt="লোগো">
-  <h1 align="center" style="margin: 0 auto 0 auto;">টিকিন্টার ডিজাইনার</h1>
+  <h1 align="center" style="margin: 0 auto 0 auto;"> টিকিন্টার ডিজাইনার </h1>
   <h4 align="center" style="margin: 0 auto 0 auto;">জিইউআই ক্রিয়েটরকে ড্র্যাগ এবং ড্রপ করুন</h5>
   </p>
 
