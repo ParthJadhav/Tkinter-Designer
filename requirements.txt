@@ -1,8 +1,8 @@
 certifi==2021.5.30
-chardet==4.0.0; python_version >= "2.7" and python_version != "3.0.*" and python_version != "3.1.*" and python_version != "3.2.*" and python_version != "3.3.*" and python_version != "3.4.*"
-idna==2.10; python_version >= "2.7" and python_version != "3.0.*" and python_version != "3.1.*" and python_version != "3.2.*" and python_version != "3.3.*"
-jinja2==3.0.1; python_version >= "3.6"
-markupsafe==2.0.1; python_version >= "3.6"
-pillow==9.4.0; python_version >= "3.6"
-requests==2.25.1; python_version >= "2.7" and python_version != "3.0.*" and python_version != "3.1.*" and python_version != "3.2.*" and python_version != "3.3.*" and python_version != "3.4.*"
-urllib3==1.26.6; python_version >= "2.7" and python_version != "3.0.*" and python_version != "3.1.*" and python_version != "3.2.*" and python_version != "3.3.*" and python_version != "3.4.*" and python_version < "4"
+chardet==4.0.0
+idna==2.10
+jinja2==3.0.1
+markupsafe==2.0.1
+Pillow >= 10.1
+requests==2.25.1
+urllib3==1.26.6
