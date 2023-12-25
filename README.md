@@ -1,16 +1,16 @@
 <p align="center">
   <img width="200" src="https://user-images.githubusercontent.com/42001064/120057695-b1f6c680-c062-11eb-96d5-2c43d05f9018.png" alt="logo">
   <h1 align="center" style="margin: 0 auto 0 auto;">Tkinter Designer</h1>
-  <h4 align="center" style="margin: 0 auto 0 auto;">Drag & Drop GUI Creator</h5>
-  </p>
+  <h4 align="center" style="margin: 0 auto 0 auto;">Drag & Drop GUI Creator</h4>
 
-  <p align="center">
-    <img src="https://img.shields.io/github/last-commit/ParthJadhav/Tkinter-Designer">
-    <img src="https://img.shields.io/github/contributors/ParthJadhav/Tkinter-Designer">
-    <img src="https://img.shields.io/github/issues/ParthJadhav/Tkinter-Designer?label=issues">
-    <img src="https://img.shields.io/github/stars/ParthJadhav/Tkinter-Designer">
-  </p>
- 
+
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/ParthJadhav/Tkinter-Designer">
+  <img src="https://img.shields.io/github/contributors/ParthJadhav/Tkinter-Designer">
+  <img src="https://img.shields.io/github/issues/ParthJadhav/Tkinter-Designer?label=issues">
+  <img src="https://img.shields.io/github/stars/ParthJadhav/Tkinter-Designer">
+</p>
+
 <p align="center">
 <a href="https://www.producthunt.com/posts/tkinter-designer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tkinter&#0045;designer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=312995&theme=neutral" alt="Tkinter&#0032;Designer - No&#0045;code&#0032;solution&#0032;for&#0032;Python&#0032;GUI&#0039;s | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 </p>
@@ -30,6 +30,7 @@
 - [मराठी](/docs/README.mr-MR.md)
 - [Korean](/docs/README.kr-KR.md)
 - [Tiếng Việt](/docs/README.vi-VN.md)
+- [Русский](/docs/README.ru-RU.md)
 
 ___
 
