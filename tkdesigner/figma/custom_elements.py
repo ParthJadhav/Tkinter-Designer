@@ -4,6 +4,7 @@ TEXT_INPUT_ELEMENT_TYPES = {
     "TextArea": "Text",
     "TextBox": "Entry"
 }
+position_id_map ={}
 
 
 class Button(Rectangle):
@@ -11,6 +12,7 @@ class Button(Rectangle):
         super().__init__(node, frame)
         self.image_path = image_path
         self.id_ = id_
+        position_id_map[(self.x, self.y)] = self.id_
 
     def to_code(self):
         return f"""
@@ -30,6 +32,41 @@ button_{self.id_}.place(
     height={self.height}
 )
 """
+
+#EXPERIMENTAL FEATURE
+class ButtonHover(Rectangle):
+    def __init__(self, node, frame, image_path):
+        super().__init__(node, frame)
+        self.image_path = image_path
+
+        if((self.x, self.y) in position_id_map):
+            self.id_ = position_id_map[(self.x, self.y)]
+        else:
+            print(
+                f"`ButtonHover` element must be placed on top of Button element with the same position.\n"
+                "`ButtonHover` element will not be rendered") 
+
+    def to_code(self):
+        if((self.x, self.y) in position_id_map):
+            return f"""
+button_image_hover_{self.id_} = PhotoImage(
+    file=relative_to_assets("{self.image_path}"))
+
+def button_{self.id_}_hover(e):
+    button_{self.id_}.config(
+        image=button_image_hover_{self.id_}
+    )
+def button_{self.id_}_leave(e):
+    button_{self.id_}.config(
+        image=button_image_{self.id_}
+    )
+
+button_{self.id_}.bind('<Enter>', button_{self.id_}_hover)
+button_{self.id_}.bind('<Leave>', button_{self.id_}_leave)
+
+"""
+        else:
+            return ""
 
 
 class Text(Vector):
