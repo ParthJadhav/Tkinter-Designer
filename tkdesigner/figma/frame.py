@@ -41,7 +41,7 @@ class Frame(Node):
             f"{{ name: {element_name}, type: {element_type} }}"
         )
 
-        if element_name == "button":
+        if element_name == "button" or element_name.startswith("button_"):
             self.counter[Button] = self.counter.get(Button, 0) + 1
 
             item_id = element["id"]
@@ -55,7 +55,7 @@ class Frame(Node):
             return Button(
                 element, self, image_path, id_=f"{self.counter[Button]}")
 
-        elif element_name in ("textbox", "textarea"):
+        elif element_name in ("textbox", "textarea") or any(element_name.startswith(prefix) for prefix in ('textbox_', 'textarea_')):
             self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
 
             item_id = element["id"]
@@ -69,7 +69,7 @@ class Frame(Node):
             return TextEntry(
                 element, self, image_path, id_=f"{self.counter[TextEntry]}")
 
-        elif element_name == "image":
+        elif element_name == "image" or element_name.startswith("image_"):
             self.counter[Image] = self.counter.get(Image, 0) + 1
 
             item_id = element["id"]
