@@ -7,7 +7,7 @@ import tkinter.messagebox as tk1
 import tkinter.filedialog
 from pathlib import Path
 
-# Add tkdesigner to path
+# Add tkdesigner to the path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 try:
     from tkdesigner.designer import Designer
