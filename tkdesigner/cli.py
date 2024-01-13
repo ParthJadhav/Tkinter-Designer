@@ -1,28 +1,17 @@
-"""
-TKinter Designer command-line interface.
-"""
-
 from tkdesigner.designer import Designer
-
 import re
 import os
 import logging
 import argparse
-
 from pathlib import Path
-
-
 if int(os.getenv("TKDESIGNER_VERBOSE", 0)) == 1:
     log_level = logging.INFO
 else:
     log_level = logging.WARN
-
 logging.basicConfig(level=log_level)
-
-
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate TKinter GUI code from Figma design.")
+        description="Generating TKinter GUI code from Figma design.")
 
     parser.add_argument(
         "-o", "--output", type=str, default=".",
