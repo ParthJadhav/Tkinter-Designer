@@ -45,13 +45,13 @@ def btn_clicked():
         return
 
     match = re.search(
-        r'https://www.figma.com/file/([0-9A-Za-z]+)', URL.strip())
+        r'https://www.figma.com/(file|design)/([0-9A-Za-z]+)', URL.strip())
     if match is None:
         tk.messagebox.showerror(
             "Invalid URL!", "Please enter a valid file URL.")
         return
 
-    file_key = match[1].strip()
+    file_key = match.group(2).strip()
     token = token.strip()
     output = Path(f"{output_path}/build").expanduser().resolve()
 

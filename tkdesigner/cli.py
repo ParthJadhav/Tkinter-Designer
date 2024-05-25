@@ -45,11 +45,11 @@ def main():
     logging.info(f"args: {args}")
 
     match = re.search(
-        r'https://www.figma.com/file/([0-9A-Za-z]+)', args.file_url.split("?")[0])
+        r'https://www.figma.com/(file|design)/([0-9A-Za-z]+)', args.file_url.split("?")[0])
     if match is None:
         raise ValueError("Invalid file URL.")
 
-    file_key = match[1].strip()
+    file_key = match.group(2).strip()
     token = args.token.strip()
     output_path = Path(args.output.strip()).expanduser().resolve() / "build"
 
