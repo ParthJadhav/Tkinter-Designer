@@ -24,7 +24,7 @@ classifiers = [
 python = "^3.8"
 requests = "2.25.1"
 Jinja2 = "3.0.1"
-Pillow = "^8.4.0"
+Pillow = "^10.4.0"
 urllib3 = "^1.26.6"
 
 [tool.poetry.dev-dependencies]
