@@ -236,7 +236,7 @@ python3 gui.py
 
 ```
 cd Tkinter-Designer
-interface graphique cd
+cd gui
 python3 gui.py
 ```
 
