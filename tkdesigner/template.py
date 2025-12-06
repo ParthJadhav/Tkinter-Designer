@@ -93,7 +93,7 @@ class GUI(Tk):
 
         self.resizable(False,False)
 
-    def relative_to_assets(path: str) -> Path:
+    def relative_to_assets(self,path: str) -> Path:
         return ASSETS_PATH / Path(path)
 
 
