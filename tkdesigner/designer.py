@@ -15,7 +15,7 @@ class Designer:
     def to_code(self) -> str:
         """Return main code.
         """
-        frames = [];
+        frames = []
         for f in self.file_data["document"]["children"][0]["children"]:
             try:
                 frame = Frame(f, self.figma_file, self.output_path, self.frameCounter)
