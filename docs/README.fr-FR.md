@@ -27,7 +27,7 @@ Tkinter Designer utilise l'API de Figma pour analyser les fichiers de design afi
 
 1. Interfaces en drag and drop
 2. Significativement plus rapide que créer le code manuellement
-3. Capacité de créer des interface encore plus belles
+3. Capacité de créer des interfaces encore plus belles
 
 ___
 
@@ -103,6 +103,6 @@ Tkinter Designer est mis à disposition sous licence BSD 3-Clause "Nouvelle" ou 
 | Permissions | Restrictions | Conditions
 | --- | --- | ---
 &check; Utilisation commerciale | &times; Responsabilité | &#x1f6c8; License et Copyright
-&check; Modification   | &times; Garrantie
+&check; Modification   | &times; Garantie
 &check; Distribution  
 &check; Utilisation privée
