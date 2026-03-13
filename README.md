@@ -1,4 +1,4 @@
-[\![Bloom - Your coffee, perfected.](https://github.com/user-attachments/assets/31139b9d-1b89-44e8-b563-5bb7ba150b7b)](https://bloom.parthjadhav.com)
+[![bloom-banner-01-light-tags-1500x500](https://github.com/user-attachments/assets/31139b9d-1b89-44e8-b563-5bb7ba150b7b)](https://bloom.parthjadhav.com)
 
 <p align="center">
   <img width="200" src="https://user-images.githubusercontent.com/42001064/120057695-b1f6c680-c062-11eb-96d5-2c43d05f9018.png" alt="logo">
