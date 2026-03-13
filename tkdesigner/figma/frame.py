@@ -26,11 +26,28 @@ class Frame(Node):
         self.output_path.mkdir(parents=True, exist_ok=True)
         self.assets_path.mkdir(parents=True, exist_ok=True)
 
-        self.elements = [
-            self.create_element(child)
-            for child in self.children
-            if Node(child).visible
-        ]
+        self.elements = []
+        self.recursion_group(self.children)
+
+    def recursion_group(self,element):
+        """
+        recursion if element is group
+        """
+        if isinstance(element, list):
+            for child in element:
+                child_type = child["type"].strip().lower()
+                if child_type == 'group':
+                    self.recursion_group(child)
+                else:
+                    self.elements.append(self.create_element(child))
+        else:
+            element_type = element["type"].strip().lower()
+            if element_type == 'group':
+                self.recursion_group(element['children'])
+            else:
+                self.elements.append(self.create_element(element))
+
+
 
     def create_element(self, element):
         element_name = element["name"].strip().lower()
