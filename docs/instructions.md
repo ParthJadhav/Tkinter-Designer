@@ -60,7 +60,7 @@ ___
 
 1. `pip install tkdesigner`
 
-2. Install [poetry](https:python-poetry.org)
+2. Install [poetry](https://python-poetry.org/docs/)
    - `poetry new <gui_project_name> && cd <gui_project_name>`
    - `poetry add tkdesigner`
    - `poetry install`
