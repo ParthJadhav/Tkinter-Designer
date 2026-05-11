@@ -4,6 +4,7 @@ from tkdesigner.figma.frame import Frame
 from tkdesigner.template import CLASS_TEMPLATE, PAGES_TEMPLATE, TEMPLATE
 
 from pathlib import Path
+import shutil
 
 
 FRAME_NODE_TYPES = {"FRAME", "COMPONENT", "COMPONENT_SET", "INSTANCE"}
@@ -111,8 +112,12 @@ class Designer:
     def _is_frame_node(self, node):
         return "absoluteBoundingBox" in node and node.get("type") in FRAME_NODE_TYPES and bool(node.get("children"))
 
-    def design(self):
+    def design(self, *, clean=False):
         """Write code and assets to the specified directories."""
+        if clean and self.output_path.exists():
+            shutil.rmtree(self.output_path)
+        self.output_path.mkdir(parents=True, exist_ok=True)
+
         code = self.to_code()
         for index in range(len(code)):
             # tutorials on youtube mention `python3 gui.py` added the below check to keep them valid

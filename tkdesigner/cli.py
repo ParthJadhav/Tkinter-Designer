@@ -67,6 +67,7 @@ def main():
             "missing Figma token. If your Figma URL contains `?` or `&`, "
             "wrap the URL in quotes so your shell does not split it.")
     output_path = Path(args.output.strip()).expanduser().resolve() / "build"
+    clean_output = args.force
 
     if output_path.exists() and not output_path.is_dir():
         raise RuntimeError(
@@ -80,6 +81,7 @@ def main():
             if response.lower().strip() != "y":
                 print("Aborting!")
                 exit(-1)
+            clean_output = True
 
     designer = Designer(
         token,
@@ -89,7 +91,7 @@ def main():
         template_style=args.template,
         theme=args.theme.strip(),
     )
-    designer.design()
+    designer.design(clean=clean_output)
     print(f"\nProject successfully generated at {output_path}.\n")
 
 

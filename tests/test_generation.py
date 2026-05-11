@@ -45,6 +45,7 @@ def test_generated_code_preserves_negative_coordinates_and_escapes_text(tmp_path
     assert "10" in code
     assert 'text="Hello \\"Tk\\"\\nDesigner"' in code
     assert 'font=("Fira Code", 14 * -1, "bold", "italic")' in code
+    assert 'if __name__ == "__main__":' in code
     compile(code, "gui.py", "exec")
 
 
@@ -99,6 +100,7 @@ def test_class_template_compiles_for_simple_frame(tmp_path):
 
     assert "create_rounded_rectangle(" in code
     assert "ASSETS_PATH = OUTPUT_PATH / Path(r\"assets/frame0\")" in code
+    assert 'if __name__ == "__main__":' in code
     compile(code, "gui.py", "exec")
 
 
@@ -190,6 +192,22 @@ def test_pages_template_generates_navigation_app(tmp_path):
     assert 'set_assets_path(r"assets/frame0")' in code
     assert 'set_assets_path(r"assets/frame1")' in code
     compile(code, "gui.py", "exec")
+
+
+def test_design_clean_removes_stale_build_files(tmp_path):
+    output_path = tmp_path / "build"
+    output_path.mkdir()
+    stale_file = output_path / "stale.txt"
+    stale_file.write_text("old", encoding="UTF-8")
+
+    designer = Designer.__new__(Designer)
+    designer.output_path = output_path
+    designer.to_code = lambda: ["print('new')"]
+
+    designer.design(clean=True)
+
+    assert not stale_file.exists()
+    assert output_path.joinpath("gui.py").read_text(encoding="UTF-8") == "print('new')"
 
 
 def test_designer_uses_selected_node_when_url_has_node_id():

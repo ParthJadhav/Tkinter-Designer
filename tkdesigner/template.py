@@ -162,7 +162,9 @@ canvas.place(x=0, y=0)
 
 
 window.resizable(False, False)
-window.mainloop()
+
+if __name__ == "__main__":
+    window.mainloop()
 
 """
 

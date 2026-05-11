@@ -65,6 +65,7 @@ def btn_clicked():
 
     token = token.strip()
     output = Path(f"{output_path}/build").expanduser().resolve()
+    clean_output = False
 
     if output.exists() and not output.is_dir():
         tk1.showerror(
@@ -78,6 +79,7 @@ def btn_clicked():
             "Do you want to continue and overwrite?")
         if not response:
             return
+        clean_output = True
 
     try:
         designer = Designer(
@@ -86,7 +88,7 @@ def btn_clicked():
             output,
             node_id=figma_reference.node_id,
         )
-        designer.design()
+        designer.design(clean=clean_output)
     except Exception as exc:
         tk.messagebox.showerror("Generation failed", str(exc))
         return

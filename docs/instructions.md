@@ -325,6 +325,8 @@ cd build
 python3 gui.py
 ```
 
+You can also import `build/gui.py` from another Python file to attach your own commands without editing generated code. The generated script only starts `mainloop()` when it is run directly.
+
 <a id="using-gui"></a>
 
 ## Using the GUI
@@ -372,10 +374,14 @@ The output files from Tkinter Designer will be placed in your chosen directory, 
   - Restart Tkinter Designer
   - Double-check the token and URL
   - Quote the Figma URL if you run the CLI from a shell
-  - Add `-f` if you want to overwrite an existing non-empty `build` directory
+  - Add `-f` if you want to clear and regenerate an existing non-empty `build` directory
   - If you see a Figma API quota or rate-limit message, wait for your Figma quota to reset or use a token with available quota
   - Make sure your design has a Frame
   - If your file has many frames, select the target frame in Figma before copying the URL
+
+- Fonts look different?
+  - Tkinter can only use fonts installed on the computer running the generated app
+  - Tkinter Designer writes the Figma font family into generated text widgets, but each user's OS may fall back if that font is unavailable
 
 - Something else?
   - [Report issues not listed here on GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)

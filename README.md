@@ -99,6 +99,8 @@ Generated apps can also apply a ttk theme:
 tkdesigner --theme clam $FILE_URL $FIGMA_TOKEN
 ```
 
+Generated `gui.py` files can be imported from another Python file without starting `mainloop()` automatically, so you can attach commands separately and regenerate the UI later. Use `-f` when you want the CLI to clear and regenerate an existing `build` directory.
+
 ## 🦋 Supporting Tkinter Designer
 
 Consider making a donation to the Tkinter Designer project if you or your business have benefited from it. This will accelerate Tkinter Designer's development! Making coffee is simple; I'll be happy to enjoy one.
