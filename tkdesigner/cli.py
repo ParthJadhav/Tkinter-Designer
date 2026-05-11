@@ -3,8 +3,8 @@ TKinter Designer command-line interface.
 """
 
 from tkdesigner.designer import Designer
+from tkdesigner.utils import parse_figma_url
 
-import re
 import os
 import logging
 import argparse
@@ -34,6 +34,11 @@ def main():
         help=(
             "If this flag is passed in, the output directory given "
             "will be overwritten if it exists."))
+    parser.add_argument(
+        "-t", "--template", choices=("script", "class"), default="script",
+        help=(
+            "Generated code style. Use `class` for a class-based Tkinter app. "
+            "Defaults to script."))
 
     parser.add_argument(
         "file_url", type=str, help="File url of the Figma design.")
@@ -44,12 +49,8 @@ def main():
     logging.basicConfig()
     logging.info(f"args: {args}")
 
-    match = re.search(
-        r'https://www.figma.com/(file|design)/([0-9A-Za-z]+)', args.file_url.split("?")[0])
-    if match is None:
-        raise ValueError("Invalid file URL.")
+    figma_reference = parse_figma_url(args.file_url)
 
-    file_key = match.group(2).strip()
     token = args.token.strip()
     output_path = Path(args.output.strip()).expanduser().resolve() / "build"
 
@@ -66,7 +67,13 @@ def main():
                 print("Aborting!")
                 exit(-1)
 
-    designer = Designer(token, file_key, output_path)
+    designer = Designer(
+        token,
+        figma_reference.file_key,
+        output_path,
+        node_id=figma_reference.node_id,
+        template_style=args.template,
+    )
     designer.design()
     print(f"\nProject successfully generated at {output_path}.\n")
 

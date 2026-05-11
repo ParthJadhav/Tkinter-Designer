@@ -21,25 +21,19 @@ classifiers = [
 "Bug Tracker" = "https://github.com/ParthJadhav/Tkinter-Designer/issues"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-requests = "2.25.1"
-Jinja2 = "3.0.1"
-Pillow = "^8.4.0"
-urllib3 = "^1.26.6"
+python = ">=3.9,<4.0"
+requests = ">=2.31,<3"
+Jinja2 = ">=3.1,<4"
+Pillow = ">=11,<13"
+urllib3 = ">=1.26.18,<2"
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.2.4"
-flake8 = "^3.9.2"
-pylint = "^2.9.6"
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0"
+flake8 = "^7.0"
+pylint = "^3.0"
 
 [tool.poetry.scripts]
 tkdesigner = 'tkdesigner.cli:main'
-
-[[tool.poetry.source]]
-name = "tkdesigner"
-url = "https://test.pypi.org/project/tkdesigner/"
-default = false
-secondary = false
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

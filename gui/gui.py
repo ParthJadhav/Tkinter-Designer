@@ -1,16 +1,18 @@
 import webbrowser
-import re
 import sys
 import os
-import  tkinter as tk
+import tkinter as tk
 import tkinter.messagebox as tk1
 import tkinter.filedialog
 from pathlib import Path
+
+from PIL import Image, ImageTk
 
 # Add tkdesigner to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 try:
     from tkdesigner.designer import Designer
+    from tkdesigner.utils import parse_figma_url
 except ModuleNotFoundError:
     raise RuntimeError("Couldn't add tkdesigner to the PATH.")
 
@@ -23,6 +25,16 @@ path = getattr(sys, '_MEIPASS', os.getcwd())
 os.chdir(path)
 
 output_path = ""
+image_refs = []
+
+
+def load_photo_image(path):
+    try:
+        image = tk.PhotoImage(file=path)
+    except tk.TclError:
+        image = ImageTk.PhotoImage(Image.open(path))
+    image_refs.append(image)
+    return image
 
 
 def btn_clicked():
@@ -44,14 +56,13 @@ def btn_clicked():
             title="Invalid Path!", message="Enter a valid output path.")
         return
 
-    match = re.search(
-        r'https://www.figma.com/(file|design)/([0-9A-Za-z]+)', URL.strip())
-    if match is None:
+    try:
+        figma_reference = parse_figma_url(URL)
+    except ValueError:
         tk.messagebox.showerror(
             "Invalid URL!", "Please enter a valid file URL.")
         return
 
-    file_key = match.group(2).strip()
     token = token.strip()
     output = Path(f"{output_path}/build").expanduser().resolve()
 
@@ -68,8 +79,17 @@ def btn_clicked():
         if not response:
             return
 
-    designer = Designer(token, file_key, output)
-    designer.design()
+    try:
+        designer = Designer(
+            token,
+            figma_reference.file_key,
+            output,
+            node_id=figma_reference.node_id,
+        )
+        designer.design()
+    except Exception as exc:
+        tk.messagebox.showerror("Generation failed", str(exc))
+        return
 
     tk.messagebox.showinfo(
         "Success!", f"Project successfully generated at {output}.")
@@ -102,7 +122,7 @@ def make_label(master, x, y, h, w, *args, **kwargs):
 
 
 window = tk.Tk()
-logo = tk.PhotoImage(file=ASSETS_PATH / "iconbitmap.gif")
+logo = load_photo_image(ASSETS_PATH / "iconbitmap.gif")
 window.call('wm', 'iconphoto', window._w, logo)
 window.title("Tkinter Designer")
 
@@ -114,22 +134,28 @@ canvas = tk.Canvas(
 canvas.place(x=0, y=0)
 canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC", outline="")
 
-text_box_bg = tk.PhotoImage(file=ASSETS_PATH / "TextBox_Bg.png")
+text_box_bg = load_photo_image(ASSETS_PATH / "TextBox_Bg.png")
 token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)
 URL_entry_img = canvas.create_image(650.5, 248.5, image=text_box_bg)
 filePath_entry_img = canvas.create_image(650.5, 329.5, image=text_box_bg)
 
-token_entry = tk.Entry(bd=0, bg="#F6F7F9",fg="#000716",  highlightthickness=0)
+token_entry = tk.Entry(
+    bd=0, bg="#F6F7F9", fg="#000716", insertbackground="#000716",
+    highlightthickness=0)
 token_entry.place(x=490.0, y=137+25, width=321.0, height=35)
 token_entry.focus()
 
-URL_entry = tk.Entry(bd=0, bg="#F6F7F9", fg="#000716",  highlightthickness=0)
+URL_entry = tk.Entry(
+    bd=0, bg="#F6F7F9", fg="#000716", insertbackground="#000716",
+    highlightthickness=0)
 URL_entry.place(x=490.0, y=218+25, width=321.0, height=35)
 
-path_entry = tk.Entry(bd=0, bg="#F6F7F9", fg="#000716", highlightthickness=0)
+path_entry = tk.Entry(
+    bd=0, bg="#F6F7F9", fg="#000716", insertbackground="#000716",
+    highlightthickness=0)
 path_entry.place(x=490.0, y=299+25, width=321.0, height=35)
 
-path_picker_img = tk.PhotoImage(file = ASSETS_PATH / "path_picker.png")
+path_picker_img = load_photo_image(ASSETS_PATH / "path_picker.png")
 path_picker_button = tk.Button(
     image = path_picker_img,
     text = '',
@@ -163,7 +189,7 @@ canvas.create_text(
 
 title = tk.Label(
     text="Welcome to Tkinter Designer", bg="#3A7FF6",
-    fg="white",justify="left", font=("Arial-BoldMT", int(20.0)))
+    fg="white", justify="left", font=("Arial-BoldMT", int(20.0)))
 title.place(x=20.0, y=120.0)
 canvas.create_rectangle(25, 160, 33 + 60, 160 + 5, fill="#FCFCFC", outline="")
 
@@ -182,11 +208,11 @@ info_text.place(x=20.0, y=200.0)
 
 know_more = tk.Label(
     text="Click here for instructions",
-    bg="#3A7FF6", fg="white",justify="left", cursor="hand2")
+    bg="#3A7FF6", fg="white", justify="left", cursor="hand2")
 know_more.place(x=20, y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
-generate_btn_img = tk.PhotoImage(file=ASSETS_PATH / "generate.png")
+generate_btn_img = load_photo_image(ASSETS_PATH / "generate.png")
 generate_btn = tk.Button(
     image=generate_btn_img, borderwidth=0, highlightthickness=0,
     command=btn_clicked, relief="flat")

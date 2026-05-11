@@ -1,4 +1,5 @@
 from .node import Node
+from ..utils import paint_to_hex
 
 
 class Vector(Node):
@@ -6,14 +7,8 @@ class Vector(Node):
         super().__init__(node)
 
     def color(self) -> str:
-        """Returns HEX form of element RGB color (str)
-        """
-        try:
-            color = self.node["fills"][0]["color"]
-            r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
-            return f"#{r:02X}{g:02X}{b:02X}"
-        except Exception:
-            return "#FFFFFF"
+        """Returns HEX form of element RGB color (str)."""
+        return paint_to_hex(self.node.get("fills"), fallback="#FFFFFF")
 
     def size(self):
         bbox = self.node["absoluteBoundingBox"]
@@ -31,14 +26,15 @@ class Vector(Node):
         frame_x = frame_bbox["x"]
         frame_y = frame_bbox["y"]
 
-        x = abs(x - frame_x)
-        y = abs(y - frame_y)
+        x = x - frame_x
+        y = y - frame_y
         return x, y
 
 
 class Star(Vector):
     def __init__(self, node):
         super().__init__(node)
+
 
 class Ellipse(Vector):
     def __init__(self, node):
@@ -65,7 +61,28 @@ class Rectangle(Vector):
     def rectangle_corner_radii(self):
         return self.node.get("rectangleCornerRadii")
 
+    def corner_radius_value(self):
+        radius = self.corner_radius
+        if radius is None:
+            radii = self.rectangle_corner_radii or []
+            radius = min(radii) if radii else 0
+        return max(0, min(float(radius or 0), self.width / 2, self.height / 2))
+
     def to_code(self):
+        radius = self.corner_radius_value()
+        if radius:
+            return f"""
+create_rounded_rectangle(
+    canvas,
+    {self.x},
+    {self.y},
+    {self.x + self.width},
+    {self.y + self.height},
+    {radius},
+    fill="{self.fill_color}",
+    outline="")
+"""
+
         return f"""
 canvas.create_rectangle(
     {self.x},
@@ -82,14 +99,8 @@ class Line(Rectangle):
         super().__init__(node, frame)
 
     def color(self) -> str:
-        """Returns HEX form of element RGB color (str)
-        """
-        try:
-            color = self.node["strokes"][0]["color"]
-            r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
-            return f"#{r:02X}{g:02X}{b:02X}"
-        except Exception:
-            return "#FFFFFF"
+        """Returns HEX form of element RGB color (str)."""
+        return paint_to_hex(self.node.get("strokes"), fallback="#FFFFFF")
 
     def size(self):
         width, height = super().size()

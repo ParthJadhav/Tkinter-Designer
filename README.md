@@ -66,6 +66,22 @@ View the YouTube video or read the instructions below.
 <a href="/docs/instructions.md" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196041925-64f81f75-8bee-42ac-a234-a93339bc8cdc.png" alt="Instructions" width="180px" ></a>
 <a href="https://www.youtube.com/watch?v=Qd-jJjduWeQ" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196041927-c94c1a94-c708-44a4-9c81-df83bac686d4.png" alt="Youtube Tutorial" width="180px" ></a>
 
+## Requirements
+
+Tkinter Designer supports Python 3.9 and newer. Install it with:
+
+```bash
+pip install tkdesigner
+```
+
+The CLI accepts both current `figma.com/design/...` links and legacy `figma.com/file/...` links. If you select a specific frame before copying the Figma link, Tkinter Designer will generate that selected frame.
+
+To generate a class-based Tkinter app:
+
+```bash
+tkdesigner --template class $FILE_URL $FIGMA_TOKEN
+```
+
 ## 🦋 Supporting Tkinter Designer
 
 Consider making a donation to the Tkinter Designer project if you or your business have benefited from it. This will accelerate Tkinter Designer's development! Making coffee is simple; I'll be happy to enjoy one.

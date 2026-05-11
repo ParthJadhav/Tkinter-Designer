@@ -1,9 +1,22 @@
 from ..constants import ASSETS_PATH
-from ..utils import download_image
+from ..utils import download_image, paint_to_hex
 
 from .node import Node
+from .endpoints import FigmaAPIError
 from .vector_elements import Line, Rectangle, UnknownElement
-from .custom_elements import Button, Text, Image, TextEntry, ButtonHover
+from .custom_elements import (
+    Button,
+    ButtonHover,
+    CheckButton,
+    ComboBox,
+    Image,
+    ListBox,
+    RadioButton,
+    RasterElement,
+    Text,
+    TextEntry,
+    ToggleButton,
+)
 
 from jinja2 import Template
 from pathlib import Path
@@ -17,6 +30,7 @@ class Frame(Node):
         self.bg_color = self.color()
 
         self.counter = {}
+        self.hover_targets = {}
 
         self.figma_file = figma_file
 
@@ -28,9 +42,64 @@ class Frame(Node):
 
         self.elements = [
             self.create_element(child)
-            for child in self.children
-            if Node(child).visible
+            for child in self.iter_renderable_children(self.children)
         ]
+
+    def iter_renderable_children(self, children):
+        for child in children or []:
+            node = Node(child)
+            if not node.visible or "absoluteBoundingBox" not in child:
+                continue
+
+            name = child.get("name", "").strip().lower()
+            node_type = child.get("type", "").strip().lower()
+            has_children = bool(child.get("children"))
+
+            if self.is_supported_element(name, node_type):
+                yield child
+            elif has_children and node_type in {
+                "frame",
+                "group",
+                "section",
+                "component",
+                "component_set",
+                "instance",
+            }:
+                yield from self.iter_renderable_children(child.get("children"))
+            else:
+                yield child
+
+    def is_supported_element(self, element_name, element_type):
+        if element_name in {
+            "button",
+            "buttonhover",
+            "textbox",
+            "textarea",
+            "image",
+            "rectangle",
+            "line",
+            "checkbox",
+            "checkbutton",
+            "radiobutton",
+            "radio",
+            "combobox",
+            "listbox",
+            "toggle",
+            "togglebutton",
+        }:
+            return True
+        return element_type in {"rectangle", "line", "text"}
+
+    def element_size(self, element):
+        bbox = element["absoluteBoundingBox"]
+        return bbox["width"], bbox["height"]
+
+    def download_element_image(self, element, file_name):
+        item_id = element["id"]
+        image_url = self.figma_file.get_image(item_id)
+        image_path = self.assets_path / file_name
+        download_image(image_url, image_path, size=self.element_size(element))
+        return image_path.relative_to(self.assets_path)
 
     def create_element(self, element):
         element_name = element["name"].strip().lower()
@@ -44,28 +113,18 @@ class Frame(Node):
         if element_name == "button":
             self.counter[Button] = self.counter.get(Button, 0) + 1
 
-            item_id = element["id"]
-            image_url = self.figma_file.get_image(item_id)
-            image_path = (
-                self.assets_path / f"button_{self.counter[Button]}.png")
-            download_image(image_url, image_path)
-
-            image_path = image_path.relative_to(self.assets_path)
+            image_path = self.download_element_image(
+                element, f"button_{self.counter[Button]}.png")
 
             return Button(
                 element, self, image_path, id_=f"{self.counter[Button]}")
 
-        #EXPERIMENTAL FEATURE 
+        # EXPERIMENTAL FEATURE
         elif element_name == "buttonhover":
             self.counter[ButtonHover] = self.counter.get(ButtonHover, 0) + 1
 
-            item_id = element["id"]
-            image_url = self.figma_file.get_image(item_id)
-            image_path = (
-                self.assets_path / f"button_hover_{self.counter[ButtonHover]}.png")
-            download_image(image_url, image_path)
-
-            image_path = image_path.relative_to(self.assets_path)
+            image_path = self.download_element_image(
+                element, f"button_hover_{self.counter[ButtonHover]}.png")
 
             return ButtonHover(
                 element, self, image_path)
@@ -73,13 +132,8 @@ class Frame(Node):
         elif element_name in ("textbox", "textarea"):
             self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
 
-            item_id = element["id"]
-            image_url = self.figma_file.get_image(item_id)
-            image_path = (
-                self.assets_path / f"entry_{self.counter[TextEntry]}.png")
-            download_image(image_url, image_path)
-
-            image_path = image_path.relative_to(self.assets_path)
+            image_path = self.download_element_image(
+                element, f"entry_{self.counter[TextEntry]}.png")
 
             return TextEntry(
                 element, self, image_path, id_=f"{self.counter[TextEntry]}")
@@ -87,15 +141,36 @@ class Frame(Node):
         elif element_name == "image":
             self.counter[Image] = self.counter.get(Image, 0) + 1
 
-            item_id = element["id"]
-            image_url = self.figma_file.get_image(item_id)
-            image_path = self.assets_path / f"image_{self.counter[Image]}.png"
-            download_image(image_url, image_path)
-
-            image_path = image_path.relative_to(self.assets_path)
+            image_path = self.download_element_image(
+                element, f"image_{self.counter[Image]}.png")
 
             return Image(
                 element, self, image_path, id_=f"{self.counter[Image]}")
+
+        elif element_name in ("checkbox", "checkbutton"):
+            self.counter[CheckButton] = self.counter.get(CheckButton, 0) + 1
+            return CheckButton(
+                element, self, id_=f"{self.counter[CheckButton]}")
+
+        elif element_name in ("radiobutton", "radio"):
+            self.counter[RadioButton] = self.counter.get(RadioButton, 0) + 1
+            return RadioButton(
+                element, self, id_=f"{self.counter[RadioButton]}")
+
+        elif element_name == "combobox":
+            self.counter[ComboBox] = self.counter.get(ComboBox, 0) + 1
+            return ComboBox(
+                element, self, id_=f"{self.counter[ComboBox]}")
+
+        elif element_name == "listbox":
+            self.counter[ListBox] = self.counter.get(ListBox, 0) + 1
+            return ListBox(
+                element, self, id_=f"{self.counter[ListBox]}")
+
+        elif element_name in ("toggle", "togglebutton"):
+            self.counter[ToggleButton] = self.counter.get(ToggleButton, 0) + 1
+            return ToggleButton(
+                element, self, id_=f"{self.counter[ToggleButton]}")
 
         if element_name == "rectangle" or element_type == "rectangle":
             return Rectangle(element, self)
@@ -107,10 +182,19 @@ class Frame(Node):
             return Text(element, self)
 
         else:
-            print(
-                f"Element with the name: `{element_name}` cannot be parsed. "
-                "Would be displayed as Black Rectangle")
-            return UnknownElement(element, self)
+            try:
+                self.counter[RasterElement] = self.counter.get(RasterElement, 0) + 1
+                image_path = self.download_element_image(
+                    element, f"element_{self.counter[RasterElement]}.png")
+                return RasterElement(
+                    element, self, image_path, id_=f"{self.counter[RasterElement]}")
+            except FigmaAPIError as exc:
+                if "could not export image data" not in str(exc):
+                    raise
+                print(
+                    f"Element with the name: `{element_name}` cannot be parsed. "
+                    "Would be displayed as Black Rectangle")
+                return UnknownElement(element, self)
 
     @property
     def children(self):
@@ -118,14 +202,8 @@ class Frame(Node):
         return self.node.get("children")
 
     def color(self) -> str:
-        """Returns HEX form of element RGB color (str)
-        """
-        try:
-            color = self.node["fills"][0]["color"]
-            r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
-            return f"#{r:02X}{g:02X}{b:02X}"
-        except Exception:
-            return "#FFFFFF"
+        """Returns HEX form of element RGB color (str)."""
+        return paint_to_hex(self.node.get("fills"), fallback="#FFFFFF")
 
     def size(self) -> tuple:
         """Returns element dimensions as width (int) and height (int)
@@ -137,8 +215,9 @@ class Frame(Node):
 
     def to_code(self, template):
         t = Template(template)
+        assets_path = self.assets_path.relative_to(self.output_path)
         return t.render(
-            window=self, elements=self.elements, assets_path=self.assets_path)
+            window=self, elements=self.elements, assets_path=assets_path)
 
 
 # Frame Subclasses
