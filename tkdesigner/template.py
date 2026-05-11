@@ -15,6 +15,7 @@ from tkinter import (
     Canvas,
     Checkbutton,
     Entry,
+    Frame,
     Listbox,
     PhotoImage,
     Radiobutton,
@@ -33,11 +34,17 @@ except ImportError:
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"{{ assets_path }}")
+THEME = "{{ theme }}"
 IMAGE_REFS = []
 
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+
+
+def set_assets_path(path: str):
+    global ASSETS_PATH
+    ASSETS_PATH = OUTPUT_PATH / Path(path)
 
 
 def load_photo_image(path: str):
@@ -91,12 +98,22 @@ def create_rounded_rectangle(canvas, x1, y1, x2, y2, radius, **kwargs):
     return canvas.create_polygon(points, smooth=True, **kwargs)
 
 
+def apply_theme(window):
+    if not THEME:
+        return
+    try:
+        ttk.Style(window).theme_use(THEME)
+    except Exception:
+        pass
+
+
 enable_dpi_awareness()
 """
 
 
 TEMPLATE = COMMON_TEMPLATE_HEADER + """
 window = Tk()
+apply_theme(window)
 
 window.geometry("{{ window.width }}x{{ window.height }}")
 window.configure(bg="{{ window.bg_color }}")
@@ -132,6 +149,7 @@ class GeneratedApp:
     def __init__(self, window=None):
         self.window = window or Tk()
         window = self.window
+        apply_theme(window)
 
         window.geometry("{{ window.width }}x{{ window.height }}")
         window.configure(bg="{{ window.bg_color }}")
@@ -154,6 +172,96 @@ class GeneratedApp:
         {%- endfor %}
 
         window.resizable(False, False)
+
+    def run(self):
+        self.window.mainloop()
+
+
+if __name__ == "__main__":
+    app = GeneratedApp()
+    app.run()
+
+"""
+
+
+PAGES_TEMPLATE = COMMON_TEMPLATE_HEADER + """
+{% for page in pages %}
+class {{ page.class_name }}(Frame):
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent)
+        self.controller = controller
+        self.configure(bg="{{ page.bg_color }}")
+        set_assets_path(r"{{ page.assets_rel_path }}")
+
+        window = self
+        canvas = Canvas(
+            self,
+            bg="{{ page.bg_color }}",
+            height={{ page.height }},
+            width={{ page.width }},
+            bd=0,
+            highlightthickness=0,
+            relief="ridge"
+        )
+        canvas.place(x=0, y=0)
+
+        {%- for element in page.elements -%}
+            {{ element.to_code() | indent(8) }}
+        {%- endfor %}
+
+
+{% endfor %}
+class GeneratedApp:
+    def __init__(self):
+        self.window = Tk()
+        window = self.window
+        apply_theme(window)
+        window.geometry("{{ window.width }}x{{ window.height }}")
+        window.configure(bg="{{ window.bg_color }}")
+        center_window(window, {{ window.width }}, {{ window.height }})
+
+        self.current_page = 0
+        self.container = Frame(window, bg="{{ window.bg_color }}")
+        self.container.place(x=0, y=0, width={{ window.width }}, height={{ window.height }})
+
+        self.pages = [
+            {% for page in pages -%}
+            {{ page.class_name }}(self.container, self),
+            {% endfor -%}
+        ]
+        for page in self.pages:
+            page.place(x=0, y=0, width={{ window.width }}, height={{ window.height }})
+
+        self.show_page(0)
+        if len(self.pages) > 1:
+            self.previous_button = Button(window, text="< Back", command=self.previous_page)
+            self.previous_button.place(x=10, y={{ window.height }} - 42, width=80, height=32)
+            self.next_button = Button(window, text="Next >", command=self.next_page)
+            self.next_button.place(x={{ window.width }} - 90, y={{ window.height }} - 42, width=80, height=32)
+            self.update_navigation()
+
+        window.resizable(False, False)
+
+    def show_page(self, index):
+        self.current_page = index
+        self.pages[index].tkraise()
+        self.update_navigation()
+
+    def previous_page(self):
+        if self.current_page > 0:
+            self.show_page(self.current_page - 1)
+
+    def next_page(self):
+        if self.current_page < len(self.pages) - 1:
+            self.show_page(self.current_page + 1)
+
+    def update_navigation(self):
+        if not hasattr(self, "previous_button"):
+            return
+        self.previous_button.configure(
+            state=("disabled" if self.current_page == 0 else "normal"))
+        self.next_button.configure(
+            state=("disabled" if self.current_page == len(self.pages) - 1 else "normal"))
 
     def run(self):
         self.window.mainloop()

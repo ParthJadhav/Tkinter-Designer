@@ -16,6 +16,8 @@ from .custom_elements import (
     Text,
     TextEntry,
     ToggleButton,
+    Table,
+    TabView,
 )
 
 from jinja2 import Template
@@ -23,7 +25,7 @@ from pathlib import Path
 
 
 class Frame(Node):
-    def __init__(self, node, figma_file, output_path, frameCount=0):
+    def __init__(self, node, figma_file, output_path, frameCount=0, *, theme=""):
         super().__init__(node)
 
         self.width, self.height = self.size()
@@ -31,6 +33,7 @@ class Frame(Node):
 
         self.counter = {}
         self.hover_targets = {}
+        self.theme = theme
 
         self.figma_file = figma_file
 
@@ -86,6 +89,10 @@ class Frame(Node):
             "listbox",
             "toggle",
             "togglebutton",
+            "table",
+            "tabview",
+            "tabs",
+            "notebook",
         }:
             return True
         return element_type in {"rectangle", "line", "text"}
@@ -172,6 +179,16 @@ class Frame(Node):
             return ToggleButton(
                 element, self, id_=f"{self.counter[ToggleButton]}")
 
+        elif element_name == "table":
+            self.counter[Table] = self.counter.get(Table, 0) + 1
+            return Table(
+                element, self, id_=f"{self.counter[Table]}")
+
+        elif element_name in ("tabview", "tabs", "notebook"):
+            self.counter[TabView] = self.counter.get(TabView, 0) + 1
+            return TabView(
+                element, self, id_=f"{self.counter[TabView]}")
+
         if element_name == "rectangle" or element_type == "rectangle":
             return Rectangle(element, self)
 
@@ -217,7 +234,11 @@ class Frame(Node):
         t = Template(template)
         assets_path = self.assets_path.relative_to(self.output_path)
         return t.render(
-            window=self, elements=self.elements, assets_path=assets_path)
+            window=self,
+            elements=self.elements,
+            assets_path=assets_path,
+            theme=self.theme,
+        )
 
 
 # Frame Subclasses

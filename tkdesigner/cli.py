@@ -35,10 +35,16 @@ def main():
             "If this flag is passed in, the output directory given "
             "will be overwritten if it exists."))
     parser.add_argument(
-        "-t", "--template", choices=("script", "class"), default="script",
+        "-t", "--template", choices=("script", "class", "pages"), default="script",
         help=(
-            "Generated code style. Use `class` for a class-based Tkinter app. "
+            "Generated code style. Use `class` for a class-based Tkinter app "
+            "or `pages` for one app with frame-to-frame navigation. "
             "Defaults to script."))
+    parser.add_argument(
+        "--theme", type=str, default="",
+        help=(
+            "Optional ttk theme name to apply in generated apps, such as "
+            "`clam`, `alt`, or `default`."))
 
     parser.add_argument(
         "file_url", type=str, help="File url of the Figma design.")
@@ -73,6 +79,7 @@ def main():
         output_path,
         node_id=figma_reference.node_id,
         template_style=args.template,
+        theme=args.theme.strip(),
     )
     designer.design()
     print(f"\nProject successfully generated at {output_path}.\n")

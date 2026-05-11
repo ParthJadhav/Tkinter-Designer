@@ -82,6 +82,18 @@ To generate a class-based Tkinter app:
 tkdesigner --template class $FILE_URL $FIGMA_TOKEN
 ```
 
+To generate one app with Back/Next navigation across multiple Figma frames:
+
+```bash
+tkdesigner --template pages $FILE_URL $FIGMA_TOKEN
+```
+
+Generated apps can also apply a ttk theme:
+
+```bash
+tkdesigner --theme clam $FILE_URL $FIGMA_TOKEN
+```
+
 ## 🦋 Supporting Tkinter Designer
 
 Consider making a donation to the Tkinter Designer project if you or your business have benefited from it. This will accelerate Tkinter Designer's development! Making coffee is simple; I'll be happy to enjoy one.

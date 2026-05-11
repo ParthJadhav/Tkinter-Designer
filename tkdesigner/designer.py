@@ -1,7 +1,7 @@
 import tkdesigner.figma.endpoints as endpoints
 from tkdesigner.figma.frame import Frame
 
-from tkdesigner.template import CLASS_TEMPLATE, TEMPLATE
+from tkdesigner.template import CLASS_TEMPLATE, PAGES_TEMPLATE, TEMPLATE
 
 from pathlib import Path
 
@@ -19,17 +19,17 @@ class Designer:
         *,
         node_id=None,
         template_style="script",
+        theme="",
     ):
         self.output_path = output_path
         self.figma_file = endpoints.Files(token, file_key)
         self.file_data = self.figma_file.get_file()
         self.node_id = node_id
         self.template_style = template_style
+        self.theme = theme
 
-    def to_code(self) -> str:
+    def to_code(self) -> list:
         """Return generated code for each frame."""
-        frames = []
-        template = CLASS_TEMPLATE if self.template_style == "class" else TEMPLATE
         frame_nodes = self._target_frame_nodes()
 
         if not frame_nodes:
@@ -37,10 +37,35 @@ class Designer:
                 "No Figma frames were found. Select a frame in Figma, copy "
                 "its URL, and make sure the frame is not empty.")
 
+        frames = []
         for frame_counter, frame_node in enumerate(frame_nodes):
-            frame = Frame(frame_node, self.figma_file, self.output_path, frame_counter)
-            frames.append(frame.to_code(template))
-        return frames
+            frame = Frame(
+                frame_node,
+                self.figma_file,
+                self.output_path,
+                frame_counter,
+                theme=self.theme,
+            )
+            frame.page_index = frame_counter
+            frame.class_name = f"Page{frame_counter}"
+            frame.assets_rel_path = frame.assets_path.relative_to(self.output_path)
+            frames.append(frame)
+
+        if self.template_style == "pages":
+            return [self._to_pages_code(frames)]
+
+        template = CLASS_TEMPLATE if self.template_style == "class" else TEMPLATE
+        return [frame.to_code(template) for frame in frames]
+
+    def _to_pages_code(self, frames):
+        from jinja2 import Template
+
+        return Template(PAGES_TEMPLATE).render(
+            pages=frames,
+            window=frames[0],
+            assets_path="assets",
+            theme=self.theme,
+        )
 
     def _target_frame_nodes(self):
         document = self.file_data.get("document", {})

@@ -320,3 +320,39 @@ togglebutton_{self.id_}.place(
     height={self.height}
 )
 """
+
+
+class Table(NativeWidget):
+    def to_code(self):
+        return f"""
+table_{self.id_} = ttk.Treeview(
+    window,
+    columns=("Column 1", "Column 2"),
+    show="headings"
+)
+table_{self.id_}.heading("Column 1", text="Column 1")
+table_{self.id_}.heading("Column 2", text="Column 2")
+table_{self.id_}.place(
+    x={self.x},
+    y={self.y},
+    width={self.width},
+    height={self.height}
+)
+"""
+
+
+class TabView(NativeWidget):
+    def to_code(self):
+        return f"""
+tabs_{self.id_} = ttk.Notebook(window)
+tab_{self.id_}_1 = Frame(tabs_{self.id_})
+tab_{self.id_}_2 = Frame(tabs_{self.id_})
+tabs_{self.id_}.add(tab_{self.id_}_1, text="Tab 1")
+tabs_{self.id_}.add(tab_{self.id_}_2, text="Tab 2")
+tabs_{self.id_}.place(
+    x={self.x},
+    y={self.y},
+    width={self.width},
+    height={self.height}
+)
+"""

@@ -86,6 +86,96 @@ def test_class_template_compiles_for_simple_frame(tmp_path):
     compile(code, "gui.py", "exec")
 
 
+def test_table_and_tabview_generate_native_ttk_widgets(tmp_path):
+    children = [
+        {
+            "id": "2:5",
+            "name": "Table",
+            "type": "RECTANGLE",
+            "absoluteBoundingBox": {"x": 110, "y": 70, "width": 180, "height": 80},
+            "fills": solid_fill(1, 1, 1),
+        },
+        {
+            "id": "2:6",
+            "name": "TabView",
+            "type": "RECTANGLE",
+            "absoluteBoundingBox": {"x": 110, "y": 160, "width": 180, "height": 60},
+            "fills": solid_fill(1, 1, 1),
+        },
+    ]
+
+    frame = Frame(frame_node(children), object(), tmp_path, 0)
+    code = frame.to_code(TEMPLATE)
+
+    assert "ttk.Treeview(" in code
+    assert "ttk.Notebook(" in code
+    compile(code, "gui.py", "exec")
+
+
+def test_pages_template_generates_navigation_app(tmp_path):
+    designer = Designer.__new__(Designer)
+    designer.output_path = tmp_path
+    designer.figma_file = object()
+    designer.node_id = None
+    designer.template_style = "pages"
+    designer.theme = "clam"
+    designer.file_data = {
+        "document": {
+            "children": [
+                {
+                    "id": "0:1",
+                    "type": "CANVAS",
+                    "children": [
+                        frame_node([
+                            {
+                                "id": "2:7",
+                                "name": "Rectangle",
+                                "type": "RECTANGLE",
+                                "absoluteBoundingBox": {
+                                    "x": 120,
+                                    "y": 80,
+                                    "width": 80,
+                                    "height": 32,
+                                },
+                                "fills": solid_fill(0.2, 0.4, 0.9),
+                            }
+                        ]),
+                        {
+                            **frame_node([
+                                {
+                                    "id": "2:8",
+                                    "name": "Title",
+                                    "type": "TEXT",
+                                    "absoluteBoundingBox": {
+                                        "x": 120,
+                                        "y": 90,
+                                        "width": 100,
+                                        "height": 20,
+                                    },
+                                    "fills": solid_fill(0, 0, 0),
+                                    "characters": "Second",
+                                    "style": {"fontFamily": "Arial", "fontSize": 12},
+                                }
+                            ]),
+                            "id": "1:2",
+                        },
+                    ],
+                }
+            ]
+        }
+    }
+
+    code = designer.to_code()[0]
+
+    assert 'THEME = "clam"' in code
+    assert "class Page0(Frame):" in code
+    assert "class Page1(Frame):" in code
+    assert "def next_page(self):" in code
+    assert 'set_assets_path(r"assets/frame0")' in code
+    assert 'set_assets_path(r"assets/frame1")' in code
+    compile(code, "gui.py", "exec")
+
+
 def test_designer_uses_selected_node_when_url_has_node_id():
     designer = Designer.__new__(Designer)
     designer.node_id = "2:4"

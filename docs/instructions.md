@@ -140,6 +140,8 @@ ___
 | ComboBox | ttk.Combobox |
 | ListBox | Listbox |
 | Toggle or ToggleButton | Toggle-style Checkbutton |
+| Table | ttk.Treeview table |
+| TabView, Tabs, or Notebook | ttk.Notebook tab view |
 
 <br>
 
@@ -273,6 +275,18 @@ To generate a class-based Tkinter app instead of a top-level script, add `--temp
 
 ```bash
 tkdesigner --template class $FILE_URL $FIGMA_TOKEN
+```
+
+To generate a single app with Back/Next navigation across multiple Figma frames, use `--template pages`:
+
+```bash
+tkdesigner --template pages $FILE_URL $FIGMA_TOKEN
+```
+
+To apply a ttk theme in the generated app, pass `--theme` with a theme name available in your Tk installation:
+
+```bash
+tkdesigner --theme clam $FILE_URL $FIGMA_TOKEN
 ```
 
 ### From Source
