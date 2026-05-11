@@ -75,6 +75,11 @@ pip install tkdesigner
 ```
 
 The CLI accepts both current `figma.com/design/...` links and legacy `figma.com/file/...` links. If you select a specific frame before copying the Figma link, Tkinter Designer will generate that selected frame.
+Always wrap Figma URLs in quotes when running from a shell, because Figma links often include `?` and `&` query parameters.
+
+```bash
+tkdesigner "$FILE_URL" "$FIGMA_TOKEN"
+```
 
 To generate a class-based Tkinter app:
 

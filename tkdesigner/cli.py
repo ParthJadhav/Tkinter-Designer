@@ -48,7 +48,11 @@ def main():
 
     parser.add_argument(
         "file_url", type=str, help="File url of the Figma design.")
-    parser.add_argument("token", type=str, help="Figma token.")
+    parser.add_argument(
+        "token", type=str, nargs="?",
+        help=(
+            "Figma token. Can also be provided with the FIGMA_TOKEN "
+            "environment variable."))
 
     args = parser.parse_args()
 
@@ -57,7 +61,11 @@ def main():
 
     figma_reference = parse_figma_url(args.file_url)
 
-    token = args.token.strip()
+    token = (args.token or os.getenv("FIGMA_TOKEN", "")).strip()
+    if not token:
+        parser.error(
+            "missing Figma token. If your Figma URL contains `?` or `&`, "
+            "wrap the URL in quotes so your shell does not split it.")
     output_path = Path(args.output.strip()).expanduser().resolve() / "build"
 
     if output_path.exists() and not output_path.is_dir():

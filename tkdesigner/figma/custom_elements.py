@@ -18,7 +18,7 @@ class Button(Rectangle):
         return f"""
 button_image_{self.id_} = load_photo_image(
     relative_to_assets("{self.image_path}"))
-button_{self.id_} = Button(
+button_{self.id_} = ImageButton(
     window,
     image=button_image_{self.id_},
     borderwidth=0,

@@ -271,6 +271,18 @@ pip install tkdesigner
 tkdesigner $FILE_URL $FIGMA_TOKEN
 ```
 
+Wrap the Figma URL in quotes when pasting the literal URL into a shell:
+
+```bash
+tkdesigner "https://www.figma.com/design/FILE_KEY/Name?node-id=1-2&t=..." "$FIGMA_TOKEN"
+```
+
+If you do not want to place the token directly in the command, set it in `FIGMA_TOKEN` and pass only the URL:
+
+```bash
+FIGMA_TOKEN="your-token" tkdesigner "$FILE_URL"
+```
+
 To generate a class-based Tkinter app instead of a top-level script, add `--template class`:
 
 ```bash
@@ -359,6 +371,8 @@ The output files from Tkinter Designer will be placed in your chosen directory, 
 - Files not generating?
   - Restart Tkinter Designer
   - Double-check the token and URL
+  - Quote the Figma URL if you run the CLI from a shell
+  - Add `-f` if you want to overwrite an existing non-empty `build` directory
   - If you see a Figma API quota or rate-limit message, wait for your Figma quota to reset or use a token with available quota
   - Make sure your design has a Frame
   - If your file has many frames, select the target frame in Figma before copying the URL

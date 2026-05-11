@@ -16,6 +16,7 @@ from tkinter import (
     Checkbutton,
     Entry,
     Frame,
+    Label,
     Listbox,
     PhotoImage,
     Radiobutton,
@@ -96,6 +97,28 @@ def create_rounded_rectangle(canvas, x1, y1, x2, y2, radius, **kwargs):
         x1, y1,
     ]
     return canvas.create_polygon(points, smooth=True, **kwargs)
+
+
+class ImageButton(Label):
+    def __init__(self, master=None, command=None, **kwargs):
+        super().__init__(master, **kwargs)
+        self._command = command
+        self.configure(cursor="hand2")
+        self.bind("<Button-1>", self._invoke)
+
+    def _invoke(self, event):
+        if self._command is not None:
+            self._command()
+
+    def configure(self, cnf=None, **kwargs):
+        if cnf and "command" in cnf:
+            cnf = dict(cnf)
+            self._command = cnf.pop("command")
+        if "command" in kwargs:
+            self._command = kwargs.pop("command")
+        return super().configure(cnf, **kwargs)
+
+    config = configure
 
 
 def apply_theme(window):

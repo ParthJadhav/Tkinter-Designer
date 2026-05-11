@@ -1,7 +1,7 @@
 import pytest
 
 from tkdesigner.designer import Designer
-from tkdesigner.figma.custom_elements import TextEntry
+from tkdesigner.figma.custom_elements import Button, TextEntry
 from tkdesigner.figma.endpoints import FigmaAPIError, Files
 from tkdesigner.figma.frame import Frame
 from tkdesigner.template import CLASS_TEMPLATE, TEMPLATE
@@ -66,6 +66,22 @@ def test_textbox_names_generate_entry_widgets(tmp_path):
     assert "file=relative_to_assets" not in code
     assert 'fg="#FFFFFF"' in code
     assert 'insertbackground="#FFFFFF"' in code
+
+
+def test_image_buttons_use_label_backed_button_to_avoid_tk_borders(tmp_path):
+    element = {
+        "id": "2:9",
+        "name": "Button",
+        "type": "RECTANGLE",
+        "absoluteBoundingBox": {"x": 110, "y": 75, "width": 120, "height": 32},
+        "fills": solid_fill(0.2, 0.4, 0.9),
+    }
+
+    button = Button(element, Frame(frame_node([]), object(), tmp_path, 0), "button.png", id_="1")
+    code = button.to_code()
+
+    assert "button_1 = ImageButton(" in code
+    assert "command=lambda: print" in code
 
 
 def test_class_template_compiles_for_simple_frame(tmp_path):
