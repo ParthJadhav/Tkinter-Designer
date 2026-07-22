@@ -2,6 +2,8 @@
 TKinter Designer command-line interface.
 """
 
+from importlib.metadata import version
+
 from tkdesigner.designer import Designer
 from tkdesigner.utils import parse_figma_url
 
@@ -11,6 +13,8 @@ import argparse
 
 from pathlib import Path
 
+
+__version__ = version("tkdesigner")
 
 if int(os.getenv("TKDESIGNER_VERBOSE", 0)) == 1:
     log_level = logging.INFO
@@ -24,6 +28,9 @@ def main():
     parser = argparse.ArgumentParser(
         description="Generate TKinter GUI code from Figma design.")
 
+    parser.add_argument(
+        "-v", "--version", action="version", version=f"tkdesigner {__version__}",
+        help="Show the current version of Tkinter-Designer")
     parser.add_argument(
         "-o", "--output", type=str, default=".",
         help=(
