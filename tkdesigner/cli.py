@@ -14,7 +14,7 @@ import argparse
 from pathlib import Path
 
 
-__version__ = version("tkdesigner")
+
 
 if int(os.getenv("TKDESIGNER_VERBOSE", 0)) == 1:
     log_level = logging.INFO
