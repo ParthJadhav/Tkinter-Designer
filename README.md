@@ -58,7 +58,8 @@ python -m pip install -e .
 ```
 
 Linux users may also need their distribution's Tk package, such as
-`python3-tk`.
+`python3-tk`. On macOS, use a current Python distribution with Tk 8.6 or newer;
+Apple/Xcode's deprecated system Tk 8.5 can render blank windows on modern macOS.
 
 ## Quick start
 

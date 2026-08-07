@@ -8,6 +8,7 @@ responsive on larger Figma files.
 import os
 from pathlib import Path
 from queue import Empty, Queue
+import sys
 import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -29,6 +30,17 @@ COLORS = {
     "success": "#067647",
     "danger": "#B42318",
 }
+
+
+def supports_desktop_tk(platform: str, patchlevel: str) -> bool:
+    """Reject Apple's deprecated Tk 8.5, which renders blank on modern macOS."""
+    if platform != "darwin":
+        return True
+    try:
+        version = tuple(int(part) for part in patchlevel.split(".")[:2])
+    except ValueError:
+        return False
+    return version >= (8, 6)
 
 
 class DesignerApp:
@@ -339,8 +351,23 @@ class DesignerApp:
 
 def main():
     root = tk.Tk()
+    patchlevel = str(root.tk.call("info", "patchlevel"))
+    if not supports_desktop_tk(sys.platform, patchlevel):
+        message = (
+            f"Tkinter Designer requires Tk 8.6 or newer on macOS; this Python "
+            f"uses Tk {patchlevel}. Install a current Python distribution with "
+            "modern Tk support, recreate the virtual environment, and try again."
+        )
+        root.withdraw()
+        print(f"error: {message}", file=sys.stderr)
+        try:
+            messagebox.showerror("Tkinter Designer", message, parent=root)
+        finally:
+            root.destroy()
+        return 1
     DesignerApp(root)
     root.mainloop()
+    return 0
 
 
 if __name__ == "__main__":

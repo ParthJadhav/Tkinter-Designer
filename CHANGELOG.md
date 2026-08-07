@@ -23,6 +23,8 @@ versioning once a preview is promoted to a stable release.
 - Empty selected frames can generate valid empty windows.
 - Non-interactive environments require explicit `--force` for replacement.
 - Figma API clients no longer reveal tokens in string representations.
+- The desktop app reports deprecated Apple Tk 8.5 instead of opening a blank
+  window on modern macOS.
 
 ### Fixed
 

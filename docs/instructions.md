@@ -98,6 +98,9 @@ tkdesigner-gui
 Paste the design URL, use the token from `FIGMA_TOKEN` or enter one, choose the
 output and template, and select **Inspect design**. Generate after reviewing the
 report. Network work runs in the background so the app remains responsive.
+On macOS the desktop app requires Tk 8.6 or newer. If the launcher reports an
+older Tk runtime, install a current Python distribution with modern Tk support
+and recreate the virtual environment.
 
 ## Troubleshooting
 
