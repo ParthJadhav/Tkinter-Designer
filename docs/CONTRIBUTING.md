@@ -1,52 +1,61 @@
-# Welcome to Tkinter-Designer contributing guide
+# Contributing to Tkinter Designer
 
-Thank you for investing your time in contributing to our project!
+Thanks for helping make design-to-Tkinter generation more dependable. Read the
+[Code of Conduct](../CODE_OF_CONDUCT.md) before participating.
 
-Read our [Code of Conduct](../CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
+## Start with the product model
 
-In this guide you will get an overview of the contribution workflow from opening an issue, creating a PR, reviewing, and merging the PR.
+Read [product-direction.md](product-direction.md) and
+[architecture.md](architecture.md). Focused fixes and features that improve the
+inspect → generate → integrate workflow are easier to evaluate than broad
+renderer rewrites.
 
-## New contributor guide
+Search [existing issues](https://github.com/ParthJadhav/Tkinter-Designer/issues)
+before opening a new one. For conversion bugs, include:
 
-To get an overview of the project, read the [README](../README.md). Here are some resources to help you get started with open source contributions:
+- the Tkinter Designer and Python versions;
+- operating system;
+- `tkdesigner --inspect --format json` output;
+- a minimal shareable Figma example or sanitized response fixture;
+- expected and actual generated behavior.
 
-- [Finding ways to contribute to open source on GitHub](https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github)
-- [Set up Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
-- [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
-- [Collaborating with pull requests](https://docs.github.com/en/github/collaborating-with-pull-requests)
+Never post a Figma token or private design response.
 
-## Getting started
+## Local setup
 
-If you find something that can be improved, solved or changed you are welcome to do so. 
+```bash
+git clone https://github.com/ParthJadhav/Tkinter-Designer.git
+cd Tkinter-Designer
+git switch -c your-focused-branch
+make setup
+make check
+```
 
-#### Create a new issue
+The Makefile creates `.venv`, installs the package in editable mode, runs the
+test and lint suites, and builds both source and wheel distributions. Poetry
+users can instead run `poetry install` and the equivalent commands through
+`poetry run`.
 
-If you spot a problem with the Tkinter-Designer, [search if an issue already exists](https://github.com/ParthJadhav/Tkinter-Designer/issues). If a related issue doesn't exist, you can open a new issue using a relevant [issue form](https://github.com/ParthJadhav/Tkinter-Designer/issues/new/choose).
+## Development rules
 
-#### Solve an issue
+- Preserve the existing CLI syntax unless a breaking change is explicitly
+  accepted for a major release.
+- Keep Figma token values out of logs, exceptions, fixtures, and manifests.
+- Inspection must remain read-only and use the same classification rules as
+  generation.
+- Add tests for both the successful path and failure behavior.
+- Do not overwrite a valid build until a new build is complete.
+- Generated Python should compile and remain safe to import.
+- Update user documentation when adding a CLI option or reserved layer name.
 
-Scan through our [existing issues](https://github.com/ParthJadhav/Tkinter-Designer/issues) to find one that interests you. You can narrow down the search using `labels` as filters.
+## Pull requests
 
-### Make Changes
+Keep the pull request scoped and explain:
 
-Once you find the thing you want to work on.
+1. the user problem;
+2. the chosen behavior and tradeoffs;
+3. tests and manual verification;
+4. migration impact, if any.
 
-1. Fork the repository.
-2. Create a branch for your changes.
-3. Clone and checkout that branch locally.
-4. Install dependencies by `pip install -r requirements.txt`
-5. Make sure it works as expected.
-6. Make the changes.
-7. Test the changes.
-8. Commit and Push the changes.
-9. Create a Pull Request.
-
-### Pull Request
-
-The created Pull request should have a brief description on why and how you made the changes.
-
-### Your PR is merged
-
-Congratulations :tada::tada: Thank you :sparkles:.
-
-Once your PR is merged, your contributions will be publicly visible on the [Tkinter-Designer](https://github.com/ParthJadhav/Tkinter-Designer/).
+Run `make check` before requesting review. Maintainers may ask for a recorded
+Figma fixture when behavior depends on API response details.

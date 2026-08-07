@@ -3,6 +3,7 @@ from ..utils import download_image, paint_to_hex
 
 from .node import Node
 from .endpoints import FigmaAPIError
+from .schema import classify_element, image_export_ids, iter_renderable_nodes
 from .vector_elements import Line, Rectangle, UnknownElement
 from .custom_elements import (
     Button,
@@ -21,7 +22,11 @@ from .custom_elements import (
 )
 
 from jinja2 import Template
+import logging
 from pathlib import Path
+
+
+LOGGER = logging.getLogger("tkdesigner.generation")
 
 
 class Frame(Node):
@@ -49,53 +54,12 @@ class Frame(Node):
         ]
 
     def iter_renderable_children(self, children):
-        for child in children or []:
-            node = Node(child)
-            if not node.visible or "absoluteBoundingBox" not in child:
-                continue
+        yield from iter_renderable_nodes(children)
 
-            name = child.get("name", "").strip().lower()
-            node_type = child.get("type", "").strip().lower()
-            has_children = bool(child.get("children"))
-
-            if self.is_supported_element(name, node_type):
-                yield child
-            elif has_children and node_type in {
-                "frame",
-                "group",
-                "section",
-                "component",
-                "component_set",
-                "instance",
-            }:
-                yield from self.iter_renderable_children(child.get("children"))
-            else:
-                yield child
-
-    def is_supported_element(self, element_name, element_type):
-        if element_name in {
-            "button",
-            "buttonhover",
-            "textbox",
-            "textarea",
-            "image",
-            "rectangle",
-            "line",
-            "checkbox",
-            "checkbutton",
-            "radiobutton",
-            "radio",
-            "combobox",
-            "listbox",
-            "toggle",
-            "togglebutton",
-            "table",
-            "tabview",
-            "tabs",
-            "notebook",
-        }:
-            return True
-        return element_type in {"rectangle", "line", "text"}
+    @staticmethod
+    def image_export_ids(frame_node):
+        """Return all assets that can be fetched in one Figma API request."""
+        return image_export_ids(frame_node.get("children") or [])
 
     def element_size(self, element):
         bbox = element["absoluteBoundingBox"]
@@ -111,107 +75,71 @@ class Frame(Node):
     def create_element(self, element):
         element_name = element["name"].strip().lower()
         element_type = element["type"].strip().lower()
+        element_kind = classify_element(element)
 
-        print(
+        LOGGER.info(
             "Creating Element "
             f"{{ name: {element_name}, type: {element_type} }}"
         )
 
-        if element_name == "button":
-            self.counter[Button] = self.counter.get(Button, 0) + 1
+        image_elements = {
+            "button": (Button, "button"),
+            "button_hover": (ButtonHover, "button_hover"),
+            "text_input": (TextEntry, "entry"),
+            "image": (Image, "image"),
+        }
+        native_elements = {
+            "checkbutton": CheckButton,
+            "radiobutton": RadioButton,
+            "combobox": ComboBox,
+            "listbox": ListBox,
+            "togglebutton": ToggleButton,
+            "table": Table,
+            "tabview": TabView,
+        }
+        vector_elements = {
+            "rectangle": Rectangle,
+            "line": Line,
+            "text": Text,
+        }
 
+        if element_kind in image_elements:
+            element_class, filename = image_elements[element_kind]
+            return self._create_image_element(element, element_class, filename)
+        if element_kind in native_elements:
+            return self._create_native_element(element, native_elements[element_kind])
+        if element_kind in vector_elements:
+            return vector_elements[element_kind](element, self)
+        return self._create_raster_element(element, element_name)
+
+    def _next_id(self, element_class):
+        self.counter[element_class] = self.counter.get(element_class, 0) + 1
+        return str(self.counter[element_class])
+
+    def _create_image_element(self, element, element_class, filename):
+        element_id = self._next_id(element_class)
+        image_path = self.download_element_image(
+            element, f"{filename}_{element_id}.png")
+        if element_class is ButtonHover:
+            return ButtonHover(element, self, image_path)
+        return element_class(element, self, image_path, id_=element_id)
+
+    def _create_native_element(self, element, element_class):
+        return element_class(element, self, id_=self._next_id(element_class))
+
+    def _create_raster_element(self, element, element_name):
+        element_id = self._next_id(RasterElement)
+        try:
             image_path = self.download_element_image(
-                element, f"button_{self.counter[Button]}.png")
-
-            return Button(
-                element, self, image_path, id_=f"{self.counter[Button]}")
-
-        # EXPERIMENTAL FEATURE
-        elif element_name == "buttonhover":
-            self.counter[ButtonHover] = self.counter.get(ButtonHover, 0) + 1
-
-            image_path = self.download_element_image(
-                element, f"button_hover_{self.counter[ButtonHover]}.png")
-
-            return ButtonHover(
-                element, self, image_path)
-
-        elif element_name in ("textbox", "textarea"):
-            self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
-
-            image_path = self.download_element_image(
-                element, f"entry_{self.counter[TextEntry]}.png")
-
-            return TextEntry(
-                element, self, image_path, id_=f"{self.counter[TextEntry]}")
-
-        elif element_name == "image":
-            self.counter[Image] = self.counter.get(Image, 0) + 1
-
-            image_path = self.download_element_image(
-                element, f"image_{self.counter[Image]}.png")
-
-            return Image(
-                element, self, image_path, id_=f"{self.counter[Image]}")
-
-        elif element_name in ("checkbox", "checkbutton"):
-            self.counter[CheckButton] = self.counter.get(CheckButton, 0) + 1
-            return CheckButton(
-                element, self, id_=f"{self.counter[CheckButton]}")
-
-        elif element_name in ("radiobutton", "radio"):
-            self.counter[RadioButton] = self.counter.get(RadioButton, 0) + 1
-            return RadioButton(
-                element, self, id_=f"{self.counter[RadioButton]}")
-
-        elif element_name == "combobox":
-            self.counter[ComboBox] = self.counter.get(ComboBox, 0) + 1
-            return ComboBox(
-                element, self, id_=f"{self.counter[ComboBox]}")
-
-        elif element_name == "listbox":
-            self.counter[ListBox] = self.counter.get(ListBox, 0) + 1
-            return ListBox(
-                element, self, id_=f"{self.counter[ListBox]}")
-
-        elif element_name in ("toggle", "togglebutton"):
-            self.counter[ToggleButton] = self.counter.get(ToggleButton, 0) + 1
-            return ToggleButton(
-                element, self, id_=f"{self.counter[ToggleButton]}")
-
-        elif element_name == "table":
-            self.counter[Table] = self.counter.get(Table, 0) + 1
-            return Table(
-                element, self, id_=f"{self.counter[Table]}")
-
-        elif element_name in ("tabview", "tabs", "notebook"):
-            self.counter[TabView] = self.counter.get(TabView, 0) + 1
-            return TabView(
-                element, self, id_=f"{self.counter[TabView]}")
-
-        if element_name == "rectangle" or element_type == "rectangle":
-            return Rectangle(element, self)
-
-        if element_name == "line" or element_type == "line":
-            return Line(element, self)
-
-        elif element_type == "text":
-            return Text(element, self)
-
-        else:
-            try:
-                self.counter[RasterElement] = self.counter.get(RasterElement, 0) + 1
-                image_path = self.download_element_image(
-                    element, f"element_{self.counter[RasterElement]}.png")
-                return RasterElement(
-                    element, self, image_path, id_=f"{self.counter[RasterElement]}")
-            except FigmaAPIError as exc:
-                if "could not export image data" not in str(exc):
-                    raise
-                print(
-                    f"Element with the name: `{element_name}` cannot be parsed. "
-                    "Would be displayed as Black Rectangle")
-                return UnknownElement(element, self)
+                element, f"element_{element_id}.png")
+            return RasterElement(element, self, image_path, id_=element_id)
+        except FigmaAPIError as exc:
+            if "could not export image data" not in str(exc):
+                raise
+            LOGGER.warning(
+                f"Element with the name: `{element_name}` cannot be parsed. "
+                "It will be displayed as a black rectangle.")
+            return UnknownElement(element, self)
 
     @property
     def children(self):

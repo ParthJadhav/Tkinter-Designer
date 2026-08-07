@@ -1,32 +1,30 @@
-# Makefiles are traditionally for building C projects... Or something, IDK. Whatever.
-# They're a great drop in for shared script runners, keeping cmd syntax brief.
+.PHONY: setup test lint build check cli gui clean
 
-# Declare a PHONY target, write the sequence of commands it executes, then chain them together.
-# In your shell just run `make lint` to just run flake8 with the options listed.
-# or run `make precommit` to run the lint target script and if it successfully exits then the test target script.
-
-# List of phony make targets
-.PHONY: test, lint, build, precommit, cli, gui
+PYTHON ?= python3
+VENV ?= .venv
+BIN := $(VENV)/bin
 
 setup:
-	poetry install
-
-# run flake8 with these params. E251 and E226 are errors about whitespace around operators.
-lint:
-	poetry run flake8 --ignore=E251,E226 --max-line-length=127
+	$(PYTHON) -m venv $(VENV)
+	$(BIN)/python -m pip install --upgrade pip
+	$(BIN)/python -m pip install -e . pytest flake8 build
 
 test:
-	poetry run pytest
+	$(BIN)/python -m pytest -q
 
-# lint and test and build the pypi package
-build: lint test
-	poetry build
+lint:
+	$(BIN)/flake8 . --exclude=$(VENV)
 
-# Run this. `make precommit`
-precommit: lint test
+build:
+	$(BIN)/python -m build
+
+check: lint test build
 
 cli:
-	poetry run tkdesigner ${FIGMA_PROJECT_URL} ${FIGMA_TOKEN} -f
+	$(BIN)/tkdesigner --inspect "$(FIGMA_PROJECT_URL)" "$(FIGMA_TOKEN)"
 
 gui:
-	poetry run python gui/gui.py
+	$(BIN)/tkdesigner-gui
+
+clean:
+	$(PYTHON) -c 'from pathlib import Path; import shutil; [shutil.rmtree(path) for path in map(Path, ("build", "dist")) if path.exists()]'

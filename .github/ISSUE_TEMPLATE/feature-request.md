@@ -1,14 +1,25 @@
 ---
-name: Feature request
-about: use this template to request a feature
-title: Feature request
+name: Feature proposal
+about: Propose an improvement tied to a user problem
+title: "[Feature] "
 labels: enhancement
-assignees: ''
-
+assignees: ""
 ---
 
-- Briefly describe your feature request
-- What problem is this feature trying to solve?
-- How do we know when the feature is complete?
-- Is there any possible approach you have thought of? If yes then how?
-- Would you like to participate in development of this feature?
+## User problem
+
+Who encounters the problem, what are they trying to achieve, and why is the
+current workflow insufficient?
+
+## Proposed behavior
+
+Describe what the user should be able to do. Include inspect, failure, and
+regeneration behavior where relevant.
+
+## Alternatives and tradeoffs
+
+What other approaches did you consider?
+
+## Completion signal
+
+How will we know this feature works and is useful?

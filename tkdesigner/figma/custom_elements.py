@@ -1,6 +1,11 @@
 from .vector_elements import Vector, Rectangle
 from ..utils import contrasting_text_color, python_string_literal
 
+import logging
+
+
+LOGGER = logging.getLogger("tkdesigner.generation")
+
 TEXT_INPUT_ELEMENT_TYPES = {
     "textarea": "Text",
     "textbox": "Entry"
@@ -46,7 +51,7 @@ class ButtonHover(Rectangle):
             self.id_ = frame.hover_targets[(self.x, self.y)]
             self.has_target = True
         else:
-            print(
+            LOGGER.warning(
                 "`ButtonHover` element must be placed on top of Button "
                 "element with the same position.\n"
                 "`ButtonHover` element will not be rendered")

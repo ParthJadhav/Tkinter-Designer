@@ -1,4 +1,7 @@
-import os
+import io
+
+from PIL import Image
+
 from tkdesigner.constants import ASSETS_PATH
 from tkdesigner.utils import find_between, download_image, parse_figma_url
 
@@ -33,8 +36,23 @@ def test_parse_figma_url_supports_legacy_file_links():
     assert reference.node_id == "4:41"
 
 
-def test_download_image():
-    url = "https://www.python.org/static/opengraph-icon-200x200.png"
-    download_image(url, "test.png")
-    assert os.path.exists("test.png")
-    os.remove("test.png")
+def test_download_image_is_resized_without_network(monkeypatch, tmp_path):
+    content = io.BytesIO()
+    Image.new("RGB", (20, 20), "red").save(content, format="PNG")
+    image_bytes = content.getvalue()
+
+    class Response:
+        content = image_bytes
+
+        @staticmethod
+        def raise_for_status():
+            return None
+
+    monkeypatch.setattr(
+        "tkdesigner.utils.requests.get", lambda *args, **kwargs: Response())
+    target = tmp_path / "asset.png"
+
+    download_image("https://example.com/asset.png", target, size=(10, 12))
+
+    with Image.open(target) as image:
+        assert image.size == (10, 12)

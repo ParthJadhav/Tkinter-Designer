@@ -1,190 +1,198 @@
-[![bloom-banner-01-light-tags-1500x500](https://github.com/user-attachments/assets/31139b9d-1b89-44e8-b563-5bb7ba150b7b)](https://bloom.parthjadhav.com)
-
 <p align="center">
-  <img width="200" src="https://user-images.githubusercontent.com/42001064/120057695-b1f6c680-c062-11eb-96d5-2c43d05f9018.png" alt="logo">
-  <h1 align="center" style="margin: 0 auto 0 auto;">Tkinter Designer</h1>
-  <h4 align="center" style="margin: 0 auto 0 auto;">Drag & Drop GUI Creator</h4>
-
-
-<p align="center">
-  <img src="https://img.shields.io/github/last-commit/ParthJadhav/Tkinter-Designer">
-  <img src="https://img.shields.io/github/contributors/ParthJadhav/Tkinter-Designer">
-  <img src="https://img.shields.io/github/issues/ParthJadhav/Tkinter-Designer?label=issues">
-  <img src="https://img.shields.io/github/stars/ParthJadhav/Tkinter-Designer">
+  <img width="160" src="https://user-images.githubusercontent.com/42001064/120057695-b1f6c680-c062-11eb-96d5-2c43d05f9018.png" alt="Tkinter Designer logo">
 </p>
 
+<h1 align="center">Tkinter Designer</h1>
+
+<p align="center"><strong>Turn Figma frames into understandable, editable Tkinter apps.</strong></p>
+
 <p align="center">
-<a href="https://www.producthunt.com/posts/tkinter-designer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tkinter&#0045;designer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=312995&theme=neutral" alt="Tkinter&#0032;Designer - No&#0045;code&#0032;solution&#0032;for&#0032;Python&#0032;GUI&#0039;s | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+  <a href="https://github.com/ParthJadhav/Tkinter-Designer/actions"><img src="https://img.shields.io/github/actions/workflow/status/ParthJadhav/Tkinter-Designer/ci.yml?branch=master" alt="CI status"></a>
+  <a href="https://pypi.org/project/tkdesigner/"><img src="https://img.shields.io/pypi/v/tkdesigner" alt="PyPI version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/ParthJadhav/Tkinter-Designer" alt="BSD-3-Clause license"></a>
+  <a href="https://github.com/ParthJadhav/Tkinter-Designer/stargazers"><img src="https://img.shields.io/github/stars/ParthJadhav/Tkinter-Designer" alt="GitHub stars"></a>
 </p>
-  <br>
 
-## Translations
+Tkinter Designer reads a Figma design through the official API, explains how it
+will translate the file, and generates Python code plus local image assets. The
+2.0 workflow is designed around confidence: inspect first, generate atomically,
+then connect your application logic to ordinary Tkinter widgets.
 
-- [简体中文](/docs/README.zh-CN.md)
-- [Français](/docs/README.fr-FR.md)
-- [ગુજરાતી](/docs/README.gu-GU.md)
-- [हिन्दी](/docs/README.hin-HIN.md)
-- [Italiano](/docs/README.it-IT.md)
-- [عربية](/docs/README.ar-DZ.md)
-- [Turkish](/docs/README.tr-TR.md)
-- [Brazil](/docs/README.pt-BR.md)
-- [Spanish](/docs/README.spa-SPA.md)
-- [मराठी](/docs/README.mr-MR.md)
-- [Korean](/docs/README.kr-KR.md)
-- [Tiếng Việt](/docs/README.vi-VN.md)
-- [বাংলা](/docs/README.ban-BAN.md)
-- [Русский](/docs/README.ru-RU.md)
+> **2.0 preview:** this branch contains the next-generation workflow. Existing
+> `tkdesigner "$FILE_URL" "$FIGMA_TOKEN"` commands remain compatible.
 
-___
+## What is new in 2.0
 
-## 💡 Introduction
+- **Design inspection** — preview frames, element types, image exports, and
+  fidelity warnings with `--inspect` before writing anything.
+- **Atomic generation** — a failed download never destroys the last successful
+  build. The new output replaces it only after generation completes.
+- **Far fewer Figma API calls** — image export URLs are requested in batches and
+  reused during the run, reducing rate-limit pressure on asset-heavy designs.
+- **Higher visual fidelity** — gradients, effects, opacity, and unsupported
+  shapes are preserved as raster images instead of silently becoming flat
+  rectangles.
+- **Machine-readable output** — use `--format json` in scripts and CI.
+- **Project provenance** — every build includes `tkdesigner.json` with source,
+  settings, warnings, generator version, and generated files. Tokens are never
+  stored.
+- **A modern desktop app** — resizable native UI, code-style and theme controls,
+  an inspection report, and non-blocking background generation.
+- **Production-quality CLI behavior** — `--version`, useful exit errors,
+  non-interactive overwrite safety, and robust environment flags.
 
-Tkinter Designer was created to speed up the GUI development process in Python. It uses the well-known design software [Figma](https://www.figma.com/) to make creating beautiful Tkinter GUIs in Python a piece of cake 🍰.
+## Install
 
-Tkinter Designer uses the Figma API to analyze a design file and create the respective code and files needed for the GUI. Even Tkinter Designer's GUI is created using Tkinter Designer.
-
-<img width="500" alt="Tkinter Designer GUI" src="https://user-images.githubusercontent.com/42001064/119863796-92af4a80-bf37-11eb-9f6c-61b1ab99b039.png">
-
-## 📢 Announcement
-### 🎉 Multi frame support is here! 🎉
-
-You can now create multiple frames in a single design file and Tkinter Designer will create the respective code and files for each frame. This is a huge step for Tkinter Designer and I'm really excited to see what you guys create with it.
-
-Feel free to share your creations with the community on [Discord](https://discord.gg/QfE5jMXxJv).
-
-If you encounter any bugs or have any suggestions, please create an issue [here](https://github.com/ParthJadhav/Tkinter-Designer).
-## ☄️  Advantages of Tkinter Designer
-
-1. Interfaces with drag and drop.
-2. A great deal quicker than writing code by hand
-3. Produce more gorgeous interfaces
-
-## ⚡️ Read the instruction here
-
-View the YouTube video or read the instructions below.
-
-<a href="/docs/instructions.md" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196041925-64f81f75-8bee-42ac-a234-a93339bc8cdc.png" alt="Instructions" width="180px" ></a>
-<a href="https://www.youtube.com/watch?v=Qd-jJjduWeQ" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196041927-c94c1a94-c708-44a4-9c81-df83bac686d4.png" alt="Youtube Tutorial" width="180px" ></a>
-
-## Requirements
-
-Tkinter Designer supports Python 3.9 and newer. Install it with:
+Tkinter Designer supports Python 3.9 and newer.
 
 ```bash
-pip install tkdesigner
+python -m pip install tkdesigner
 ```
 
-The CLI accepts both current `figma.com/design/...` links and legacy `figma.com/file/...` links. If you select a specific frame before copying the Figma link, Tkinter Designer will generate that selected frame.
-Always wrap Figma URLs in quotes when running from a shell, because Figma links often include `?` and `&` query parameters.
+To try the 2.0 branch from source:
 
 ```bash
-tkdesigner "$FILE_URL" "$FIGMA_TOKEN"
+git clone https://github.com/ParthJadhav/Tkinter-Designer.git
+cd Tkinter-Designer
+python -m pip install -e .
 ```
 
-To generate a class-based Tkinter app:
+Linux users may also need their distribution's Tk package, such as
+`python3-tk`.
+
+## Quick start
+
+1. Create a Figma personal access token and make sure it can read the design.
+2. Copy the design or selected-frame URL from Figma.
+3. Inspect the conversion plan.
+4. Generate the project after the report looks right.
 
 ```bash
-tkdesigner --template class $FILE_URL $FIGMA_TOKEN
+export FIGMA_TOKEN="your-token"
+
+tkdesigner --inspect "$FILE_URL"
+tkdesigner --template class --theme clam --output ./my-app "$FILE_URL"
+python ./my-app/build/gui.py
 ```
 
-To generate one app with Back/Next navigation across multiple Figma frames:
+Always quote Figma URLs in a shell because they commonly contain `?` and `&`.
+You can also pass a bare Figma file key instead of a full URL.
+
+## CLI
+
+```text
+tkdesigner [options] FILE_URL [TOKEN]
+```
+
+| Option | Purpose |
+| --- | --- |
+| `--inspect`, `--dry-run` | Preview conversion without creating output |
+| `--format text\|json` | Human- or machine-readable results |
+| `-o`, `--output PATH` | Parent folder for the generated `build/` |
+| `-f`, `--force` | Replace a non-empty build after generation succeeds |
+| `-t`, `--template script\|class\|pages` | Select generated code structure |
+| `--theme NAME` | Apply an installed ttk theme |
+| `--no-manifest` | Skip `tkdesigner.json` |
+| `-v`, `--verbose` | Enable diagnostic logging |
+| `--version` | Print the installed version |
+
+Examples:
 
 ```bash
-tkdesigner --template pages $FILE_URL $FIGMA_TOKEN
+# Inspect one selected frame as JSON
+tkdesigner --inspect --format json "$FRAME_URL"
+
+# Generate an importable class-based app
+tkdesigner --template class "$FILE_URL"
+
+# Generate one app with Back/Next navigation across frames
+tkdesigner --template pages --theme clam "$FILE_URL"
+
+# Safe automation: no prompt, JSON result, token kept out of shell history
+FIGMA_TOKEN="$TOKEN" tkdesigner --force --format json -o ./release "$FILE_URL"
 ```
 
-Generated apps can also apply a ttk theme:
+## Desktop app
+
+Launch the redesigned desktop workflow after installation:
 
 ```bash
-tkdesigner --theme clam $FILE_URL $FIGMA_TOKEN
+tkdesigner-gui
 ```
 
-Generated `gui.py` files can be imported from another Python file without starting `mainloop()` automatically, so you can attach commands separately and regenerate the UI later. Use `-f` when you want the CLI to clear and regenerate an existing `build` directory.
+The app can inspect or generate without freezing while the Figma API and image
+downloads are running. `gui/gui.py` remains as a compatibility launcher.
 
-## 🦋 Supporting Tkinter Designer
+## Figma conventions
 
-Consider making a donation to the Tkinter Designer project if you or your business have benefited from it. This will accelerate Tkinter Designer's development! Making coffee is simple; I'll be happy to enjoy one.
+Tkinter Designer converts ordinary text, rectangles, and lines directly. Name
+layers with the following reserved names when you want interactive widgets:
 
-<a href="https://www.buymeacoffee.com/Parthjadhav" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png" alt="Buy Me A Coffee" width="180" ></a>
-<a href="https://paypal.me/parthJadhav22?country.x=IN&locale.x=en_GB" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/196043185-ebd61195-44ee-480f-9b76-f5eb7cfcaf55.png" alt="Paypal" width="180" ></a>
+| Figma layer name | Generated element |
+| --- | --- |
+| `Button` / `ButtonHover` | Image-backed clickable button with optional hover state |
+| `TextBox` | `Entry` |
+| `TextArea` | `Text` |
+| `Image` | Canvas image |
+| `CheckBox` / `CheckButton` | `Checkbutton` |
+| `RadioButton` / `Radio` | `Radiobutton` |
+| `ComboBox` | `ttk.Combobox` |
+| `ListBox` | `Listbox` |
+| `Toggle` / `ToggleButton` | Toggle-style `Checkbutton` |
+| `Table` | `ttk.Treeview` starter |
+| `TabView` / `Tabs` / `Notebook` | `ttk.Notebook` starter |
 
+Groups, components, instances, and sections are traversed automatically.
+Unrecognized or visually complex elements are exported as images so the build
+stays faithful and the inspection report tells you where that happens.
 
-## 🔵 Discord server & Linkedin
+## Generated project
 
-Click the button below to join the discord server or Linkedin 
+```text
+build/
+├── gui.py
+├── gui1.py                 # additional frames with script/class templates
+├── assets/
+│   ├── frame0/
+│   └── frame1/
+└── tkdesigner.json         # source, settings, report, and file inventory
+```
 
-<a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="180px" ></a>
-<a href="https://www.linkedin.com/in/parthjadhav04" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin" alt="Connect on Linkedin" width="180px" height="58"></a>
+Generated modules only start `mainloop()` when run directly, so class and script
+outputs can be imported from your application code. Regeneration stays separate
+from your hand-written behavior.
 
+## Project direction
 
-## 📐 How it Works
+The product model, v2 decisions, and prioritized follow-up bets live in
+[docs/product-direction.md](docs/product-direction.md). The implementation map is
+in [docs/architecture.md](docs/architecture.md).
 
-The only thing the user needs to do is design an interface with Figma, and then paste the Figma file URL and API token into Tkinter Designer.
+The next high-value bets are component-aware bindings, responsive layout
+strategies, and a project configuration file. They are intentionally staged
+after the inspect/generate foundation so future features can be previewed,
+validated, and reproduced.
 
-Tkinter Designer will automatically generate all the code and images required to create the GUI in Tkinter.
+## Contributing
 
-<img width="467" alt="How it Works" src="https://user-images.githubusercontent.com/42001064/119832620-fb88c980-bf1b-11eb-8e9b-4affe7b92ba2.jpg">
+See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md). A local quality pass is:
 
-___
+```bash
+make setup
+make check
+```
 
-## 🎯 Examples
+Bug reports and focused feature proposals are welcome in
+[GitHub Issues](https://github.com/ParthJadhav/Tkinter-Designer/issues). Share
+generated projects in
+[Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell).
 
-The possibilities are endless with Tkinter Designer, but here are a couple of GUIs that can be perfectly replicated in Tkinter.
+## Community and translations
 
-<sup>The following are not my creations.</sup>
+Join the [Discord community](https://discord.gg/QfE5jMXxJv). Existing translated
+1.x documentation remains under `docs/`; translations can be refreshed for 2.0
+once the preview vocabulary stabilizes.
 
-### HotinGo  [(More Info)](https://github.com/Just-Moh-it/HotinGo)
+## License
 
-<img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/153225081-01a50bfb-5e1c-477d-9b1c-e786498db6d0.png">
-
-### CodTubify  [(More Info)](https://github.com/iamDyeus/CodTubify)
-
-<img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/181297276-fc8c4106-c988-4b1a-89d2-5e833a574aab.png">
-
-### BeAnonymous [(More Info)](https://github.com/MambaCodes/BeAnonymous)
-
-<img width="467" alt="Example 1" src="https://user-images.githubusercontent.com/42001064/208241685-a3c51f59-746d-4e00-aaeb-c2c8357efb89.png">
-
-### Frame Recorder [(More Info)](https://github.com/mehmet-mert/FrameRecorder)
-
-<img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/119834287-71d9fb80-bf1d-11eb-9acf-e7bfc8cc4d9e.png">
-
-### WhatBulk  [(More Info)](https://www.instagram.com/p/CQUmKckFBbT/?utm_medium=copy_link)
-
-<img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/122562284-87e06500-d060-11eb-8257-55f3b9dbecf0.PNG">
-
-### Atarbals-Modern-Antivirus [(More Info)](https://github.com/HarshscGithub/Atarbals-Modern-Antivirus)
-
-<img width="467" alt="Example 3" src="https://user-images.githubusercontent.com/42001064/205285178-74fb46c7-0c36-4fc5-983d-afbaaedb7cb9.png">
-
-## 🔥 Showcase
-
-Please let me know if Tkinter Designer was used to create your app. More illustrations will be
-beneficial for other people!
-
-(See: [Contact Me](#-contact-me)) or use [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell) section in Discussions.
-
-## 📄 License
-<!--- If you're not sure which open license to use see https://choosealicense.com/--->
-
-Tkinter Designer is licensed under the BSD 3-Clause "New" or "Revised" License.  
-[View Here.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
-
-| Permissions | Restrictions | Conditions
-| --- | --- | ---
-&check; Commercial Use | &times; Liability | &#x1f6c8; License and Copyright Notice
-&check; Modification   | &times; Warranty
-&check; Distribution  
-&check; Private Use
-
-## Contribute
-
-All contributions from the open-source community, individuals, and partners are welcomed. Our achievement is a result of your active participation.
-
-[Contributing guidelines](docs/CONTRIBUTING.md)
-
-[Code of conduct](CODE_OF_CONDUCT.md)
-
-[LEARN.md](LEARN.md)
-
-Connect with me on [![Linkedin](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/parthjadhav04/)
+Tkinter Designer is available under the [BSD 3-Clause License](LICENSE).

@@ -1,9 +1,12 @@
+import json
+
 import pytest
 
 from tkdesigner.designer import Designer
 from tkdesigner.figma.custom_elements import Button, TextEntry
 from tkdesigner.figma.endpoints import FigmaAPIError, Files
 from tkdesigner.figma.frame import Frame
+from tkdesigner.figma.schema import classify_element
 from tkdesigner.template import CLASS_TEMPLATE, TEMPLATE
 
 
@@ -208,6 +211,93 @@ def test_design_clean_removes_stale_build_files(tmp_path):
 
     assert not stale_file.exists()
     assert output_path.joinpath("gui.py").read_text(encoding="UTF-8") == "print('new')"
+    assert output_path.joinpath("tkdesigner.json").exists()
+
+
+def test_failed_generation_preserves_last_successful_build(tmp_path):
+    output_path = tmp_path / "build"
+    output_path.mkdir()
+    previous = output_path / "gui.py"
+    previous.write_text("print('stable')", encoding="UTF-8")
+
+    designer = Designer.__new__(Designer)
+    designer.output_path = output_path
+
+    def fail():
+        raise RuntimeError("asset download failed")
+
+    designer.to_code = fail
+
+    with pytest.raises(RuntimeError, match="asset download failed"):
+        designer.design(clean=True, write_manifest=False)
+
+    assert previous.read_text(encoding="UTF-8") == "print('stable')"
+    assert not list(tmp_path.glob(".build.tkdesigner-*"))
+
+
+def test_complex_rectangle_is_rasterized_for_visual_fidelity():
+    node = {
+        "name": "Rectangle",
+        "type": "RECTANGLE",
+        "fills": [{"type": "GRADIENT_LINEAR", "visible": True}],
+    }
+
+    assert classify_element(node) == "raster"
+
+
+@pytest.mark.parametrize("template_style", ["script", "class", "pages"])
+def test_end_to_end_recorded_design_builds_import_safe_project(
+    tmp_path, template_style, capsys
+):
+    class RecordedFiles:
+        file_key = "ABC123"
+
+        @staticmethod
+        def get_images(item_ids):
+            assert not item_ids
+            return {}
+
+    title = {
+        "id": "2:1",
+        "name": "Title",
+        "type": "TEXT",
+        "absoluteBoundingBox": {"x": 24, "y": 24, "width": 180, "height": 30},
+        "characters": "Recorded fixture",
+        "fills": solid_fill(0.1, 0.1, 0.1),
+        "style": {"fontFamily": "Arial", "fontSize": 18, "fontWeight": 700},
+    }
+    payload = {
+        "name": "Recorded fixture",
+        "lastModified": "2026-08-08T00:00:00Z",
+        "document": {
+            "children": [
+                {
+                    "id": "0:1",
+                    "type": "CANVAS",
+                    "children": [frame_node([title])],
+                }
+            ]
+        },
+    }
+
+    designer = Designer.__new__(Designer)
+    designer.output_path = tmp_path / template_style / "build"
+    designer.figma_file = RecordedFiles()
+    designer.file_data = payload
+    designer.node_id = None
+    designer.template_style = template_style
+    designer.theme = "clam"
+
+    result = designer.design()
+    source = result.code_files[0].read_text(encoding="UTF-8")
+    manifest = json.loads(result.manifest_path.read_text(encoding="UTF-8"))
+
+    compile(source, str(result.code_files[0]), "exec")
+    assert manifest["generator"]["version"] == "2.0.0a1"
+    assert manifest["settings"] == {"template": template_style, "theme": "clam"}
+    assert manifest["design"]["summary"]["elements"] == 1
+    assert manifest["files"] == ["gui.py"]
+    assert capsys.readouterr().out == ""
 
 
 def test_designer_uses_selected_node_when_url_has_node_id():
@@ -246,9 +336,35 @@ def test_designer_uses_selected_node_when_url_has_node_id():
     assert [frame["id"] for frame in frames] == ["2:4"]
 
 
+def test_empty_selected_frame_is_a_valid_generation_target():
+    designer = Designer.__new__(Designer)
+    designer.node_id = "2:4"
+    designer.file_data = {
+        "document": {
+            "children": [
+                {
+                    "id": "2:4",
+                    "name": "Empty state",
+                    "type": "FRAME",
+                    "absoluteBoundingBox": {
+                        "x": 0,
+                        "y": 0,
+                        "width": 320,
+                        "height": 240,
+                    },
+                    "children": [],
+                }
+            ]
+        }
+    }
+
+    assert designer._target_frame_nodes()[0]["name"] == "Empty state"
+
+
 def test_figma_rate_limit_errors_are_human_readable(monkeypatch):
     class Response:
         status_code = 429
+        headers = {"Retry-After": "60"}
 
         def json(self):
             return {"err": "Rate limit exceeded"}
@@ -258,5 +374,40 @@ def test_figma_rate_limit_errors_are_human_readable(monkeypatch):
         lambda *args, **kwargs: Response(),
     )
 
-    with pytest.raises(FigmaAPIError, match="rate limit exceeded"):
+    with pytest.raises(FigmaAPIError, match="Retry after 60 seconds"):
         Files("token", "file").get_file()
+
+
+def test_figma_image_exports_are_batched_and_cached(monkeypatch):
+    calls = []
+
+    class Response:
+        status_code = 200
+
+        def __init__(self, params):
+            self.params = params
+
+        def json(self):
+            ids = self.params["ids"].split(",")
+            return {"images": {item_id: f"https://example.com/{item_id}" for item_id in ids}}
+
+    def fake_get(*args, **kwargs):
+        calls.append(kwargs["params"])
+        return Response(kwargs["params"])
+
+    monkeypatch.setattr("tkdesigner.figma.endpoints.requests.get", fake_get)
+    files = Files("token", "file")
+
+    images = files.get_images(["1:1", "1:2", "1:1"])
+    cached = files.get_image("1:2")
+
+    assert len(calls) == 1
+    assert calls[0]["ids"] == "1:1,1:2"
+    assert images["1:1"] == "https://example.com/1:1"
+    assert cached == "https://example.com/1:2"
+
+
+def test_figma_client_string_never_reveals_token():
+    client = Files("super-secret-token", "ABC123")
+
+    assert "super-secret-token" not in str(client)

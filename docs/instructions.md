@@ -1,387 +1,122 @@
-# How to use Tkinter Designer
+# Using Tkinter Designer 2.0
 
-#### Translations
+Tkinter Designer turns top-level Figma frames into Tkinter windows or pages.
+The safest workflow is to inspect, address warnings, and then generate.
 
-- [简体中文](/docs/instructions.zh-CN.md)
-- [Français](/docs/instructions.fr-FR.md)
-- [ગુજરાતી](/docs/instructions.gu-GU.md)
-- [Italiano](/docs/instructions.it-IT.md)
-- [عربية](/docs/instructions.ar-DZ.md/)
-- [Turkish](/docs/instructions.tr-TR.md)
-- [Brazil](/docs/instructions.pt-BR.md)
-- [Spanish](/docs/instructions.spa-SPA.md)
-- [Korean](/docs/instructions.kr-KR.md)
-- [Tiếng Việt](/docs/instructions.vi-VN.md)
-- [Русский](/docs/instructions.ru-RU.md)
+## 1. Prepare the Figma file
 
-___
+- Put each window or page in a Figma frame.
+- Keep layers inside their frame bounds when possible.
+- Use the reserved layer names in the [README](../README.md#figma-conventions)
+  for interactive widgets.
+- Select a frame before copying its link when you only want that frame.
 
-## Table of Contents
+Complex shapes, gradients, effects, and unsupported node types are exported as
+PNG assets. Ordinary text, rectangles, lines, and named widgets become editable
+Tkinter code.
 
-1. [**Getting Started**](#getting-started-1)
-   1. [Install Python](#getting-started-1)
-   2. [Install Tkinter Designer](#getting-started-2)
-   3. [Make a Figma Account](#getting-started-3)
+## 2. Create a Figma token
 
-2. [**Formatting Your Figma Design**](#formatting-1)
-   1. [Reference](#formatting-1)
-   2. [Element Guide](#formatting-2)
-
-3. [**Using Tkinter Designer**](#Using-Tkinter-Designer)
-   1. [Personal Access Token](#using-1)
-   2. [Getting your File URL](#using-2)
-   3. [Using The CLI](#using-cli)
-   4. [Using The GUI](#using-gui)
-
-4. [**Troubleshooting**](#Troubleshooting)
-
-<br><br>
-
-# Getting Started <small>[[Top](#table-of-contents)]</small>
-
-<a id="getting-started-1"></a>
-
-## 1. Install Python
-
-Before using Tkinter Designer, you'll need to install Python.  
-- [Here is a link to the Python downloads page.](https://www.python.org/downloads)  
-- [Here is a helpful guide to installing Python on various operating systems.](https://wiki.python.org/moin/BeginnersGuide/Download)
-
-Tkinter Designer supports Python 3.9 and newer.
-
-*Later in this guide, you will use the Package Installer for Python (pip), which may require you to add Python to your system PATH.*
-
-___
-<br>
-
-<a id="getting-started-2"></a>
-
-## 2. Install Tkinter Designer
-
-*Three options:*
-
-1. `pip install tkdesigner`
-
-2. Install [Poetry](https://python-poetry.org)
-   - `poetry new <gui_project_name> && cd <gui_project_name>`
-   - `poetry add tkdesigner`
-   - `poetry install`
-
-3. To run Tkinter Designer from the source code, follow the instructions below.
-
-   1. Download the source files for Tkinter Designer by downloading it manually or using GIT.
-
-      ` git clone https://github.com/ParthJadhav/Tkinter-Designer.git `
-
-   2. Change your working directory to Tkinter Designer.
-
-      `cd Tkinter-Designer`
-
-   3. Install the necessary dependencies by running
-
-      - `pip install -r requirements.txt`
-         - In the event that pip doesn't work, also try the following commands:
-         - `pip3 install -r requirements.txt`
-         - `python -m pip install -r requirements.txt`
-         - `python3 -m pip install -r requirements.txt`
-         - If this still doesn't work, ensure that Python is added to the PATH.
-
-   This will install all requirements and Tkinter Designer. Before you use Tkinter Designer you need to create a Figma File with the below instructions.
-
-   If you already have created a file then skip to [**Using Tkinter Designer**](#Using-Tkinter-Designer) Section.
-
-4. Docker users can build and run the CLI with:
-
-   ```bash
-   docker build -t tkdesigner .
-   docker run --rm -v "$PWD:/work" tkdesigner "$FILE_URL" "$FIGMA_TOKEN" -o /work
-   ```
-
-___
-<br>
-
-<a id="getting-started-3"></a>
-
-## 3. Make a Figma Account
-
-1. In a web browser, navigate to [figma.com](https://www.figma.com/) and click 'Sign up'
-2. Enter your information, then verify your email
-3. Create a new Figma Design file
-4. Get started making your GUI
-   - The next section covers required formatting for Tkinter Designer input.
-     - [Here is the official Figma tutorial series for beginners.](https://www.youtube.com/watch?v=Cx2dkpBxst8&list=PLXDU_eVOJTx7QHLShNqIXL1Cgbxj7HlN4)
-     - [Here is the official Figma YouTube channel.](https://www.youtube.com/c/Figmadesign/featured)
-     - [Here is the Figma Help Center.](https://help.figma.com/hc/en-us)
-
-<br><br>
-
-<a id="formatting-1"></a>
-
-# Formatting Your Figma Design <small>[[Top](#table-of-contents)]</small>
-
-## 1. Reference
-
-<br>
-
-### Naming is Important
-
-| Figma Element Name | Tkinter Element |
-| --- | --- |
-| Button | Button |
-| Line | Line |
-| Text | Name it anything |
-| Rectangle | Rectangle |
-| TextArea | Text Area |
-| TextBox | Entry |
-| Image | Canvas.Image() |
-| ButtonHover (EXPERIMENTAL) | Button shown on hover |
-| CheckButton or CheckBox | Checkbutton |
-| RadioButton or Radio | Radiobutton |
-| ComboBox | ttk.Combobox |
-| ListBox | Listbox |
-| Toggle or ToggleButton | Toggle-style Checkbutton |
-| Table | ttk.Treeview table |
-| TabView, Tabs, or Notebook | ttk.Notebook tab view |
-
-<br>
-
-The code generated by Tkinter Designer is based on the names of elements from your Figma design and, as such, you need to name your elements accordingly. In Figma, rename your elements by double-clicking them in the Layers panel.
-
-If an element is not one of the native Tkinter elements above, Tkinter Designer now attempts to export it as an image instead of replacing it with a black rectangle. This helps preserve vectors, smoothed corners, icons, and grouped artwork.
-
-___
-<br>
-
-<a id="formatting-2"></a>
-
-## 2. Element Guide
-
-<br>
-
-1. **First, create a Frame that will serve as your Tkinter Window.**
-<br><br>
-
-2. **Adding Images**
-   - Images can be created using shapes and/or images
-   - If you use multiple shapes/images, you must group them together by selecting them all and pressing <kbd>CTRL/&#8984; + G</kbd>
-   - After that name the element or group as "Image".
-<br><br>
-
-3. **Text (Normal Text)**
-   - Use the <kbd>T</kbd> key to activate the text tool, then add text as desired
-   - Text does not have to be renamed for use in Tkinter Designer
-   - Explicitly press the <kbd>Return</kbd>  Or  <kbd>Enter</kbd> Key to move to the next line.
-<br><br>
-
-4. **Entry (Single-Line User Input)**
-   - Activate the Rectangle tool with <kbd>R</kbd>
-   - Adjust the Rectangle to your liking
-   - Make sure the Rectangle is named "TextBox"
-<br><br>
-
-5. **Text Area (Multi-Line User Input)**
-   - Activate the Rectangle tool with <kbd>R</kbd>
-   - Adjust the Rectangle to your liking
-   - Make sure the Rectangle is named "TextArea"
-
-6. **Rectangle**
-   - Activate the Rectangle tool with <kbd>R</kbd>
-   - Adjust the Rectangle to your liking
-   - Make sure the Rectangle is named "Rectangle"
-<br><br>
-
-7. **Normal Button**
-   - Add rectangle to serve as a button in your GUI
-     - Optional: Add text for the button
-   - Select the button(Rectangle), and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   - Name the group "Button"
-
-#### Refer to [this video](https://youtu.be/Qd-jJjduWeQ) if you face any problem
-
-<br><br>
-
-8. **Rounded Button**
-   - Add rectangle to serve as a button in your GUI
-     - Optional: Add text for the button
-   - Make it rounded by adding corner radius by selecting the rectangle and adding corner radius from the right side. [Read more on it](https://help.figma.com/hc/en-us/articles/360050986854-Adjust-corner-radius-and-smoothing)
-   - Create a Rectangle with same size of your button. Don't make it rounded.
-   - Change the Rectangle's color to match the Background
-   - Now move the newly created rectangle below the main button(Rectangle).
-   - Select the button, Rectangle, and any optional text, then group them with <kbd>CTRL/&#8984; + G</kbd>
-   - Name the group "Button"
-
-#### Refer to [this video](https://youtu.be/Qd-jJjduWeQ) if you face any problem
-
-<br><br>
-
-9. **Button with Hover Effect (EXPERIMENTAL)**
-   - Duplicate the Button you created in the previous step
-     - You can duplicate the Button by selecting the button group and pressing <kbd>CTRL/&#8984; + D</kbd>
-   - Rename the duplicate button to "ButtonHover"
-   - Place the duplicate button above the original button
-   - Make sure it's on the same position as the original button
-     - x and y coordinates should be the same
-   - Make changes to the duplicate button for the hover effect
-     - For example, change the color
-
-#### Refer to [this video](https://watch.screencastify.com/v/saDGrNayjwSmxbFbShB1) if you face any problem
-
-<br><br>
-<a id="Using-Tkinter-Designer"></a>
-
-# Using Tkinter Designer <small>[[Top](#table-of-contents)]</small>
-
-## Required Inputs
-
-There are some inputs you'll need to collect to be able to use the TKinter Designer.
-
-<a id="using-1"></a>
-
-### 1. Personal Access Token
-
-1. Log into your Figma account
-2. Navigate to Settings
-3. In the **Account** tab, scroll down to **Personal access tokens**
-4. Enter the name of your access token in the entry form and press <kbd>Enter</kbd>
-5. Your personal access token will be created.
-   - Copy this token and keep it somewhere safe.
-   - **You will not get another chance to copy this token.**
-
-<a id="using-2"></a>
-
-### 2. Getting your File URL
-
-1. In your Figma design file, click the **Share** button in the top bar, then click on **&#x1f517; Copy link**
-
-Tip: If you want to generate only one specific frame, select that frame before copying the link. Tkinter Designer will use the `node-id` in the Figma URL when it is present.
-
-<a id="using-cli"></a>
-
-## Using the CLI
-
-Using the CLI is as simple as installing the package and running the CLI tool.
-
-### From PyPi
-
-You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
-
-``` bash
-pip install tkdesigner
-
-tkdesigner $FILE_URL $FIGMA_TOKEN
-```
-
-Wrap the Figma URL in quotes when pasting the literal URL into a shell:
+Create a personal access token in Figma and grant it read access to the source
+file. Keep it out of source control. The recommended setup is an environment
+variable:
 
 ```bash
-tkdesigner "https://www.figma.com/design/FILE_KEY/Name?node-id=1-2&t=..." "$FIGMA_TOKEN"
+export FIGMA_TOKEN="your-token"
 ```
 
-If you do not want to place the token directly in the command, set it in `FIGMA_TOKEN` and pass only the URL:
+PowerShell:
+
+```powershell
+$env:FIGMA_TOKEN = "your-token"
+```
+
+## 3. Inspect before generating
 
 ```bash
-FIGMA_TOKEN="your-token" tkdesigner "$FILE_URL"
+tkdesigner --inspect "$FILE_URL"
 ```
 
-To generate a class-based Tkinter app instead of a top-level script, add `--template class`:
+Inspection fetches the design document but does not export images or create the
+output folder. It reports:
+
+- selected frames and dimensions;
+- the number and kinds of generated elements;
+- the number of Figma image exports;
+- rasterization and multi-page sizing warnings.
+
+Use JSON for automation:
 
 ```bash
-tkdesigner --template class $FILE_URL $FIGMA_TOKEN
+tkdesigner --inspect --format json "$FILE_URL" > design-report.json
 ```
 
-To generate a single app with Back/Next navigation across multiple Figma frames, use `--template pages`:
+## 4. Generate
 
 ```bash
-tkdesigner --template pages $FILE_URL $FIGMA_TOKEN
+tkdesigner --output ./my-project --template class "$FILE_URL"
 ```
 
-To apply a ttk theme in the generated app, pass `--theme` with a theme name available in your Tk installation:
+Templates:
+
+- `script` creates one straightforward module per frame.
+- `class` wraps each generated window in `GeneratedApp` for easier importing.
+- `pages` creates one app with Back/Next navigation across all selected frames.
+
+If `build/` already contains files, Tkinter Designer asks before replacing it.
+In automation, pass `--force`. Generation is staged first; the existing build is
+only replaced when every code file and asset is ready.
+
+## 5. Connect behavior
+
+Run the result directly:
 
 ```bash
-tkdesigner --theme clam $FILE_URL $FIGMA_TOKEN
+python ./my-project/build/gui.py
 ```
 
-### From Source
+Or import a class-based build:
 
-To use CLI from the source code you need to clone the repository and then follow the below instructions.
+```python
+from build.gui import GeneratedApp
 
-You can use the below command as test by replacing $FILE_URL & $FIGMA_TOKEN by your data. If you haven't got the token and link then refer to [**Required Inputs Section**](#using-1).
+app = GeneratedApp()
+# Attach commands or populate widgets here.
+app.run()
+```
+
+Keep business logic outside the generated module when you plan to regenerate.
+The `tkdesigner.json` manifest records the exact source, template, warnings,
+version, and generated files, without storing the Figma token.
+
+## Desktop workflow
 
 ```bash
-$ python -m tkdesigner.cli $FILE_URL $FIGMA_TOKEN
-
-# To learn more about how to use the cli, pass the --help flag
-$ python -m tkdesigner --help
+tkdesigner-gui
 ```
 
-### Output
+Paste the design URL, use the token from `FIGMA_TOKEN` or enter one, choose the
+output and template, and select **Inspect design**. Generate after reviewing the
+report. Network work runs in the background so the app remains responsive.
 
-By default, the GUI code will be written to build/gui.py. You can specify the output path by using `-o` Flag and providing the path.
+## Troubleshooting
 
-To run the generated GUI, cd into the directory you built it to (e.g. build/) and run it just as you would any Tkinter GUI.
+### The token is missing
 
-```bash
-cd build
-python3 gui.py
-```
+Set `FIGMA_TOKEN` or pass the token as the final argument. Quote the Figma URL so
+shell characters such as `&` do not split the command.
 
-You can also import `build/gui.py` from another Python file to attach your own commands without editing generated code. The generated script only starts `mainloop()` when it is run directly.
+### Figma denied access
 
-<a id="using-gui"></a>
+Confirm the token owner can open the file and the token has file-read access.
 
-## Using the GUI
+### API rate limit
 
-### Open Tkinter Designer before doing the following steps
+Wait for the quota to reset, then retry. Tkinter Designer 2.0 batches image URL
+requests, so large designs make substantially fewer API calls than 1.x.
 
-<br>
+### The result does not match Figma
 
-1. Open TKinter Designer GUI by
-
-```
-cd Tkinter-Designer
-cd gui
-python3 gui.py
-```
-
-2. Paste your *personal access token* into the **Token ID** form in Tkinter Designer
-3. Paste the link into the **File URL** form in Tkinter Designer
-4. Click the **Output Path** form to open a file browser
-5. Choose an output path and click **Select Folder**
-6. Press **Generate**
-
-The output files from Tkinter Designer will be placed in your chosen directory, inside a new folder called **build**. Congratulations, you have now created your Tkinter GUI using Tkinter Designer!
-
-<br><br>
-
-<a id="Troubleshooting"></a>
-
-# Troubleshooting <small>[[Top](#table-of-contents)]</small>
-
-- Elements not visible? Misplaced?
-  - Please make sure that your Figma File has its elements named correctly. * See [Formatting Your Figma Design, &sect;1](#formatting-1)
-
-- Button has an unintended gray background?
-  - Make sure you have added a Rectangle behind your button element, and that its Fill color is the same as the Background's
-
-- Incorrect elements?
-  - Make sure you have named your elements correctly in Figma
-    - See [Formatting Your Figma Design, &sect;1](#formatting-1)
-
-- Window is larger than the screen?
-  - Reduce the size of your elements in Figma
-
-- Files not generating?
-  - Restart Tkinter Designer
-  - Double-check the token and URL
-  - Quote the Figma URL if you run the CLI from a shell
-  - Add `-f` if you want to clear and regenerate an existing non-empty `build` directory
-  - If you see a Figma API quota or rate-limit message, wait for your Figma quota to reset or use a token with available quota
-  - Make sure your design has a Frame
-  - If your file has many frames, select the target frame in Figma before copying the URL
-
-- Fonts look different?
-  - Tkinter can only use fonts installed on the computer running the generated app
-  - Tkinter Designer writes the Figma font family into generated text widgets, but each user's OS may fall back if that font is unavailable
-
-- Something else?
-  - [Report issues not listed here on GitHub](https://github.com/ParthJadhav/Tkinter-Designer/issues/new)
+Run `--inspect` and review rasterization warnings. Ensure the desired content is
+inside a frame, visible, and has an `absoluteBoundingBox`. File a bug with the
+inspection JSON and a minimal shareable Figma example; never include your token.

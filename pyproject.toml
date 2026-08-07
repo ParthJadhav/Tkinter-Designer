@@ -1,40 +1,51 @@
-[tool.poetry]
+[project]
 name = "tkdesigner"
-version = "1.0.6"
-description = "CLI Package for Tkinter-Designer"
-authors = ["ParthJadhav <jadhavparth99@gmail.com>"]
+version = "2.0.0a1"
+description = "Inspect Figma designs and generate maintainable Tkinter applications"
+authors = [
+    { name = "Parth Jadhav", email = "jadhavparth99@gmail.com" }
+]
 license = "BSD-3-Clause"
 readme = "README.md"
-homepage = "https://github.com/ParthJadhav/Tkinter-Designer"
-repository = "https://github.com/ParthJadhav/Tkinter-Designer"
-documentation = "https://github.com/ParthJadhav/Tkinter-Designer"
-
-keywords = ["tkinter", "drag-and-drop", "figma", "gui", "easy"]
-
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "requests>=2.31,<3",
+    "Jinja2>=3.1,<4",
+    "Pillow>=11,<13",
+]
+keywords = ["tkinter", "figma", "code-generation", "gui", "design-to-code"]
 classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Environment :: MacOS X",
+    "Environment :: Win32 (MS Windows)",
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: BSD License",
-    "Operating System :: OS Independent"
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
 ]
 
-[tool.poetry.urls]
+[project.urls]
+Homepage = "https://github.com/ParthJadhav/Tkinter-Designer"
+Repository = "https://github.com/ParthJadhav/Tkinter-Designer"
+Documentation = "https://github.com/ParthJadhav/Tkinter-Designer#readme"
 "Bug Tracker" = "https://github.com/ParthJadhav/Tkinter-Designer/issues"
+Changelog = "https://github.com/ParthJadhav/Tkinter-Designer/blob/master/CHANGELOG.md"
 
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-requests = ">=2.31,<3"
-Jinja2 = ">=3.1,<4"
-Pillow = ">=11,<13"
-urllib3 = ">=1.26.18,<2"
+[project.scripts]
+tkdesigner = "tkdesigner.cli:main"
+tkdesigner-gui = "tkdesigner.app:main"
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.0"
-flake8 = "^7.0"
-pylint = "^3.0"
-
-[tool.poetry.scripts]
-tkdesigner = 'tkdesigner.cli:main'
+[dependency-groups]
+dev = [
+    "pytest>=8,<9",
+    "flake8>=7,<8",
+    "build>=1.2,<2",
+]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=2.0"]
 build-backend = "poetry.core.masonry.api"
