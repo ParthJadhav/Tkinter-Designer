@@ -3,11 +3,18 @@
 The desktop app intentionally shares the same Designer workflow as the CLI.
 Network and generation work runs off the Tk event loop so the interface stays
 responsive on larger Figma files.
+
+The window is a workbench: a fixed configuration rail on the left holding every
+input and both actions, and the design report as the main pane, because the
+report is what a user reads on every run after the first. Design tokens live in
+`theme`, reusable controls in `widgets`, and the report document in
+`report_view`.
 """
 
 import os
 from pathlib import Path
 from queue import Empty, Queue
+import subprocess
 import sys
 import threading
 import tkinter as tk
@@ -16,231 +23,48 @@ from tkinter import filedialog, messagebox
 import webbrowser
 
 from . import __version__
+from . import report_view
 from .designer import Designer
+from .theme import (
+    COLORS,
+    DEFAULT_GEOMETRY,
+    MAX_MEASURE,
+    MIN_GEOMETRY,
+    RAIL_WIDTH,
+    SPACE,
+    build_fonts,
+    shortcut_labels,
+)
 from .utils import parse_figma_url
+from .widgets import (
+    CanvasButton,
+    ChoiceMenu,
+    InputShell,
+    Placeholder,
+    ProgressIndicator,
+    QuietButton,
+    SegmentedControl,
+    StatusDot,
+    field_label,
+    make_entry,
+    rounded_rect_points,
+    section_header,
+)
 
+GUIDE_URL = (
+    "https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md"
+)
 
-COLORS = {
-    "background": "#F6F7FB",
-    "surface": "#FFFFFF",
-    "surface_subtle": "#F8FAFC",
-    "sidebar": "#2867E8",
-    "sidebar_dark": "#1F58CB",
-    "sidebar_text": "#FFFFFF",
-    "sidebar_muted": "#C9D8FF",
-    "text": "#172033",
-    "muted": "#667085",
-    "border": "#DCE1EA",
-    "border_strong": "#B9C1CF",
-    "brand": "#2867E8",
-    "brand_hover": "#1F58CB",
-    "brand_pressed": "#1949AC",
-    "focus": "#155EEF",
-    "disabled": "#98A2B3",
-    "success": "#067647",
-    "danger": "#B42318",
-}
+# Kept short enough to render on one line in the rail, so reserving room for
+# them below does not inflate the minimum window height.
+INVALID_URL = "Not a Figma design URL or file key."
+MISSING_URL = "Paste a Figma design URL to continue."
+MISSING_TOKEN = "Enter your Figma personal access token."
+MISSING_OUTPUT = "Choose an output folder."
 
-
-class ActionButton(tk.Label):
-    """Flat, keyboard-accessible action with consistent cross-platform styling."""
-
-    def __init__(
-        self,
-        parent,
-        *,
-        text,
-        command,
-        font,
-        variant="secondary",
-        compact=False,
-    ):
-        self.command = command
-        self.enabled = True
-        self.variant = variant
-        self.palette = self._palette(variant)
-        super().__init__(
-            parent,
-            text=text,
-            bg=self.palette["background"],
-            fg=self.palette["foreground"],
-            activebackground=self.palette["hover"],
-            activeforeground=self.palette["foreground"],
-            font=font,
-            padx=10 if compact else 16,
-            pady=7 if compact else 10,
-            cursor="hand2",
-            takefocus=True,
-            highlightthickness=1,
-            highlightbackground=self.palette["border"],
-            highlightcolor=COLORS["focus"],
-            borderwidth=0,
-            relief="flat",
-        )
-        self.bind("<Enter>", lambda _event: self._paint("hover"))
-        self.bind("<Leave>", lambda _event: self._paint("background"))
-        self.bind("<ButtonPress-1>", lambda _event: self._paint("pressed"))
-        self.bind("<ButtonRelease-1>", self._click)
-        self.bind("<Return>", self._click)
-        self.bind("<space>", self._click)
-
-    @staticmethod
-    def _palette(variant):
-        if variant == "primary":
-            return {
-                "background": COLORS["brand"],
-                "hover": COLORS["brand_hover"],
-                "pressed": COLORS["brand_pressed"],
-                "foreground": "#FFFFFF",
-                "border": COLORS["brand"],
-            }
-        if variant == "ghost":
-            return {
-                "background": COLORS["surface"],
-                "hover": COLORS["surface_subtle"],
-                "pressed": "#EEF2F7",
-                "foreground": COLORS["text"],
-                "border": COLORS["surface"],
-            }
-        return {
-            "background": "#EEF2F7",
-            "hover": "#E4E9F1",
-            "pressed": "#D9E0EA",
-            "foreground": COLORS["text"],
-            "border": COLORS["border_strong"],
-        }
-
-    def _paint(self, state):
-        if self.enabled:
-            self.configure(bg=self.palette[state])
-
-    def _click(self, _event=None):
-        if self.enabled:
-            self.focus_set()
-            self.configure(bg=self.palette["hover"])
-            self.command()
-
-    def set_enabled(self, enabled):
-        self.enabled = enabled
-        if enabled:
-            self.configure(
-                bg=self.palette["background"],
-                fg=self.palette["foreground"],
-                cursor="hand2",
-            )
-        else:
-            self.configure(
-                bg=COLORS["surface_subtle"],
-                fg=COLORS["disabled"],
-                cursor="arrow",
-            )
-
-
-class ChoiceMenu(tk.Frame):
-    """A light, consistent collapsed menu that delegates choices to Tk."""
-
-    def __init__(self, parent, *, variable, values, font):
-        super().__init__(
-            parent,
-            bg=COLORS["surface"],
-            cursor="hand2",
-            takefocus=True,
-            highlightthickness=1,
-            highlightbackground=COLORS["border_strong"],
-            highlightcolor=COLORS["focus"],
-        )
-        self.variable = variable
-        self.menu = tk.Menu(
-            self,
-            tearoff=False,
-            bg=COLORS["surface"],
-            fg=COLORS["text"],
-            activebackground=COLORS["brand"],
-            activeforeground="#FFFFFF",
-            font=font,
-        )
-        for value in values:
-            self.menu.add_radiobutton(
-                label=value,
-                value=value,
-                variable=variable,
-            )
-
-        label = tk.Label(
-            self,
-            textvariable=variable,
-            anchor="w",
-            bg=COLORS["surface"],
-            fg=COLORS["text"],
-            font=font,
-            padx=11,
-            pady=8,
-            cursor="hand2",
-        )
-        label.pack(side="left", fill="both", expand=True)
-        arrow = tk.Label(
-            self,
-            text="⌄",
-            bg=COLORS["surface"],
-            fg=COLORS["muted"],
-            font=font,
-            padx=10,
-            cursor="hand2",
-        )
-        arrow.pack(side="right", fill="y")
-        for widget in (self, label, arrow):
-            widget.bind("<Button-1>", self._open)
-        self.bind("<Return>", self._open)
-        self.bind("<space>", self._open)
-
-    def _open(self, _event=None):
-        self.focus_set()
-        try:
-            self.menu.tk_popup(
-                self.winfo_rootx(),
-                self.winfo_rooty() + self.winfo_height(),
-            )
-        finally:
-            self.menu.grab_release()
-
-
-class ProgressIndicator(tk.Canvas):
-    """Small determinate-looking activity bar without platform theme leakage."""
-
-    def __init__(self, parent):
-        super().__init__(
-            parent,
-            width=84,
-            height=6,
-            bg=COLORS["surface"],
-            highlightthickness=0,
-        )
-        self.running = False
-        self.position = 0
-        self.after_id = None
-        self.create_rectangle(0, 1, 84, 5, fill="#E7EBF2", outline="")
-        self.bar = self.create_rectangle(-24, 1, 0, 5, fill=COLORS["brand"], outline="")
-
-    def start(self, _interval=None):
-        if not self.running:
-            self.running = True
-            self.position = 0
-            self._tick()
-
-    def stop(self):
-        self.running = False
-        if self.after_id is not None:
-            self.after_cancel(self.after_id)
-            self.after_id = None
-        self.coords(self.bar, -24, 1, 0, 5)
-
-    def _tick(self):
-        if not self.running:
-            return
-        self.position = (self.position + 4) % 108
-        left = self.position - 24
-        self.coords(self.bar, left, 1, left + 24, 5)
-        self.after_id = self.after(32, self._tick)
+# The longest message each field can show, used to reserve room for inline
+# validation so the pinned actions never get pushed off a short window.
+WIDEST_MESSAGES = {"url": MISSING_URL, "token": MISSING_TOKEN, "output": MISSING_OUTPUT}
 
 
 def supports_desktop_tk(platform: str, patchlevel: str) -> bool:
@@ -254,434 +78,613 @@ def supports_desktop_tk(platform: str, patchlevel: str) -> bool:
     return version >= (8, 6)
 
 
+def middle_truncate(value: str, limit: int = 58) -> str:
+    """Shorten a long path for the single-line status strip."""
+    if len(value) <= limit:
+        return value
+    head = (limit - 1) // 2
+    tail = limit - 1 - head
+    return f"{value[:head]}…{value[-tail:]}"
+
+
+class FieldError(ValueError):
+    """A validation failure that knows which field to point at."""
+
+    def __init__(self, field: str, message: str):
+        super().__init__(message)
+        self.field = field
+
+
+class FieldSlot:
+    """One labelled input plus the helper line that doubles as its error."""
+
+    def __init__(self, shell, entry, helper, default_helper=""):
+        self.shell = shell
+        self.entry = entry
+        self.helper = helper
+        self.default_helper = default_helper
+        self.invalid = False
+
+    def show_error(self, message):
+        self.invalid = True
+        self.shell.set_invalid(True)
+        self.helper.configure(text=message, fg=COLORS["danger"])
+        self.helper.grid()
+
+    def clear_error(self):
+        if not self.invalid:
+            return
+        self.invalid = False
+        self.shell.set_invalid(False)
+        self.reset_helper()
+
+    def reset_helper(self):
+        self.helper.configure(text=self.default_helper, fg=COLORS["ink_muted"])
+        if self.default_helper:
+            self.helper.grid()
+        else:
+            self.helper.grid_remove()
+
+    def set_default_helper(self, text):
+        self.default_helper = text
+        if not self.invalid:
+            self.reset_helper()
+
+
 class DesignerApp:
     def __init__(self, root):
         self.root = root
         self.events = Queue()
         self.working = False
+        self.report_text = ""
+        self.last_report = None
+        self.generated_path = None
+        self.fields = {}
 
         self.url = tk.StringVar()
+        self.token_from_env = bool(os.getenv("FIGMA_TOKEN"))
         self.token = tk.StringVar(value=os.getenv("FIGMA_TOKEN", ""))
         self.output = tk.StringVar(value=str(Path.home() / "TkinterDesigner"))
         self.template = tk.StringVar(value="class")
         self.theme = tk.StringVar(value="clam")
         self.show_token = tk.BooleanVar(value=False)
-        self.status = tk.StringVar(value="Ready to inspect a design")
-        self.report_state = tk.StringVar(value="Not inspected")
+        self.status = tk.StringVar(value="Ready")
 
-        self._configure_window()
+        self.shortcuts = shortcut_labels(sys.platform)
         self._configure_styles()
+        self._configure_window()
         self._build_ui()
+        self._bind_shortcuts()
+        self._finish_layout()
         self.root.after(100, self._poll_events)
+
+    # -- window ----------------------------------------------------------
+    def _configure_styles(self):
+        default_font = tkfont.nametofont("TkDefaultFont")
+        fixed_font = tkfont.nametofont("TkFixedFont")
+        self.fonts = build_fonts(
+            default_font.actual("family"), fixed_font.actual("family")
+        )
 
     def _configure_window(self):
         self.root.title(f"Tkinter Designer {__version__}")
-        self.root.geometry("980x760")
-        self.root.minsize(900, 680)
-        self.root.configure(bg=COLORS["background"])
+        self.root.configure(bg=COLORS["bg_app"])
+        self.root.grid_rowconfigure(2, weight=1)
+        self.root.grid_columnconfigure(0, weight=1)
 
-    def _configure_styles(self):
-        default_font = tkfont.nametofont("TkDefaultFont")
-        family = default_font.actual("family")
-        self.fonts = {
-            "brand": (family, 15, "bold"),
-            "display": (family, 25, "bold"),
-            "title": (family, 20, "bold"),
-            "heading": (family, 12, "bold"),
-            "body": (family, 10),
-            "body_bold": (family, 10, "bold"),
-            "label": (family, 9, "bold"),
-            "small": (family, 9),
-        }
+    def _finish_layout(self):
+        """Size the window from real font metrics, then centre it."""
+        min_width, min_height = self._required_size()
+        self.root.minsize(min_width, min_height)
+        width = max(DEFAULT_GEOMETRY[0], min_width)
+        height = max(DEFAULT_GEOMETRY[1], min_height)
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        width = min(width, screen_width - 40)
+        height = min(height, screen_height - 80)
+        left = max(0, (screen_width - width) // 2)
+        top = max(0, (screen_height - height) // 3)
+        self.root.geometry(f"{width}x{height}+{left}+{top}")
+        self._show_output_tail()
+        self._focus_first()
 
+    def _required_size(self):
+        """Return the smallest window that still shows every rail control.
+
+        Font metrics differ across platforms, so the minimum is measured rather
+        than hard-coded, and it reserves room for the tallest inline validation
+        message so an error can never push the actions out of view.
+        """
+        base = self._measured_height()
+        tallest = base
+        for name, message in WIDEST_MESSAGES.items():
+            slot = self.fields[name]
+            slot.show_error(message)
+            tallest = max(tallest, self._measured_height())
+            slot.invalid = False
+            slot.shell.set_invalid(False)
+            slot.reset_helper()
+        return max(MIN_GEOMETRY[0], RAIL_WIDTH + 320), max(MIN_GEOMETRY[1], tallest)
+
+    def _measured_height(self):
+        self.root.update_idletasks()
+        return (
+            self.header.winfo_reqheight()
+            + self.rail.winfo_reqheight()
+            + self.statusbar.winfo_reqheight()
+            + 2
+        )
+
+    # -- construction ----------------------------------------------------
     def _build_ui(self):
-        self.root.grid_rowconfigure(0, weight=1)
-        self.root.grid_columnconfigure(1, weight=1)
-        self._build_sidebar()
+        self._build_header()
+        self._hairline(row=1)
+        main = tk.Frame(self.root, bg=COLORS["bg_app"])
+        main.grid(row=2, column=0, sticky="nsew")
+        main.grid_rowconfigure(0, weight=1)
+        main.grid_columnconfigure(0, minsize=RAIL_WIDTH)
+        main.grid_columnconfigure(2, weight=1)
+        self._build_rail(main)
+        tk.Frame(main, bg=COLORS["border_hairline"], width=1).grid(
+            row=0, column=1, sticky="ns"
+        )
+        self._build_report(main)
+        self._hairline(row=3)
+        self._build_statusbar()
 
-        workspace = tk.Frame(self.root, bg=COLORS["surface"], padx=34, pady=28)
-        workspace.grid(row=0, column=1, sticky="nsew")
-        workspace.grid_columnconfigure(0, weight=1)
-        workspace.grid_rowconfigure(6, weight=1)
+    def _hairline(self, row):
+        tk.Frame(self.root, bg=COLORS["border_hairline"], height=1).grid(
+            row=row, column=0, sticky="ew"
+        )
 
-        header = tk.Frame(workspace, bg=COLORS["surface"])
-        header.grid(row=0, column=0, sticky="ew", pady=(0, 22))
-        header.grid_columnconfigure(0, weight=1)
+    def _build_header(self):
+        header = tk.Frame(self.root, bg=COLORS["bg_app"])
+        header.grid(row=0, column=0, sticky="ew")
+        header.grid_columnconfigure(3, weight=1)
+        self.header = header
+
+        logo = tk.Canvas(
+            header, width=22, height=22, bg=COLORS["bg_app"], highlightthickness=0
+        )
+        logo.grid(row=0, column=0, padx=(SPACE["lg"], SPACE["sm"]), pady=SPACE["md"])
+        logo.create_polygon(
+            rounded_rect_points(0, 0, 22, 22, 5),
+            fill=COLORS["accent"], outline=COLORS["accent"],
+        )
+        logo.create_text(11, 11, text="Tk", fill="#FFFFFF", font=self.fonts["small_bold"])
         tk.Label(
-            header,
-            text="Generate a project",
-            bg=COLORS["surface"],
-            fg=COLORS["text"],
-            font=self.fonts["title"],
-        ).grid(row=0, column=0, sticky="w")
-        tk.Label(
-            header,
-            text="Connect a Figma design, review the plan, then create clean Tkinter code.",
-            bg=COLORS["surface"],
-            fg=COLORS["muted"],
-            font=self.fonts["body"],
-        ).grid(row=1, column=0, sticky="w", pady=(5, 0))
-        ActionButton(
-            header,
-            text="Open guide  ↗",
-            command=lambda: webbrowser.open_new_tab(
-                "https://github.com/ParthJadhav/Tkinter-Designer/blob/master/docs/instructions.md"
+            header, text="Tkinter Designer", bg=COLORS["bg_app"],
+            fg=COLORS["ink_primary"], font=self.fonts["body_bold"],
+        ).grid(row=0, column=1, sticky="w")
+
+        QuietButton(
+            header, text="Guide ↗", fonts=self.fonts,
+            command=lambda: webbrowser.open_new_tab(GUIDE_URL),
+        ).grid(row=0, column=4, padx=(SPACE["sm"], SPACE["md"]))
+
+    def _build_rail(self, parent):
+        rail = tk.Frame(parent, bg=COLORS["bg_app"])
+        rail.grid(row=0, column=0, sticky="nsew")
+        rail.grid_columnconfigure(0, weight=1, minsize=RAIL_WIDTH - 2 * SPACE["lg"])
+        self.rail = rail
+        self.rail_body = tk.Frame(rail, bg=COLORS["bg_app"])
+        self.rail_body.grid(
+            row=0, column=0, sticky="nsew", padx=SPACE["lg"], pady=SPACE["md"]
+        )
+        self.rail_body.grid_columnconfigure(0, weight=1)
+        rail.grid_rowconfigure(0, weight=1)
+
+        self.row = 0
+        self._build_source_section()
+        self._build_output_section()
+        self.rail_body.grid_rowconfigure(self.row, weight=1, minsize=SPACE["sm"])
+        self.row += 1
+        self._build_actions()
+
+    def _place(self, widget, *, pady=(0, 0), sticky="ew"):
+        widget.grid(row=self.row, column=0, sticky=sticky, pady=pady)
+        self.row += 1
+        return widget
+
+    def _build_source_section(self):
+        body = self.rail_body
+        self._place(section_header(body, "SOURCE", self.fonts), pady=(0, SPACE["sm"]))
+        self._place(field_label(body, "Figma design URL", self.fonts), pady=(0, SPACE["xs"]))
+        self.fields["url"] = self._text_field(
+            self.url, placeholder="https://www.figma.com/design/…"
+        )
+        self._place(
+            field_label(body, "Personal access token", self.fonts),
+            pady=(SPACE["md"], SPACE["xs"]),
+        )
+        self.fields["token"] = self._token_field()
+
+    def _build_output_section(self):
+        body = self.rail_body
+        self._place(
+            section_header(body, "OUTPUT", self.fonts), pady=(SPACE["xl"], SPACE["sm"])
+        )
+        self._place(field_label(body, "Output folder", self.fonts), pady=(0, SPACE["xs"]))
+        self.fields["output"] = self._folder_field()
+        self.output.trace_add("write", lambda *_a: self._refresh_output_helper())
+        self._refresh_output_helper()
+
+        self._place(
+            field_label(body, "Code style", self.fonts), pady=(SPACE["md"], SPACE["xs"])
+        )
+        self.template_control = self._place(
+            SegmentedControl(
+                body, variable=self.template,
+                values=("script", "class", "pages"), fonts=self.fonts,
+            )
+        )
+        self._place(
+            field_label(body, "Generated app theme", self.fonts),
+            pady=(SPACE["md"], SPACE["xs"]),
+        )
+        self.theme_control = self._place(
+            ChoiceMenu(
+                body, variable=self.theme,
+                values=("clam", "alt", "default", "classic"), fonts=self.fonts,
+            )
+        )
+
+    def _helper(self):
+        return tk.Label(
+            self.rail_body, text="", bg=COLORS["bg_app"], fg=COLORS["ink_muted"],
+            font=self.fonts["small"], anchor="w", justify="left",
+            wraplength=RAIL_WIDTH - 2 * SPACE["lg"],
+        )
+
+    def _text_field(self, variable, *, placeholder=None):
+        shell = self._place(InputShell(self.rail_body))
+        entry = make_entry(shell.body, variable, self.fonts)
+        entry.pack(fill="both", expand=True, padx=9, pady=4)
+        shell.track(entry)
+        if placeholder:
+            Placeholder(entry, variable, placeholder, self.fonts)
+        helper = self._place(self._helper(), pady=(SPACE["xs"], 0))
+        helper.grid_remove()
+        slot = FieldSlot(shell, entry, helper)
+        entry.bind("<Key>", lambda _event: slot.clear_error(), add="+")
+        return slot
+
+    def _token_field(self):
+        shell = self._place(InputShell(self.rail_body))
+        entry = make_entry(shell.body, self.token, self.fonts, show="•")
+        entry.pack(side="left", fill="both", expand=True, padx=(9, 0), pady=4)
+        shell.track(entry)
+        self.token_toggle = QuietButton(
+            shell.body, text="Show", fonts=self.fonts,
+            command=self._toggle_token, background=COLORS["bg_surface"],
+        )
+        self.token_toggle.pack(side="right", padx=(0, 4))
+        shell.track(self.token_toggle)
+        helper = self._place(self._helper(), pady=(SPACE["xs"], 0))
+        default = "Loaded from FIGMA_TOKEN" if self.token_from_env else ""
+        slot = FieldSlot(shell, entry, helper, default_helper=default)
+        slot.reset_helper()
+        entry.bind("<Key>", lambda _event: slot.clear_error(), add="+")
+        return slot
+
+    def _folder_field(self):
+        shell = self._place(InputShell(self.rail_body))
+        entry = make_entry(shell.body, self.output, self.fonts, role="mono")
+        entry.pack(side="left", fill="both", expand=True, padx=(9, 0), pady=4)
+        shell.track(entry)
+        tk.Frame(shell.body, bg=COLORS["border_hairline"], width=1).pack(
+            side="right", fill="y"
+        )
+        self.browse_button = QuietButton(
+            shell.body, text="Browse…", fonts=self.fonts,
+            command=self._choose_output, background=COLORS["bg_inset"],
+        )
+        self.browse_button.configure(padx=12, pady=6)
+        self.browse_button.pack(side="right", fill="y")
+        shell.track(self.browse_button)
+        helper = self._place(self._helper(), pady=(SPACE["xs"], 0))
+        slot = FieldSlot(shell, entry, helper)
+        entry.bind("<Key>", lambda _event: slot.clear_error(), add="+")
+        return slot
+
+    def _build_actions(self):
+        self.inspect_button = self._place(
+            CanvasButton(
+                self.rail_body, text="Inspect design", fonts=self.fonts,
+                hint=self.shortcuts["inspect"][1], variant="secondary", height=32,
+                command=lambda: self._start("inspect"),
             ),
-            font=self.fonts["body_bold"],
-            variant="ghost",
-            compact=True,
-        ).grid(row=0, column=1, rowspan=2, sticky="e")
-
-        self._section_heading(workspace, "Figma source", 1)
-        source = tk.Frame(workspace, bg=COLORS["surface"])
-        source.grid(row=2, column=0, sticky="ew", pady=(10, 20))
-        source.grid_columnconfigure(0, weight=1)
-
-        self._field_label(source, "Figma design URL", 0)
-        self.url_entry = self._entry(source, self.url)
-        self.url_entry.grid(row=1, column=0, sticky="ew", pady=(6, 12), ipady=8)
-
-        token_header = tk.Frame(source, bg=COLORS["surface"])
-        token_header.grid(row=2, column=0, sticky="ew")
-        token_header.grid_columnconfigure(0, weight=1)
-        self._field_label(token_header, "Personal access token", 0)
-        self.token_toggle = ActionButton(
-            token_header,
-            text="Show",
-            command=self._toggle_token_visibility,
-            font=self.fonts["small"],
-            variant="ghost",
-            compact=True,
+            pady=(0, SPACE["sm"]),
         )
-        self.token_toggle.grid(row=0, column=1, sticky="e")
-        self.token_entry = self._entry(source, self.token, show="•")
-        self.token_entry.grid(row=3, column=0, sticky="ew", pady=(4, 0), ipady=8)
-
-        self._section_heading(workspace, "Project settings", 3)
-        settings = tk.Frame(workspace, bg=COLORS["surface"])
-        settings.grid(row=4, column=0, sticky="ew", pady=(10, 20))
-        settings.grid_columnconfigure((0, 1), weight=1)
-
-        self._field_label(settings, "Output folder", 0, columnspan=2)
-        output_row = tk.Frame(settings, bg=COLORS["surface"])
-        output_row.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(6, 5))
-        output_row.grid_columnconfigure(0, weight=1)
-        self.output_entry = self._entry(output_row, self.output)
-        self.output_entry.grid(row=0, column=0, sticky="ew", ipady=8)
-        ActionButton(
-            output_row,
-            text="Browse…",
-            command=self._choose_output,
-            font=self.fonts["body_bold"],
-            compact=True,
-        ).grid(row=0, column=1, padx=(8, 0), sticky="ns")
-        tk.Label(
-            settings,
-            text="A build folder will be created inside this location.",
-            bg=COLORS["surface"],
-            fg=COLORS["muted"],
-            font=self.fonts["small"],
-        ).grid(row=2, column=0, columnspan=2, sticky="w", pady=(0, 11))
-
-        self._field_label(settings, "Code style", 3)
-        self._field_label(settings, "Generated app theme", 3, column=1)
-        ChoiceMenu(
-            settings,
-            variable=self.template,
-            values=("script", "class", "pages"),
-            font=self.fonts["body"],
-        ).grid(row=4, column=0, sticky="ew", pady=(6, 0), padx=(0, 6))
-        ChoiceMenu(
-            settings,
-            variable=self.theme,
-            values=("clam", "alt", "default", "classic"),
-            font=self.fonts["body"],
-        ).grid(row=4, column=1, sticky="ew", pady=(6, 0), padx=(6, 0))
-
-        self._build_report(workspace)
-        self._build_footer(workspace)
-        self.url_entry.focus_set()
-
-    def _build_sidebar(self):
-        sidebar = tk.Frame(self.root, bg=COLORS["sidebar"], width=276)
-        sidebar.grid(row=0, column=0, sticky="ns")
-        sidebar.grid_propagate(False)
-        sidebar.grid_columnconfigure(0, weight=1)
-        sidebar.grid_rowconfigure(7, weight=1)
-
-        brand = tk.Frame(sidebar, bg=COLORS["sidebar"])
-        brand.grid(row=0, column=0, sticky="ew", padx=28, pady=(30, 0))
-        tk.Label(
-            brand,
-            text="Tk",
-            bg=COLORS["sidebar_text"],
-            fg=COLORS["sidebar"],
-            font=self.fonts["body_bold"],
-            padx=7,
-            pady=5,
-        ).grid(row=0, column=0)
-        tk.Label(
-            brand,
-            text="Tkinter Designer",
-            bg=COLORS["sidebar"],
-            fg=COLORS["sidebar_text"],
-            font=self.fonts["brand"],
-        ).grid(row=0, column=1, padx=(10, 0), sticky="w")
-
-        tk.Label(
-            sidebar,
-            text="From Figma\nto Tkinter.",
-            justify="left",
-            bg=COLORS["sidebar"],
-            fg=COLORS["sidebar_text"],
-            font=self.fonts["display"],
-        ).grid(row=1, column=0, sticky="w", padx=28, pady=(48, 10))
-        tk.Label(
-            sidebar,
-            text="Inspect first. Generate clean, portable Python.",
-            justify="left",
-            anchor="w",
-            wraplength=214,
-            bg=COLORS["sidebar"],
-            fg=COLORS["sidebar_muted"],
-            font=self.fonts["body"],
-        ).grid(row=2, column=0, sticky="w", padx=28)
-
-        steps = tk.Frame(sidebar, bg=COLORS["sidebar"])
-        steps.grid(row=3, column=0, sticky="ew", padx=28, pady=(42, 0))
-        self._sidebar_step(steps, 1, "Connect", "Paste your URL and token.", 0)
-        self._sidebar_step(steps, 2, "Inspect", "Preview frames and warnings.", 1)
-        self._sidebar_step(steps, 3, "Generate", "Create the Tkinter project.", 2)
-
-        tk.Label(
-            sidebar,
-            text=f"Version {__version__}",
-            bg=COLORS["sidebar"],
-            fg=COLORS["sidebar_muted"],
-            font=self.fonts["small"],
-        ).grid(row=8, column=0, sticky="sw", padx=28, pady=26)
-
-    def _sidebar_step(self, parent, number, title, detail, row):
-        item = tk.Frame(parent, bg=COLORS["sidebar"])
-        item.grid(row=row, column=0, sticky="ew", pady=(0, 20))
-        marker = tk.Canvas(
-            item,
-            width=28,
-            height=28,
-            bg=COLORS["sidebar"],
-            highlightthickness=0,
+        self.generate_button = self._place(
+            CanvasButton(
+                self.rail_body, text="Generate project", fonts=self.fonts,
+                hint=self.shortcuts["generate"][1], variant="primary", height=36,
+                command=lambda: self._start("generate"),
+            )
         )
-        marker.grid(row=0, column=0, rowspan=2, sticky="n")
-        marker.create_oval(2, 2, 26, 26, fill=COLORS["sidebar_dark"], outline="#6F9AFA")
-        marker.create_text(14, 14, text=str(number), fill="#FFFFFF", font=self.fonts["small"])
-        tk.Label(
-            item,
-            text=title,
-            bg=COLORS["sidebar"],
-            fg=COLORS["sidebar_text"],
-            font=self.fonts["body_bold"],
-        ).grid(row=0, column=1, sticky="w", padx=(11, 0))
-        tk.Label(
-            item,
-            text=detail,
-            anchor="w",
-            bg=COLORS["sidebar"],
-            fg=COLORS["sidebar_muted"],
-            font=self.fonts["small"],
-        ).grid(row=1, column=1, sticky="w", padx=(11, 0), pady=(2, 0))
 
-    def _build_report(self, workspace):
-        report_header = tk.Frame(workspace, bg=COLORS["surface"])
-        report_header.grid(row=5, column=0, sticky="new")
-        report_header.grid_columnconfigure(0, weight=1)
+    def _build_report(self, parent):
+        pane = tk.Frame(parent, bg=COLORS["bg_surface"])
+        pane.grid(row=0, column=2, sticky="nsew")
+        pane.grid_columnconfigure(0, weight=1)
+        pane.grid_rowconfigure(1, weight=1)
+
+        header = tk.Frame(pane, bg=COLORS["bg_surface"])
+        header.grid(
+            row=0, column=0, sticky="ew",
+            padx=SPACE["lg"], pady=(SPACE["md"], SPACE["sm"]),
+        )
+        header.grid_columnconfigure(2, weight=1)
         tk.Label(
-            report_header,
-            text="Design report",
-            bg=COLORS["surface"],
-            fg=COLORS["text"],
-            font=self.fonts["heading"],
+            header, text="Design report", bg=COLORS["bg_surface"],
+            fg=COLORS["ink_primary"], font=self.fonts["title"],
         ).grid(row=0, column=0, sticky="w")
-        self.report_badge = tk.Label(
-            report_header,
-            textvariable=self.report_state,
-            bg="#EEF4FF",
-            fg=COLORS["brand_hover"],
-            font=self.fonts["small"],
-            padx=8,
-            pady=3,
+        self.report_chip = tk.Label(
+            header, text="Not inspected", bg=COLORS["neutral_bg"],
+            fg=COLORS["neutral_fg"], font=self.fonts["small_bold"], padx=7, pady=2,
         )
-        self.report_badge.grid(row=0, column=1, sticky="e")
+        self.report_chip.grid(row=0, column=1, padx=(SPACE["sm"], 0))
+        self.copy_button = QuietButton(
+            header, text="Copy report", fonts=self.fonts,
+            command=self._copy_report, background=COLORS["bg_surface"],
+        )
+        self.copy_button.grid(row=0, column=3)
+        self.copy_button.grid_remove()
+        self.open_button = QuietButton(
+            header, text="Open folder", fonts=self.fonts,
+            command=self._open_output, background=COLORS["bg_surface"],
+        )
+        self.open_button.grid(row=0, column=4)
+        self.open_button.grid_remove()
 
-        report_surface = tk.Frame(
-            workspace,
-            bg=COLORS["border"],
-            highlightthickness=0,
-        )
-        report_surface.grid(row=6, column=0, sticky="nsew", pady=(9, 0))
-        report_surface.grid_rowconfigure(0, weight=1)
-        report_surface.grid_columnconfigure(0, weight=1)
+        body = tk.Frame(pane, bg=COLORS["bg_surface"])
+        body.grid(row=1, column=0, sticky="nsew", padx=SPACE["lg"], pady=(0, SPACE["md"]))
+        body.grid_rowconfigure(0, weight=1)
+        body.grid_columnconfigure(0, weight=1)
         self.report = tk.Text(
-            report_surface,
-            height=6,
-            wrap="word",
-            relief="flat",
-            borderwidth=0,
-            highlightthickness=0,
-            bg=COLORS["surface_subtle"],
-            fg=COLORS["text"],
-            padx=14,
-            pady=12,
-            font=self.fonts["body"],
-            cursor="arrow",
-            state="disabled",
+            body, wrap="word", relief="flat", borderwidth=0, highlightthickness=0,
+            bg=COLORS["bg_surface"], fg=COLORS["ink_secondary"], font=self.fonts["label"],
+            padx=0, pady=0, cursor="arrow", state="disabled", takefocus=False,
+            spacing2=2, width=1, height=1,
         )
-        self.report.grid(row=0, column=0, sticky="nsew", padx=1, pady=1)
-        self._set_report(
-            "No inspection yet\n\nPaste a Figma design URL and token, then inspect "
-            "to preview frames, elements, assets, and fidelity warnings."
-        )
+        self.report.grid(row=0, column=0, sticky="nsew")
+        self.scrollbar = tk.Scrollbar(body, command=self.report.yview, width=12)
+        self.scrollbar.grid(row=0, column=1, sticky="ns", padx=(SPACE["xs"], 0))
+        self.scrollbar.grid_remove()
+        self.report.configure(yscrollcommand=self._sync_scrollbar)
+        self._configure_report_tags()
+        self._bind_report_scrolling()
+        self.measure_overflow = 0
+        self.report.bind("<Configure>", self._cap_prose_measure)
+        self._render(report_view.empty_segments(self.shortcuts["inspect"][1]))
 
-    def _build_footer(self, workspace):
-        footer = tk.Frame(workspace, bg=COLORS["surface"])
-        footer.grid(row=7, column=0, sticky="ew", pady=(18, 0))
-        footer.grid_columnconfigure(1, weight=1)
-        self.status_dot = tk.Canvas(
-            footer,
-            width=12,
-            height=12,
-            bg=COLORS["surface"],
-            highlightthickness=0,
-        )
-        self.status_dot.grid(row=0, column=0, sticky="w")
-        self.status_indicator = self.status_dot.create_oval(
-            3, 3, 9, 9, fill=COLORS["success"], outline=""
-        )
+    def _configure_report_tags(self):
+        for tag, style in report_view.TAG_STYLES.items():
+            options = {}
+            if "font" in style:
+                options["font"] = self.fonts[style["font"]]
+            if "fg" in style:
+                options["foreground"] = COLORS[style["fg"]]
+            if "bg" in style:
+                options["background"] = COLORS[style["bg"]]
+            for key in ("spacing1", "spacing3", "lmargin1", "lmargin2", "rmargin"):
+                if key in style:
+                    options[key] = style[key]
+            self.report.tag_configure(tag, **options)
+
+    def _cap_prose_measure(self, event):
+        """Hold running prose to a readable measure as the pane widens.
+
+        This only rewrites tag margins; the layout itself never reflows.
+        """
+        overflow = max(0, event.width - MAX_MEASURE)
+        if overflow == self.measure_overflow:
+            return
+        self.measure_overflow = overflow
+        for tag in report_view.PARAGRAPH_TAGS:
+            self.report.tag_configure(tag, rmargin=overflow)
+
+    def _bind_report_scrolling(self):
+        self.report.bind("<MouseWheel>", self._on_wheel)
+        self.report.bind("<Button-4>", self._on_wheel)
+        self.report.bind("<Button-5>", self._on_wheel)
+
+    def _build_statusbar(self):
+        bar = tk.Frame(self.root, bg=COLORS["bg_app"])
+        bar.grid(row=4, column=0, sticky="ew")
+        bar.grid_columnconfigure(1, weight=1)
+        self.statusbar = bar
+        self.status_dot = StatusDot(bar)
+        self.status_dot.grid(row=0, column=0, padx=(SPACE["lg"], SPACE["sm"]), pady=SPACE["sm"])
         tk.Label(
-            footer,
-            textvariable=self.status,
-            bg=COLORS["surface"],
-            fg=COLORS["muted"],
-            font=self.fonts["small"],
-        ).grid(row=0, column=1, sticky="w", padx=(5, 0))
-        self.progress = ProgressIndicator(footer)
-        self.progress.grid(row=0, column=2, padx=(10, 16))
+            bar, textvariable=self.status, bg=COLORS["bg_app"], fg=COLORS["ink_secondary"],
+            font=self.fonts["label"], anchor="w",
+        ).grid(row=0, column=1, sticky="w")
+        self.progress = ProgressIndicator(bar)
+        self.progress.grid(row=0, column=2, padx=(SPACE["sm"], SPACE["lg"]))
         self.progress.grid_remove()
-        self.inspect_button = ActionButton(
-            footer,
-            text="Inspect design",
-            command=lambda: self._start("inspect"),
-            font=self.fonts["body_bold"],
+        self.version_label = tk.Label(
+            bar, text=f"v{__version__}", bg=COLORS["bg_app"], fg=COLORS["ink_muted"],
+            font=self.fonts["small"],
         )
-        self.inspect_button.grid(row=0, column=3, padx=(0, 8))
-        self.generate_button = ActionButton(
-            footer,
-            text="Generate project",
-            command=lambda: self._start("generate"),
-            font=self.fonts["body_bold"],
-            variant="primary",
+        self.version_label.grid(row=0, column=3, padx=(0, SPACE["lg"]))
+
+    def _bind_shortcuts(self):
+        bindings = {
+            "inspect": lambda _event: self._start("inspect"),
+            "generate": lambda _event: self._start("generate"),
+            "browse": lambda _event: self._choose_output(),
+            "copy": lambda _event: self._copy_report(),
+        }
+        for name, handler in bindings.items():
+            self.root.bind_all(self.shortcuts[name][0], handler)
+        for slot in self.fields.values():
+            slot.entry.bind("<Return>", lambda _event: self._start("inspect"))
+
+    # -- small helpers ---------------------------------------------------
+    def _focus_first(self):
+        if self.url.get().strip():
+            self.inspect_button.focus_set()
+        else:
+            self.fields["url"].entry.focus_set()
+
+    def _on_wheel(self, event):
+        if event.num == 4:
+            units = -3
+        elif event.num == 5:
+            units = 3
+        elif abs(event.delta) >= 120:
+            units = -event.delta // 120
+        else:
+            units = -event.delta
+        self.report.yview_scroll(int(units), "units")
+        return "break"
+
+    def _sync_scrollbar(self, first, last):
+        self.scrollbar.set(first, last)
+        if float(first) <= 0.0 and float(last) >= 1.0:
+            self.scrollbar.grid_remove()
+        else:
+            self.scrollbar.grid()
+
+    def _show_output_tail(self):
+        """Scroll the path entry to its leaf; the head is never the useful part."""
+        self.fields["output"].entry.xview_moveto(1.0)
+
+    def _refresh_output_helper(self):
+        value = self.output.get().strip()
+        name = Path(value).name if value else ""
+        self.fields["output"].set_default_helper(
+            f"Creates {name}/build" if name else ""
         )
-        self.generate_button.grid(row=0, column=4)
-
-    def _section_heading(self, parent, text, row):
-        heading = tk.Frame(parent, bg=COLORS["surface"])
-        heading.grid(row=row, column=0, sticky="ew")
-        heading.grid_columnconfigure(1, weight=1)
-        tk.Label(
-            heading,
-            text=text,
-            bg=COLORS["surface"],
-            fg=COLORS["text"],
-            font=self.fonts["heading"],
-        ).grid(row=0, column=0, sticky="w")
-        tk.Frame(heading, bg=COLORS["border"], height=1).grid(
-            row=0, column=1, sticky="ew", padx=(12, 0)
-        )
-
-    def _field_label(self, parent, text, row, column=0, columnspan=1):
-        tk.Label(
-            parent,
-            text=text,
-            bg=COLORS["surface"],
-            fg=COLORS["muted"],
-            font=self.fonts["label"],
-        ).grid(row=row, column=column, columnspan=columnspan, sticky="w")
-
-    def _entry(self, parent, variable, *, show=None):
-        return tk.Entry(
-            parent,
-            textvariable=variable,
-            show=show,
-            relief="flat",
-            borderwidth=0,
-            highlightthickness=1,
-            highlightbackground=COLORS["border_strong"],
-            highlightcolor=COLORS["focus"],
-            bg=COLORS["surface"],
-            fg=COLORS["text"],
-            insertbackground=COLORS["text"],
-            selectbackground=COLORS["brand"],
-            selectforeground="#FFFFFF",
-            font=self.fonts["body"],
-        )
-
-    def _toggle_token_visibility(self):
-        self.show_token.set(not self.show_token.get())
-        self._toggle_token()
 
     def _toggle_token(self):
-        self.token_entry.configure(show="" if self.show_token.get() else "•")
-        self.token_toggle.configure(text="Hide" if self.show_token.get() else "Show")
+        self.show_token.set(not self.show_token.get())
+        self._apply_token_visibility()
+
+    def _apply_token_visibility(self):
+        revealed = self.show_token.get()
+        self.fields["token"].entry.configure(show="" if revealed else "•")
+        self.token_toggle.configure(text="Hide" if revealed else "Show")
 
     def _choose_output(self):
-        selected = filedialog.askdirectory(initialdir=self.output.get() or str(Path.cwd()))
+        if self.working:
+            return
+        selected = filedialog.askdirectory(
+            initialdir=self.output.get() or str(Path.cwd())
+        )
         if selected:
             self.output.set(selected)
+            self.fields["output"].clear_error()
+            self._show_output_tail()
 
+    def _copy_report(self):
+        if not self.report_text:
+            return
+        self.root.clipboard_clear()
+        self.root.clipboard_append(self.report_text)
+        self._set_status("success", "Report copied to the clipboard")
+
+    def _open_output(self):
+        path = self.generated_path
+        if not path:
+            return
+        try:
+            if sys.platform == "darwin":
+                subprocess.Popen(["open", str(path)])
+            elif os.name == "nt":
+                os.startfile(str(path))  # noqa: S606 - platform file manager
+            else:
+                subprocess.Popen(["xdg-open", str(path)])
+        except OSError as exc:
+            self._set_status("danger", f"Could not open the folder: {exc}")
+
+    # -- report rendering -------------------------------------------------
+    def _render(self, segments, append=False):
+        self.report.configure(state="normal")
+        if not append:
+            self.report.delete("1.0", "end")
+        for tag, text in segments:
+            self.report.insert("end", text, (tag,) if tag else ())
+        self.report.configure(state="disabled")
+        if append:
+            self.report.see("end")
+        else:
+            self.report.yview_moveto(0.0)
+
+    def _set_chip(self, text, tone):
+        palette = {
+            "neutral": (COLORS["neutral_bg"], COLORS["neutral_fg"]),
+            "info": (COLORS["info_bg"], COLORS["accent_hover"]),
+            "success": (COLORS["success_bg"], COLORS["success"]),
+            "danger": (COLORS["danger_bg"], COLORS["danger"]),
+        }
+        background, foreground = palette[tone]
+        self.report_chip.configure(text=text, bg=background, fg=foreground)
+
+    def _set_status(self, tone, message):
+        self.status_dot.set_tone(tone)
+        self.status.set(message)
+
+    # -- validation and workflow -----------------------------------------
     def _inputs(self):
-        reference = parse_figma_url(self.url.get())
+        if not self.url.get().strip():
+            raise FieldError("url", MISSING_URL)
+        try:
+            reference = parse_figma_url(self.url.get())
+        except ValueError as exc:
+            raise FieldError("url", INVALID_URL) from exc
         token = self.token.get().strip()
         if not token:
-            raise ValueError("Enter a Figma personal access token.")
-        output = Path(self.output.get().strip()).expanduser().resolve()
-        if not self.output.get().strip():
-            raise ValueError("Choose an output folder.")
+            raise FieldError("token", MISSING_TOKEN)
+        raw_output = self.output.get().strip()
+        if not raw_output:
+            raise FieldError("output", MISSING_OUTPUT)
+        try:
+            output = Path(raw_output).expanduser().resolve()
+        except OSError as exc:
+            raise FieldError("output", str(exc)) from exc
         return reference, token, output
+
+    def _report_invalid(self, error):
+        slot = self.fields[error.field]
+        slot.show_error(str(error))
+        slot.entry.focus_set()
+        self._set_status("danger", str(error))
+
+    def _confirm_replacement(self, build_path):
+        if not (build_path.is_dir() and any(build_path.iterdir())):
+            return True, False
+        replace = messagebox.askyesno(
+            "Replace existing build?",
+            "The build folder is not empty. It will only be replaced after "
+            "the new project generates successfully.",
+        )
+        return replace, replace
 
     def _start(self, operation):
         if self.working:
             return
         try:
             reference, token, output = self._inputs()
-        except (OSError, ValueError) as exc:
-            messagebox.showerror("Check the design details", str(exc))
+        except FieldError as error:
+            self._report_invalid(error)
             return
 
-        build_path = output / "build"
         clean = False
-        if (
-            operation == "generate"
-            and build_path.is_dir()
-            and any(build_path.iterdir())
-        ):
-            clean = messagebox.askyesno(
-                "Replace existing build?",
-                "The build folder is not empty. It will only be replaced after "
-                "the new project generates successfully.",
-            )
-            if not clean:
+        build_path = output / "build"
+        if operation == "generate":
+            proceed, clean = self._confirm_replacement(build_path)
+            if not proceed:
                 return
 
-        self._set_working(True, "Inspecting Figma…" if operation == "inspect" else "Generating project…")
+        self._set_working(True, operation)
         worker = threading.Thread(
             target=self._run_operation,
             args=(
-                operation,
-                reference,
-                token,
-                build_path,
-                clean,
-                self.template.get(),
-                self.theme.get().strip(),
+                operation, reference, token, build_path, clean,
+                self.template.get(), self.theme.get().strip(),
             ),
             daemon=True,
         )
@@ -701,15 +704,10 @@ class DesignerApp:
             )
             if operation == "inspect":
                 report = designer.inspect()
-                self.events.put(("success", report.to_text(), "Inspection complete"))
+                self.events.put(("inspected", report, "Inspection complete"))
             else:
                 result = designer.design(clean=clean)
-                report = result.report.to_text() if result.report else "Generation complete"
-                detail = (
-                    f"{report}\n\nGenerated project: {result.output_path}\n"
-                    f"Code files: {len(result.code_files)} · Assets: {len(result.asset_files)}"
-                )
-                self.events.put(("success", detail, f"Generated at {result.output_path}"))
+                self.events.put(("generated", result, "Generation complete"))
         except Exception as exc:
             status = (
                 "Inspection failed"
@@ -723,55 +721,103 @@ class DesignerApp:
         except Empty:
             pass
         else:
-            self._set_working(False, status)
-            if event == "success":
-                self._set_report(detail)
-                self._set_report_state(
-                    "Inspected" if status == "Inspection complete" else "Generated",
-                    "success",
-                )
-            else:
-                self._set_report_state("Needs attention", "danger")
-                self.status_dot.itemconfigure(
-                    self.status_indicator, fill=COLORS["danger"]
-                )
-                messagebox.showerror("Tkinter Designer", detail)
+            self._set_working(False, None)
+            handlers = {
+                "inspected": self._handle_inspected,
+                "generated": self._handle_generated,
+                "error": self._handle_error,
+            }
+            handlers[event](detail, status)
         self.root.after(100, self._poll_events)
 
-    def _set_report(self, value):
-        self.report.configure(state="normal")
-        self.report.delete("1.0", "end")
-        self.report.insert("1.0", value)
-        self.report.configure(state="disabled")
+    def _handle_inspected(self, report, _status):
+        self.report_text = report.to_text()
+        self.last_report = report.to_dict()
+        self._render(report_view.inspection_segments(self.last_report))
+        self._set_chip("Inspected", "success")
+        self.copy_button.grid()
+        summary = (
+            f"{len(report.frames)} frames · {report.element_count} elements · "
+            f"{report.image_export_count} image exports"
+        )
+        self._set_status("success", f"Inspection complete · {summary}")
+        self.generate_button.focus_set()
 
-    def _set_report_state(self, value, tone):
-        palette = {
-            "info": ("#EEF4FF", COLORS["brand_hover"]),
-            "success": ("#ECFDF3", COLORS["success"]),
-            "danger": ("#FEF3F2", COLORS["danger"]),
-        }
-        background, foreground = palette[tone]
-        self.report_state.set(value)
-        self.report_badge.configure(bg=background, fg=foreground)
+    def _handle_generated(self, result, _status):
+        self.generated_path = result.output_path
+        if result.report is not None:
+            self.report_text = result.report.to_text()
+            self.last_report = result.report.to_dict()
+            self._render(report_view.inspection_segments(self.last_report))
+        self._render(
+            report_view.generation_segments(
+                str(result.output_path), len(result.code_files), len(result.asset_files)
+            ),
+            append=result.report is not None,
+        )
+        self._set_chip("Generated", "success")
+        self.copy_button.grid()
+        self.open_button.grid()
+        self._set_status(
+            "success", f"Generated · {middle_truncate(str(result.output_path))}"
+        )
 
-    def _set_working(self, working, status):
+    def _handle_error(self, message, status):
+        self._render(report_view.error_segments(message, self.last_report))
+        self._set_chip("Failed", "danger")
+        self._set_status("danger", status)
+        self.inspect_button.focus_set()
+
+    # -- busy state -------------------------------------------------------
+    def _lockable(self):
+        return (
+            self.fields["url"].entry,
+            self.fields["token"].entry,
+            self.fields["output"].entry,
+        )
+
+    def _set_working(self, working, operation):
         self.working = working
-        self.status.set(status)
-        self.inspect_button.set_enabled(not working)
-        self.generate_button.set_enabled(not working)
-        if working:
-            self._set_report_state("Working", "info")
-            self.status_dot.itemconfigure(
-                self.status_indicator, fill=COLORS["brand"]
+        for entry in self._lockable():
+            entry.configure(
+                state="readonly" if working else "normal",
+                fg=COLORS["ink_secondary"] if working else COLORS["ink_primary"],
             )
+        for shell in (slot.shell for slot in self.fields.values()):
+            shell.set_enabled(not working)
+        self.token_toggle.set_surface(
+            COLORS["bg_inset"] if working else COLORS["bg_surface"]
+        )
+        for control in (
+            self.token_toggle, self.browse_button, self.template_control,
+            self.theme_control, self.inspect_button, self.generate_button,
+        ):
+            control.set_enabled(not working)
+
+        if working:
+            self.show_token.set(False)
+            self._apply_token_visibility()
+            inspecting = operation == "inspect"
+            self.inspect_button.set_text("Inspecting…" if inspecting else "Inspect design")
+            self.generate_button.set_text(
+                "Generate project" if inspecting else "Generating…"
+            )
+            self._set_chip("Working…", "info")
+            if self.last_report is None:
+                self._render(report_view.working_segments(operation))
+            self._set_status(
+                "working",
+                "Contacting Figma…" if inspecting else "Generating project…",
+            )
+            self.version_label.grid_remove()
             self.progress.grid()
-            self.progress.start(12)
+            self.progress.start()
         else:
             self.progress.stop()
             self.progress.grid_remove()
-            self.status_dot.itemconfigure(
-                self.status_indicator, fill=COLORS["success"]
-            )
+            self.version_label.grid()
+            self.inspect_button.set_text("Inspect design")
+            self.generate_button.set_text("Generate project")
 
 
 def main():

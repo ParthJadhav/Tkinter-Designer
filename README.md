@@ -123,6 +123,12 @@ Launch the redesigned desktop workflow after installation:
 tkdesigner-gui
 ```
 
+Every input and both actions live in a compact left rail; the design report
+fills the rest of the window, listing each frame with its dimensions, element
+breakdown, and fidelity warnings. Validation appears inline next to the field
+that needs attention, and `⌘I` / `⌘↩` (`Ctrl+I` / `Ctrl+Return`) run the two
+actions.
+
 The app can inspect or generate without freezing while the Figma API and image
 downloads are running. `gui/gui.py` remains as a compatibility launcher.
 

@@ -95,12 +95,34 @@ version, and generated files, without storing the Figma token.
 tkdesigner-gui
 ```
 
+The window is a workbench: every input and both actions sit in the left rail,
+and the design report fills the main pane.
+
 Paste the design URL, use the token from `FIGMA_TOKEN` or enter one, choose the
 output and template, and select **Inspect design**. Generate after reviewing the
-report. Network work runs in the background so the app remains responsive.
-On macOS the desktop app requires Tk 8.6 or newer. If the launcher reports an
-older Tk runtime, install a current Python distribution with modern Tk support
-and recreate the virtual environment.
+report. Network work runs in the background so the app remains responsive, and
+the inputs lock while a run is in flight so the request cannot drift.
+
+The report lists a summary, every frame with its dimensions and element
+breakdown, and any fidelity warnings. **Copy report** puts the plain-text
+version on the clipboard; after a successful generate, **Open folder** reveals
+the build. A failed run keeps the previous inspection below the error.
+
+| Shortcut | Action |
+| --- | --- |
+| `⌘I` / `Ctrl+I` | Inspect design |
+| `⌘↩` / `Ctrl+Return` | Generate project |
+| `⌘O` / `Ctrl+O` | Choose the output folder |
+| `⌘⇧C` / `Ctrl+Shift+C` | Copy the report |
+
+The token stays masked unless you press **Show**, re-masks whenever a run
+starts, and never appears in the report, the status line, or the clipboard.
+
+The window starts from a 920x640 baseline and measures the minimum height its
+controls need on the active Tk runtime, so taller platform fonts do not clip the
+form. On macOS the desktop app requires Tk 8.6 or newer. If the launcher reports
+an older Tk runtime, install a current Python distribution with modern Tk
+support and recreate the virtual environment.
 
 ## Troubleshooting
 

@@ -17,6 +17,14 @@ Desktop app ──────────┘      │
   text or JSON.
 - `tkdesigner.app` is the responsive desktop client. It performs network work on
   a background thread and sends display results back to the Tk event loop.
+- `tkdesigner.theme` holds the desktop design tokens: palette, spacing scale,
+  type roles, and per-platform keyboard shortcuts. It imports no Tkinter.
+- `tkdesigner.widgets` holds the reusable desktop controls, each painting its
+  own rest, hover, pressed, focused, and disabled states so the interface looks
+  the same on every platform instead of inheriting three native themes.
+- `tkdesigner.report_view` turns a `DesignReport` into the tagged document the
+  desktop report pane renders. It imports no Tkinter, so the document is
+  asserted in tests without a display.
 - `tkdesigner.gui_cli` is the optional desktop dependency boundary and turns a
   missing Tk runtime into an actionable launcher error.
 - `tkdesigner.designer` selects frames, coordinates inspection and rendering,
@@ -37,6 +45,8 @@ Desktop app ──────────┘      │
 - Non-empty output requires explicit confirmation or `--force`.
 - Failed generation does not mutate the previous successful build.
 - Generated Python remains import-safe: `mainloop()` runs only under `__main__`.
+- The desktop window measures its own minimum size from real font metrics at
+  startup, so no control is ever clipped on a platform whose fonts are taller.
 
 ## Adding an element type
 
