@@ -162,7 +162,9 @@ class Frame(Node):
 
     def to_code(self, template):
         t = Template(template)
-        assets_path = self.assets_path.relative_to(self.output_path)
+        # Generated source should be portable even when it was created on a
+        # different operating system. Path accepts forward slashes everywhere.
+        assets_path = self.assets_path.relative_to(self.output_path).as_posix()
         return t.render(
             window=self,
             elements=self.elements,

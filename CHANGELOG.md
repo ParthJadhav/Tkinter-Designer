@@ -36,6 +36,7 @@ versioning once a preview is promoted to a stable release.
 - Toggle controls keep their Figma fill and render with a visible label.
 - Inspection failures use inspection-specific status text in the desktop app.
 - Packaged desktop builds default output to a writable user directory.
+- Generated asset paths use a portable representation on Windows and POSIX.
 
 - Boolean values such as `TKDESIGNER_VERBOSE=true` no longer crash at import.
 - Asset-heavy files use dramatically fewer Figma image API requests.

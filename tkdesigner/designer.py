@@ -69,7 +69,8 @@ class Designer:
             )
             frame.page_index = frame_counter
             frame.class_name = f"Page{frame_counter}"
-            frame.assets_rel_path = frame.assets_path.relative_to(self.output_path)
+            frame.assets_rel_path = frame.assets_path.relative_to(
+                self.output_path).as_posix()
             frames.append(frame)
 
         if self.template_style == "pages":
