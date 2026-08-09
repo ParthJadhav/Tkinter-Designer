@@ -7,7 +7,7 @@ authors = [
 ]
 license = "BSD-3-Clause"
 readme = "README.md"
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 dependencies = [
     "requests>=2.31,<3",
     "Jinja2>=3.1,<4",
@@ -20,7 +20,6 @@ classifiers = [
     "Environment :: MacOS X",
     "Environment :: Win32 (MS Windows)",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -37,11 +36,11 @@ Changelog = "https://github.com/ParthJadhav/Tkinter-Designer/blob/master/CHANGEL
 
 [project.scripts]
 tkdesigner = "tkdesigner.cli:main"
-tkdesigner-gui = "tkdesigner.app:main"
+tkdesigner-gui = "tkdesigner.gui_cli:main"
 
 [dependency-groups]
 dev = [
-    "pytest>=8,<9",
+    "pytest>=9.0.3,<10",
     "flake8>=7,<8",
     "build>=1.2,<2",
 ]

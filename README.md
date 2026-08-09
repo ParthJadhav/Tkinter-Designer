@@ -43,7 +43,9 @@ then connect your application logic to ordinary Tkinter widgets.
 
 ## Install
 
-Tkinter Designer supports Python 3.9 and newer.
+Tkinter Designer 2.0 supports maintained Python releases from Python 3.10
+through Python 3.13. Python 3.9 reached end-of-life and is no longer a supported
+runtime for the 2.0 line.
 
 ```bash
 python -m pip install tkdesigner

@@ -17,6 +17,8 @@ Desktop app ──────────┘      │
   text or JSON.
 - `tkdesigner.app` is the responsive desktop client. It performs network work on
   a background thread and sends display results back to the Tk event loop.
+- `tkdesigner.gui_cli` is the optional desktop dependency boundary and turns a
+  missing Tk runtime into an actionable launcher error.
 - `tkdesigner.designer` selects frames, coordinates inspection and rendering,
   stages output, and atomically commits successful builds.
 - `tkdesigner.inspection` contains immutable report objects and serialization.

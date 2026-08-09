@@ -138,6 +138,7 @@ TEMPLATE = COMMON_TEMPLATE_HEADER + """
 window = Tk()
 apply_theme(window)
 
+window.title({{ window.title_literal }})
 window.geometry("{{ window.width }}x{{ window.height }}")
 window.configure(bg="{{ window.bg_color }}")
 center_window(window, {{ window.width }}, {{ window.height }})
@@ -176,6 +177,7 @@ class GeneratedApp:
         window = self.window
         apply_theme(window)
 
+        window.title({{ window.title_literal }})
         window.geometry("{{ window.width }}x{{ window.height }}")
         window.configure(bg="{{ window.bg_color }}")
         center_window(window, {{ window.width }}, {{ window.height }})
@@ -241,6 +243,7 @@ class GeneratedApp:
         self.window = Tk()
         window = self.window
         apply_theme(window)
+        window.title({{ window.title_literal }})
         window.geometry("{{ window.width }}x{{ window.height }}")
         window.configure(bg="{{ window.bg_color }}")
         center_window(window, {{ window.width }}, {{ window.height }})

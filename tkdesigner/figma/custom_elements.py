@@ -310,12 +310,12 @@ class ToggleButton(CheckButton):
 toggle_var_{self.id_} = BooleanVar(value=False)
 togglebutton_{self.id_} = Checkbutton(
     window,
-    text="",
+    text="Toggle",
     variable=toggle_var_{self.id_},
     indicatoron=False,
-    bg="{self.bg_color}",
-    activebackground="{self.bg_color}",
-    borderwidth=0,
+    bg="{self.fill_color}",
+    activebackground="{self.fill_color}",
+    borderwidth=1,
     highlightthickness=0
 )
 togglebutton_{self.id_}.place(

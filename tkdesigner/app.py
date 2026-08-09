@@ -51,7 +51,7 @@ class DesignerApp:
 
         self.url = tk.StringVar()
         self.token = tk.StringVar(value=os.getenv("FIGMA_TOKEN", ""))
-        self.output = tk.StringVar(value=str(Path.cwd()))
+        self.output = tk.StringVar(value=str(Path.home() / "TkinterDesigner"))
         self.template = tk.StringVar(value="class")
         self.theme = tk.StringVar(value="clam")
         self.show_token = tk.BooleanVar(value=False)
@@ -316,7 +316,11 @@ class DesignerApp:
                 )
                 self.events.put(("success", detail, f"Generated at {result.output_path}"))
         except Exception as exc:
-            self.events.put(("error", str(exc), "Generation failed"))
+            status = (
+                "Inspection failed"
+                if operation == "inspect" else "Generation failed"
+            )
+            self.events.put(("error", str(exc), status))
 
     def _poll_events(self):
         try:

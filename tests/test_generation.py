@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -48,6 +49,7 @@ def test_generated_code_preserves_negative_coordinates_and_escapes_text(tmp_path
     assert "10" in code
     assert 'text="Hello \\"Tk\\"\\nDesigner"' in code
     assert 'font=("Fira Code", 14 * -1, "bold", "italic")' in code
+    assert 'window.title("Window")' in code
     assert 'if __name__ == "__main__":' in code
     compile(code, "gui.py", "exec")
 
@@ -189,6 +191,7 @@ def test_pages_template_generates_navigation_app(tmp_path):
     code = designer.to_code()[0]
 
     assert 'THEME = "clam"' in code
+    assert 'window.title("Window")' in code
     assert "class Page0(Frame):" in code
     assert "class Page1(Frame):" in code
     assert "def next_page(self):" in code
@@ -257,28 +260,8 @@ def test_end_to_end_recorded_design_builds_import_safe_project(
             assert not item_ids
             return {}
 
-    title = {
-        "id": "2:1",
-        "name": "Title",
-        "type": "TEXT",
-        "absoluteBoundingBox": {"x": 24, "y": 24, "width": 180, "height": 30},
-        "characters": "Recorded fixture",
-        "fills": solid_fill(0.1, 0.1, 0.1),
-        "style": {"fontFamily": "Arial", "fontSize": 18, "fontWeight": 700},
-    }
-    payload = {
-        "name": "Recorded fixture",
-        "lastModified": "2026-08-08T00:00:00Z",
-        "document": {
-            "children": [
-                {
-                    "id": "0:1",
-                    "type": "CANVAS",
-                    "children": [frame_node([title])],
-                }
-            ]
-        },
-    }
+    fixture_path = Path(__file__).parent / "fixtures" / "figma_file.json"
+    payload = json.loads(fixture_path.read_text(encoding="UTF-8"))
 
     designer = Designer.__new__(Designer)
     designer.output_path = tmp_path / template_style / "build"
@@ -289,14 +272,19 @@ def test_end_to_end_recorded_design_builds_import_safe_project(
     designer.theme = "clam"
 
     result = designer.design()
-    source = result.code_files[0].read_text(encoding="UTF-8")
     manifest = json.loads(result.manifest_path.read_text(encoding="UTF-8"))
 
-    compile(source, str(result.code_files[0]), "exec")
+    sources = []
+    for code_file in result.code_files:
+        source = code_file.read_text(encoding="UTF-8")
+        sources.append(source)
+        compile(source, str(code_file), "exec")
     assert manifest["generator"]["version"] == "2.0.0a1"
     assert manifest["settings"] == {"template": template_style, "theme": "clam"}
-    assert manifest["design"]["summary"]["elements"] == 1
-    assert manifest["files"] == ["gui.py"]
+    assert manifest["design"]["summary"]["elements"] == 8
+    expected_files = ["gui.py"] if template_style == "pages" else ["gui.py", "gui1.py"]
+    assert manifest["files"] == expected_files
+    assert 'text="Toggle"' in "\n".join(sources)
     assert capsys.readouterr().out == ""
 
 

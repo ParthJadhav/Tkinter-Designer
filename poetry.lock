@@ -194,7 +194,7 @@ description = "Backport of PEP 654 (exception groups)"
 optional = false
 python-versions = ">=3.7"
 groups = ["dev"]
-markers = "python_version < \"3.11\""
+markers = "python_version == \"3.10\""
 files = [
     {file = "exceptiongroup-1.3.1-py3-none-any.whl", hash = "sha256:a7a39a3bd276781e98394987d3a5701d0c4edffb633bb7a5144577f82c773598"},
     {file = "exceptiongroup-1.3.1.tar.gz", hash = "sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219"},
@@ -383,18 +383,15 @@ files = [
 
 [[package]]
 name = "packaging"
-version = "21.2"
+version = "26.3"
 description = "Core utilities for Python packages"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.9"
 groups = ["dev"]
 files = [
-    {file = "packaging-21.2-py3-none-any.whl", hash = "sha256:14317396d1e8cdb122989b916fa2c7e9ca8e2be9e8060a6eff75b6b7b4d8a7e0"},
-    {file = "packaging-21.2.tar.gz", hash = "sha256:096d689d78ca690e4cd8a89568ba06d07ca097e3306a4381635073ca91479966"},
+    {file = "packaging-26.3-py3-none-any.whl", hash = "sha256:d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"},
+    {file = "packaging-26.3.tar.gz", hash = "sha256:94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79"},
 ]
-
-[package.dependencies]
-pyparsing = ">=2.0.2,<3"
 
 [[package]]
 name = "pillow"
@@ -577,18 +574,6 @@ files = [
 windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
-name = "pyparsing"
-version = "2.4.7"
-description = "Python parsing module"
-optional = false
-python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-groups = ["dev"]
-files = [
-    {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
-    {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
-]
-
-[[package]]
 name = "pyproject-hooks"
 version = "1.2.0"
 description = "Wrappers to call pyproject.toml-based build backend hooks."
@@ -602,21 +587,21 @@ files = [
 
 [[package]]
 name = "pytest"
-version = "8.4.2"
+version = "9.1.1"
 description = "pytest: simple powerful testing with Python"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "pytest-8.4.2-py3-none-any.whl", hash = "sha256:872f880de3fc3a5bdc88a11b39c9710c3497a547cfa9320bc3c5e62fbf272e79"},
-    {file = "pytest-8.4.2.tar.gz", hash = "sha256:86c0d0b93306b961d58d62a4db4879f27fe25513d4b969df351abdddb3c30e01"},
+    {file = "pytest-9.1.1-py3-none-any.whl", hash = "sha256:37a86b45efb9a47a61a36449063e8e18d0cab3161329fc099eb21783169c4f0c"},
+    {file = "pytest-9.1.1.tar.gz", hash = "sha256:1088fbde8f2b49d95a549a195707afa7a76a3ce9bcadc26b6d71f0ffda5fe313"},
 ]
 
 [package.dependencies]
 colorama = {version = ">=0.4", markers = "sys_platform == \"win32\""}
 exceptiongroup = {version = ">=1", markers = "python_version < \"3.11\""}
-iniconfig = ">=1"
-packaging = ">=20"
+iniconfig = ">=1.0.1"
+packaging = ">=22"
 pluggy = ">=1.5,<2"
 pygments = ">=2.7.2"
 tomli = {version = ">=1", markers = "python_version < \"3.11\""}
@@ -653,7 +638,7 @@ description = "A lil' TOML parser"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
-markers = "python_version < \"3.11\""
+markers = "python_version == \"3.10\""
 files = [
     {file = "tomli-2.4.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:f8f0fc26ec2cc2b965b7a3b87cd19c5c6b8c5e5f436b984e85f486d652285c30"},
     {file = "tomli-2.4.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:4ab97e64ccda8756376892c53a72bd1f964e519c77236368527f758fbc36a53a"},
@@ -711,7 +696,7 @@ description = "Backported and Experimental Type Hints for Python 3.9+"
 optional = false
 python-versions = ">=3.9"
 groups = ["dev"]
-markers = "python_version < \"3.11\""
+markers = "python_version == \"3.10\""
 files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
@@ -757,5 +742,5 @@ type = ["pytest-mypy"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.9,<4.0"
-content-hash = "784986d22b483d2ec43ea60dccd28dae90b83a3e7e07893257133678b57613bf"
+python-versions = ">=3.10,<4.0"
+content-hash = "5b21342a13b063c64ffe8e022080b1f768cbe74048b6ec44e74bec4f8f428e90"

@@ -1,0 +1,210 @@
+{
+  "name": "Tkinter Designer verification fixture",
+  "lastModified": "2026-08-09T00:00:00Z",
+  "document": {
+    "id": "0:0",
+    "name": "Document",
+    "type": "DOCUMENT",
+    "children": [
+      {
+        "id": "0:1",
+        "name": "Desktop",
+        "type": "CANVAS",
+        "children": [
+          {
+            "id": "1:1",
+            "name": "Controls",
+            "type": "FRAME",
+            "absoluteBoundingBox": {
+              "x": 100,
+              "y": 100,
+              "width": 640,
+              "height": 420
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {"r": 0.96, "g": 0.97, "b": 1, "a": 1}
+              }
+            ],
+            "children": [
+              {
+                "id": "2:1",
+                "name": "Title",
+                "type": "TEXT",
+                "absoluteBoundingBox": {
+                  "x": 140,
+                  "y": 132,
+                  "width": 360,
+                  "height": 32
+                },
+                "characters": "Tkinter Designer verification",
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {"r": 0.06, "g": 0.09, "b": 0.16, "a": 1}
+                  }
+                ],
+                "style": {
+                  "fontFamily": "Arial",
+                  "fontSize": 22,
+                  "fontWeight": 700
+                }
+              },
+              {
+                "id": "2:2",
+                "name": "Description",
+                "type": "TEXT",
+                "absoluteBoundingBox": {
+                  "x": 140,
+                  "y": 178,
+                  "width": 430,
+                  "height": 24
+                },
+                "characters": "Native widgets generated from a recorded Figma response.",
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {"r": 0.28, "g": 0.32, "b": 0.4, "a": 1}
+                  }
+                ],
+                "style": {
+                  "fontFamily": "Arial",
+                  "fontSize": 13,
+                  "fontWeight": 400
+                }
+              },
+              {
+                "id": "2:3",
+                "name": "CheckButton",
+                "type": "RECTANGLE",
+                "absoluteBoundingBox": {
+                  "x": 140,
+                  "y": 235,
+                  "width": 36,
+                  "height": 30
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                  }
+                ]
+              },
+              {
+                "id": "2:4",
+                "name": "ToggleButton",
+                "type": "RECTANGLE",
+                "absoluteBoundingBox": {
+                  "x": 210,
+                  "y": 235,
+                  "width": 84,
+                  "height": 30
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {"r": 0.16, "g": 0.39, "b": 0.92, "a": 1}
+                  }
+                ]
+              },
+              {
+                "id": "2:5",
+                "name": "ComboBox",
+                "type": "RECTANGLE",
+                "absoluteBoundingBox": {
+                  "x": 330,
+                  "y": 235,
+                  "width": 190,
+                  "height": 30
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                  }
+                ]
+              },
+              {
+                "id": "2:6",
+                "name": "Table",
+                "type": "RECTANGLE",
+                "absoluteBoundingBox": {
+                  "x": 140,
+                  "y": 295,
+                  "width": 380,
+                  "height": 100
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "1:2",
+            "name": "Tabs",
+            "type": "FRAME",
+            "absoluteBoundingBox": {
+              "x": 800,
+              "y": 100,
+              "width": 640,
+              "height": 420
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {"r": 0.98, "g": 0.98, "b": 0.99, "a": 1}
+              }
+            ],
+            "children": [
+              {
+                "id": "3:1",
+                "name": "Title",
+                "type": "TEXT",
+                "absoluteBoundingBox": {
+                  "x": 840,
+                  "y": 132,
+                  "width": 260,
+                  "height": 32
+                },
+                "characters": "Second generated page",
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {"r": 0.06, "g": 0.09, "b": 0.16, "a": 1}
+                  }
+                ],
+                "style": {
+                  "fontFamily": "Arial",
+                  "fontSize": 22,
+                  "fontWeight": 700
+                }
+              },
+              {
+                "id": "3:2",
+                "name": "TabView",
+                "type": "RECTANGLE",
+                "absoluteBoundingBox": {
+                  "x": 840,
+                  "y": 205,
+                  "width": 460,
+                  "height": 150
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "color": {"r": 1, "g": 1, "b": 1, "a": 1}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

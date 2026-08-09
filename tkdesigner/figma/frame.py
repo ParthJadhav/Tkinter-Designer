@@ -1,5 +1,5 @@
 from ..constants import ASSETS_PATH
-from ..utils import download_image, paint_to_hex
+from ..utils import download_image, paint_to_hex, python_string_literal
 
 from .node import Node
 from .endpoints import FigmaAPIError
@@ -35,6 +35,8 @@ class Frame(Node):
 
         self.width, self.height = self.size()
         self.bg_color = self.color()
+        self.title_literal = python_string_literal(
+            self.name or "Tkinter Designer App")
 
         self.counter = {}
         self.hover_targets = {}
