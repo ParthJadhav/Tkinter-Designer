@@ -18,6 +18,8 @@ versioning once a preview is promoted to a stable release.
 
 ### Changed
 
+- The desktop app returns to Tkinter Designer's compact blue split-panel
+  identity with clearer hierarchy and consistent cross-platform controls.
 - Tkinter Designer 2.0 now requires Python 3.10 or newer; Python 3.9 is
   end-of-life and its common macOS runtime uses an unsupported TLS stack.
 - Complex effects, gradients, opacity, and unsupported nodes preserve fidelity
