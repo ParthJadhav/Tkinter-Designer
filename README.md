@@ -188,3 +188,7 @@ All contributions from the open-source community, individuals, and partners are 
 [LEARN.md](LEARN.md)
 
 Connect with me on [![Linkedin](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/parthjadhav04/)
+
+## Author
+
+Created by [Parth Jadhav](https://www.parthjadhav.com/).
