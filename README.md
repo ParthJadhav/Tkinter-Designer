@@ -14,7 +14,8 @@
 </p>
 
 <p align="center">
-<a href="https://www.producthunt.com/posts/tkinter-designer?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tkinter&#0045;designer" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=312995&theme=neutral" alt="Tkinter&#0032;Designer - No&#0045;code&#0032;solution&#0032;for&#0032;Python&#0032;GUI&#0039;s | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+  <a href="https://www.star-history.com/parthjadhav/tkinter-designer/"><img src="assets/badges/github-trending.svg" alt="GitHub Trending #3 in Python on June 8, 2021" width="48%" /></a>
+  <a href="https://www.producthunt.com/leaderboard/daily/2021/9/19"><img src="assets/badges/product-hunt.svg" alt="Product Hunt #8 on launch day, September 19, 2021" width="48%" /></a>
 </p>
   <br>
 
