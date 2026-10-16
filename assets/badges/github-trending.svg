@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="124" viewBox="0 0 500 124" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub Trending number 3 in Python</title>
+  <desc id="desc">Ranked number 3 on the Python daily GitHub Trending list on June 8, 2021, as recorded by Star History.</desc>
+  <rect x="1" y="1" width="498" height="122" rx="19" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="21" y="25" width="74" height="74" rx="18" fill="#f3edff"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#48248f">
+    <text x="58" y="48" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="1">RANK</text>
+    <text x="58" y="82" text-anchor="middle" font-size="33" font-weight="700">3</text>
+    <text x="114" y="37" font-size="16" font-weight="700" letter-spacing="1.4">GITHUB TRENDING</text>
+    <text x="114" y="73" font-size="27" font-weight="700">#3 Trending Repository</text>
+    <text x="114" y="99" font-size="14" fill="#76668d">Python &#183; June 8, 2021</text>
+  </g>
+</svg>
